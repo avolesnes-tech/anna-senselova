@@ -1,11 +1,13 @@
   // ── HERO SLIDESHOW ──
   const slides = document.querySelectorAll('.hero-slide');
-  let cur = 0;
-  setInterval(() => {
-    slides[cur].classList.remove('active');
-    cur = (cur + 1) % slides.length;
-    slides[cur].classList.add('active');
-  }, 5000);
+  if (slides.length > 0) {
+    let cur = 0;
+    setInterval(() => {
+      slides[cur].classList.remove('active');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('active');
+    }, 5000);
+  }
 
   // ── TIMELINE ANIMÁCIA ──
   const tlItems<!DOCTYPE html>
