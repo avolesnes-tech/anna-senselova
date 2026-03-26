@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anna Lockwoodová – Vyšívané poklady Anny Šenšelovej</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A;
+  --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
+nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); text-decoration: none; }
+.nav-breadcrumb { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.12em; color: #aaa; text-transform: uppercase; }
+.nav-breadcrumb span { color: var(--red); }
+.nav-back { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
+.nav-back:hover { color: var(--red); }
+
+/* HERO */
+#hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; background: var(--cream); position: relative; overflow: hidden; }
+#hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.06) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.07) 0%, transparent 60%); pointer-events: none; }
+#hero > * { position: relative; z-index: 1; }
+
+.section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem); color: var(--red); line-height: 1.75; }
+.hero-sub { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-top: 0.5rem; }
+.gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto; }
+
+/* HLAVNÝ LAYOUT */
+.content-wrap { max-width: 960px; margin: 0 auto; padding: 5rem 2rem; }
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* FOTKA S ČIPKOVÝM RÁMIKOM */
+.photo-wrap {
+  position: sticky;
+  top: 90px;
+  text-align: center;
+}
+
+.lace-frame {
+  position: relative;
+  display: inline-block;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+/* Čipkový SVG border */
+.lace-frame::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(212,175,55,0.4);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.lace-border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.profile-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center top;
+  filter: sepia(0.08) contrast(1.02);
+  position: relative;
+  z-index: 1;
+}
+
+.photo-caption {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* TEXT */
+.profile-text h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--red);
+  line-height: 1.75;
+  margin-bottom: 0.3rem;
+}
+
+.profile-text .gold-line { margin: 0.8rem 0 1.8rem; }
+
+.profile-text p {
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+
+.profile-text .highlight {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+  border-left: 3px solid var(--red);
+  padding-left: 1.2rem;
+  margin: 1.8rem 0;
+  line-height: 1.85;
+}
+
+/* ZÁUJMY */
+.interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.5rem 0;
+}
+
+.interest-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  border: 1px solid var(--gold);
+  padding: 0.3rem 0.8rem;
+  background: var(--cream);
+}
+
+/* GALÉRIA TVORBY — inline */
+.artwork-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin: 2rem 0; }
+.artwork-item { text-align: center; }
+.artwork-img-wrap { position: relative; overflow: hidden; border: 1px solid var(--gold); }
+.artwork-img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
+.artwork-img-wrap:hover img { transform: scale(1.04); }
+.artwork-shine {
+  position: absolute; top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: none;
+}
+.artwork-img-wrap:hover .artwork-shine { left: 130%; transition: left 0.65s ease; }
+.artwork-label { margin-top: 0.5rem; font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); }
+
+@media (max-width: 600px) { .artwork-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ZÁVEREČNÝ CITÁT */
+.closing-quote {
+  background: var(--red);
+  color: var(--cream);
+  padding: 4.5rem 2rem;
+  text-align: center;
+}
+
+.closing-quote blockquote {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.75;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.closing-quote cite {
+  display: block;
+  margin-top: 1rem;
+  font-family: 'Cinzel', serif;
+  font-style: normal;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* NAV MEDZI ČLÁNKAMI */
+.article-nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem; border-top: 1px solid rgba(212,175,55,0.3); max-width: 960px; margin: 0 auto; }
+.article-nav a { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
+.article-nav a:hover { color: var(--red); }
+
+/* FOOTER */
+footer { background: #111; color: var(--cream); text-align: center; padding: 2.5rem 2rem; }
+footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--gold); }
+footer p { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; margin-top: 0.4rem; }
+
+@media (max-width: 700px) {
+  .profile-layout { grid-template-columns: 1fr; }
+  .photo-wrap { position: static; max-width: 260px; margin: 0 auto 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Anna Šenšelová</a>
+  <div style="display:flex; align-items:center; gap:2rem;">
+    <span class="nav-breadcrumb">Príbeh <span>›</span> Anna Lockwoodová</span>
+    <a href="index.html" class="nav-back">← Späť na hlavnú</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="section-label">Príbeh · O autorke</p>
+  <h1>Anna Lockwoodová</h1>
+  <p class="hero-sub">Praneter · Objaviteľka · Tvorca tejto stránky</p>
+  <div class="gold-line"></div>
+</section>
+
+<!-- OBSAH -->
+<div class="content-wrap">
+  <div class="profile-layout">
+
+    <!-- FOTKA S ČIPKOVÝM RÁMIKOM -->
+    <div class="photo-wrap">
+      <div class="lace-frame">
+      <!-- Realistický čipkový SVG rámik -->
+      <svg class="lace-border" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- HORNÁ ČIPKA — nazbierané oblúčiky -->
+        <path d="M10,18 Q16,4 22,18 Q28,4 34,18 Q40,4 46,18 Q52,4 58,18 Q64,4 70,18 Q76,4 82,18 Q88,4 94,18 Q100,4 106,18 Q112,4 118,18 Q124,4 130,18 Q136,4 142,18 Q148,4 154,18 Q160,4 166,18 Q172,4 178,18 Q184,4 190,18 Q196,4 202,18 Q208,4 214,18 Q220,4 226,18 Q232,4 238,18 Q244,4 250,18 Q256,4 262,18 Q268,4 274,18 Q280,4 286,18 Q292,4 298,18" stroke="white" stroke-width="1.5" fill="none" opacity="0.95"/>
+        <!-- Druhý rad oblúčikov hore — väčšie -->
+        <path d="M10,22 Q19,8 28,22 Q37,8 46,22 Q55,8 64,22 Q73,8 82,22 Q91,8 100,22 Q109,8 118,22 Q127,8 136,22 Q145,8 154,22 Q163,8 172,22 Q181,8 190,22 Q199,8 208,22 Q217,8 226,22 Q235,8 244,22 Q253,8 262,22 Q271,8 280,22 Q289,8 298,22" stroke="white" stroke-width="1" fill="none" opacity="0.5"/>
+        <!-- Bodky na hornej čipke -->
+        <circle cx="22" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="46" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="70" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="94" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="118" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="142" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="166" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="190" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="214" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="238" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="262" cy="4" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="286" cy="4" r="1.5" fill="white" opacity="0.8"/>
+
+        <!-- DOLNÁ ČIPKA — vytrčujúca, väčšia -->
+        <path d="M10,378 Q16,396 22,378 Q28,396 34,378 Q40,396 46,378 Q52,396 58,378 Q64,396 70,378 Q76,396 82,378 Q88,396 94,378 Q100,396 106,378 Q112,396 118,378 Q124,396 130,378 Q136,396 142,378 Q148,396 154,378 Q160,396 166,378 Q172,396 178,378 Q184,396 190,378 Q196,396 202,378 Q208,396 214,378 Q220,396 226,378 Q232,396 238,378 Q244,396 250,378 Q256,396 262,378 Q268,396 274,378 Q280,396 286,378 Q292,396 298,378" stroke="white" stroke-width="2" fill="none" opacity="0.95"/>
+        <!-- Druhý rad dole -->
+        <path d="M10,374 Q19,392 28,374 Q37,392 46,374 Q55,392 64,374 Q73,392 82,374 Q91,392 100,374 Q109,392 118,374 Q127,392 136,374 Q145,392 154,374 Q163,392 172,374 Q181,392 190,374 Q199,392 208,374 Q217,392 226,374 Q235,392 244,374 Q253,392 262,374 Q271,392 280,374 Q289,392 298,374" stroke="white" stroke-width="1" fill="none" opacity="0.5"/>
+        <!-- Bodky na dolnej čipke -->
+        <circle cx="22" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="46" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="70" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="94" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="118" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="142" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="166" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="190" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="214" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="238" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="262" cy="396" r="2" fill="white" opacity="0.9"/>
+        <circle cx="286" cy="396" r="2" fill="white" opacity="0.9"/>
+
+        <!-- ĽAVÁ ČIPKA -->
+        <path d="M18,20 Q4,26 18,32 Q4,38 18,44 Q4,50 18,56 Q4,62 18,68 Q4,74 18,80 Q4,86 18,92 Q4,98 18,104 Q4,110 18,116 Q4,122 18,128 Q4,134 18,140 Q4,146 18,152 Q4,158 18,164 Q4,170 18,176 Q4,182 18,188 Q4,194 18,200 Q4,206 18,212 Q4,218 18,224 Q4,230 18,236 Q4,242 18,248 Q4,254 18,260 Q4,266 18,272 Q4,278 18,284 Q4,290 18,296 Q4,302 18,308 Q4,314 18,320 Q4,326 18,332 Q4,338 18,344 Q4,350 18,356 Q4,362 18,368 Q4,374 18,380" stroke="white" stroke-width="1.5" fill="none" opacity="0.95"/>
+        <!-- Bodky ľavá -->
+        <circle cx="4" cy="32" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="56" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="80" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="104" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="128" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="152" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="176" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="200" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="224" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="248" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="272" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="296" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="320" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="344" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="4" cy="368" r="1.2" fill="white" opacity="0.7"/>
+
+        <!-- PRAVÁ ČIPKA -->
+        <path d="M282,20 Q296,26 282,32 Q296,38 282,44 Q296,50 282,56 Q296,62 282,68 Q296,74 282,80 Q296,86 282,92 Q296,98 282,104 Q296,110 282,116 Q296,122 282,128 Q296,134 282,140 Q296,146 282,152 Q296,158 282,164 Q296,170 282,176 Q296,182 282,188 Q296,194 282,200 Q296,206 282,212 Q296,218 282,224 Q296,230 282,236 Q296,242 282,248 Q296,254 282,260 Q296,266 282,272 Q296,278 282,284 Q296,290 282,296 Q296,302 282,308 Q296,314 282,320 Q296,326 282,332 Q296,338 282,344 Q296,350 282,356 Q296,362 282,368 Q296,374 282,380" stroke="white" stroke-width="1.5" fill="none" opacity="0.95"/>
+        <!-- Bodky pravá -->
+        <circle cx="296" cy="32" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="56" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="80" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="104" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="128" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="152" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="176" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="200" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="224" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="248" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="272" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="296" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="320" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="344" r="1.2" fill="white" opacity="0.7"/>
+        <circle cx="296" cy="368" r="1.2" fill="white" opacity="0.7"/>
+
+        <!-- ROHOVÉ KVIETKY -->
+        <!-- ľavý horný -->
+        <circle cx="14" cy="14" r="5" fill="none" stroke="white" stroke-width="1" opacity="0.8"/>
+        <circle cx="14" cy="14" r="2" fill="white" opacity="0.7"/>
+        <line x1="14" y1="8" x2="14" y2="20" stroke="white" stroke-width="0.8" opacity="0.6"/>
+        <line x1="8" y1="14" x2="20" y2="14" stroke="white" stroke-width="0.8" opacity="0.6"/>
+        <!-- pravý horný -->
+        <circle cx="286" cy="14" r="5" fill="none" stroke="white" stroke-width="1" opacity="0.8"/>
+        <circle cx="286" cy="14" r="2" fill="white" opacity="0.7"/>
+        <line x1="286" y1="8" x2="286" y2="20" stroke="white" stroke-width="0.8" opacity="0.6"/>
+        <line x1="280" y1="14" x2="292" y2="14" stroke="white" stroke-width="0.8" opacity="0.6"/>
+        <!-- ľavý dolný -->
+        <circle cx="14" cy="386" r="5" fill="none" stroke="white" stroke-width="1" opacity="0.8"/>
+        <circle cx="14" cy="386" r="2" fill="white" opacity="0.7"/>
+        <line x1="14" y1="380" x2="14" y2="392" stroke="white" stroke-width="0.8" opacity="0.6"/>
+        <line x1="8" y1="386" x2="20" y2="386" stroke="white" stroke-width="0.8" opacity="0.6"/>
+        <!-- pravý dolný -->
+        <circle cx="286" cy="386" r="5" fill="none" stroke="white" stroke-width="1" opacity="0.8"/>
+        <circle cx="286" cy="386" r="2" fill="white" opacity="0.7"/>
+        <line x1="286" y1="380" x2="286" y2="392" stroke="white" stroke-width="0.8" opacity="0.6"/>
+        <line x1="280" y1="386" x2="292" y2="386" stroke="white" stroke-width="0.8" opacity="0.6"/>
+      </svg>
+
+        <img src="anna_lockwoodova.jpg" alt="Anna Lockwoodová" class="profile-photo">
+      </div>
+      <p class="photo-caption">Anna Lockwoodová Šenšelová<br>Autorka projektu</p>
+    </div>
+
+    <!-- TEXT -->
+    <div class="profile-text">
+      <h2>Kde sa stretáva<br>minulosť s prítomnosťou.</h2>
+      <div class="gold-line"></div>
+
+      <p>Môj život je od začiatku poprepletaný dotykmi s umením, tradičným remeslom a kreativitou. Od malička som sa rada učila nové výtvarné techniky — a táto vášeň mi zostala dodnes.</p>
+
+      <div class="interests">
+        <span class="interest-tag">Vyšívanie</span>
+        <span class="interest-tag">Akvarel</span>
+        <span class="interest-tag">Korálkové brošne</span>
+        <span class="interest-tag">Paper maché</span>
+        <span class="interest-tag">Tvorba webu</span>
+      </div>
+
+      <p>V posledných rokoch som sa vo voľnom čase venovala vyšívaniu, akvarelovej maľbe, tvorbe korálkových šitých brošní a nedávno som sa zamilovala do techniky paper maché.</p>
+
+      <p>Keď mi ako matke troch detí, po poslednej materskej, zrušili pozíciu v IT korporáte, začala som sa vo voľnom čase viac venovať tvorbe. A práve vtedy som náhodou natrafila na dedičstvo po starých rodičoch a tete Anne.</p>
+
+      <div class="highlight">
+        „Vďaka tomu som začala skúmať svoj rodostrom. Poznanie rodinnej minulosti — príbehy mojich starých, prastarých, či praprastarých rodičov — mi dáva akýsi pocit väčšej vlastnej hodnoty. Nachádzam v ich životoch veľa paralel s tým svojím."
+      </div>
+
+      <p>Toto poznanie ma ako človeka neuveriteľne obohatilo a vzbudilo vo mne pocit hrdosti na to, že som Slovenka. Zároveň mám odjakživa blízko k ručným prácam, a preto som chcela zachovať posolstvo ukryté v starých výšivkách — a spojiť svoje novo získané zručnosti s tvorbou webu a vytvoriť túto stránku.</p>
+
+      <p>Verím, že inšpirujem aj ďalších k skúmaniu nášho spoločného dedičstva alebo individuálnej rodinnej histórie. Pretože verím, že vďaka tomu si budeme svoju krajinu viac vážiť a zachováme si to dobré, čo tu máme.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ZÁVEREČNÝ CITÁT -->
+<div class="closing-quote">
+  <blockquote>„Keď vieš, odkiaľ pochádzaš, lepšie vieš, kam ideš."</blockquote>
+  <cite>— Anna Lockwoodová Šenšelová</cite>
+</div>
+
+<!-- NAVIGÁCIA -->
+<div class="article-nav">
+  <a href="index.html">← Späť na Príbeh</a>
+  <a href="lipa.html">Lipa →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Anna Šenšelová</div>
+  <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
+</footer>
+
+</body>
+</html>
