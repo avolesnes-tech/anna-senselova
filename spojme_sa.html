@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spojme sa – Vyšívané poklady Anny Šenšelovej</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A;
+  --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
+nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); text-decoration: none; }
+.nav-breadcrumb { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.12em; color: #aaa; text-transform: uppercase; }
+.nav-breadcrumb span { color: var(--red); }
+.nav-back { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
+.nav-back:hover { color: var(--red); }
+
+/* HERO */
+#hero { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; background: var(--cream); position: relative; overflow: hidden; }
+#hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.06) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.07) 0%, transparent 60%); pointer-events: none; }
+#hero > * { position: relative; z-index: 1; }
+
+.section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem); color: var(--red); line-height: 1.75; }
+.gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto; }
+
+/* CONTENT */
+.content-wrap { max-width: 780px; margin: 0 auto; padding: 5rem 2rem 3rem; }
+
+.intro-block { text-align: center; margin-bottom: 4rem; }
+.intro-block p { font-size: 1.1rem; color: #444; line-height: 1.9; margin-bottom: 1rem; }
+.intro-block .highlight { font-style: italic; font-size: 1.2rem; color: var(--ink); border-left: 3px solid var(--red); padding-left: 1.2rem; text-align: left; margin: 2rem 0; }
+
+/* DÔVODY NA KONTAKT */
+.reasons { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+.reason-card { background: var(--section-alt); padding: 1.5rem; border-top: 2px solid var(--red); }
+.reason-card h3 { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+.reason-card p { font-size: 0.95rem; color: #555; line-height: 1.7; font-style: italic; }
+
+/* INŠPIRÁCIA */
+.inspiration { background: var(--red); color: var(--cream); padding: 4rem 2rem; text-align: center; margin: 0; }
+.inspiration h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.75; margin-bottom: 1rem; }
+.inspiration p { font-size: 1.05rem; max-width: 600px; margin: 0 auto 0.5rem; opacity: 0.9; font-style: italic; }
+
+/* FORMULÁR */
+.form-wrap { max-width: 780px; margin: 0 auto; padding: 5rem 2rem; }
+.form-wrap h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--red); line-height: 1.75; text-align: center; margin-bottom: 0.5rem; }
+.form-wrap .gold-line { margin: 0.8rem auto 2.5rem; }
+
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+.form-group input,
+.form-group select,
+.form-group textarea { width: 100%; padding: 0.8rem 1rem; font-family: 'Cormorant Garamond', serif; font-size: 1rem; border: 1px solid var(--gold); background: var(--cream); color: var(--ink); outline: none; transition: border-color 0.3s; letter-spacing: 0.03em; resize: vertical; }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--red); }
+.form-group textarea { min-height: 180px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+.btn-submit { display: block; width: 100%; padding: 1rem 2rem; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid var(--red); color: var(--red); background: transparent; cursor: pointer; transition: background 0.3s, color 0.3s; margin-top: 0.5rem; }
+.btn-submit:hover { background: var(--red); color: var(--cream); }
+
+.form-note { font-size: 0.82rem; color: #aaa; font-style: italic; text-align: center; margin-top: 1rem; }
+
+#confirm-msg { display: none; text-align: center; padding: 2rem; }
+#confirm-msg h3 { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--red); line-height: 1.75; margin-bottom: 0.5rem; }
+#confirm-msg p { font-size: 1rem; color: #555; font-style: italic; }
+
+/* FOOTER */
+footer { background: #111; color: var(--cream); text-align: center; padding: 2.5rem 2rem; }
+footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--gold); }
+footer p { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; margin-top: 0.4rem; }
+
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } .reasons { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Anna Šenšelová</a>
+  <div style="display:flex; align-items:center; gap:2rem;">
+    <span class="nav-breadcrumb"><span>Spojme sa</span></span>
+    <a href="index.html" class="nav-back">← Späť na hlavnú</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="section-label">Spojme sa</p>
+  <h1>Váš príbeh<br>tiež má cenu.</h1>
+  <div class="gold-line"></div>
+</section>
+
+<!-- ÚVOD -->
+<div class="content-wrap">
+  <div class="intro-block">
+    <p>Táto stránka vznikla z dvoch igelitiek nájdených v pivnici. Kto vie, koľko podobných pokladov ešte čaká na objavenie v skriniach, pivniciach a podkroviach po celom Slovensku?</p>
+    <p>Ak máte informácie o Lipe, o Anne Šenšelovej, alebo jednoducho vlastný príbeh objavovania rodinného dedičstva — budem nesmierne rada, ak sa mi ozvete. Každý príbeh si zaslúži byť vypočutý.</p>
+    <div class="highlight">
+      „Každá výšivka je listom bez obálky — čaká, kým ju niekto nájde a prečíta."
+    </div>
+  </div>
+
+  <!-- DÔVODY NA KONTAKT -->
+  <p class="section-label" style="text-align:center;">Ozvite sa, ak...</p>
+  <div class="reasons">
+    <div class="reason-card">
+      <h3>Viete o Lipe</h3>
+      <p>Máte dokumenty, fotografie alebo spomienky súvisiace s účastinárskou spoločnosťou Lipa a jej pôsobením.</p>
+    </div>
+    <div class="reason-card">
+      <h3>Poznáte Annu</h3>
+      <p>Vaša rodina alebo okolie má spojenie s Annou Šenšelovej — príbeh, fotografiu alebo výšivku z jej dielne.</p>
+    </div>
+    <div class="reason-card">
+      <h3>Máte vlastný poklad</h3>
+      <p>Objavili ste starú výšivku, kroj alebo rodinnú pamiatku a neviete, čo s ňou. Rada vám pomôžem pátrať.</p>
+    </div>
+    <div class="reason-card">
+      <h3>Chcete sa podeliť</h3>
+      <p>Vydali ste sa na podobnú cestu skúmania rodinnej histórie a radi by ste svoj príbeh zdieľali na našom blogu.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INŠPIRÁCIA -->
+<div class="inspiration">
+  <h2>Inšpirovala som vás?</h2>
+  <p>Chcete sa tiež vydať na cestu skúmania svojej rodinnej histórie alebo našich národných pokladov?</p>
+  <p>Dajte mi vedieť — vaše príbehy sú presne to, čo tento projekt potrebuje, aby žil ďalej.</p>
+</div>
+
+<!-- FORMULÁR -->
+<div class="form-wrap">
+  <h2>Napíšte mi.</h2>
+  <div class="gold-line"></div>
+
+  <form id="contact-form" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Vaše meno</label>
+        <input type="text" placeholder="Meno a priezvisko" required>
+      </div>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" placeholder="vas@email.sk" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Dôvod správy</label>
+      <select>
+        <option value="">— Vyberte —</option>
+        <option>Mám informácie o Lipe</option>
+        <option>Mám informácie o Anne Šenšelovej</option>
+        <option>Mám vlastný príbeh objavovania dedičstva</option>
+        <option>Chcem zdieľať príbeh na blogu</option>
+        <option>Iné</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Váš príbeh alebo správa</label>
+      <textarea placeholder="Napíšte mi — každý detail má hodnotu..."></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit">Odoslať správu</button>
+    <p class="form-note">Odpovedám osobne na každú správu. Vaše údaje neposkytujem tretím stranám.</p>
+  </form>
+
+  <div id="confirm-msg">
+    <h3>Ďakujem za vašu správu.</h3>
+    <p>Ozvem sa vám čoskoro — s radosťou si prečítam váš príbeh.</p>
+    <svg viewBox="0 0 180 30" fill="none" style="width:180px; display:block; margin:1.5rem auto; opacity:0.3;">
+      <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
+      <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+      <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+      <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+    </svg>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Anna Šenšelová</div>
+  <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('confirm-msg').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('confirm-msg').offsetTop - 100, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
