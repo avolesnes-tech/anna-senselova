@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lipa – Vyšívané poklady Anny Šenšelovej</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A; --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
+  nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); text-decoration: none; }
+  .nav-back { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
+  .nav-back:hover { color: var(--red); }
+  .nav-breadcrumb { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.12em; color: #aaa; text-transform: uppercase; }
+  .nav-breadcrumb span { color: var(--red); }
+
+  #hero { min-height: 55vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; background: var(--cream); position: relative; overflow: hidden; }
+  #hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 40%, rgba(196,30,58,0.06) 0%, transparent 55%), radial-gradient(circle at 80% 60%, rgba(212,175,55,0.08) 0%, transparent 55%); pointer-events: none; }
+  #hero > * { position: relative; z-index: 1; }
+
+  .section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+  h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem); color: var(--red); line-height: 1.75; }
+  .hero-sub { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-top: 0.5rem; }
+  .gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto; }
+
+  .content-wrap { max-width: 860px; margin: 0 auto; padding: 5rem 2rem; }
+
+  .img-hero { width: 100%; aspect-ratio: 16/7; background: linear-gradient(135deg, #e8e0d0, #d4c9b0); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.6rem; border: 1px solid var(--gold); margin-bottom: 3.5rem; }
+  .placeholder-label { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; }
+
+  .intro-text { font-size: 1.2rem; font-style: italic; color: #444; border-left: 3px solid var(--red); padding-left: 1.5rem; margin-bottom: 3rem; line-height: 1.9; }
+
+  h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.2rem, 4vw, 3.5rem); color: var(--red); line-height: 1.75; margin-bottom: 0.3rem; }
+  h3 { font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin: 2rem 0 0.8rem; }
+  p { font-size: 1.05rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
+
+  .steps { margin: 2rem 0; display: flex; flex-direction: column; gap: 1.5rem; }
+  .step { display: grid; grid-template-columns: 48px 1fr; gap: 1.2rem; align-items: start; }
+  .step-num { width: 48px; height: 48px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold-dark); flex-shrink: 0; background: var(--cream); }
+  .step-content h4 { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin-bottom: 0.4rem; }
+  .step-content p { font-size: 0.98rem; margin-bottom: 0; }
+
+  .img-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 2.5rem 0; }
+  .img-placeholder { aspect-ratio: 4/3; background: linear-gradient(135deg, #e8e0d0, #d4c9b0); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
+  .img-caption { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-top: 0.5rem; }
+
+  .img-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 2.5rem 0; }
+
+  .pull-quote { background: var(--red); color: var(--cream); padding: 2.5rem 2rem; text-align: center; margin: 3rem 0; }
+  .pull-quote blockquote { font-family: 'Pinyon Script', cursive; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.75; }
+  .pull-quote cite { display: block; margin-top: 0.8rem; font-family: 'Cinzel', serif; font-style: normal; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
+
+  .dot-list { list-style: none; padding: 0; margin: 0.5rem 0 1.5rem; }
+  .dot-list li { padding: 0.4rem 0 0.4rem 1.6rem; position: relative; font-size: 1.02rem; color: #333; line-height: 1.75; }
+  .dot-list li::before { content: '✦'; position: absolute; left: 0; color: var(--red); font-size: 0.6rem; top: 0.65rem; }
+
+  .closing { background: var(--section-alt); padding: 4rem 2rem; text-align: center; margin-top: 4rem; }
+  .closing p { max-width: 680px; margin: 0 auto; font-size: 1.1rem; font-style: italic; color: #444; }
+
+  .article-nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem; border-top: 1px solid rgba(212,175,55,0.3); max-width: 860px; margin: 0 auto; }
+  .article-nav a { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
+  .article-nav a:hover { color: var(--red); }
+
+  footer { background: #111; color: var(--cream); text-align: center; padding: 2.5rem 2rem; }
+  footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--gold); }
+  footer p { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; margin-top: 0.4rem; }
+
+  @media (max-width: 600px) { .img-duo, .img-trio { grid-template-columns: 1fr; } .step { grid-template-columns: 38px 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Anna Šenšelová</a>
+  <div style="display:flex; align-items:center; gap:2rem;">
+    <span class="nav-breadcrumb">Príbeh <span>›</span> Lipa</span>
+    <a href="index.html" class="nav-back">← Späť na hlavnú</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <p class="section-label">Príbeh · Lipa</p>
+  <h1>Lipa</h1>
+  <p class="hero-sub">Účastinárska spoločnosť pre ľudový priemysel · Martin · 1910 – 1953</p>
+  <div class="gold-line"></div>
+</section>
+
+<div class="content-wrap">
+  <div style="background: #fff; padding: 16px 16px 40px 16px; box-shadow: 2px 2px 8px rgba(0,0,0,0.12), 0 4px 24px rgba(0,0,0,0.08); margin-bottom: 0.5rem;">
+    <img src="lipa_obrazok.png" alt="Lipa – Ľudový priemysel, účastinárska spoločnosť v Turčianskom Sv. Martine" style="width:100%; display:block; object-fit:contain;">
+  </div>
+  <p style="font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:#aaa; text-align:right; margin-bottom:3rem; padding-right:0.5rem;">Zdroj: <a href="https://dikda.eu" target="_blank" style="color:var(--gold-dark); text-decoration:none;">DIKDA – Digitálna knižnica SNK</a></p>
+
+  <p class="intro-text">Lipa, založená v roku 1910 v Martine, nebola len obchodom s výšivkami. Bol to jeden z najprogresívnejších slovenských podnikov svojej doby, ktorý dokázal prepojiť archaickú krásu dedinských izieb s nárokmi európskych salónov.</p>
+
+  <p>Jej cieľom bolo nielen chrániť slovenské vzory, ale vytvoriť fungujúci ekonomický systém pre slovenské ženy.</p>
+
+
+
+  <h2>Vizionársky biznis model.</h2>
+  <div class="gold-line" style="margin-left:0;"></div>
+  <h3>Rozptýlená manufaktúra</h3>
+  <p>Lipa fungovala na princípe, ktorý by sme dnes nazvali „outsourcing" s prísnou kontrolou kvality. Celý proces mal presne stanovené kroky:</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Terénny prieskum a vzorkovníky</h4><p>Správkyne spoločnosti — medzi ktorými pôsobila aj Anna Šenšelová — cestovali po rázovitých regiónoch Slovenska. Z týchto podkladov vytvárali precízne vzorkovníky, ktoré určovali, čo a ako sa bude vyšívať.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Sieť vyšívačiek</h4><p>Lipa si vybudovala širokú sieť spolupracovníčok v obciach ako Čataj, Slovenský Grob, Detva či okolie Trenčína a Piešťan. Ženy vyšívali podľa presných zadaní, čím sa zabezpečila jednotná estetická línia podniku.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Materiálová réžia</h4><p>Lipa vyšívačkám dodávala vlastné plátna a nite, čím garantovala, že finálny produkt bude trvácny a luxusný.</p></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Inštitút korektúry</h4><p>Každý hotový kus prešiel prísnou kontrolou. Táto nekompromisnosť vybudovala Lipe meno značky, na ktorú sa dalo spoľahnúť aj pri objednávkach z Paríža či Viedne.</p></div></div>
+  </div>
+
+
+
+  <h2>Cesta k ženskej nezávislosti.</h2>
+  <div class="gold-line" style="margin-left:0;"></div>
+  <p>Lipa priniesla do slovenských dedín revolučnú zmenu – vlastný finančný príjem pre ženy. Za vyšívanie sa platilo férovo a v hotovosti. Pre mnohé ženy to bola prvá skúsenosť s ekonomickou slobodou.</p>
+
+  <div class="img-duo">
+    <div>
+      <img src="biely_golier.jpeg" alt="Výšivka z produkcie Lipy" style="width:100%; max-height:500px; display:block; object-fit:contain; background:#f9f7f2; border:1px solid var(--gold);">
+      <p class="img-caption">Ukážka výšivky z produkcie Lipy</p>
+    </div>
+    <div>
+      <img src="lipa_golier.jpg" alt="Paličkovaný golier z dielne Lipy" style="width:100%; max-height:500px; display:block; object-fit:contain; background:#f9f7f2; border:1px solid var(--gold);">
+      <p class="img-caption">Paličkovaný ozdobný golier z dielne Lipy, nájdený v pozostalostiach Anny Šenšelovej</p>
+    </div>
+  </div>
+
+  <h2>Adaptácia tradície pre moderný svet.</h2>
+  <div class="gold-line" style="margin-left:0;"></div>
+  <p>Úspech Lipy spočíval v schopnosti inovovať. Motívy z rukávcov, čepcov či košieľ citlivo aplikovali na:</p>
+  <ul class="dot-list">
+    <li><strong>Bytový textil:</strong> Obrusy, dečky a posteľnú bielizeň.</li>
+    <li><strong>Mestskú módu:</strong> Moderné blúzky, goliere a manžety.</li>
+  </ul>
+
+
+
+  <h2>Medzinárodný ohlas.</h2>
+  <div class="gold-line" style="margin-left:0;"></div>
+  <p>Lipa úspešne konkurovala priemyselnej výrobe. Jej výrobky pravidelne získavali ocenenia na svetových výstavách — strieborné medaily vo Viedni aj v Košiciach a pred vypuknutím druhej svetovej vojny mala Lipa dostať zlatú medailu priamo z Paríža.</p>
+</div>
+
+<div class="closing">
+  <p class="section-label" style="text-align:center; margin-bottom:1rem;">Odkaz Lipy</p>
+  <p>Lipa zomkla slovenské ženy a ich talent premenila na svetovo uznávané umenie, ktoré obdivoval celý svet. Tento odkaz ženskej súdržnosti a hrdosti potrebujeme aj dnes, aby sme s rovnakou odvahou chránili naše vzácne dedičstvo.</p>
+</div>
+
+<div class="article-nav">
+  <a href="index.html">← Späť na Príbeh</a>
+  <a href="zivena.html">Živena →</a>
+</div>
+
+<footer>
+  <div class="footer-name">Anna Šenšelová</div>
+  <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
+</footer>
+
+</body>
+</html>
