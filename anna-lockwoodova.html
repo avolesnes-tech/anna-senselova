@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anna Lockwoodová – Vyšívané poklady Anny Šenšelovej</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A; --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
+nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); text-decoration: none; }
+.nav-breadcrumb { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.12em; color: #aaa; text-transform: uppercase; }
+.nav-breadcrumb span { color: var(--red); }
+.nav-back { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
+.nav-back:hover { color: var(--red); }
+
+#hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; background: var(--cream); position: relative; overflow: hidden; }
+#hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.06) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.07) 0%, transparent 60%); pointer-events: none; }
+#hero > * { position: relative; z-index: 1; }
+
+.section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem); color: var(--red); line-height: 1.75; }
+.hero-sub { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-top: 0.5rem; }
+.gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto; }
+
+/* PROFIL LAYOUT */
+.content-wrap { max-width: 960px; margin: 0 auto; padding: 5rem 2rem; }
+.profile-layout { display: grid; grid-template-columns: 300px 1fr; gap: 4rem; align-items: start; }
+
+/* ČIPKOVÝ RÁMIK */
+.photo-wrap { position: sticky; top: 90px; text-align: center; }
+.lace-frame { position: relative; display: inline-block; padding: 16px; background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.12); }
+.lace-frame::before { content: ''; position: absolute; inset: 4px; border: 1px solid rgba(212,175,55,0.4); pointer-events: none; z-index: 2; }
+.lace-border { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+.profile-photo { display: block; width: 100%; object-fit: cover; object-position: center top; filter: sepia(0.08) contrast(1.02); position: relative; z-index: 1; }
+.photo-caption { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-dark); margin-top: 1rem; font-style: italic; }
+
+/* TEXT */
+.profile-text h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.2rem, 4vw, 3.5rem); color: var(--red); line-height: 1.75; margin-bottom: 0.3rem; text-align: left; }
+.profile-text .gold-line { margin: 0.8rem 0 1.8rem; }
+.profile-text p { font-size: 1.05rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
+.profile-text .highlight { font-style: italic; font-size: 1.1rem; color: var(--ink); border-left: 3px solid var(--red); padding-left: 1.2rem; margin: 1.8rem 0; line-height: 1.85; }
+.pribeh-signature { font-style: italic; font-size: 1rem; color: #555; border-left: 3px solid var(--gold); padding-left: 1.2rem; margin-top: 1.5rem; }
+
+/* GALÉRIA TVORBY */
+.artwork-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin: 2rem 0; }
+.artwork-item { text-align: center; }
+.artwork-img-wrap { position: relative; overflow: hidden; border: 1px solid var(--gold); }
+.artwork-img-wrap img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
+.artwork-img-wrap:hover img { transform: scale(1.04); }
+.artwork-shine { position: absolute; top: 0; left: -75%; width: 50%; height: 100%; background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%); transform: skewX(-20deg); pointer-events: none; transition: none; }
+.artwork-img-wrap:hover .artwork-shine { left: 130%; transition: left 0.65s ease; }
+.artwork-label { margin-top: 0.5rem; font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); }
+
+/* ZÁVER */
+.closing-quote { background: var(--red); color: var(--cream); padding: 4.5rem 2rem; text-align: center; }
+.closing-quote blockquote { font-family: 'Pinyon Script', cursive; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.75; max-width: 750px; margin: 0 auto; }
+.closing-quote cite { display: block; margin-top: 1rem; font-family: 'Cinzel', serif; font-style: normal; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
+
+.article-nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem; border-top: 1px solid rgba(212,175,55,0.3); max-width: 960px; margin: 0 auto; }
+.article-nav a { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
+.article-nav a:hover { color: var(--red); }
+
+footer { background: #111; color: var(--cream); text-align: center; padding: 2.5rem 2rem; }
+footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--gold); }
+footer p { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; margin-top: 0.4rem; }
+
+@media (max-width: 700px) { .profile-layout { grid-template-columns: 1fr; } .photo-wrap { position: static; max-width: 260px; margin: 0 auto 2rem; } .artwork-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Anna Šenšelová</a>
+  <div style="display:flex; align-items:center; gap:2rem;">
+    <span class="nav-breadcrumb">Príbeh <span>›</span> Anna Lockwoodová</span>
+    <a href="index.html" class="nav-back">← Späť na hlavnú</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <p class="section-label">Príbeh · O autorke</p>
+  <h1>Anna Lockwoodová</h1>
+  <p class="hero-sub">Praneter · Objaviteľka · Tvorca tejto stránky</p>
+  <div class="gold-line"></div>
+</section>
+
+<div class="content-wrap">
+  <div class="profile-layout">
+
+    <!-- FOTKA S ČIPKOVÝM RÁMIKOM -->
+    <div class="photo-wrap">
+      <div style="box-shadow: 4px 8px 28px rgba(0,0,0,0.18);">
+        <img src="anna_lockwoodova.jpg" alt="Anna Lockwoodová" class="profile-photo">
+      </div>
+      <p class="photo-caption">Anna Lockwoodová Šenšelová<br>Autorka projektu</p>
+    </div>
+
+    <!-- TEXT -->
+    <div class="profile-text">
+      <h2>Kde sa stretáva<br>minulosť s prítomnosťou.</h2>
+      <div class="gold-line"></div>
+
+      <p>Môj život je od začiatku poprepletaný dotykmi s umením, tradičným remeslom a kreativitou. Od malička som sa rada učila nové výtvarné techniky — a táto vášeň mi zostala dodnes.</p>
+
+      <p>V posledných rokoch som sa vo voľnom čase venovala vyšívaniu, akvarelovej maľbe, tvorbe korálkových šitých brošní a nedávno som sa zamilovala do techniky paper maché.</p>
+
+      <!-- GALÉRIA TVORBY -->
+      <div class="artwork-grid">
+        <div class="artwork-item">
+          <div class="artwork-img-wrap" style="position:relative; overflow:hidden; border:1px solid var(--gold); aspect-ratio:1; background:#e8e0d0;">
+            <img src="anna_l_akvarel.jpg" alt="Akvarel" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease;">
+            <div class="artwork-shine"></div>
+          </div>
+          <p class="artwork-label">Akvarel & maľba</p>
+        </div>
+        <div class="artwork-item">
+          <div class="artwork-img-wrap" style="position:relative; overflow:hidden; border:1px solid var(--gold); aspect-ratio:1; background:#e8e0d0;">
+            <img src="anna_l_brosna.jpg" alt="Korálková brošňa" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease;">
+            <div class="artwork-shine"></div>
+          </div>
+          <p class="artwork-label">Korálková brošňa</p>
+        </div>
+        <div class="artwork-item">
+          <div class="artwork-img-wrap" style="position:relative; overflow:hidden; border:1px solid var(--gold); aspect-ratio:1; background:#e8e0d0;">
+            <img src="anna_l_papermache.jpg" alt="Paper maché" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease;">
+            <div class="artwork-shine"></div>
+          </div>
+          <p class="artwork-label">Paper maché</p>
+        </div>
+        <div class="artwork-item">
+          <div class="artwork-img-wrap" style="position:relative; overflow:hidden; border:1px solid var(--gold); aspect-ratio:1; background:#e8e0d0;">
+            <img src="anna_l_vysivka.jpg" alt="Vyšívanie" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease;">
+            <div class="artwork-shine"></div>
+          </div>
+          <p class="artwork-label">Vyšívanie</p>
+        </div>
+      </div>
+
+      <p>Keď mi ako matke troch detí, po poslednej materskej, zrušili pozíciu v IT korporáte, začala som sa vo voľnom čase viac venovať tvorbe. A práve vtedy som náhodou natrafila na dedičstvo po starých rodičoch a tete Anne.</p>
+
+      <div class="highlight">
+        „Vďaka tomu som začala skúmať svoj rodostrom. Poznanie rodinnej minulosti — príbehy mojich starých, prastarých, či praprastarých rodičov — mi dáva akýsi pocit väčšej vlastnej hodnoty. Nachádzam v ich životoch veľa paralel s tým svojím."
+      </div>
+
+      <p>Toto poznanie ma ako človeka neuveriteľne obohatilo a vzbudilo vo mne pocit hrdosti na to, že som Slovenka. Zároveň mám odjakživa blízko k ručným prácam, a preto som chcela zachovať posolstvo ukryté v starých výšivkách — a spojiť svoje novo získané zručnosti s tvorbou webu a vytvoriť túto stránku.</p>
+
+      <p class="pribeh-signature">Verím, že inšpirujem aj ďalších k skúmaniu nášho spoločného dedičstva alebo individuálnej rodinnej histórie. Pretože verím, že vďaka tomu si budeme svoju krajinu viac vážiť a zachováme si to dobré, čo tu máme.</p>
+    </div>
+  </div>
+</div>
+
+<div class="closing-quote">
+  <blockquote>„Keď vieš, odkiaľ pochádzaš, zistíš, kam môžeš ísť."</blockquote>
+  <cite>— Anna Lockwoodová Šenšelová</cite>
+</div>
+
+<div class="article-nav">
+  <a href="index.html">← Späť na Príbeh</a>
+  <a href="lipa.html">Lipa →</a>
+</div>
+
+<footer>
+  <div class="footer-name">Anna Šenšelová</div>
+  <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
+</footer>
+
+</body>
+</html>
