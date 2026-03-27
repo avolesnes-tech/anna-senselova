@@ -149,21 +149,124 @@ h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 5rem);
 .pribeh-signature { font-style: italic; font-size: 1rem; color: #555; border-left: 3px solid var(--gold); padding-left: 1.2rem; margin-top: 1.5rem; }
 @media (max-width: 700px) { .pribeh-layout { grid-template-columns: 1fr; } .pribeh-photo-wrap { position: static; max-width: 220px; margin: 0 auto 2rem; } }
 
-/* GALÉRIA VÝŠIVIEK */
+
+/* GALÉRIA VÝŠIVIEK – nová */
 #galeria-vysiviek { background: var(--section-alt); }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
-.gallery-card { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; }
-.gallery-card .placeholder-img { width: 100%; height: 100%; background: linear-gradient(135deg, #e8e0d0, #d4c9b0); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; color: #999; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; transition: filter 0.4s, transform 0.4s; }
-.gallery-card:hover .placeholder-img { filter: sepia(0.5) contrast(1.1); transform: scale(1.04); }
-.gallery-card .overlay { position: absolute; inset: 0; background: rgba(196,30,58,0); display: flex; align-items: flex-end; padding: 1rem; transition: background 0.4s; }
-.gallery-card:hover .overlay { background: rgba(196,30,58,0.18); }
-.gallery-card .overlay span { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); opacity: 0; transition: opacity 0.4s; font-style: italic; }
-.gallery-card:hover .overlay span { opacity: 1; }
-.emb-pattern { opacity: 0.35; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
+
+.gallery-card {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+}
+.gallery-card:focus-visible { box-shadow: 0 0 0 3px var(--gold); }
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Strip holds both images stacked vertically — 200% height */
+.card-strip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 200%;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), scale 0.5s ease;
+  scale: 1;
+}
+
+.gallery-card:hover .card-strip,
+.gallery-card:focus-within .card-strip {
+  transform: translateY(-50%);
+  scale: 1.04;
+}
+
+.card-img {
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+  transition: filter 0.5s ease;
+}
+
+/* Shimmer overlay */
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255,255,255,0.45) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.gallery-card:hover .shimmer,
+.gallery-card:focus-within .shimmer {
+  opacity: 1;
+  animation: shimmer-move 0.8s ease forwards;
+}
+
+@keyframes shimmer-move {
+  from { background-position: -100% 0; }
+  to   { background-position: 200% 0; }
+}
+
+/* Overlay text */
+.overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(26,10,14,0.75));
+  padding: 1.5rem 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 3;
+  transform: translateY(6px);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.gallery-card:hover .overlay,
+.gallery-card:focus-within .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.overlay-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+.overlay-region {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
 
 /* GALÉRIA BÁBIK */
 #galeria-babik { background: var(--cream); }
-.dolls-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+.dolls-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
 .doll-card { text-align: center; }
 .doll-frame { aspect-ratio: 2/3; background: linear-gradient(160deg, #ede5d8, #d8cdb8); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; transition: box-shadow 0.3s; }
 .doll-card:hover .doll-frame { box-shadow: 0 0 0 2px var(--red), 4px 4px 18px rgba(196,30,58,0.15); }
@@ -199,6 +302,44 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
 .tl-content p { font-size: 0.95rem; color: #444; font-style: italic; }
 
 @media (max-width: 600px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } .dolls-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* TLAČIDLO — galéria výšiviek */
+.btn-gallery-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 2.4rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--red);
+  border: 1px solid var(--red);
+  background: transparent;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+/* Gold shimmer line sweeps across bottom border on hover */
+.btn-gallery-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transition: left 0.45s ease;
+}
+.btn-gallery-link:hover::after { left: 100%; }
+.btn-gallery-link:hover {
+  border-color: var(--gold);
+  box-shadow: 0 2px 18px rgba(212,175,55,0.18);
+}
+.btn-arrow { transition: transform 0.3s; display: inline-block; }
+.btn-gallery-link:hover .btn-arrow { transform: translateX(5px); }
+
 </style>
 </head>
 <body>
@@ -243,13 +384,42 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     <li><a href="spojme-sa.html">Spojme sa</a></li>
     <li><a href="#">Blog</a></li>
   </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </nav>
+
+<!-- MOBILNÉ MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-section-label">Príbeh</span>
+  <a href="anna-senselova.html" class="sub" onclick="closeMenu()">Anna Šenšelová</a>
+  <a href="anna-lockwoodova.html" class="sub" onclick="closeMenu()">Anna Lockwoodová</a>
+  <a href="lipa.html" class="sub" onclick="closeMenu()">Lipa</a>
+  <a href="zivena.html" class="sub" onclick="closeMenu()">Živena</a>
+  <a href="#" class="sub" onclick="closeMenu()">Ženský feminizmus 20. storočia</a>
+  <a href="o-nas.html" class="sub" onclick="closeMenu()">O nás</a>
+  <span class="mobile-section-label">Galéria</span>
+  <a href="galeria-vysiviek.html" class="sub" onclick="closeMenu()">Vzorkovník výšiviek Anny Šenšelovej</a>
+  <a href="galeria-vysiviek.html" class="sub" onclick="closeMenu()">Iné ľudové výšivky a odev</a>
+  <a href="galeria-babik.html" class="sub" onclick="closeMenu()">Krojované bábiky</a>
+  <span class="mobile-section-label">Slovenské výšivky</span>
+  <a href="#" class="sub" onclick="closeMenu()">Hont</a>
+  <a href="#" class="sub" onclick="closeMenu()">Detva a Podpoľanie</a>
+  <a href="#" class="sub" onclick="closeMenu()">Záhorie</a>
+  <a href="#" class="sub" onclick="closeMenu()">Šariš</a>
+  <a href="#" class="sub" onclick="closeMenu()">Gemer</a>
+  <span class="mobile-section-label" style="border-top:none; margin-top:0;"></span>
+  <a href="spojme-sa.html" onclick="closeMenu()">Spojme sa</a>
+  <a href="#" onclick="closeMenu()">Blog</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-slide active" style="background-image:url('hero1.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('hero2.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('hero3.jpg')"></div>
+  <div class="hero-slide active" style="background-image:url('https://avolesnes-tech.github.io/anna-senselova/hero1.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('https://avolesnes-tech.github.io/anna-senselova/hero2.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('https://avolesnes-tech.github.io/anna-senselova/hero3.jpg')"></div>
 
   <div class="hero-ornament-wrap">
     <svg class="ornament" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -307,7 +477,7 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
   </div>
   <div class="pribeh-layout">
     <div class="pribeh-photo-wrap">
-      <img src="anna_fotka1.png" alt="Anna Šenšelová" class="pribeh-photo">
+      <img src="https://avolesnes-tech.github.io/anna-senselova/anna_fotka1.png" alt="Anna Šenšelová" class="pribeh-photo">
       <p class="pribeh-photo-caption">Anna Šenšelová<br>1882 – 1976</p>
     </div>
     <div class="pribeh-text">
@@ -322,7 +492,12 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
         <li>Osobne dohliadala na kvalitu každej jednej dečky či kroja, pričom dbala na zachovanie čistoty a pôvodnej krásy ľudového ornamentu.</li>
       </ul>
       <p>Pod jej vedením Lipa nielen vyrábala nádherné výšivky, ale získavala ocenenia na medzinárodných výstavách od Viedne až po Košice. Anna Šenšelová stála na čele tohto podniku neuveriteľných <strong>42 rokov</strong>, až do jeho zániku v roku 1953.</p>
-      <p class="pribeh-signature">Táto úžasná osobnosť však takmer upadla do zabudnutia — až kým som ja, jej praneter a menovkyňa <em>Anna Lockwoodová Šenšelová</em>, nenašla v pivnici po starých rodičoch dve igelitky zabudnutých výšiviek. Dnes sa chcem postarať o to, aby odkaz Anny Šenšelovej znovu ožil.</p>
+      <p class="pribeh-signature">Odkaz Anny Šenšelovej sa takmer stratil v zabudnutí. Dve igelitky plné výšiviek, objavené v pivnici po starých rodičoch, ma však priviedli k jej príbehu — a ten ma od tej chvíle nepúšťa. Táto stránka je môj malý príspevok k tomu, aby sa naň nezabudlo.</p>
+
+      <a href="anna-senselova.html" class="btn-gallery-link" style="margin-top:1.4rem;">
+        Dozvedieť sa viac o Anne Šenšelovej
+        <span class="btn-arrow">→</span>
+      </a></p>
     </div>
   </div>
 </section>
@@ -333,17 +508,120 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     <p class="section-label">Zbierka</p>
     <h2>Poklady zo vzorkovníkov.</h2>
     <div class="gold-line"></div>
-    <p style="font-size:1rem; color:#666; font-style:italic; max-width:600px; margin:0 auto;">Tu budú umiestnené makro fotografie vzorov výšiviek – červená, zlatá a čierna v historickom detaile.</p>
+    <p style="font-size:1rem; color:#555; max-width:640px; margin:0 auto 0.8rem;">Tieto vyšívané fragmenty pochádzajú z pozostalosti Anny Šenšelovej. S bližším určovaním mi nezištne pomohli <em>Zuzka Tajek Piešová</em>, <em>Stanislav Talapka</em> a <em>Tamara Simončíková Heribanová</em> — som im za to nesmierne vďačná.</p>
   </div>
-  <div class="gallery-grid" style="max-width:960px; margin:0 auto;">
-    <div class="gallery-card"><div class="placeholder-img"><svg width="70" height="70" viewBox="0 0 70 70" class="emb-pattern"><polygon points="35,5 50,35 35,65 20,35" fill="none" stroke="#C41E3A" stroke-width="1.5"/><line x1="5" y1="35" x2="65" y2="35" stroke="#D4AF37" stroke-width="1"/><circle cx="35" cy="35" r="6" fill="none" stroke="#2D6A2D" stroke-width="1.2"/><circle cx="35" cy="35" r="2" fill="#C41E3A"/></svg><span>Vzor 01</span></div><div class="overlay"><span>Hontiansky motív</span></div></div>
-    <div class="gallery-card"><div class="placeholder-img"><svg width="70" height="70" viewBox="0 0 70 70" class="emb-pattern"><rect x="15" y="15" width="40" height="40" fill="none" stroke="#C41E3A" stroke-width="1.2" transform="rotate(45 35 35)"/><circle cx="35" cy="15" r="3" fill="#D4AF37"/><circle cx="55" cy="35" r="3" fill="#2D6A2D"/><circle cx="35" cy="55" r="3" fill="#C41E3A"/><circle cx="15" cy="35" r="3" fill="#D4AF37"/></svg><span>Vzor 02</span></div><div class="overlay"><span>Kvetinový detail</span></div></div>
-    <div class="gallery-card"><div class="placeholder-img"><svg width="70" height="70" viewBox="0 0 70 70" class="emb-pattern"><circle cx="35" cy="35" r="22" fill="none" stroke="#C41E3A" stroke-width="1"/><circle cx="35" cy="35" r="14" fill="none" stroke="#D4AF37" stroke-width="0.8"/><line x1="35" y1="13" x2="35" y2="57" stroke="#2D6A2D" stroke-width="0.8"/><line x1="13" y1="35" x2="57" y2="35" stroke="#2D6A2D" stroke-width="0.8"/></svg><span>Vzor 03</span></div><div class="overlay"><span>Geometrický kruh</span></div></div>
-    <div class="gallery-card"><div class="placeholder-img"><svg width="70" height="70" viewBox="0 0 70 70" class="emb-pattern"><polygon points="35,8 42,28 62,28 47,42 53,62 35,50 17,62 23,42 8,28 28,28" fill="none" stroke="#C41E3A" stroke-width="1.2"/><circle cx="35" cy="35" r="4" fill="#D4AF37" opacity="0.8"/></svg><span>Vzor 04</span></div><div class="overlay"><span>Hviezdicový motív</span></div></div>
-    <div class="gallery-card"><div class="placeholder-img"><svg width="70" height="70" viewBox="0 0 70 70" class="emb-pattern"><rect x="20" y="20" width="30" height="30" fill="none" stroke="#2D6A2D" stroke-width="1.2"/><line x1="20" y1="20" x2="50" y2="50" stroke="#C41E3A" stroke-width="0.8"/><line x1="50" y1="20" x2="20" y2="50" stroke="#C41E3A" stroke-width="0.8"/><circle cx="35" cy="35" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/></svg><span>Vzor 05</span></div><div class="overlay"><span>Mriežkový vzor</span></div></div>
-    <div class="gallery-card"><div class="placeholder-img"><svg width="70" height="70" viewBox="0 0 70 70" class="emb-pattern"><ellipse cx="35" cy="35" rx="25" ry="12" fill="none" stroke="#C41E3A" stroke-width="1"/><ellipse cx="35" cy="35" rx="12" ry="25" fill="none" stroke="#2D6A2D" stroke-width="1"/><circle cx="35" cy="35" r="4" fill="#D4AF37" opacity="0.7"/></svg><span>Vzor 06</span></div><div class="overlay"><span>Prepletený vzor</span></div></div>
-    <div class="gallery-card"><div class="placeholder-img"><svg width="70" height="70" viewBox="0 0 70 70" class="emb-pattern"><polygon points="35,5 65,25 65,55 35,65 5,55 5,25" fill="none" stroke="#D4AF37" stroke-width="1.2"/><polygon points="35,15 55,27 55,52 35,58 15,52 15,27" fill="none" stroke="#C41E3A" stroke-width="0.8"/></svg><span>Vzor 07</span></div><div class="overlay"><span>Šesťuholník</span></div></div>
-    <div class="gallery-card"><div class="placeholder-img"><svg width="70" height="70" viewBox="0 0 70 70" class="emb-pattern"><line x1="10" y1="10" x2="60" y2="60" stroke="#C41E3A" stroke-width="1"/><line x1="60" y1="10" x2="10" y2="60" stroke="#C41E3A" stroke-width="1"/><circle cx="35" cy="35" r="10" fill="none" stroke="#2D6A2D" stroke-width="1.2"/><circle cx="35" cy="25" r="3" fill="#D4AF37"/><circle cx="35" cy="45" r="3" fill="#D4AF37"/><circle cx="25" cy="35" r="3" fill="#D4AF37"/><circle cx="45" cy="35" r="3" fill="#D4AF37"/></svg><span>Vzor 08</span></div><div class="overlay"><span>Kvetový kríž</span></div></div>
+  <div class="gallery-grid" style="max-width:980px; margin:0 auto;">
+    <div class="gallery-card" tabindex="0">
+      <div class="card-inner">
+        <div class="card-strip">
+          <img class="card-img img1" src="Biela_vysivka_2.jpeg" alt="Biela výšivka">
+          <img class="card-img img2" src="Biela_vysivka_1.jpeg" alt="Biela výšivka – detail">
+        </div>
+        <div class="shimmer"></div>
+        <div class="overlay">
+          <span class="overlay-title">Biela výšivka</span>
+          <span class="overlay-region">Hontiansky motív</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card" tabindex="0">
+      <div class="card-inner">
+        <div class="card-strip">
+          <img class="card-img img1" src="bosaca_vysivka2.jpeg" alt="Bošácka výšivka">
+          <img class="card-img img2" src="bosaca_vysivka1.jpeg" alt="Bošácka výšivka – detail">
+        </div>
+        <div class="shimmer"></div>
+        <div class="overlay">
+          <span class="overlay-title">Bošácka výšivka</span>
+          <span class="overlay-region">Bošácky región</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card" tabindex="0">
+      <div class="card-inner">
+        <div class="card-strip">
+          <img class="card-img img1" src="cifer_vysivka2.jpeg" alt="Ciferská výšivka">
+          <img class="card-img img2" src="cifer_vysivka1.jpeg" alt="Ciferská výšivka – detail">
+        </div>
+        <div class="shimmer"></div>
+        <div class="overlay">
+          <span class="overlay-title">Ciferská výšivka</span>
+          <span class="overlay-region">Záhorie</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card" tabindex="0">
+      <div class="card-inner">
+        <div class="card-strip">
+          <img class="card-img img1" src="detva_krivaihla2.jpeg" alt="Detva – krivá ihla">
+          <img class="card-img img2" src="detva_krivaihla1.jpeg" alt="Detva – krivá ihla – detail">
+        </div>
+        <div class="shimmer"></div>
+        <div class="overlay">
+          <span class="overlay-title">Detva – krivá ihla</span>
+          <span class="overlay-region">Podpoľanie</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card" tabindex="0">
+      <div class="card-inner">
+        <div class="card-strip">
+          <img class="card-img img1" src="hnedy_golier2.jpeg" alt="Hnedý golier">
+          <img class="card-img img2" src="hnedy_golier1.jpeg" alt="Hnedý golier – detail">
+        </div>
+        <div class="shimmer"></div>
+        <div class="overlay">
+          <span class="overlay-title">Hnedý golier</span>
+          <span class="overlay-region">Gemerský motív</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card" tabindex="0">
+      <div class="card-inner">
+        <div class="card-strip">
+          <img class="card-img img1" src="puchov_vysivka2.jpeg" alt="Púchovská výšivka">
+          <img class="card-img img2" src="puchov_vysivka1.jpeg" alt="Púchovská výšivka – detail">
+        </div>
+        <div class="shimmer"></div>
+        <div class="overlay">
+          <span class="overlay-title">Púchovská výšivka</span>
+          <span class="overlay-region">Záhorie</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card" tabindex="0">
+      <div class="card-inner">
+        <div class="card-strip">
+          <img class="card-img img1" src="soporna_vysivka2.jpeg" alt="Šoporňská výšivka">
+          <img class="card-img img2" src="soporna_vysivka1.jpeg" alt="Šoporňská výšivka – detail">
+        </div>
+        <div class="shimmer"></div>
+        <div class="overlay">
+          <span class="overlay-title">Šoporňská výšivka</span>
+          <span class="overlay-region">Šoporňa</span>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-card" tabindex="0">
+      <div class="card-inner">
+        <div class="card-strip">
+          <img class="card-img img1" src="strieborny_golier2.jpeg" alt="Strieborný golier">
+          <img class="card-img img2" src="strieborny_golier1.jpeg" alt="Strieborný golier – detail">
+        </div>
+        <div class="shimmer"></div>
+        <div class="overlay">
+          <span class="overlay-title">Strieborný golier</span>
+          <span class="overlay-region">Krajkárstvo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:2.8rem;">
+    <a href="galeria-vysiviek.html" class="btn-gallery-link">
+      Pozrieť celú galériu výšiviek
+      <span class="btn-arrow">→</span>
+    </a>
   </div>
 </section>
 
@@ -353,15 +631,20 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     <p class="section-label">Krojované bábiky</p>
     <h2>Strážkyne tradície.</h2>
     <div class="gold-line"></div>
-    <p style="font-size:1rem; color:#666; font-style:italic; max-width:600px; margin:0 auto;">Každá bábika je oblečená v autentickom kroji regiónu – ručne šitom, s výšivkou podľa historických vzorov.</p>
+    <p style="font-size:1rem; color:#555; max-width:640px; margin:0 auto;">Tieto bábiky sú naše rodinné dedičstvo po starých rodičoch. Neviem s istotou, či priamo súvisia s Annou, no aj ony vo mne prebudili chuť pátrať po tradíciách a minulosti.</p>
   </div>
   <div class="dolls-grid" style="max-width:900px; margin:2.5rem auto 0;">
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div><div class="doll-label">Hontianska bábika</div></div>
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div><div class="doll-label">Detvianska bábika</div></div>
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div><div class="doll-label">Podpolianska bábika</div></div>
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div><div class="doll-label">Záhorácka bábika</div></div>
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div><div class="doll-label">Šarišská bábika</div></div>
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div><div class="doll-label">Gemerská bábika</div></div>
+    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div></div>
+    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div></div>
+    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div></div>
+    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div></div>
+  </div>
+
+  <div style="text-align:center; margin-top:2.8rem;">
+    <a href="galeria-babik.html" class="btn-gallery-link">
+      Dozvedieť sa viac o zbierke bábik
+      <span class="btn-arrow">→</span>
+    </a>
   </div>
 </section>
 
@@ -384,7 +667,7 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
 <!-- CITÁT -->
 <section id="citat">
   <blockquote>„V každom stehu je ukryté posolstvo — trpezlivosť, láska a hrdosť na to, kto sme."</blockquote>
-  <cite>— Anna Šenšelová</cite>
+
 </section>
 
 <!-- FOOTER -->
@@ -398,8 +681,9 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
     <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
   </svg>
-  <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
-  <p style="margin-top:0.3rem; font-size:0.72rem;">© 2025 · Stránka venovaná pamiatke Anny Šenšelovej</p>
+  <p>© 2026 Vyšívané poklady Anny Šenšelovej · Anna Lockwoodová</p>
+  <p style="margin-top:0.3rem; font-size:0.72rem;">Vytvorené s láskou a úctou k predošlým generáciám.</p>
+  <p style="margin-top:1.4rem; font-size:0.65rem; opacity:0.35; max-width:560px; margin-left:auto; margin-right:auto; line-height:1.7; letter-spacing:0.04em;">Zbierka výšiviek, bábik a pozostalosti po rodine Šenšelovcov nie je mojím osobným vlastníctvom — je dedičstvom celej rodiny. Výšivky, bábiky ani kroje nie sú na predaj.</p>
 </footer>
 
 <script>

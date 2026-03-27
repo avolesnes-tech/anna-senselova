@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interaktívna mapa krojov – Anna Šenšelová</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cream:#F9F7F2;--ink:#1A1A1A;--red:#C41E3A;--gold:#D4AF37;--gold-dark:#A07C10;--section-alt:#F2EDE4}
+body{background:var(--cream);color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.7;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(249,247,242,0.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0.6rem 2.5rem}
+nav .logo{font-family:'Pinyon Script',cursive;font-size:2rem;color:var(--red)}
+nav .back-link{font-family:'Cinzel',serif;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:color 0.3s}
+nav .back-link:hover{color:var(--red)}
+.page-header{padding:7rem 2rem 3rem;text-align:center;background:var(--section-alt);border-bottom:1px solid rgba(212,175,55,0.3)}
+.section-label{font-family:'Cinzel',serif;font-size:0.78rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem}
+h1{font-family:'Pinyon Script',cursive;font-size:clamp(2.8rem,6vw,4.5rem);color:var(--red);line-height:1.75}
+.gold-line{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1rem auto}
+.page-header p{font-size:1rem;color:#555;max-width:620px;margin:0 auto;font-style:italic}
+.map-layout{display:grid;grid-template-columns:1fr 340px;min-height:calc(100vh - 220px)}
+.map-area{padding:2.5rem;position:relative}
+.map-instructions{text-align:center;margin-bottom:1.5rem}
+.map-instructions p{font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark)}
+.svg-container{position:relative;max-width:700px;margin:0 auto}
+.svg-container svg{width:100%;height:auto;display:block}
+.region{fill:#e8dfd0;stroke:#fff;stroke-width:1.5;cursor:crosshair;transition:fill 0.25s}
+.region:hover{fill:#d4c4a8}
+.pin-dot{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--red);border:2px solid #fff;box-shadow:0 2px 8px rgba(196,30,58,0.5);cursor:pointer;transform:translate(-50%,-50%);transition:transform 0.2s;z-index:10;pointer-events:all}
+.pin-dot:hover{transform:translate(-50%,-50%) scale(1.4)}
+.pin-dot.has-photo{background:var(--gold)}
+.pin-tooltip{position:fixed;background:#fff;border:1px solid var(--gold);border-top:2px solid var(--red);padding:0.8rem;max-width:240px;box-shadow:0 8px 28px rgba(0,0,0,0.15);pointer-events:none;z-index:200;opacity:0;transition:opacity 0.2s}
+.pin-tooltip.visible{opacity:1}
+.pin-tooltip img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;margin-bottom:0.6rem}
+.tip-name{font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--red)}
+.tip-region{font-size:0.8rem;color:#888;font-style:italic;margin-top:0.1rem}
+.tip-desc{font-size:0.88rem;color:#444;margin-top:0.4rem;line-height:1.5}
+.sidebar{border-left:1px solid rgba(212,175,55,0.3);background:#fff;display:flex;flex-direction:column}
+.sidebar-header{padding:1.5rem;border-bottom:1px solid rgba(212,175,55,0.2)}
+.sidebar-header h3{font-family:'Cinzel',serif;font-size:0.82rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red)}
+.sidebar-header p{font-size:0.88rem;color:#777;margin-top:0.3rem;font-style:italic}
+.add-pin-form{padding:1.2rem 1.5rem;border-bottom:1px solid rgba(212,175,55,0.2);background:var(--section-alt)}
+.add-pin-form h4{font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink);margin-bottom:1rem}
+.form-field{margin-bottom:0.8rem}
+.form-field label{display:block;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:#888;margin-bottom:0.3rem;font-family:'Cinzel',serif}
+.form-field input,.form-field textarea{width:100%;padding:0.5rem 0.7rem;font-family:'Cormorant Garamond',serif;font-size:0.95rem;border:1px solid rgba(212,175,55,0.4);background:#fff;color:var(--ink);outline:none;transition:border-color 0.2s}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--gold)}
+.form-field textarea{resize:vertical;min-height:70px}
+.upload-area{border:1px dashed rgba(212,175,55,0.6);padding:1rem;text-align:center;cursor:pointer;position:relative;transition:background 0.2s}
+.upload-area:hover{background:rgba(212,175,55,0.05)}
+.upload-area input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.upload-icon{font-size:1.5rem;opacity:0.4}
+.upload-area p{font-size:0.78rem;color:#aaa;margin-top:0.3rem;font-style:italic}
+.preview-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:none}
+.btn-add-pin{width:100%;padding:0.75rem;font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;background:transparent;color:var(--red);border:1px solid var(--red);cursor:pointer;transition:background 0.3s,color 0.3s;margin-top:0.5rem}
+.btn-add-pin:hover:not(:disabled){background:var(--red);color:#fff}
+.btn-add-pin:disabled{opacity:0.4;cursor:not-allowed}
+.status-msg{font-size:0.78rem;text-align:center;margin-top:0.5rem;min-height:1.2em;font-style:italic}
+.status-msg.placing{color:var(--red);animation:pulse 1s infinite}
+.status-msg.saving{color:var(--gold-dark)}
+.status-msg.success{color:#4a7c4a}
+.status-msg.error{color:var(--red)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.pins-list{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.pins-list h4{font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:#aaa;margin-bottom:0.8rem}
+.pin-item{display:flex;gap:0.8rem;padding:0.7rem 0;border-bottom:1px solid rgba(212,175,55,0.15)}
+.pin-item img{width:52px;height:52px;object-fit:cover;flex-shrink:0}
+.pin-placeholder{width:52px;height:52px;background:#f0ebe0;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.pin-info .pin-name{font-size:0.9rem;font-weight:600;color:var(--ink)}
+.pin-info .pin-region{font-size:0.78rem;color:var(--red);font-style:italic}
+.pin-info .pin-desc-short{font-size:0.8rem;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+.no-pins{text-align:center;padding:2rem 1rem;color:#bbb;font-style:italic;font-size:0.9rem}
+body.placing-pin,body.placing-pin *{cursor:crosshair!important}
+.placing-banner{display:none;position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;padding:0.6rem 1.6rem;font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:0.12em;z-index:300;box-shadow:0 4px 18px rgba(196,30,58,0.35);white-space:nowrap}
+body.placing-pin .placing-banner{display:block}
+.stats-bar{display:flex;gap:2rem;justify-content:center;padding:1rem;background:#fff;border-top:1px solid rgba(212,175,55,0.2);font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#aaa}
+.stats-bar span strong{color:var(--red)}
+@media(max-width:900px){.map-layout{grid-template-columns:1fr}.sidebar{border-left:none;border-top:1px solid rgba(212,175,55,0.3)}}
+</style>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey: "AIzaSyBL1YxV9LaZ2Q8Q-hbua25hkpf7dtMflaA",
+    authDomain: "interaktivna-mapa-vysiviek.firebaseapp.com",
+    projectId: "interaktivna-mapa-vysiviek",
+    storageBucket: "interaktivna-mapa-vysiviek.firebasestorage.app",
+    messagingSenderId: "544786217510",
+    appId: "1:544786217510:web:176b1994aa1425cc4784e7"
+  });
+  const db = getFirestore(app);
+
+  // Počúvaj zmeny v reálnom čase
+  onSnapshot(collection(db, "pins"), (snapshot) => {
+    window._pins = [];
+    const container = document.getElementById('pinsContainer');
+    if (container) container.innerHTML = '';
+    snapshot.forEach(doc => {
+      const pin = { id: doc.id, ...doc.data() };
+      window._pins.push(pin);
+      if (typeof renderPinDot === 'function') renderPinDot(pin);
+    });
+    if (typeof renderPinsList === 'function') renderPinsList();
+    if (typeof updateStats === 'function') updateStats();
+  });
+
+  // Globálna funkcia na ukladanie pinu
+  window.saveToFirebase = async function(pinData) {
+    const indicator = document.getElementById('savingIndicator');
+    if (indicator) indicator.style.display = 'block';
+    try {
+      await addDoc(collection(db, "pins"), {
+        ...pinData,
+        createdAt: serverTimestamp()
+      });
+    } catch(e) {
+      alert("Chyba pri ukladaní: " + e.message);
+    }
+    if (indicator) indicator.style.display = 'none';
+  };
+</script>
+</head>
+<body>
+<nav>
+  <div class="logo">Anna Šenšelová</div>
+  <a href="index.html" class="back-link">← Späť na hlavnú stránku</a>
+</nav>
+<div class="page-header">
+  <p class="section-label">Slovenské výšivky</p>
+  <h1>Interaktívna mapa krojov</h1>
+  <div class="gold-line"></div>
+  <p>Pridajte svoj kroj alebo výšivku na mapu a pomôžte nám zmapovať krásu ľudového odevu naprieč celým Slovenskom.</p>
+</div>
+<div class="map-layout">
+  <div class="map-area">
+    <div class="map-instructions">
+      <p>Kliknite na miesto na mape a pridajte svoj pin ✦ Prejdite myšou nad pin pre náhľad</p>
+    </div>
+    <div class="svg-container" id="svgContainer">
+      <svg viewBox="0 0 613 305" xmlns="http://www.w3.org/2000/svg" id="slovakiaMap">
+        <path class="region" id="SK-BC" title="Banskobystrický" d="m 212.74829,142.25235 0.44,-0.9 1.64,-0.75 1.33,-1.82 1.96,-1.03 0.8,0.19 0.11,1.5 0.71,0.06 -0.07,1.25 1.84,0.27 1.12,1.07 1,0.06 1.45,-1.1 2.41,0.65 2.84,-0.37 0.87,-1.63 1.63,-1.31 0.47,-3.63 -2.45,-2.12 -0.51,-0.95 -0.13,-1.44 0.9,-1.62 -0.84,-3.7 0.46,-0.49 0.68,0.41 1.13,-0.12 1.35,-1.71 0.79,-2.87 1.85,-0.82 0.6,0.03 0.87,0.89 1.32,0.08 0.69,-0.32 2.11,0.4 4.92,-0.77 1.1,0.43 1.33,-0.73 1.41,0.52 1.97,-1.91 3.67,-1.03 2.04,0.94 0.63,1.57 0.07,2.23 -1.61,1.36 0.21,0.61 6.92,-1.1 2.08,-4.51 5.07,-5.85 6.74,0 1.65,-0.42 3.64,-1.95 3.09,0.41 1.51,-1.04 1.41,0.83 1.56,0.05 2.24,0.84 0.79,1.04 2.75,1.99 1.48,0.55 3.12,2.53 3.04,0 4.78,-1.75 1.52,1.8 1.82,-1.11 1.22,-0.04 2.3,-1.45 2.36,0.09 0.61,0.85 1.13,0.44 4.77,-0.66 8.11,0.37 2.54,-1.43 1.91,1.98 0,0 5.28,0.49 1.22,1.53 8.93,1.3 1.94,-1.33 1.53,-2.59 2.2,2.06 1.54,-0.21 1.31,0.4 2.79,3.08 1.48,0.47 0,0 -1.4,0.64 -1.09,3.94 -4.43,4.07 0.21,3.67 -0.89,0.87 0.84,0.66 0.61,2.62 -2.47,1.6 -0.13,0.97 0.28,2.11 0.85,0.26 -0.31,2 0.48,1.16 2.07,-0.29 4.39,3.75 1.07,2.3 1.29,1.19 1.48,3.37 1.32,1.08 -1.02,1.94 0.38,3.38 0.53,0.95 0,0 -0.57,0.59 0.04,0.79 0,0 2,0.98 2.29,-0.49 0.66,1.48 1.35,0.22 -0.6,3.22 -2.3,4.53 0.01,1.84 -0.86,1.62 -1.37,1.19 -0.54,2.91 0.94,1.44 -0.21,1.93 0.51,0.78 0.33,-0.48 0.77,0.45 0.57,-0.21 0.01,1.14 0.55,0.52 -0.28,0.58 3.62,-0.1 2.16,-0.69 0.97,-0.71 1.46,-2.36 1.22,-0.37 0.65,2.06 1.56,-0.02 1.74,-0.91 0.94,0.75 0.02,0.71 0,0 0.64,1.39 -0.91,0.95 -1.36,0.4 -0.83,1.86 -2.58,2.47 -0.32,1.4 0.54,1.09 -0.14,1.6 -1.55,2.1 0.85,1.88 -0.13,0.61 -2.33,2.22 -0.45,1.2 -1.73,2.05 0.59,0.87 -0.87,1.44 -3.03,2.93 -0.41,0.83 0.19,1.09 -0.32,-0.34 -0.42,0.27 -0.29,2.43 -1.98,-0.08 0.52,1.33 -2.81,0.48 -2.73,-2.13 -2.1,-0.86 -1.46,0.51 0.87,0.91 -0.75,1.49 -1.24,0.43 -1.48,-0.22 0.47,1.53 -3.21,0.45 -0.73,-0.53 -1.62,0.15 -1.02,-0.66 -1.1,0.26 -0.21,0.69 0.72,0.94 -0.74,2.91 -3.27,2.55 -1.56,2.05 -1.01,-0.15 -0.87,0.9 -0.21,0.49 1.1,0.54 -0.05,0.34 -1.88,0.94 -0.77,1.31 -0.53,0.16 -0.71,-1.02 -1.08,-0.45 -2.85,0.8 -1.18,0.61 -0.38,0.84 -1.37,-0.44 -1.19,1.94 -1.39,0.24 -1.55,3.03 -3.05,0.59 -0.94,0.61 0.32,-1.82 1.17,-1.69 -1.54,-2.94 -1.23,0.21 -0.9,-0.8 -1.98,-0.11 -0.51,-1.32 -1.27,2.52 -0.94,0 -1.38,-1.21 -1.5,1.29 -0.1,1 -1.3,0.24 -1.18,-1.67 0.61,-0.53 0.18,-0.96 1.61,-1.55 -0.72,-1.72 -1.14,0.26 -0.79,-1.36 -1.69,-0.88 -0.48,-1.05 -1.55,-0.4 -1.12,0.14 -1.22,1.98 -1.95,0.26 -1.22,-0.48 -1.61,-1.5 -1.06,-4.16 -1.07,-0.35 -1.28,0.53 -1.79,-1.81 -2.45,1.9 -0.67,1.23 -0.88,0.37 -1.5,1.71 -1.42,0.4 -2.01,1.41 -0.84,-0.47 -1.52,1.01 0.21,2.06 -2.23,2.78 0.52,3.38 -1.87,1.87 0.33,2.61 -1.27,2.46 0.4,1.26 -1.04,0.89 -1.05,-0.07 -0.15,1.8 -0.65,0.12 -0.86,-1.2 -0.04,-1.59 -1.21,-0.15 -2.21,2.2 -2.47,0.7 -1.54,-1.41 -1.26,0.27 -0.11,0.52 -1.53,-0.51 -1.76,0.45 -1.09,-0.53 -3.13,0.43 -1.85,1.07 -0.82,1.13 -2.43,0.67 -0.55,1.91 -0.81,0.64 -1.44,-0.53 -0.96,-0.98 -1.1,-0.11 -2.23,0.81 -5.75,-2.27 -0.79,0.07 -0.73,1.24 -1.45,0.11 -1.93,-1.27 -0.67,0.11 -0.33,0.69 -2.07,1.35 -1.32,-1.35 -1.31,0.39 -2.14,-1.92 0,0 -0.02,-2.55 1.09,-0.51 0.38,-1.63 2.21,-1.58 1.83,-2.82 -0.41,-2.39 -1.37,-2.09 0.8,-0.54 0.3,-1.98 1.07,-0.96 -0.76,-0.8 0.94,-1.04 -2.37,-1.63 -1.6,1.94 -1.32,0.43 -1.15,-0.43 -0.31,0.47 -3.97,1.35 -0.97,-0.9 -1.3,2.14 -0.96,-1.58 -0.92,-0.27 -0.64,1.79 0.79,2.34 -4.45,-0.25 -3.41,-0.94 -0.96,-0.98 -2.34,-0.75 -0.61,0.35 0.12,1.3 -0.35,0.25 -1.74,-0.33 -0.56,-3.1 1.02,-1.34 0.77,0.17 1.67,-1.96 -2.12,-3.24 0.07,-0.8 0.86,-0.05 0.05,-0.42 -1.42,-1.74 0.69,-1.92 1.18,-0.99 1.72,-0.57 -0.06,-3.18 1.12,-3 -0.65,-2.21 -1.31,-0.16 -0.73,-1.23 -0.19,-2.58 -1.47,-4.03 -2.34,-1.25 -0.53,0.21 -0.94,-2.22 -2.05,-1.9 0.19,-1.09 -1.2,-1.06 -1.55,0.05 -1.55,2.29 -1.86,1.28 0.26,0.58 -0.8,0.98 -0.69,0.09 0.14,1.33 -1.05,0.39 0.08,2.13 -0.73,0.75 -2.08,1.38 -0.33,-0.84 -1.84,-0.41 -0.72,0.91 -2.74,1.38 -2.88,-1.01 -1.67,2.61 -1.48,1.34 -0.51,1.27 -0.52,-0.4 0.12,-0.87 -0.91,-1 -0.15,-1.11 -1.07,-1.71 -0.14,-6.44 0.31,-1.25 1.03,-0.9 0.07,-1.2 1.74,-4.25 -0.82,-1.05 -0.19,-2.08 -1.46,-0.08 2.47,-3.73 -1.24,0.15 0.73,-3.74 -0.74,-1.35 -0.33,0.27 -1.12,-0.55 -1.53,-0.01 -0.92,0.37 -0.23,1.07 -1.18,-0.19 0.44,-2.1 1.49,-1.43 -0.11,-1 -0.79,-1.06 -0.2,-2.01 0,0 0.5,-3.65 1.69,-0.07 3.05,0.82 3.8,-0.04 1.08,-0.95 1.21,-0.13 0.47,-1.16 -0.13,-1.71 0.79,-1.35 1.39,-0.93 1.97,-3.9 1.66,-1.7 2.02,1.04 1.5,0.36 1.08,-0.26 2.12,0.98 0.18,-1.32 -0.49,-2.14 2.86,-2.32 1.09,-4.77 1.21,-0.99 1.72,0.57 1.43,-0.97 1.47,-2.31 1.2,-3.06 0.64,-0.49 z"/>
+        <path class="region" id="SK-BL" title="Bratislavský" d="m 12.348286,175.80235 2.98,0.02 0.21,-1.72 3.29,-0.37 3.39,-1.4 0.3,0.55 1.48,0.12 0,-0.62 -1.13,-1.32 0.11,-0.64 3.95,2.38 2.06,-1.16 0.71,1.41 0.96,0.26 7.37,-1.66 2.62,-1.41 2.47,-0.44 0.52,-1.81 2.46,-1.55 6.83,-10.1 1.51,1.34 1.49,0.63 1.36,2.69 0.22,1.75 -0.39,0.86 -1.71,1.03 -1.3,2.06 -2.05,0.16 -0.74,2.65 -3.94,2.71 -0.33,1.01 3.36,2.39 0.45,1.98 2.17,0.34 0.07,1.41 1.94,0.92 -0.22,0.72 -0.81,0.52 0.09,1.02 -0.57,1.26 -1.91,0.66 -0.03,0.69 -1.08,1.42 0.17,0.71 1.5,1.75 2.81,0.13 1.74,1.89 3.32,0.03 -0.53,3.07 1.7,0.24 -0.05,1.33 1.44,0.64 1.41,4.95 0.58,0.74 1.72,-0.67 1.88,1.78 0.62,2.43 -1.56,4 -1.24,0.55 1.11,1.13 -0.59,1.61 1.11,0.11 0.57,1.28 1.77,1.42 0.46,0.19 1.13,-0.89 1.34,1.53 -3.48,4.38 -0.98,3.74 0.61,0.64 1.38,0.13 2.99,1.41 0,1.07 -1.27,1.82 0.17,0.72 1.2,0.55 0.1,2.57 -0.37,0.58 -1.52,0.16 -0.34,0.84 -1.77,0.07 -1.14,1.16 -0.78,1.76 -2.94,1.05 -1.91,-1.29 -1.66,-0.08 0.09,-2.3 -1.95,-0.64 -1.29,1.15 0.46,1.72 1.09,0.61 -1.11,1.92 -1.13,-0.29 -2.88,2.26 -0.65,-0.22 -1.63,0.97 -1.24,-0.76 -0.62,0.11 -0.19,0.75 0.5,0.6 -0.34,1.61 0.8,1.52 1.12,0.84 0.96,0 1.09,-1.31 1.12,0.59 0.07,0.8 -1.48,0.3 -0.49,3.05 -2.07,0.3 -1.02,-1.04 -0.53,0.21 0.12,1.54 0.68,1.28 -2.7,1.37 -1.54,2.08 -0.98,0.04 0.11,1.05 -1.16,1.22 0,0 -0.48,-1.48 -1.8,0.94 -2.63,-0.54 -4.26,2.04 -2.14,-2.28 -1.54,-0.05 -1.49,-1.49 -2.24,1.6 -2.32,-1.7 1.85,-2.18 -0.36,-0.84 -1.58,-0.69 1.85,-1.69 -1.38,-0.84 0.65,-1.2 -0.58,-0.81 1.99,-1.35 -0.48,-0.78 0.45,-0.48 -1.71,-1.12 -0.44,-0.59 0.33,-0.71 -0.77,-0.15 -0.74,-0.95 0.64,-0.42 -1.28,-3.01 -1.73,0.51 -1.26,-0.18 -3.51,-3.48 -2.12,-1.43 0.05,-2.62 -1.45,-5.57 -1.51,-2.21 1.05,-4.41 -1.06,-0.98 -2.4599998,-0.35 -1.6,-2.48 0.44,-0.69 -0.53,0.26 -1.35,-3.02 1.04,-0.18 -0.56,-0.75 0.89,-1.75 -3.86,-1.92 0.06,-1.69 -2.2,0.11 -1.01,-0.79 -0.16,-2.86 -0.83000003,-1.69 0.25,-0.37 1.57000003,0.02 0.02,-1.27 0.82,-1.62 -0.64,-0.36 -0.14,-1.27 1.22,-1.28 -1.02,-1.96 -0.29,-2.73 1.38,-0.78 -0.38,-0.76 0.42,-1.11 0.89,-0.37 0.54,-1.06 2.03,-1.7 -0.53,-1.01 0.35,-0.74 1.02,-0.43 0.82,0.54 0.61,-0.17 -0.52,-2.61 0.95,-0.2 -0.13,-1.03 1.0599998,-0.65 0.24,0.45 1.11,-0.04 -0.24,-1.1 z"/>
+        <path class="region" id="SK-KI" title="Košický" d="m 366.23829,121.29235 1.78,1.44 1.49,-0.41 0.24,-1.52 -0.54,-0.61 -0.03,-1.07 0.76,-1.14 0.04,-4.11 1.41,-0.87 0.16,-0.55 -0.1,-0.94 -1.11,-0.83 -0.24,-0.89 3.59,-3.73 1.25,-0.44 0.67,-0.99 1.5,-0.94 1.94,-0.5 1.6,-2.03 3.58,1.48 3.15,2.24 1.18,1.36 1.88,0.73 0.86,0.94 1.67,0.05 -3.45,-4.4 0.48,-1.36 2.45,-2.35 0.66,0.42 1.16,2.34 1.99,1.68 0.26,1.09 2.47,1.33 1.26,-0.75 2.41,-0.18 3.63,5.77 0.95,0.2 2.13,1.62 -0.35,-0.91 0.31,-2.38 1.21,-1.04 -0.02,-1.52 0.47,-0.42 3.27,-1.1 0.79,0.3 0.95,1.88 2.18,-1.65 0.55,0.29 0.49,1.35 0.75,0.06 1.12,-0.79 0.19,-0.29 -1.16,-1.72 0.12,-1.32 -1.03,-1.31 0.54,-0.44 1.2,0.75 1.23,0.1 2.25,1.68 2.92,-1.12 -0.2,0.85 -1.85,1.23 0.76,0.83 1.57,-0.02 0.29,0.71 5.79,-1.83 2.36,0.63 1.75,1.28 1.24,2.61 0.52,0.23 3.06,-2.3 2.41,4.02 1.57,0.92 0.44,2.82 4.49,0.26 3.02
