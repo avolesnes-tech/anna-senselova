@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anna Šenšelová – Vyšívané poklady</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A; --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
+nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); text-decoration: none; }
+.nav-back { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
+.nav-back:hover { color: var(--red); }
+#hero { min-height: 55vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 9rem 2rem 5rem; background: var(--cream); position: relative; overflow: hidden; }
+#hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.05) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.06) 0%, transparent 60%); pointer-events: none; }
+#hero > * { position: relative; z-index: 1; }
+.section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem); color: var(--red); line-height: 1.75; }
+h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--red); line-height: 1.75; margin-bottom: 0.5rem; }
+.gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1rem auto 1.8rem; }
+.hero-dates { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.2em; color: var(--gold-dark); text-transform: uppercase; }
+
+/* FOTO KARTY */
+#fotky { padding: 5rem 2rem; background: var(--section-alt); }
+.fotky-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 960px; margin: 0 auto; }
+.foto-card { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; }
+
+@property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes border-spin { to { --angle: 360deg; } }
+@keyframes gold-shimmer { from { background-position: -100% 0; } to { background-position: 200% 0; } }
+
+.foto-card::before { content: ''; position: absolute; inset: -2px; background: conic-gradient(from var(--angle), transparent 20%, var(--gold) 40%, var(--red) 60%, var(--gold) 80%, transparent 100%); opacity: 0; transition: opacity 0.4s; z-index: 2; animation: border-spin 3s linear infinite paused; }
+.foto-card:hover::before { opacity: 1; animation-play-state: running; }
+.foto-card-inner { position: absolute; inset: 2px; overflow: hidden; z-index: 1; background: #1a0a0e; }
+.foto-card img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%) contrast(1.05) brightness(0.95); transition: transform 0.7s cubic-bezier(0.4,0,0.2,1), filter 0.5s ease; }
+.foto-card:hover img { transform: scale(1.08); filter: grayscale(60%) contrast(1.1) brightness(1.05); }
+.foto-card-inner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(212,175,55,0.25) 50%, transparent 70%); background-size: 200% 100%; background-position: -100% 0; opacity: 0; transition: opacity 0.3s; z-index: 2; pointer-events: none; }
+.foto-card:hover .foto-card-inner::after { opacity: 1; animation: gold-shimmer 0.9s ease forwards; }
+.foto-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(26,10,14,0.8)); padding: 1.5rem 1rem 0.8rem; z-index: 3; transform: translateY(6px); opacity: 0; transition: opacity 0.4s, transform 0.4s; }
+.foto-card:hover .foto-caption { opacity: 1; transform: translateY(0); }
+.foto-caption span { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+
+/* PRÍBEH */
+#pribeh { padding: 6rem 2rem; background: var(--cream); }
+.pribeh-layout { display: grid; grid-template-columns: 260px 1fr; gap: 4rem; align-items: start; max-width: 960px; margin: 0 auto; }
+.pribeh-photo-wrap { position: sticky; top: 90px; }
+.pribeh-photo { width: 100%; display: block; filter: grayscale(100%) contrast(1.08); box-shadow: 4px 8px 28px rgba(0,0,0,0.22); }
+.pribeh-photo-caption { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-top: 0.7rem; font-style: italic; }
+.pribeh-text p { font-size: 1.05rem; color: #333; margin-bottom: 1.1rem; line-height: 1.85; }
+.pribeh-text ul { list-style: none; margin: 0.5rem 0 1.3rem; padding: 0; }
+.pribeh-text ul li { font-size: 1.02rem; color: #333; padding: 0.35rem 0 0.35rem 1.6rem; position: relative; line-height: 1.75; }
+.pribeh-text ul li::before { content: '✦'; position: absolute; left: 0; color: var(--red); font-size: 0.6rem; top: 0.6rem; }
+.pribeh-signature { font-style: italic; font-size: 1rem; color: #555; border-left: 3px solid var(--gold); padding-left: 1.2rem; margin-top: 1.5rem; }
+
+/* RODOSTROM */
+#rodostrom { padding: 6rem 2rem; background: var(--section-alt); }
+.strom-wrap { max-width: 760px; margin: 2.5rem auto 0; }
+.gen { margin-bottom: 0.5rem; }
+.gen-label { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.8rem; text-align: center; }
+.gen-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.osoba { background: var(--cream); border: 1px solid rgba(212,175,55,0.4); border-top: 2px solid var(--red); padding: 0.7rem 1.2rem; text-align: center; min-width: 160px; transition: box-shadow 0.3s, transform 0.3s; }
+.osoba:hover { box-shadow: 0 4px 18px rgba(196,30,58,0.15); transform: translateY(-3px); }
+.osoba.hlavna { border-top-color: var(--gold); }
+.osoba-meno { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--ink); }
+.osoba.hlavna .osoba-meno { color: var(--red); }
+.osoba-roky { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--gold-dark); margin-top: 0.2rem; }
+.osoba-poznamka { font-size: 0.78rem; color: #888; font-style: italic; margin-top: 0.2rem; }
+.connector { display: flex; justify-content: center; margin: 0.4rem 0; }
+.connector-line { width: 1px; height: 28px; background: linear-gradient(180deg, var(--gold), var(--red)); }
+.strom-note { text-align: center; margin-top: 2rem; font-size: 0.88rem; color: #aaa; font-style: italic; }
+
+/* FOOTER */
+footer { background: #111; color: var(--cream); text-align: center; padding: 3rem 2rem; }
+footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-top: 0.3rem; }
+
+@media (max-width: 700px) { .fotky-grid { grid-template-columns: 1fr; max-width: 400px; } .pribeh-layout { grid-template-columns: 1fr; } .pribeh-photo-wrap { position: static; max-width: 220px; margin: 0 auto 2rem; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">Anna Šenšelová</a>
+  <a href="index.html" class="nav-back">← Späť na hlavnú</a>
+</nav>
+
+<section id="hero">
+  <p class="section-label">Príbeh</p>
+  <h1>Anna Šenšelová</h1>
+  <div class="gold-line"></div>
+  <p class="hero-dates">1882 – 1976 · Očová</p>
+</section>
+
+<section id="fotky">
+  <div style="text-align:center; margin-bottom:2.5rem;">
+    <p class="section-label">Rodinné fotografie</p>
+  </div>
+  <div class="fotky-grid">
+    <div class="foto-card">
+      <div class="foto-card-inner">
+        <img src="anna_senselova_fotka1.jpeg" alt="Rodinná fotografia">
+        <div class="foto-caption"><span>Rodinná fotografia</span></div>
+      </div>
+    </div>
+    <div class="foto-card">
+      <div class="foto-card-inner">
+        <img src="a_nna_senselova_fotka2jpeg.jpeg" alt="Rodinné stretnutie">
+        <div class="foto-caption"><span>Rodinné stretnutie</span></div>
+      </div>
+    </div>
+    <div class="foto-card">
+      <div class="foto-card-inner">
+        <img src="anna_senselova_fotka3.jpeg" alt="Anna Šenšelová s rodinou">
+        <div class="foto-caption"><span>Anna Šenšelová s rodinou</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pribeh">
+  <div class="pribeh-layout">
+    <div class="pribeh-photo-wrap">
+      <img src="anna_fotka1.png" alt="Anna Šenšelová" class="pribeh-photo">
+      <p class="pribeh-photo-caption">Anna Šenšelová<br>1882 – 1976</p>
+    </div>
+    <div class="pribeh-text">
+      <h2>Žena, ktorá zachránila krásu tisícich stehov</h2>
+      <div class="gold-line"></div>
+      <p>Anna Šenšelová (1882 – 1976) bola výnimočná, nesmierne skromná a húževnatá žena, ktorej život sa stal neoddeliteľnou súčasťou histórie slovenského výšivkárstva. Narodila sa na Štedrý deň v Očovej v rodine národovcov a už od detstva ju sprevádzala láska k slovenskej kultúre.</p>
+      <p>Hoci jej pôvodným snom bola botanika a práca v záhrade, osud ju v roku 1910 zavial do Martina. Práve tam vznikala legendárna <em>Lipa</em>, účastinárska spoločnosť pre ľudový priemysel, a Anna bola povolaná, aby sa stala jej hybnou silou.</p>
+      <p>Aby svojej práci rozumela čo najlepšie, neváhala v 28 rokoch zasadnúť do školských lavíc v Prahe, kde si osvojila najrôznejšie techniky vyšívania. Po návrate sa naplno oddala záchrane tradícií:</p>
+      <ul>
+        <li>V martinskom múzeu trpezlivo študovala a odkresľovala staré vzory, aby sa na ne nezabudlo.</li>
+        <li>Pešo prechodila slovenské dediny, hľadala šikovné vyšívačky a získavala si ich dôveru.</li>
+        <li>Osobne dohliadala na kvalitu každej jednej dečky či kroja, pričom dbala na zachovanie čistoty a pôvodnej krásy ľudového ornamentu.</li>
+      </ul>
+      <p>Pod jej vedením Lipa nielen vyrábala nádherné výšivky, ale získavala ocenenia na medzinárodných výstavách od Viedne až po Košice. Anna Šenšelová stála na čele tohto podniku neuveriteľných <strong>42 rokov</strong>, až do jeho zániku v roku 1953.</p>
+      <p class="pribeh-signature">Odkaz Anny Šenšelovej sa takmer stratil v zabudnutí. Dve igelitky plné výšiviek, objavené v pivnici po starých rodičoch, ma priviedli k jej príbehu — a ten ma od tej chvíle nepúšťa. Táto stránka je môj malý príspevok k tomu, aby sa naň nezabudlo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rodostrom">
+  <div style="text-align:center;">
+    <p class="section-label">Pôvod</p>
+    <h2>Rodostrom</h2>
+    <div class="gold-line"></div>
+    <p style="font-size:1rem; color:#555; font-style:italic; max-width:600px; margin:0 auto;">Anna pochádzala z dlhej línie evanjelických národovcov. Jej rodina bola hlboko zakorenená v slovenskom národnom hnutí.</p>
+  </div>
+  <div class="strom-wrap">
+
+    <div class="gen">
+      <p class="gen-label">Prastarí rodičia</p>
+      <div class="gen-row">
+        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">rod otca</div></div>
+        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">rod matky</div></div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="connector-line"></div></div>
+
+    <div class="gen">
+      <p class="gen-label">Starí rodičia</p>
+      <div class="gen-row">
+        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">otcova strana</div></div>
+        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">materina strana</div></div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="connector-line"></div></div>
+
+    <div class="gen">
+      <p class="gen-label">Rodičia</p>
+      <div class="gen-row">
+        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">otec · národovec</div></div>
+        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">matka</div></div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="connector-line"></div></div>
+
+    <div class="gen">
+      <p class="gen-label">Anna Šenšelová</p>
+      <div class="gen-row">
+        <div class="osoba hlavna">
+          <div class="osoba-meno">Anna Šenšelová</div>
+          <div class="osoba-roky">1882 – 1976</div>
+          <div class="osoba-poznamka">Očová · riaditeľka Lipy</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="strom-note">Rodostrom sa dopĺňa — ak máte informácie o rode Šenšelovcov, <a href="spojme-sa.html" style="color:var(--red);">ozvite sa</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Anna Šenšelová</div>
+  <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
+  <p style="margin-top:0.3rem; font-size:0.72rem;">© 2026 · Anna Lockwoodová</p>
+</footer>
+</body>
+</html>
