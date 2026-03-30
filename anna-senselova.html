@@ -63,8 +63,10 @@ h3 { font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 0.16em; t
 .foto-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   display: block;
+  background: #f0ece0;
   filter: sepia(40%) contrast(0.95) brightness(0.92) saturate(0.7);
   transition: filter 0.5s ease;
 }
@@ -245,7 +247,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
   <p class="section-label">Príbeh</p>
   <h1>Anna Šenšelová</h1>
   <div class="gold-line"></div>
-  <p class="hero-dates">1882 – 1976 · Očová</p>
+  <p class="hero-dates">1882, Očová – 1976, Martin</p>
 </section>
 
 <!-- FOTKY -->
@@ -265,7 +267,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
     <div style="display:flex; flex-direction:column; align-items:center;">
       <div class="foto-card">
         <div class="foto-card-inner">
-          <img src="a_nna_senselova_fotka2jpeg.jpeg" alt="Rodinné stretnutie">
+          <img src="anna_senselova_fotka2.jpeg" alt="Rodinné stretnutie">
         </div>
       </div>
       <p class="foto-caption" style="margin-top:0.8rem;">Rodinné stretnutie</p>
@@ -362,7 +364,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
           data-meno="Štefan Šenšel"
           data-roky="— doplniť —"
           data-titul="Učiteľ · Národne uvedomelý · Očová"
-          data-text="Štefan Šenšel bol národne uvedomelý učiteľ z Očovej. Bol otcom Anny, Ľudovíta, Jána a Oľgy. Oženil sa s Ľudmilou Izákovou, dcérou národovca Ľudovíta Izáka a Anny rodenej Hodžovej, netere Michala Miloslava Hodžu. Po skončení učiteľskej kariéry žil v Martine."
+          data-text="Štefan Šenšel bol národne uvedomelý učiteľ z Očovej — pochádzal z učiteľskej rodiny, čo potvrdzuje aj wikipedia vo životopise jeho syna Ľudovíta. Oženil sa s Ľudmilou Izákovou, dcérou národovca Ľudovíta Izáka a Anny rodenej Hodžovej, netere Michala Miloslava Hodžu. Bol otcom Anny (nar. 1882), Ľudovíta (nar. 1888), Jána a Oľgy. Po skončení učiteľskej kariéry žil v Martine."
           data-foto="">
           <div class="osoba-foto-wrap">
             <div class="osoba-foto-placeholder">Š.Š.</div>
