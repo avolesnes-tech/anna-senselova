@@ -13,354 +13,112 @@
 }
 html { scroll-behavior: smooth; }
 body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
-
-/* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
 nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); flex-shrink: 0; }
 nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
 nav ul li { position: relative; }
 nav ul li > a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); transition: color 0.3s; display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 0; white-space: nowrap; }
 nav ul li > a:hover { color: var(--red); }
-nav ul li > a .arrow { font-size: 0.6rem; opacity: 0.5; transition: transform 0.3s; }
-nav ul li:hover > a .arrow { transform: rotate(180deg); }
 .dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid var(--gold); border-top: 2px solid var(--red); min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 200; }
 nav ul li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
-.dropdown a { display: block; padding: 0.6rem 1.2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.07em; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.15); transition: background 0.2s, color 0.2s, padding 0.2s; white-space: nowrap; }
-.dropdown a:last-child { border-bottom: none; }
-.dropdown a:hover { background: #fdf8f0; color: var(--red); padding-left: 1.5rem; }
-.dropdown .dropdown-label { display: block; padding: 0.5rem 1.2rem 0.3rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); border-bottom: 1px solid rgba(212,175,55,0.3); margin-bottom: 0.2rem; }
-  /* HAMBURGER */
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 0.3rem; }
-  .hamburger span { display: block; width: 24px; height: 2px; background: var(--red); transition: all 0.3s; }
-  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-  @media (max-width: 800px) {
-    nav ul { display: none; }
-    .hamburger { display: flex; }
-  }
-
-  /* MOBILNÉ MENU */
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 56px; left: 0; right: 0;
-    background: rgba(249,247,242,0.98);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid var(--gold);
-    z-index: 99;
-    padding: 1rem 0;
-    max-height: calc(100vh - 56px);
-    overflow-y: auto;
-  }
-  .mobile-menu.open { display: block; }
-
-  .mobile-menu a {
-    display: block;
-    padding: 0.65rem 2rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    letter-spacing: 0.08em;
-    color: var(--ink);
-    text-decoration: none;
-    transition: color 0.2s, background 0.2s;
-  }
-  .mobile-menu a:hover { color: var(--red); background: rgba(196,30,58,0.04); }
-
-  .mobile-section-label {
-    display: block;
-    padding: 0.8rem 2rem 0.3rem;
-    font-family: 'Cinzel', serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-dark);
-    border-top: 1px solid rgba(212,175,55,0.25);
-    margin-top: 0.3rem;
-  }
-  .mobile-section-label:first-child { border-top: none; margin-top: 0; }
-
-  .mobile-menu a.sub { padding-left: 2.8rem; font-size: 0.95rem; color: #555; }
-
-/* HERO */
+.dropdown a { display: block; padding: 0.6rem 1.2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.15); transition: background 0.2s, color 0.2s; white-space: nowrap; }
+.dropdown a:hover { background: #fdf8f0; color: var(--red); }
+.dropdown .dropdown-label { display: block; padding: 0.5rem 1.2rem 0.3rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); border-bottom: 1px solid rgba(212,175,55,0.3); }
+.hamburger { display: none; }
 #hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 7rem 2rem 4rem;
-  position: relative; overflow: hidden;
-  background: #1a0a0e;
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 7rem 2rem 4rem; position: relative; overflow: hidden; background: #1a0a0e;
 }
-
-.hero-slide {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-  opacity: 0; transition: opacity 2s ease-in-out;
-  filter: grayscale(30%) brightness(0.45) sepia(0.2);
-  z-index: 0;
-}
+.hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; filter: grayscale(30%) brightness(0.45) sepia(0.2); z-index: 0; }
 .hero-slide.active { opacity: 1; }
-
-#hero::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(26,10,14,0.2) 0%, rgba(26,10,14,0.3) 60%, rgba(249,247,242,0.85) 100%);
-  z-index: 1; pointer-events: none;
-}
-
+#hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,10,14,0.2) 0%, rgba(26,10,14,0.3) 60%, rgba(249,247,242,0.85) 100%); z-index: 1; pointer-events: none; }
 #hero > *:not(.hero-slide) { position: relative; z-index: 2; }
-
 .ornament { display: block; margin: 0 auto; width: 320px; max-width: 90%; }
 .ornament-sm { width: 180px; }
-
 .hero-ornament-wrap { margin-bottom: 1.5rem; opacity: 0; animation: fadeDown 1.2s 0.2s forwards; }
 .hero-title { font-family: 'Pinyon Script', cursive; font-size: clamp(1.8rem, 3.5vw, 3rem); color: #fff; line-height: 1.75; opacity: 0; animation: fadeUp 1.2s 0.5s forwards; }
 .hero-divider { width: 180px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto; opacity: 0; animation: fadeIn 1s 1s forwards; }
 .hero-subtitle { font-family: 'Cinzel', serif; font-size: clamp(0.75rem, 1.5vw, 0.9rem); font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; max-width: 680px; color: rgba(249,247,242,0.85); opacity: 0; animation: fadeUp 1s 0.9s forwards; }
 .hero-sub2 { font-size: 1rem; font-style: italic; color: rgba(249,247,242,0.7); max-width: 620px; margin-top: 1rem; opacity: 0; animation: fadeUp 1s 1.1s forwards; }
 .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 2.2rem; opacity: 0; animation: fadeUp 1s 1.4s forwards; }
-
-/* BUTTONS */
 .btn { display: inline-block; padding: 0.75rem 2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; border: 1px solid #fff; color: #fff; background: transparent; cursor: pointer; transition: background 0.3s, color 0.3s; }
 .btn:hover { background: #fff; color: var(--red); }
 .btn-gold { border-color: var(--gold); color: var(--gold); }
 .btn-gold:hover { background: var(--gold); color: #fff; }
-
-/* SECTIONS */
 section { padding: 6rem 2rem; }
 .section-inner { max-width: 860px; margin: 0 auto; text-align: center; }
 .section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
 h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 5rem); color: var(--red); line-height: 1.75; margin-bottom: 0.5rem; }
 .gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1rem auto 1.8rem; }
-
-/* PRÍBEH */
 #pribeh { background: var(--section-alt); }
 .pribeh-layout { display: grid; grid-template-columns: 280px 1fr; gap: 3.5rem; align-items: start; text-align: left; max-width: 960px; margin: 0 auto; }
 .pribeh-photo-wrap { position: sticky; top: 90px; transition: transform 0.4s; }
 .pribeh-photo-wrap:hover { transform: scale(1.02); }
 .pribeh-photo { width: 100%; display: block; filter: grayscale(100%) contrast(1.08) brightness(0.97); box-shadow: 4px 8px 28px rgba(0,0,0,0.22); }
 .pribeh-photo-caption { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-top: 0.7rem; font-style: italic; }
-.pribeh-text h2 { text-align: left; margin-bottom: 0.3rem; }
-.pribeh-text .gold-line { margin: 0.8rem 0 1.4rem; }
 .pribeh-text p { font-size: 1.05rem; color: #333; margin-bottom: 1.1rem; line-height: 1.85; }
-.pribeh-text ul { list-style: none; margin: 0.5rem 0 1.3rem; padding: 0; }
-.pribeh-text ul li { font-size: 1.02rem; color: #333; padding: 0.35rem 0 0.35rem 1.6rem; position: relative; line-height: 1.75; }
-.pribeh-text ul li::before { content: '✦'; position: absolute; left: 0; color: var(--red); font-size: 0.6rem; top: 0.6rem; }
 .pribeh-signature { font-style: italic; font-size: 1rem; color: #555; border-left: 3px solid var(--gold); padding-left: 1.2rem; margin-top: 1.5rem; }
-@media (max-width: 700px) { .pribeh-layout { grid-template-columns: 1fr; } .pribeh-photo-wrap { position: static; max-width: 220px; margin: 0 auto 2rem; } }
-
-
-/* GALÉRIA VÝŠIVIEK – nová */
 #galeria-vysiviek { background: var(--section-alt); }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
-
-.gallery-card {
-  position: relative;
-  aspect-ratio: 1;
-  overflow: hidden;
-  cursor: pointer;
-  outline: none;
-}
-.gallery-card:focus-visible { box-shadow: 0 0 0 3px var(--gold); }
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* Strip holds both images stacked vertically — 200% height */
-.card-strip {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 200%;
-  display: flex;
-  flex-direction: column;
-  transform: translateY(0);
-  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), scale 0.5s ease;
-  scale: 1;
-}
-
-.gallery-card:hover .card-strip,
-.gallery-card:focus-within .card-strip {
-  transform: translateY(-50%);
-  scale: 1.04;
-}
-
-.card-img {
-  width: 100%;
-  height: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-  display: block;
-  transition: filter 0.5s ease;
-}
-
-/* Shimmer overlay */
-.shimmer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    115deg,
-    transparent 30%,
-    rgba(255,255,255,0.45) 50%,
-    transparent 70%
-  );
-  background-size: 200% 100%;
-  background-position: -100% 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-.gallery-card:hover .shimmer,
-.gallery-card:focus-within .shimmer {
-  opacity: 1;
-  animation: shimmer-move 0.8s ease forwards;
-}
-
-@keyframes shimmer-move {
-  from { background-position: -100% 0; }
-  to   { background-position: 200% 0; }
-}
-
-/* Overlay text */
-.overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(26,10,14,0.75));
-  padding: 1.5rem 1rem 0.9rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  z-index: 3;
-  transform: translateY(6px);
-  opacity: 0;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.gallery-card:hover .overlay,
-.gallery-card:focus-within .overlay {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.overlay-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: #fff;
-}
-.overlay-region {
-  font-family: 'Cinzel', serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-
-/* GALÉRIA BÁBIK */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
+.gallery-card { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; outline: none; }
+.card-inner { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.card-strip { position: absolute; inset: 0; width: 100%; height: 200%; display: flex; flex-direction: column; transform: translateY(0); transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), scale 0.5s ease; scale: 1; }
+.gallery-card:hover .card-strip { transform: translateY(-50%); scale: 1.04; }
+.card-img { width: 100%; height: 50%; object-fit: cover; flex-shrink: 0; display: block; }
+.shimmer { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%); background-size: 200% 100%; background-position: -100% 0; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 2; }
+.gallery-card:hover .shimmer { opacity: 1; animation: shimmer-move 0.8s ease forwards; }
+@keyframes shimmer-move { from { background-position: -100% 0; } to { background-position: 200% 0; } }
+.overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(26,10,14,0.75)); padding: 1.5rem 1rem 0.9rem; display: flex; flex-direction: column; gap: 0.15rem; z-index: 3; transform: translateY(6px); opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; }
+.gallery-card:hover .overlay { opacity: 1; transform: translateY(0); }
+.overlay-title { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; color: #fff; }
+.overlay-region { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
 #galeria-babik { background: var(--cream); }
-.dolls-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
-.doll-card { text-align: center; }
-.doll-frame { aspect-ratio: 2/3; background: linear-gradient(160deg, #ede5d8, #d8cdb8); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; transition: box-shadow 0.3s; }
-.doll-card:hover .doll-frame { box-shadow: 0 0 0 2px var(--red), 4px 4px 18px rgba(196,30,58,0.15); }
-.doll-frame .doll-icon { font-size: 3.5rem; opacity: 0.25; }
-.doll-label { margin-top: 0.6rem; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: #888; font-style: italic; }
-
-/* NEWSLETTER */
-#newsletter { background: var(--section-alt); }
-
-/* CITÁT */
+.doll-card { position: relative; aspect-ratio: 2/3; overflow: hidden; cursor: pointer; background: #ede5d8; }
+.doll-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: opacity 0.5s ease, transform 0.6s ease; }
+.doll-card img.doll-img-main { opacity: 1; z-index: 1; }
+.doll-card img.doll-img-alt { opacity: 0; z-index: 2; }
+.doll-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.38) 50%, transparent 70%); background-size: 200% 100%; background-position: -100% 0; opacity: 0; z-index: 3; pointer-events: none; transition: opacity 0.3s; }
+.doll-card:hover::after { opacity: 1; animation: doll-shimmer 0.75s ease forwards; }
+@keyframes doll-shimmer { from { background-position: -100% 0; } to { background-position: 210% 0; } }
+.doll-card:hover img.doll-img-main { opacity: 0; transform: scale(1.06); }
+.doll-card:hover img.doll-img-alt { opacity: 1; transform: scale(1.06); }
+.dolls-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 2.5rem; }
 #citat { background: var(--red); color: var(--cream); padding: 5rem 2rem; text-align: center; }
 #citat blockquote { font-family: 'Pinyon Script', cursive; font-size: clamp(2rem, 5vw, 3.8rem); max-width: 800px; margin: 0 auto; line-height: 1.75; }
-#citat cite { display: block; margin-top: 1.2rem; font-family: 'Cinzel', serif; font-style: normal; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
-
-/* FOOTER */
 footer { background: #111; color: var(--cream); text-align: center; padding: 3rem 2rem; }
 footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 0.5rem; }
 footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-top: 0.3rem; }
 footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
-
-/* ANIMÁCIE */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-/* TIMELINE */
-.timeline { position: relative; max-width: 700px; margin: 0 auto; text-align: left; }
-.timeline::before { content: ''; position: absolute; left: 18px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--gold), var(--red), var(--gold)); }
-.tl-item { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; opacity: 0; transform: translateX(-20px); transition: opacity 0.6s, transform 0.6s; }
-.tl-item.visible { opacity: 1; transform: translateX(0); }
-.tl-dot { flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%; background: var(--cream); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--gold-dark); font-weight: 600; }
-.tl-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; color: var(--red); margin-bottom: 0.2rem; }
-.tl-content p { font-size: 0.95rem; color: #444; font-style: italic; }
-
-@media (max-width: 600px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } .dolls-grid { grid-template-columns: repeat(2, 1fr); } }
-
-/* TLAČIDLO — galéria výšiviek */
-.btn-gallery-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 2.4rem;
-  font-family: 'Cinzel', serif;
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--red);
-  border: 1px solid var(--red);
-  background: transparent;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-/* Gold shimmer line sweeps across bottom border on hover */
-.btn-gallery-link::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  transition: left 0.45s ease;
-}
+.btn-gallery-link { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2.4rem; font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: var(--red); border: 1px solid var(--red); background: transparent; transition: border-color 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+.btn-gallery-link::after { content: ''; position: absolute; bottom: -1px; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transition: left 0.45s ease; }
 .btn-gallery-link:hover::after { left: 100%; }
-.btn-gallery-link:hover {
-  border-color: var(--gold);
-  box-shadow: 0 2px 18px rgba(212,175,55,0.18);
-}
+.btn-gallery-link:hover { border-color: var(--gold); box-shadow: 0 2px 18px rgba(212,175,55,0.18); }
 .btn-arrow { transition: transform 0.3s; display: inline-block; }
 .btn-gallery-link:hover .btn-arrow { transform: translateX(5px); }
-
+@media (max-width: 700px) { .pribeh-layout { grid-template-columns: 1fr; } .dolls-grid { grid-template-columns: repeat(2, 1fr); } .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">Anna Šenšelová</div>
   <ul>
     <li>
-      <a href="#pribeh">Príbeh <span class="arrow">▼</span></a>
+      <a href="#pribeh">Príbeh ▼</a>
       <div class="dropdown">
         <span class="dropdown-label">Príbeh</span>
         <a href="anna-senselova.html">Anna Šenšelová</a>
         <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
         <a href="lipa.html">Lipa</a>
         <a href="zivena.html">Živena</a>
-<a href="o-nas.html">O nás</a>
+        <a href="o-nas.html">O nás</a>
       </div>
     </li>
     <li>
-      <a href="#galeria-vysiviek">Galéria <span class="arrow">▼</span></a>
+      <a href="#galeria-vysiviek">Galéria ▼</a>
       <div class="dropdown">
         <span class="dropdown-label">Galéria</span>
         <a href="galeria-vysiviek.html">Vzorkovník výšiviek Anny Šenšelovej</a>
@@ -368,52 +126,10 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
         <a href="galeria-babik.html">Krojované bábiky</a>
       </div>
     </li>
-    <li>
-      <a href="#">Slovenské výšivky <span class="arrow">▼</span></a>
-      <div class="dropdown">
-        <a href="interaktivna-mapa.html" style="color:var(--red); font-weight:600;">✦ Interaktívna mapa krojov</a>
-        <span class="dropdown-label">Regióny</span>
-        <a href="#">Hont</a>
-        <a href="#">Detva a Podpoľanie</a>
-        <a href="#">Záhorie</a>
-        <a href="#">Šariš</a>
-        <a href="#">Gemer</a>
-        <a href="#" style="color:var(--gold-dark); font-style:italic;">— ďalšie regióny čoskoro —</a>
-      </div>
-    </li>
     <li><a href="spojme-sa.html">Spojme sa</a></li>
     <li><a href="#">Blog</a></li>
   </ul>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
 </nav>
-
-<!-- MOBILNÉ MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <span class="mobile-section-label">Príbeh</span>
-  <a href="anna-senselova.html" class="sub" onclick="closeMenu()">Anna Šenšelová</a>
-  <a href="anna-lockwoodova.html" class="sub" onclick="closeMenu()">Anna Lockwoodová</a>
-  <a href="lipa.html" class="sub" onclick="closeMenu()">Lipa</a>
-  <a href="zivena.html" class="sub" onclick="closeMenu()">Živena</a>
-<a href="o-nas.html" class="sub" onclick="closeMenu()">O nás</a>
-  <span class="mobile-section-label">Galéria</span>
-  <a href="galeria-vysiviek.html" class="sub" onclick="closeMenu()">Vzorkovník výšiviek Anny Šenšelovej</a>
-  <a href="galeria-vysiviek.html" class="sub" onclick="closeMenu()">Iné ľudové výšivky a odev</a>
-  <a href="galeria-babik.html" class="sub" onclick="closeMenu()">Krojované bábiky</a>
-  <span class="mobile-section-label">Slovenské výšivky</span>
-  <a href="interaktivna-mapa.html" onclick="closeMenu()" style="color:var(--red);">✦ Interaktívna mapa krojov</a>
-  <a href="#" class="sub" onclick="closeMenu()">Hont</a>
-  <a href="#" class="sub" onclick="closeMenu()">Detva a Podpoľanie</a>
-  <a href="#" class="sub" onclick="closeMenu()">Záhorie</a>
-  <a href="#" class="sub" onclick="closeMenu()">Šariš</a>
-  <a href="#" class="sub" onclick="closeMenu()">Gemer</a>
-  <span class="mobile-section-label" style="border-top:none; margin-top:0;"></span>
-  <a href="spojme-sa.html" onclick="closeMenu()">Spojme sa</a>
-  <a href="#" onclick="closeMenu()">Blog</a>
-</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -425,35 +141,13 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     <svg class="ornament" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <polygon points="160,10 175,40 160,70 145,40" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.7"/>
       <line x1="143" y1="40" x2="60" y2="40" stroke="#D4AF37" stroke-width="0.8"/>
-      <circle cx="120" cy="40" r="3.5" fill="none" stroke="#fff" stroke-width="1" opacity="0.7"/>
-      <circle cx="120" cy="40" r="1.2" fill="#fff" opacity="0.7"/>
-      <line x1="120" y1="40" x2="120" y2="26" stroke="#D4AF37" stroke-width="0.9"/>
-      <circle cx="120" cy="23" r="3" fill="#D4AF37" opacity="0.7"/>
-      <line x1="120" y1="40" x2="120" y2="54" stroke="#D4AF37" stroke-width="0.9"/>
-      <circle cx="120" cy="57" r="3" fill="#fff" opacity="0.6"/>
       <circle cx="90" cy="40" r="3.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
       <circle cx="90" cy="40" r="1.2" fill="#D4AF37"/>
-      <line x1="90" y1="40" x2="90" y2="28" stroke="#fff" stroke-width="0.9" opacity="0.7"/>
-      <polygon points="90,24 94,30 86,30" fill="#fff" opacity="0.7"/>
-      <line x1="90" y1="40" x2="90" y2="52" stroke="#D4AF37" stroke-width="0.9"/>
-      <polygon points="90,56 94,50 86,50" fill="#D4AF37" opacity="0.7"/>
       <ellipse cx="65" cy="40" rx="8" ry="4" fill="none" stroke="#D4AF37" stroke-width="1"/>
-      <line x1="57" y1="40" x2="73" y2="40" stroke="#D4AF37" stroke-width="0.6"/>
       <line x1="177" y1="40" x2="260" y2="40" stroke="#D4AF37" stroke-width="0.8"/>
-      <circle cx="200" cy="40" r="3.5" fill="none" stroke="#fff" stroke-width="1" opacity="0.7"/>
-      <circle cx="200" cy="40" r="1.2" fill="#fff" opacity="0.7"/>
-      <line x1="200" y1="40" x2="200" y2="26" stroke="#D4AF37" stroke-width="0.9"/>
-      <circle cx="200" cy="23" r="3" fill="#D4AF37" opacity="0.7"/>
-      <line x1="200" y1="40" x2="200" y2="54" stroke="#D4AF37" stroke-width="0.9"/>
-      <circle cx="200" cy="57" r="3" fill="#fff" opacity="0.6"/>
       <circle cx="230" cy="40" r="3.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
       <circle cx="230" cy="40" r="1.2" fill="#D4AF37"/>
-      <line x1="230" y1="40" x2="230" y2="28" stroke="#fff" stroke-width="0.9" opacity="0.7"/>
-      <polygon points="230,24 234,30 226,30" fill="#fff" opacity="0.7"/>
-      <line x1="230" y1="40" x2="230" y2="52" stroke="#D4AF37" stroke-width="0.9"/>
-      <polygon points="230,56 234,50 226,50" fill="#D4AF37" opacity="0.7"/>
       <ellipse cx="255" cy="40" rx="8" ry="4" fill="none" stroke="#D4AF37" stroke-width="1"/>
-      <line x1="247" y1="40" x2="263" y2="40" stroke="#D4AF37" stroke-width="0.6"/>
     </svg>
   </div>
 
@@ -467,7 +161,7 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
   </div>
 </section>
 
-<!-- PRÍBEH -->
+<!-- PRÍBEH / LIPA -->
 <section id="pribeh">
   <div style="max-width:960px; margin:0 auto; text-align:center; margin-bottom:3rem;">
     <p class="section-label">Príbeh · Lipa</p>
@@ -488,14 +182,8 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
       <p>Lipa dala slovenskému výšivkárstvu niečo vzácne: <strong>živú platformu</strong> — miesto, kde sa staré vzory nestratili v múzeách, ale ďalej žili v rukách remeselníčok. A zároveň priniesla ženám vlastný príjem, čo bola pre mnohé prvá skúsenosť s ekonomickou slobodou.</p>
       <p class="pribeh-signature">Odkaz Lipy sa takmer stratil v zabudnutí. Dve igelitky plné výšiviek, objavené v pivnici po starých rodičoch, ma priviedli k tomuto príbehu — a ten ma od tej chvíle nepúšťa.</p>
       <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.6rem;">
-        <a href="lipa.html" class="btn-gallery-link">
-          Celý príbeh Lipy
-          <span class="btn-arrow">→</span>
-        </a>
-        <a href="anna-senselova.html" class="btn-gallery-link">
-          Kto bola Anna Šenšelová
-          <span class="btn-arrow">→</span>
-        </a>
+        <a href="lipa.html" class="btn-gallery-link">Celý príbeh Lipy <span class="btn-arrow">→</span></a>
+        <a href="anna-senselova.html" class="btn-gallery-link">Kto bola Anna Šenšelová <span class="btn-arrow">→</span></a>
       </div>
     </div>
   </div>
@@ -513,114 +201,66 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     <div class="gallery-card" tabindex="0">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img img1" src="Biela_vysivka_2.jpeg" alt="Biela výšivka">
-          <img class="card-img img2" src="Biela_vysivka_1.jpeg" alt="Biela výšivka – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/Biela_vysivka_2.jpeg" alt="Biela výšivka">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/Biela_vysivka_1.jpeg" alt="Biela výšivka – detail">
         </div>
         <div class="shimmer"></div>
-        <div class="overlay">
-          <span class="overlay-title">Biela výšivka</span>
-          <span class="overlay-region">Hontiansky motív</span>
-        </div>
+        <div class="overlay"><span class="overlay-title">Biela výšivka</span><span class="overlay-region">Hontiansky motív</span></div>
       </div>
     </div>
     <div class="gallery-card" tabindex="0">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img img1" src="bosaca_vysivka2.jpeg" alt="Bošácka výšivka">
-          <img class="card-img img2" src="bosaca_vysivka1.jpeg" alt="Bošácka výšivka – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka2.jpeg" alt="Bošácka výšivka">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka1.jpeg" alt="Bošácka výšivka – detail">
         </div>
         <div class="shimmer"></div>
-        <div class="overlay">
-          <span class="overlay-title">Bošácka výšivka</span>
-          <span class="overlay-region">Bošácky región</span>
-        </div>
+        <div class="overlay"><span class="overlay-title">Bošácka výšivka</span><span class="overlay-region">Bošácky región</span></div>
       </div>
     </div>
     <div class="gallery-card" tabindex="0">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img img1" src="cifer_vysivka2.jpeg" alt="Ciferská výšivka">
-          <img class="card-img img2" src="cifer_vysivka1.jpeg" alt="Ciferská výšivka – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka2.jpeg" alt="Ciferská výšivka">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka1.jpeg" alt="Ciferská výšivka – detail">
         </div>
         <div class="shimmer"></div>
-        <div class="overlay">
-          <span class="overlay-title">Ciferská výšivka</span>
-          <span class="overlay-region">Záhorie</span>
-        </div>
+        <div class="overlay"><span class="overlay-title">Ciferská výšivka</span><span class="overlay-region">Záhorie</span></div>
       </div>
     </div>
     <div class="gallery-card" tabindex="0">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img img1" src="detva_krivaihla2.jpeg" alt="Detva – krivá ihla">
-          <img class="card-img img2" src="detva_krivaihla1.jpeg" alt="Detva – krivá ihla – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla2.jpeg" alt="Detva – krivá ihla">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla1.jpeg" alt="Detva – krivá ihla – detail">
         </div>
         <div class="shimmer"></div>
-        <div class="overlay">
-          <span class="overlay-title">Detva – krivá ihla</span>
-          <span class="overlay-region">Podpoľanie</span>
-        </div>
+        <div class="overlay"><span class="overlay-title">Detva – krivá ihla</span><span class="overlay-region">Podpoľanie</span></div>
       </div>
     </div>
     <div class="gallery-card" tabindex="0">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img img1" src="hnedy_golier2.jpeg" alt="Hnedý golier">
-          <img class="card-img img2" src="hnedy_golier1.jpeg" alt="Hnedý golier – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier2.jpeg" alt="Hnedý golier">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier1.jpeg" alt="Hnedý golier – detail">
         </div>
         <div class="shimmer"></div>
-        <div class="overlay">
-          <span class="overlay-title">Hnedý golier</span>
-          <span class="overlay-region">Gemerský motív</span>
-        </div>
+        <div class="overlay"><span class="overlay-title">Hnedý golier</span><span class="overlay-region">Gemerský motív</span></div>
       </div>
     </div>
     <div class="gallery-card" tabindex="0">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img img1" src="puchov_vysivka2.jpeg" alt="Púchovská výšivka">
-          <img class="card-img img2" src="puchov_vysivka1.jpeg" alt="Púchovská výšivka – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier2.jpeg" alt="Strieborný golier">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier1.jpeg" alt="Strieborný golier – detail">
         </div>
         <div class="shimmer"></div>
-        <div class="overlay">
-          <span class="overlay-title">Púchovská výšivka</span>
-          <span class="overlay-region">Záhorie</span>
-        </div>
-      </div>
-    </div>
-    <div class="gallery-card" tabindex="0">
-      <div class="card-inner">
-        <div class="card-strip">
-          <img class="card-img img1" src="soporna_vysivka2.jpeg" alt="Šoporňská výšivka">
-          <img class="card-img img2" src="soporna_vysivka1.jpeg" alt="Šoporňská výšivka – detail">
-        </div>
-        <div class="shimmer"></div>
-        <div class="overlay">
-          <span class="overlay-title">Šoporňská výšivka</span>
-          <span class="overlay-region">Šoporňa</span>
-        </div>
-      </div>
-    </div>
-    <div class="gallery-card" tabindex="0">
-      <div class="card-inner">
-        <div class="card-strip">
-          <img class="card-img img1" src="strieborny_golier2.jpeg" alt="Strieborný golier">
-          <img class="card-img img2" src="strieborny_golier1.jpeg" alt="Strieborný golier – detail">
-        </div>
-        <div class="shimmer"></div>
-        <div class="overlay">
-          <span class="overlay-title">Strieborný golier</span>
-          <span class="overlay-region">Krajkárstvo</span>
-        </div>
+        <div class="overlay"><span class="overlay-title">Strieborný golier</span><span class="overlay-region">Krajkárstvo</span></div>
       </div>
     </div>
   </div>
-
   <div style="text-align:center; margin-top:2.8rem;">
-    <a href="galeria-vysiviek.html" class="btn-gallery-link">
-      Pozrieť celú galériu výšiviek
-      <span class="btn-arrow">→</span>
-    </a>
+    <a href="galeria-vysiviek.html" class="btn-gallery-link">Pozrieť celú galériu výšiviek <span class="btn-arrow">→</span></a>
   </div>
 </section>
 
@@ -632,97 +272,34 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     <div class="gold-line"></div>
     <p style="font-size:1rem; color:#555; max-width:640px; margin:0 auto;">Tieto bábiky sú naše rodinné dedičstvo po starých rodičoch. Neviem s istotou, či priamo súvisia s Annou, no aj ony vo mne prebudili chuť pátrať po tradíciách a minulosti.</p>
   </div>
+
   <div class="dolls-grid" style="max-width:900px; margin:2.5rem auto 0;">
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div></div>
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div></div>
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div></div>
-    <div class="doll-card"><div class="doll-frame"><div class="doll-icon">🪆</div></div></div>
+    <div class="doll-card" data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika2a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika2b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika2c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika2e.jpeg"]'>
+      <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika2c.jpeg" alt="Krojovaná bábika 2">
+      <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika2b.jpeg" alt="Krojovaná bábika 2 – detail">
+    </div>
+    <div class="doll-card" data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika3a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika3b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika3c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika3d.jpeg"]'>
+      <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika3a.jpeg" alt="Krojovaná bábika 3">
+      <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika3c.jpeg" alt="Krojovaná bábika 3 – detail">
+    </div>
+    <div class="doll-card" data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika4a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4d.jpeg"]'>
+      <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika4a.jpeg" alt="Krojovaná bábika 4">
+      <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika4b.jpeg" alt="Krojovaná bábika 4 – detail">
+    </div>
+    <div class="doll-card" data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika5a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika5b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika5d.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika5e.jpeg"]'>
+      <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika5a.jpeg" alt="Krojovaná bábika 5">
+      <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika5b.jpeg" alt="Krojovaná bábika 5 – detail">
+    </div>
   </div>
 
   <div style="text-align:center; margin-top:2.8rem;">
-    <a href="galeria-babik.html" class="btn-gallery-link">
-      Dozvedieť sa viac o zbierke bábik
-      <span class="btn-arrow">→</span>
-    </a>
+    <a href="galeria-babik.html" class="btn-gallery-link">Dozvedieť sa viac o zbierke bábik <span class="btn-arrow">→</span></a>
   </div>
 </section>
-
-<!-- KOMUNITA MAPA -->
-<section id="komunita-mapa" style="background:var(--section-alt); padding:6rem 2rem; text-align:center;">
-<style>
-.r-anim { fill:#ddd4be; stroke:#fff; stroke-width:1.5; transition:fill 0.35s; }
-.r-anim:hover { fill:#C41E3A; }
-@keyframes ppulse { 0%,100%{r:5;opacity:1} 50%{r:8;opacity:0.4} }
-.demo-pin { animation: ppulse 2s ease-in-out infinite; }
-</style>
-<div style="max-width:860px; margin:0 auto;">
-  <p style="font-family:'Cinzel',serif; font-size:0.78rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Komunita</p>
-  <h2 style="font-family:'Pinyon Script',cursive; font-size:clamp(2.8rem,6vw,4.8rem); color:var(--red); line-height:1.75; margin-bottom:0;">Kde žije váš kroj?</h2>
-  <div style="width:120px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:1rem auto 1.5rem;"></div>
-  <p style="font-size:1.05rem; color:#444; max-width:600px; margin:0 auto 0.6rem; font-style:italic; line-height:1.85;">Slovensko je krajina tisícich vzorov. Každý región má svoju farbu, každá dedina svoj steh. Pomôžte nám zmapovať túto krásu — pridajte fotku svojho kroja alebo výšivky na interaktívnu mapu.</p>
-  <p id="homePinCount" style="font-family:'Cinzel',serif; font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-dark); margin:0.8rem 0 2rem;">✦ Načítavam...</p>
-
-  <!-- Mapa s pulzujúcimi pinmi -->
-  <div style="position:relative; max-width:580px; margin:0 auto 2.5rem;">
-    <svg viewBox="0 0 613 305" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;filter:drop-shadow(0 6px 24px rgba(0,0,0,0.10));">
-        <path class="r-anim" id="SK-BC" d="m 212.74829,142.25235 0.44,-0.9 1.64,-0.75 1.33,-1.82 1.96,-1.03 0.8,0.19 0.11,1.5 0.71,0.06 -0.07,1.25 1.84,0.27 1.12,1.07 1,0.06 1.45,-1.1 2.41,0.65 2.84,-0.37 0.87,-1.63 1.63,-1.31 0.47,-3.63 -2.45,-2.12 -0.51,-0.95 -0.13,-1.44 0.9,-1.62 -0.84,-3.7 0.46,-0.49 0.68,0.41 1.13,-0.12 1.35,-1.71 0.79,-2.87 1.85,-0.82 0.6,0.03 0.87,0.89 1.32,0.08 0.69,-0.32 2.11,0.4 4.92,-0.77 1.1,0.43 1.33,-0.73 1.41,0.52 1.97,-1.91 3.67,-1.03 2.04,0.94 0.63,1.57 0.07,2.23 -1.61,1.36 0.21,0.61 6.92,-1.1 2.08,-4.51 5.07,-5.85 6.74,0 1.65,-0.42 3.64,-1.95 3.09,0.41 1.51,-1.04 1.41,0.83 1.56,0.05 2.24,0.84 0.79,1.04 2.75,1.99 1.48,0.55 3.12,2.53 3.04,0 4.78,-1.75 1.52,1.8 1.82,-1.11 1.22,-0.04 2.3,-1.45 2.36,0.09 0.61,0.85 1.13,0.44 4.77,-0.66 8.11,0.37 2.54,-1.43 1.91,1.98 0,0 5.28,0.49 1.22,1.53 8.93,1.3 1.94,-1.33 1.53,-2.59 2.2,2.06 1.54,-0.21 1.31,0.4 2.79,3.08 1.48,0.47 0,0 -1.4,0.64 -1.09,3.94 -4.43,4.07 0.21,3.67 -0.89,0.87 0.84,0.66 0.61,2.62 -2.47,1.6 -0.13,0.97 0.28,2.11 0.85,0.26 -0.31,2 0.48,1.16 2.07,-0.29 4.39,3.75 1.07,2.3 1.29,1.19 1.48,3.37 1.32,1.08 -1.02,1.94 0.38,3.38 0.53,0.95 0,0 -0.57,0.59 0.04,0.79 0,0 2,0.98 2.29,-0.49 0.66,1.48 1.35,0.22 -0.6,3.22 -2.3,4.53 0.01,1.84 -0.86,1.62 -1.37,1.19 -0.54,2.91 0.94,1.44 -0.21,1.93 0.51,0.78 0.33,-0.48 0.77,0.45 0.57,-0.21 0.01,1.14 0.55,0.52 -0.28,0.58 3.62,-0.1 2.16,-0.69 0.97,-0.71 1.46,-2.36 1.22,-0.37 0.65,2.06 1.56,-0.02 1.74,-0.91 0.94,0.75 0.02,0.71 0,0 0.64,1.39 -0.91,0.95 -1.36,0.4 -0.83,1.86 -2.58,2.47 -0.32,1.4 0.54,1.09 -0.14,1.6 -1.55,2.1 0.85,1.88 -0.13,0.61 -2.33,2.22 -0.45,1.2 -1.73,2.05 0.59,0.87 -0.87,1.44 -3.03,2.93 -0.41,0.83 0.19,1.09 -0.32,-0.34 -0.42,0.27 -0.29,2.43 -1.98,-0.08 0.52,1.33 -2.81,0.48 -2.73,-2.13 -2.1,-0.86 -1.46,0.51 0.87,0.91 -0.75,1.49 -1.24,0.43 -1.48,-0.22 0.47,1.53 -3.21,0.45 -0.73,-0.53 -1.62,0.15 -1.02,-0.66 -1.1,0.26 -0.21,0.69 0.72,0.94 -0.74,2.91 -3.27,2.55 -1.56,2.05 -1.01,-0.15 -0.87,0.9 -0.21,0.49 1.1,0.54 -0.05,0.34 -1.88,0.94 -0.77,1.31 -0.53,0.16 -0.71,-1.02 -1.08,-0.45 -2.85,0.8 -1.18,0.61 -0.38,0.84 -1.37,-0.44 -1.19,1.94 -1.39,0.24 -1.55,3.03 -3.05,0.59 -0.94,0.61 0.32,-1.82 1.17,-1.69 -1.54,-2.94 -1.23,0.21 -0.9,-0.8 -1.98,-0.11 -0.51,-1.32 -1.27,2.52 -0.94,0 -1.38,-1.21 -1.5,1.29 -0.1,1 -1.3,0.24 -1.18,-1.67 0.61,-0.53 0.18,-0.96 1.61,-1.55 -0.72,-1.72 -1.14,0.26 -0.79,-1.36 -1.69,-0.88 -0.48,-1.05 -1.55,-0.4 -1.12,0.14 -1.22,1.98 -1.95,0.26 -1.22,-0.48 -1.61,-1.5 -1.06,-4.16 -1.07,-0.35 -1.28,0.53 -1.79,-1.81 -2.45,1.9 -0.67,1.23 -0.88,0.37 -1.5,1.71 -1.42,0.4 -2.01,1.41 -0.84,-0.47 -1.52,1.01 0.21,2.06 -2.23,2.78 0.52,3.38 -1.87,1.87 0.33,2.61 -1.27,2.46 0.4,1.26 -1.04,0.89 -1.05,-0.07 -0.15,1.8 -0.65,0.12 -0.86,-1.2 -0.04,-1.59 -1.21,-0.15 -2.21,2.2 -2.47,0.7 -1.54,-1.41 -1.26,0.27 -0.11,0.52 -1.53,-0.51 -1.76,0.45 -1.09,-0.53 -3.13,0.43 -1.85,1.07 -0.82,1.13 -2.43,0.67 -0.55,1.91 -0.81,0.64 -1.44,-0.53 -0.96,-0.98 -1.1,-0.11 -2.23,0.81 -5.75,-2.27 -0.79,0.07 -0.73,1.24 -1.45,0.11 -1.93,-1.27 -0.67,0.11 -0.33,0.69 -2.07,1.35 -1.32,-1.35 -1.31,0.39 -2.14,-1.92 0,0 -0.02,-2.55 1.09,-0.51 0.38,-1.63 2.21,-1.58 1.83,-2.82 -0.41,-2.39 -1.37,-2.09 0.8,-0.54 0.3,-1.98 1.07,-0.96 -0.76,-0.8 0.94,-1.04 -2.37,-1.63 -1.6,1.94 -1.32,0.43 -1.15,-0.43 -0.31,0.47 -3.97,1.35 -0.97,-0.9 -1.3,2.14 -0.96,-1.58 -0.92,-0.27 -0.64,1.79 0.79,2.34 -4.45,-0.25 -3.41,-0.94 -0.96,-0.98 -2.34,-0.75 -0.61,0.35 0.12,1.3 -0.35,0.25 -1.74,-0.33 -0.56,-3.1 1.02,-1.34 0.77,0.17 1.67,-1.96 -2.12,-3.24 0.07,-0.8 0.86,-0.05 0.05,-0.42 -1.42,-1.74 0.69,-1.92 1.18,-0.99 1.72,-0.57 -0.06,-3.18 1.12,-3 -0.65,-2.21 -1.31,-0.16 -0.73,-1.23 -0.19,-2.58 -1.47,-4.03 -2.34,-1.25 -0.53,0.21 -0.94,-2.22 -2.05,-1.9 0.19,-1.09 -1.2,-1.06 -1.55,0.05 -1.55,2.29 -1.86,1.28 0.26,0.58 -0.8,0.98 -0.69,0.09 0.14,1.33 -1.05,0.39 0.08,2.13 -0.73,0.75 -2.08,1.38 -0.33,-0.84 -1.84,-0.41 -0.72,0.91 -2.74,1.38 -2.88,-1.01 -1.67,2.61 -1.48,1.34 -0.51,1.27 -0.52,-0.4 0.12,-0.87 -0.91,-1 -0.15,-1.11 -1.07,-1.71 -0.14,-6.44 0.31,-1.25 1.03,-0.9 0.07,-1.2 1.74,-4.25 -0.82,-1.05 -0.19,-2.08 -1.46,-0.08 2.47,-3.73 -1.24,0.15 0.73,-3.74 -0.74,-1.35 -0.33,0.27 -1.12,-0.55 -1.53,-0.01 -0.92,0.37 -0.23,1.07 -1.18,-0.19 0.44,-2.1 1.49,-1.43 -0.11,-1 -0.79,-1.06 -0.2,-2.01 0,0 0.5,-3.65 1.69,-0.07 3.05,0.82 3.8,-0.04 1.08,-0.95 1.21,-0.13 0.47,-1.16 -0.13,-1.71 0.79,-1.35 1.39,-0.93 1.97,-3.9 1.66,-1.7 2.02,1.04 1.5,0.36 1.08,-0.26 2.12,0.98 0.18,-1.32 -0.49,-2.14 2.86,-2.32 1.09,-4.77 1.21,-0.99 1.72,0.57 1.43,-0.97 1.47,-2.31 1.2,-3.06 0.64,-0.49 z"/>
-        <path class="r-anim" id="SK-BL" d="m 12.348286,175.80235 2.98,0.02 0.21,-1.72 3.29,-0.37 3.39,-1.4 0.3,0.55 1.48,0.12 0,-0.62 -1.13,-1.32 0.11,-0.64 3.95,2.38 2.06,-1.16 0.71,1.41 0.96,0.26 7.37,-1.66 2.62,-1.41 2.47,-0.44 0.52,-1.81 2.46,-1.55 6.83,-10.1 1.51,1.34 1.49,0.63 1.36,2.69 0.22,1.75 -0.39,0.86 -1.71,1.03 -1.3,2.06 -2.05,0.16 -0.74,2.65 -3.94,2.71 -0.33,1.01 3.36,2.39 0.45,1.98 2.17,0.34 0.07,1.41 1.94,0.92 -0.22,0.72 -0.81,0.52 0.09,1.02 -0.57,1.26 -1.91,0.66 -0.03,0.69 -1.08,1.42 0.17,0.71 1.5,1.75 2.81,0.13 1.74,1.89 3.32,0.03 -0.53,3.07 1.7,0.24 -0.05,1.33 1.44,0.64 1.41,4.95 0.58,0.74 1.72,-0.67 1.88,1.78 0.62,2.43 -1.56,4 -1.24,0.55 1.11,1.13 -0.59,1.61 1.11,0.11 0.57,1.28 1.77,1.42 0.46,0.19 1.13,-0.89 1.34,1.53 -3.48,4.38 -0.98,3.74 0.61,0.64 1.38,0.13 2.99,1.41 0,1.07 -1.27,1.82 0.17,0.72 1.2,0.55 0.1,2.57 -0.37,0.58 -1.52,0.16 -0.34,0.84 -1.77,0.07 -1.14,1.16 -0.78,1.76 -2.94,1.05 -1.91,-1.29 -1.66,-0.08 0.09,-2.3 -1.95,-0.64 -1.29,1.15 0.46,1.72 1.09,0.61 -1.11,1.92 -1.13,-0.29 -2.88,2.26 -0.65,-0.22 -1.63,0.97 -1.24,-0.76 -0.62,0.11 -0.19,0.75 0.5,0.6 -0.34,1.61 0.8,1.52 1.12,0.84 0.96,0 1.09,-1.31 1.12,0.59 0.07,0.8 -1.48,0.3 -0.49,3.05 -2.07,0.3 -1.02,-1.04 -0.53,0.21 0.12,1.54 0.68,1.28 -2.7,1.37 -1.54,2.08 -0.98,0.04 0.11,1.05 -1.16,1.22 0,0 -0.48,-1.48 -1.8,0.94 -2.63,-0.54 -4.26,2.04 -2.14,-2.28 -1.54,-0.05 -1.49,-1.49 -2.24,1.6 -2.32,-1.7 1.85,-2.18 -0.36,-0.84 -1.58,-0.69 1.85,-1.69 -1.38,-0.84 0.65,-1.2 -0.58,-0.81 1.99,-1.35 -0.48,-0.78 0.45,-0.48 -1.71,-1.12 -0.44,-0.59 0.33,-0.71 -0.77,-0.15 -0.74,-0.95 0.64,-0.42 -1.28,-3.01 -1.73,0.51 -1.26,-0.18 -3.51,-3.48 -2.12,-1.43 0.05,-2.62 -1.45,-5.57 -1.51,-2.21 1.05,-4.41 -1.06,-0.98 -2.4599998,-0.35 -1.6,-2.48 0.44,-0.69 -0.53,0.26 -1.35,-3.02 1.04,-0.18 -0.56,-0.75 0.89,-1.75 -3.86,-1.92 0.06,-1.69 -2.2,0.11 -1.01,-0.79 -0.16,-2.86 -0.83000003,-1.69 0.25,-0.37 1.57000003,0.02 0.02,-1.27 0.82,-1.62 -0.64,-0.36 -0.14,-1.27 1.22,-1.28 -1.02,-1.96 -0.29,-2.73 1.38,-0.78 -0.38,-0.76 0.42,-1.11 0.89,-0.37 0.54,-1.06 2.03,-1.7 -0.53,-1.01 0.35,-0.74 1.02,-0.43 0.82,0.54 0.61,-0.17 -0.52,-2.61 0.95,-0.2 -0.13,-1.03 1.0599998,-0.65 0.24,0.45 1.11,-0.04 -0.24,-1.1 z"/>
-        <path class="r-anim" id="SK-KI" d="m 366.23829,121.29235 1.78,1.44 1.49,-0.41 0.24,-1.52 -0.54,-0.61 -0.03,-1.07 0.76,-1.14 0.04,-4.11 1.41,-0.87 0.16,-0.55 -0.1,-0.94 -1.11,-0.83 -0.24,-0.89 3.59,-3.73 1.25,-0.44 0.67,-0.99 1.5,-0.94 1.94,-0.5 1.6,-2.03 3.58,1.48 3.15,2.24 1.18,1.36 1.88,0.73 0.86,0.94 1.67,0.05 -3.45,-4.4 0.48,-1.36 2.45,-2.35 0.66,0.42 1.16,2.34 1.99,1.68 0.26,1.09 2.47,1.33 1.26,-0.75 2.41,-0.18 3.63,5.77 0.95,0.2 2.13,1.62 -0.35,-0.91 0.31,-2.38 1.21,-1.04 -0.02,-1.52 0.47,-0.42 3.27,-1.1 0.79,0.3 0.95,1.88 2.18,-1.65 0.55,0.29 0.49,1.35 0.75,0.06 1.12,-0.79 0.19,-0.29 -1.16,-1.72 0.12,-1.32 -1.03,-1.31 0.54,-0.44 1.2,0.75 1.23,0.1 2.25,1.68 2.92,-1.12 -0.2,0.85 -1.85,1.23 0.76,0.83 1.57,-0.02 0.29,0.71 5.79,-1.83 2.36,0.63 1.75,1.28 1.24,2.61 0.52,0.23 3.06,-2.3 2.41,4.02 1.57,0.92 0.44,2.82 4.49,0.26 3.02,1.23 3.02,0.21 1.39,-1.36 0.92,0.81 1.66,0.5 0.95,2.46 1.6,1.49 1.99,-2.1 2.67,1.57 0.29,-0.94 1.34,0.05 -0.06,1.81 2.18,-0.94 0.54,1.76 -1.63,5.57 1.28,1.58 2.45,1.46 1.99,-0.89 -0.1,-1.83 1.46,-1.31 0.85,-0.35 1,0.63 0.94,-0.84 3.08,0.01 0.34,-1.19 0.97,-0.97 -0.11,-2.4 0.32,-0.39 -0.72,-1.73 0.46,-0.52 1.69,-0.43 2.08,1.91 0.32,-3.53 0.61,0.9 0.57,2.71 2.22,0.4 0.6,-0.29 0,-0.76 1.24,-0.19 1.86,-1.43 0.07,2.91 1.28,0.33 0.61,0.69 -1.03,1.17 0.16,1.42 1.23,1.57 1.57,0.78 0.89,1.78 -0.22,1.79 1.3,2.23 3.79,0.99 0.75,0.72 -0.1,0.97 1.95,-0.06 2.26,1.35 4.22,-1.3 1.12,1.69 1.72,1.37 2.43,-0.38 4.21,-2.31 0.98,0.1 0.01,0.75 0.57,-2.48 1.95,-0.62 2.07,-1.74 0.2,-1.73 -1.12,-1.68 -0.69,-9.97 0.37,-2.23 1.1,-0.78 1.73,0.21 1.09,2.01 0.63,-0.26 0.61,0.44 0.78,-0.55 1.86,-0.23 5.4,2.1 2.84,1.94 1.86,3.13 3.67,0.39 0.75,1.4 3.54,0.02 4.43,-1.02 6.17,0.11 0.45,-0.82 -0.3,-5.44 0.81,-0.89 1.98,-0.79 0.95,-2.17 3.09,-3.14 3.4,0.43 1.15,0.81 1.05,4.33 1.03,1.49 0.26,2.39 5.13,-0.18 2.2,-0.89 1.66,0.89 3.5,0.17 0.73,0.51 0,0 -0.93,4.78 0.93,2.02 0.28,3.62 -0.84,0.9 -0.6,1.71 -2.74,2.75 -0.48,2.6 1.89,1.5 0.04,2.07 -1.1,1.24 -1.22,5.94 -3.88,1.25 -2.59,2.58 -2.95,2.13 -0.73,2.54 -1.5,1.5 -1.67,0.05 -1.49,1.93 -1.21,0 -0.08,0.98 -0.67,0.12 -2.08,4.66 -0.76,8.77 -1.96,13.72 0.23,3.84 0.48,1.18 1,-0.04 -0.41,1.25 -2.03,0.73 0.53,1.67 -1.24,0 -0.4,0.45 -0.9,-0.3 -1.22,0.6 -0.52,-0.86 -0.99,1.47 -0.29,-1.46 -0.81,-0.83 -0.35,0.8 -1.42,-0.14 -0.41,0.78 -2.98,-2.4 -1.3,1.3 -2.87,0.83 -0.37,0.47 -0.19,-0.58 -3.79,0.21 -1.57,1.23 -0.63,-0.06 0.47,0.73 -0.55,0.81 -0.96,-0.21 -0.97,-0.92 -1,0.6 -0.27,-0.82 -0.05,1.19 -0.54,-0.07 0.22,-0.85 -0.55,-0.3 -0.64,0.78 0.51,1.09 -0.5,0.23 0.02,-0.77 -0.39,-0.08 -0.42,0.97 -0.82,-0.33 -0.35,0.72 -0.52,-0.27 -0.27,-1.45 -2,-0.01 -0.39,0.5 -0.08,4.16 -1.11,0.59 -0.69,0.03 0.14,-0.7 -1.45,-0.19 -0.45,-0.68 -3.53,0.24 -0.88,-0.89 -3.44,-0.56 -1.47,-0.92 0.21,-1.82 -0.78,0.03 -0.6,-0.69 0.61,-1.07 -0.46,-0.87 -2.17,-1.28 -1.21,0.26 -0.97,-1.25 -0.14,-3.26 -0.3,0.13 -1.7,-4.89 -0.81,-0.39 -0.67,-1.25 0.25,-0.59 -0.99,-1.34 0.3,-0.8 -0.42,-0.22 0.16,-2.83 -0.34,-0.88 -0.52,0.09 -0.2,-2.04 -0.89,0.36 -1.27,-1 -0.79,0.39 -0.67,1.27 -1.35,-0.2 -0.56,-1.03 -0.77,0.57 -1.2,0.01 -0.25,-1.01 -1.5,-1.33 -1.16,-2.72 0.03,-1.69 -0.89,-0.32 -0.06,-0.55 -0.62,0 -0.15,-0.83 -1.32,0.25 -0.63,-1.02 -0.69,0.11 -1.36,-1.42 -1.29,-0.3 -1.13,-1.71 -1.06,0.16 -0.68,0.85 -0.24,2.71 -0.58,0.56 -1.68,-0.77 -2.32,0.83 -3.08,-0.29 -2.85,0.42 -0.14,-0.54 -0.48,0.78 1.08,0.33 -1.27,0.46 0.75,0.76 -0.46,1.22 -0.73,-0.11 0.6,1.17 -1.28,0.84 0.15,0.72 -0.97,0.14 -2.66,-0.96 -0.48,0.37 -2.97,-2.2 -0.69,0.06 -0.06,0.76 -1.24,-0.53 -0.45,0.88 -0.84,-0.24 0.02,1 -1.43,0.56 -0.35,-0.31 -0.11,0.5 -0.48,-0.32 -0.79,1.01 -0.76,-0.7 -2.39,1.04 -1.9,3.63 -1.18,0.31 -1.17,-0.15 -1.05,-0.9 -0.09,-1.99 -0.59,-1.04 -1.9,-0.62 -1.11,-0.86 -1.36,0.72 -0.01,-0.82 -0.82,0.26 -1.16,-0.29 -0.75,-0.72 -0.39,0.38 -0.97,-0.48 -2.26,0.95 -1.2,1.44 -0.77,-0.91 -0.91,0.46 -0.9,-0.38 -0.13,-1.72 -1.51,-0.31 -0.15,-1.09 -0.71,0.61 -0.68,-2.22 -1.05,-0.93 -4.07,1.09 -1.44,-0.09 -1.53,-2.06 -0.49,0.09 0,-2.18 -0.92,0.25 0.7,-1.25 -4.26,1.45 -7.35,0.82 -0.47,0.67 -0.59,-0.64 -1.69,-0.03 -3.1,1.48 -2.81,0.08 -1.08,1.28 -0.39,-0.41 -0.71,0.7 -1.4,0.28 -0.71,0.96 -1.53,-0.01 -1.23,0.62 -0.34,0.71 -4.07,-1.58 -1.07,2.64 -1.15,-0.43 -0.72,-1.02 -1.17,0.42 -0.76,0.92 0.1,1.49 0.82,0.93 -0.42,1.05 0.13,2.81 -1.36,0.29 -1.14,2.34 -2.14,1.37 0,0 -0.02,-0.71 -0.94,-0.75 -1.74,0.91 -1.56,0.02 -0.65,-2.06 -1.22,0.37 -1.46,2.36 -0.97,0.71 -2.16,0.69 -3.62,0.1 0.28,-0.58 -0.55,-0.52 -0.01,-1.14 -0.57,0.21 -0.77,-0.45 -0.33,0.48 -0.51,-0.78 0.21,-1.93 -0.94,-1.44 0.54,-2.91 1.37,-1.19 0.86,-1.62 -0.01,-1.84 2.3,-4.53 0.6,-3.22 -1.35,-0.22 -0.66,-1.48 -2.29,0.49 -2,-0.98 0,0 -0.13,-0.56 0.66,-0.82 0,0 -0.53,-0.95 -0.38,-3.38 1.02,-1.94 -1.32,-1.08 -1.48,-3.37 -1.29,-1.19 -1.07,-2.3 -4.39,-3.75 -2.07,0.29 -0.48,-1.16 0.31,-2 -0.85,-0.26 -0.28,-2.11 0.13,-0.97 2.47,-1.6 -0.61,-2.62 -0.84,-0.66 0.89,-0.87 -0.21,-3.67 4.43,-4.07 1.09,-3.94 z"/>
-        <path class="r-anim" id="SK-NI" d="m 122.16829,162.38235 1.48,-0.53 0.53,-0.95 0.81,0.16 1.15,-1.03 0.33,-1.16 -0.05,-2.54 -0.73,-0.58 -0.85,-3 -0.77,-0.71 -0.51,-3.48 1.43,-1.47 1.33,-0.13 1.2,1.45 4.97,-0.11 1.93,1.11 1.46,-0.51 3.55,3.24 1.37,4.32 1.66,1.61 1.42,-0.78 1.6,0.86 1.09,-0.28 1.27,0.68 1.44,4.04 1.15,1.71 -0.31,1.88 -2.42,2.34 1.64,1.35 -0.84,0.96 -0.03,1.05 0.36,0.51 3.14,-0.04 1.17,0.93 2,3.39 1.55,1.67 0.53,2.62 0.66,0.92 3.17,0.96 0.88,-0.53 0.27,-1.24 0.32,1.3 1.37,1.27 0.45,-1.56 1.96,-1.12 3.24,-3.29 2.86,-1.34 2.9,-2.71 1.95,-0.1 0,0 0.2,2.01 0.79,1.06 0.11,1 -1.49,1.43 -0.44,2.1 1.18,0.19 0.23,-1.07 0.92,-0.37 1.53,0.01 1.12,0.55 0.33,-0.27 0.74,1.35 -0.73,3.74 1.24,-0.15 -2.47,3.73 1.46,0.08 0.19,2.08 0.82,1.05 -1.74,4.25 -0.07,1.2 -1.03,0.9 -0.31,1.25 0.14,6.44 1.07,1.71 0.15,1.11 0.91,1 -0.12,0.87 0.52,0.4 0.51,-1.27 1.48,-1.34 1.67,-2.61 2.88,1.01 2.74,-1.38 0.72,-0.91 1.84,0.41 0.33,0.84 2.08,-1.38 0.73,-0.75 -0.08,-2.13 1.05,-0.39 -0.14,-1.33 0.69,-0.09 0.8,-0.98 -0.26,-0.58 1.86,-1.28 1.55,-2.29 1.55,-0.05 1.2,1.06 -0.19,1.09 2.05,1.9 0.94,2.22 0.53,-0.21 2.34,1.25 1.47,4.03 0.19,2.58 0.73,1.23 1.31,0.16 0.65,2.21 -1.12,3 0.06,3.18 -1.72,0.57 -1.18,0.99 -0.69,1.92 1.42,1.74 -0.05,0.42 -0.86,0.05 -0.07,0.8 2.12,3.24 -1.67,1.96 -0.77,-0.17 -1.02,1.34 0.56,3.1 1.74,0.33 0.35,-0.25 -0.12,-1.3 0.61,-0.35 2.34,0.75 0.96,0.98 3.41,0.94 4.45,0.25 -0.79,-2.34 0.64,-1.79 0.92,0.27 0.96,1.58 1.3,-2.14 0.97,0.9 3.97,-1.35 0.31,-0.47 1.15,0.43 1.32,-0.43 1.6,-1.94 2.37,1.63 -0.94,1.04 0.76,0.8 -1.07,0.96 -0.3,1.98 -0.8,0.54 1.37,2.09 0.41,2.39 -1.83,2.82 -2.21,1.58 -0.38,1.63 -1.09,0.51 0.02,2.55 0,0 -0.52,0.2 -0.18,0.88 -1.02,0.11 -1.7,2.12 -4.92,-0.54 -3.12,1.11 -1.72,-0.49 -0.37,-0.59 -0.64,1.05 0.15,0.49 -1.98,-0.03 -1.04,0.5 -1.16,-0.77 -1.33,0.75 -0.93,1.46 0.51,0.27 0.13,0.83 -1.23,1.39 0.44,2.29 -0.51,2.3 -0.27,-0.52 -0.49,0.72 0.48,0.15 -1.25,0.99 -1.94,-0.38 -0.85,0.44 -0.27,-0.47 -0.58,0.49 0.44,0.33 -0.95,0.42 -0.54,0.94 0.44,0.93 1.11,0.67 0.55,1.75 -0.96,0.14 0.7,3.13 -1.75,2.05 0.83,1.67 -0.47,0.33 0.37,0.45 -0.51,1.03 0.4,2.05 -0.37,0.2 0.22,2.18 3.06,0.71 0.78,1.11 2.45,1.16 0.9,2.41 2.09,1.22 -0.21,1.58 -5.89,-0.87 -5.87,1.62 -1.32,3.88 -4.68,3.3 -1.89,0.8 -5.05,0.78 -5.28,-1.27 -2.84,0.13 -2.46,1.5 -2.34,0.46 -0.73,-0.09 -1.65,-1.3 -2.32,-0.57 -3.84,1.85 -2.85,0.37 -5.38,2.1 -5.09,0.95 -6.93,-1.69 -5.73,0.12 -3.61,-1.18 -6.86,-1.25 -4.73,-0.02 -2.88,1.62 -3.32,-1.79 -2.74,2.07 -3.59,0.17 -1.6,0.64 -4.14,-1.06 -1.44,0.66 -3.8,-0.13 -2.55,0.56 -2.300004,-1.47 -5.7,-1.29 -1.76,-2.04 0,0 1.9,-1.8 1.05,-4.71 1.93,-0.05 0.4,0.67 1.23,0.01 0.67,0.56 0.870004,-1.9 2.89,-1.9 0.44,-1.29 -0.47,-3.04 1.16,-2.34 2.35,-0.79 1.85,-2.78 3.04,-1.76 1.39,-1.7 -2.48,-2.46 1.18,-2.05 -0.65,-3.96 0.76,-3.97 -1.27,-2.37 0.26,-2.13 -0.43,-1.01 1.57,-1.21 -0.5,-1.01 0.08,-1.45 -0.85,-0.96 -1.4,-0.11 -1.78,-1.16 1.15,-1.53 -0.72,-1.23 -2.74,2.09 -1.14,-0.21 -0.46,-2.18 1.27,-3.14 -0.15,-2.14 -2.95,-3.41 -3.970004,-2.47 2.540004,-1.85 1.42,-0.05 0.86,1.26 0.86,0.03 1.44,-1.78 -1.89,-3.74 2.03,0.26 1.27,-0.34 1.18,1.07 0.47,-1.07 2.36,-1.07 1.09,-1.18 0.28,-1.8 -0.37,-1.32 -2.89,-0.92 -1.21,-1.98 0.35,-1.09 0.99,0.59 1.24,-0.8 -0.1,-1.09 -0.6,-0.59 1.66,-2.67 -0.61,-1.4 -2.31,-0.24 -0.74,-1.49 1.47,-1.19 0.29,-4.16 1.17,-0.91 -0.46,-2.1 1.63,-1.26 -0.45,-0.68 1.03,-0.54 0.4,-1.35 2.61,-3.97 1.72,-3.98 -0.06,-0.82 1.13,-1.81 1.59,-0.03 -0.31,-0.97 1.27,-1.9 -0.38,-1.06 -2.56,-1.8 -3.09,-3.82 -0.98,-0.76 -3.47,-0.77 -0.41,-0.71 -0.77,0.03 -0.1,-1.04 1.85,-1.46 0.99,-5.2 1.94,-2.33 0.63,-2.49 2.14,0.75 0.75,0.82 2.98,-0.24 -0.28,-1.09 1.33,-0.11 1.34,-1.23 z"/>
-        <path class="r-anim" id="SK-PV" d="m 477.77829,27.46235 3.01,-0.49 1.3,0.21 0.53,0.84 1.58,0.77 0.61,1.37 1.28,-0.39 2.03,0.21 0.44,1.08 2.87,2.32 1.44,-0.03 1.19,-0.6 1.82,0.29 1.35,-2.32 0.54,-0.2 2.82,1.9 0.38,-0.41 -0.45,-0.88 1.28,-1.53 2.19,0.32 1.5,-1.33 0.96,0.87 1.66,0.39 0.54,-0.46 0.78,0.18 1.25,-1.44 1.91,-0.62 1.22,2.77 1.59,1.22 0.03,1.05 2.45,0.98 1.93,-1.29 2.33,1.08 0.5,2.26 0.95,-0.04 0.8,1.18 2.19,1.33 0.48,2.92 0.96,1.46 1.33,0.39 -0.14,-2.27 0.93,-1.65 1.65,-0.62 1.4,-1.33 1.66,-0.11 0.75,0.88 0.01,1.19 1.18,1.54 0.62,0.05 0.79,-0.69 1.2,0.36 1.08,2.26 1.03,1.09 0.39,-0.49 1.15,-0.05 1.45,1.21 2.57,-0.57 0.75,0.26 2.41,6.11 1.71,2.12 3.4,2.83 -0.1,2.72 1.22,1.22 -1.01,4.88 1.65,1.35 6.01,2.15 4.11,0.72 0.19,1.27 3.65,1.68 1.09,1.07 0.93,-0.31 1.27,-1.33 1.47,0.24 0.77,0.74 0.35,1.35 -0.91,1.8 0.02,1.06 2.4,0.15 7.47,2.68 1.64,-1.69 3.59,0.25 1.24,2.13 1.05,0.52 0.2,1.41 3.36,3.29 0.61,0.13 1.73,-0.86 1.36,0.04 3.89,2.77 0.61,0.11 1.41,-1.05 3.17,-0.44 2.51,1.44 -1.35,1.4 -0.23,8.02 -1.41,1.19 0.87,2.34 -2.64,1.6 -2.07,-0.48 -2.47,1.2 -0.49,2.58 -0.85,0.63 -4.44,7 0.69,1.38 -0.69,1.2 -0.43,4.51 -2.55,1.46 -1.3,1.94 0,0 -0.73,-0.51 -3.5,-0.17 -1.66,-0.89 -2.2,0.89 -5.13,0.18 -0.26,-2.39 -1.03,-1.49 -1.05,-4.33 -1.15,-0.81 -3.4,-0.43 -3.09,3.14 -0.95,2.17 -1.98,0.79 -0.81,0.89 0.3,5.44 -0.45,0.82 -6.17,-0.11 -4.43,1.02 -3.54,-0.02 -0.75,-1.4 -3.67,-0.39 -1.86,-3.13 -2.84,-1.94 -5.4,-2.1 -1.86,0.23 -0.78,0.55 -0.61,-0.44 -0.63,0.26 -1.09,-2.01 -1.73,-0.21 -1.1,0.78 -0.37,2.23 0.69,9.97 1.12,1.68 -0.2,1.73 -2.07,1.74 -1.95,0.62 -0.57,2.48 -0.01,-0.75 -0.98,-0.1 -4.21,2.31 -2.43,0.38 -1.72,-1.37 -1.12,-1.69 -4.22,1.3 -2.26,-1.35 -1.95,0.06 0.1,-0.97 -0.75,-0.72 -3.79,-0.99 -1.3,-2.23 0.22,-1.79 -0.89,-1.78 -1.57,-0.78 -1.23,-1.57 -0.16,-1.42 1.03,-1.17 -0.61,-0.69 -1.28,-0.33 -0.07,-2.91 -1.86,1.43 -1.24,0.19 0,0.76 -0.6,0.29 -2.22,-0.4 -0.57,-2.71 -0.61,-0.9 -0.32,3.53 -2.08,-1.91 -1.69,0.43 -0.46,0.52 0.72,1.73 -0.32,0.39 0.11,2.4 -0.97,0.97 -0.34,1.19 -3.08,-0.01 -0.94,0.84 -1,-0.63 -0.85,0.35 -1.46,1.31 0.1,1.83 -1.99,0.89 -2.45,-1.46 -1.28,-1.58 1.63,-5.57 -0.54,-1.76 -2.18,0.94 0.06,-1.81 -1.34,-0.05 -0.29,0.94 -2.67,-1.57 -1.99,2.1 -1.6,-1.49 -0.95,-2.46 -1.66,-0.5 -0.92,-0.81 -1.39,1.36 -3.02,-0.21 -3.02,-1.23 -4.49,-0.26 -0.44,-2.82 -1.57,-0.92 -2.41,-4.02 -3.06,2.3 -0.52,-0.23 -1.24,-2.61 -1.75,-1.28 -2.36,-0.63 -5.79,1.83 -0.29,-0.71 -1.57,0.02 -0.76,-0.83 1.85,-1.23 0.2,-0.85 -2.92,1.12 -2.25,-1.68 -1.23,-0.1 -1.2,-0.75 -0.54,0.44 1.03,1.31 -0.12,1.32 1.16,1.72 -0.19,0.29 -1.12,0.79 -0.75,-0.06 -0.49,-1.35 -0.55,-0.29 -2.18,1.65 -0.95,-1.88 -0.79,-0.3 -3.27,1.1 -0.47,0.42 0.02,1.52 -1.21,1.04 -0.31,2.38 0.35,0.91 -2.13,-1.62 -0.95,-0.2 -3.63,-5.77 -2.41,0.18 -1.26,0.75 -2.47,-1.33 -0.26,-1.09 -1.99,-1.68 -1.16,-2.34 -0.66,-0.42 -2.45,2.35 -0.48,1.36 3.45,4.4 -1.67,-0.05 -0.86,-0.94 -1.88,-0.73 -1.18,-1.36 -3.15,-2.24 -3.58,-1.48 -1.6,2.03 -1.94,0.5 -1.5,0.94 -0.67,0.99 -1.25,0.44 -3.59,3.73 0.24,0.89 1.11,0.83 0.1,0.94 -0.16,0.55 -1.41,0.87 -0.04,4.11 -0.76,1.14 0.03,1.07 0.54,0.61 -0.24,1.52 -1.49,0.41 -1.78,-1.44 0,0 -1.48,-0.47 -2.79,-3.08 -1.31,-0.4 -1.54,0.21 -2.2,-2.06 -1.53,2.59 -1.94,1.33 -8.93,-1.3 -1.22,-1.53 -5.28,-0.49 0,0 0.43,-1.09 3.28,-0.64 2.29,-1.99 -0.42,-0.41 -1.81,-0.15 -1.61,-4.58 0.52,-1.35 -1.45,-0.96 -1.15,-2.75 -3.65,-2.61 0.33,-0.88 1.85,0.63 3.27,-1.43 -0.01,-3.08 1.08,-2.75 -0.18,-2.72 1.45,-3.9 0.14,-2.23 -1.41,-0.86 -1.34,0.83 -2.64,-0.46 -1.18,0.24 -0.99,-1.93 -0.15,1.15 -0.59,0.31 -1.66,-2.62 -1.7,0.12 -0.3,-1.17 -2.27,0.94 -0.64,-0.23 0.94,-2.31 -0.28,-0.54 0.38,-1.2 -3.23,-4.97 -0.62,-2.05 0,0 0.38,-0.88 2.68,-2 0.23,-2.58 2.13,-0.94 2.36,0.21 4.27,0.55 2.42,2.12 -0.11,0.96 1.41,1.68 1.92,0.77 3.42,2.78 1.7,0.04 0.12,-4.24 0.77,-1.92 0.81,-0.69 -0.63,-2.38 0.86,-1.09 0.24,-1.96 2.09,-2.98 0.37,-3.53 2.01,-3.26 0.52,0.02 0.88,1.81 1.58,-1.54 -0.71,-1.5 0.27,-0.64 1.32,-0.09 1.01,-2.21 1.91,-0.59 1.11,-1.21 1.04,1.07 1.19,-0.84 2.77,0.61 0.54,-0.69 0.81,-0.1 1.51,0.18 1.28,1.05 0.82,0 0.72,-0.85 0.18,-4.68 0.83,-1.96 -1.69,0.11 0.75,-2.01 1.35,-0.34 2.84,0.83 1.21,-1.52 0.72,0.84 0.05,1.73 1.19,0.21 1.96,-0.75 0.24,-1.37 0.53,-0.51 1.12,0.65 0.46,1.07 0.4,-1.65 -0.78,-0.23 0.22,-1.49 1.66,0.9 0.39,-0.15 -0.42,-0.41 2.66,-0.08 2.44,1.65 1.15,0.28 0.52,1.82 1.26,0.06 2.91,1.2 1.04,0.99 1.83,0.41 0.59,-1.05 1.06,0.18 1.07,-1.07 0.26,-1.38 1.07,-1.41 0.4,-2.09 3.35,2.8 1.6,-0.56 3.55,-2.68 1.79,0.28 1.44,0.81 1.48,-0.32 0.56,0.8 -0.26,1.29 1.52,0.72 -1,1.31 1.29,1.18 -0.06,2.14 2.67,-0.57 0.26,0.54 -0.41,1.47 1.76,-0.15 1.1,0.82 -0.39,0.73 -0.73,-0.98 0.3,0.77 -0.5,1.8 1.69,-0.56 1.45,2.08 1.05,0.05 1.91,-2.08 1.02,-0.1 2.06,3.09 -1.03,1.36 1.28,0.03 0.52,-0.83 1.39,-0.33 0.59,1.04 -0.28,0.84 0.55,1.21 1.91,1.71 3.48,-1.84 3.03,0.08 0.6,-0.82 -0.85,-2.43 2.02,-1.03 0.45,-1.95 0.67,-0.16 2.57,-2.78 0.58,-0.13 0.92,0.59 1.12,-0.52 0.82,0.93 0.64,-0.7 1.36,-0.2 1.2,-1.73 -3.7,-3.21 0.01,-1.03 -1.66,-0.59 -0.61,-1.88 0.45,-0.72 1.29,-0.08 3.41,-1.33 1.74,1 0.7,-1.8 0.6,-0.13 2.85,1.39 0.45,1.1 0.84,0.24 1.64,1.57 0.13,1.12 1.28,0.08 0.91,-0.48 0.76,0.36 1.97,-2.35 -0.35,-1.46 1.04,-1.86 0.82,0.41 2.6,-2.15 0.64,-2 0.8,-0.1 z"/>
-        <path class="r-anim" id="SK-TA" d="m 39.038286,121.32235 5.15,1.16 1.44,1.1 1.93,0.05 0.77,1.23 2.26,1.72 1.65,-0.46 0.57,1.41 2.98,2.25 0.88,1.29 1.52,-0.86 2.15,0.78 0,0 -0.79,3.39 -3.83,1.99 -0.13,0.99 1.67,1.34 1.08,-0.52 0.57,0.37 3.59,-2.81 0.53,1.33 -0.2,0.66 2.06,1.16 0.62,-0.44 0.65,0.94 1.21,0.08 1.25,2.42 1.4,0.47 0.4,1.44 -0.34,1.71 -1.51,0.53 -0.99,2.92 0.64,1.15 -0.04,1.67 0.99,0.16 0.9,3.47 3.49,6.33 0.74,-0.82 1.11,0.48 0.28,-1.14 0.96,-0.39 1.38,-1.66 1.92,0.86 4.53,-0.9 0.25,-0.18 -0.96,-1.66 0.36,-1.44 0.78,-0.03 0.02,0.66 0.57,0.44 1.84,0.14 -0.12,-0.88 2.06,-1.29 0.46,0.16 1.47,-1.39 0.77,0.16 0.8,-1.09 2.35,1.84 2.12,3.23 4.420004,2.13 1.8,-0.3 0.4,0.56 0.6,-0.47 1.25,0.1 0.22,-2.29 1.64,0.16 0.45,0.13 -0.2,1.53 0.73,1.45 0.46,0.03 0.26,-0.93 -0.1,0.97 0.32,0.03 0.54,-1.05 1.14,1.55 0.55,-0.31 3.3,1.22 3.56,0.26 1.61,1.42 1.97,-0.65 0,0 -0.19,2.98 -1.34,1.23 -1.33,0.11 0.28,1.09 -2.98,0.24 -0.75,-0.82 -2.14,-0.75 -0.63,2.49 -1.94,2.33 -0.99,5.2 -1.85,1.46 0.1,1.04 0.77,-0.03 0.41,0.71 3.47,0.77 0.98,0.76 3.09,3.82 2.56,1.8 0.38,1.06 -1.27,1.9 0.31,0.97 -1.59,0.03 -1.13,1.81 0.06,0.82 -1.72,3.98 -2.61,3.97 -0.4,1.35 -1.03,0.54 0.45,0.68 -1.63,1.26 0.46,2.1 -1.17,0.91 -0.29,4.16 -1.47,1.19 0.74,1.49 2.31,0.24 0.61,1.4 -1.66,2.67 0.6,0.59 0.1,1.09 -1.24,0.8 -0.99,-0.59 -0.35,1.09 1.21,1.98 2.89,0.92 0.37,1.32 -0.28,1.8 -1.09,1.18 -2.36,1.07 -0.47,1.07 -1.18,-1.07 -1.27,0.34 -2.03,-0.26 1.89,3.74 -1.44,1.78 -0.86,-0.03 -0.86,-1.26 -1.42,0.05 -2.540004,1.85 3.970004,2.47 2.95,3.41 0.15,2.14 -1.27,3.14 0.46,2.18 1.14,0.21 2.74,-2.09 0.72,1.23 -1.15,1.53 1.78,1.16 1.4,0.11 0.85,0.96 -0.08,1.45 0.5,1.01 -1.57,1.21 0.43,1.01 -0.26,2.13 1.27,2.37 -0.76,3.97 0.65,3.96 -1.18,2.05 2.48,2.46 -1.39,1.7 -3.04,1.76 -1.85,2.78 -2.35,0.79 -1.16,2.34 0.47,3.04 -0.44,1.29 -2.89,1.9 -0.870004,1.9 -0.67,-0.56 -1.23,-0.01 -0.4,-0.67 -1.93,0.05 -1.05,4.71 -1.9,1.8 0,0 -1.28,-1.47 -5.16,-3.47 -2.78,-3.36 -3.65,1.08 -1.06,-0.41 -1.84,-3.19 -0.55,-2.19 -1.94,-2.33 -2.69,-0.24 -2.99,-2 -1.55,-0.52 -3.1,-6.69 -3.48,-3.98 -1.74,-1.13 -4.76,-5.66 -1.09,-0.38 -5.71,0.14 -1.84,-0.78 -0.61,-1.99 0,0 1.16,-1.22 -0.11,-1.05 0.98,-0.04 1.54,-2.08 2.7,-1.37 -0.68,-1.28 -0.12,-1.54 0.53,-0.21 1.02,1.04 2.07,-0.3 0.49,-3.05 1.48,-0.3 -0.07,-0.8 -1.12,-0.59 -1.09,1.31 -0.96,0 -1.12,-0.84 -0.8,-1.52 0.34,-1.61 -0.5,-0.6 0.19,-0.75 0.62,-0.11 1.24,0.76 1.63,-0.97 0.65,0.22 2.88,-2.26 1.13,0.29 1.11,-1.92 -1.09,-0.61 -0.46,-1.72 1.29,-1.15 1.95,0.64 -0.09,2.3 1.66,0.08 1.91,1.29 2.94,-1.05 0.78,-1.76 1.14,-1.16 1.77,-0.07 0.34,-0.84 1.52,-0.16 0.37,-0.58 -0.1,-2.57 -1.2,-0.55 -0.17,-0.72 1.27,-1.82 0,-1.07 -2.99,-1.41 -1.38,-0.13 -0.61,-0.64 0.98,-3.74 3.48,-4.38 -1.34,-1.53 -1.13,0.89 -0.46,-0.19 -1.77,-1.42 -0.57,-1.28 -1.11,-0.11 0.59,-1.61 -1.11,-1.13 1.24,-0.55 1.56,-4 -0.62,-2.43 -1.88,-1.78 -1.72,0.67 -0.58,-0.74 -1.41,-4.95 -1.44,-0.64 0.05,-1.33 -1.7,-0.24 0.53,-3.07 -3.32,-0.03 -1.74,-1.89 -2.81,-0.13 -1.5,-1.75 -0.17,-0.71 1.08,-1.42 0.03,-0.69 1.91,-0.66 0.57,-1.26 -0.09,-1.02 0.81,-0.52 0.22,-0.72 -1.94,-0.92 -0.07,-1.41 -2.17,-0.34 -0.45,-1.98 -3.36,-2.39 0.33,-1.01 3.94,-2.71 0.74,-2.65 2.05,-0.16 1.3,-2.06 1.71,-1.03 0.39,-0.86 -0.22,-1.75 -1.36,-2.69 -1.49,-0.63 -1.51,-1.34 -6.83,10.1 -2.46,1.55 -0.52,1.81 -2.47,0.44 -2.62,1.41 -7.37,1.66 -0.96,-0.26 -0.71,-1.41 -2.06,1.16 -3.95,-2.38 -0.11,0.64 1.13,1.32 0,0.62 -1.48,-0.12 -0.3,-0.55 -3.39,1.4 -3.29,0.37 -0.21,1.72 -2.98,-0.02 0,0 0.26,-0.46 -0.54,-0.37 -0.07,-0.71 0.93,-0.53 -0.87,-1.02 0.06,-1.33 -0.95,-1.45 -0.01,-0.35 0.72,-0.07 -0.57,-0.49 0.23,-1.29 -0.48,-2.83 0.71,-0.68 0.05,-2.06 1.48,-0.9 0.98,-2.64 0.71,-0.37 -0.79,-0.54 1.13,-0.21 -0.61,-0.67 0.06,-2.71 4.27,-4.27 -1.22,-1.44 0.18,-0.98 1.44,-1.44 0.14,-1.59 2.76,-3.81 0.41,-1.97 4.83,-3.31 0.22,-1.69 1.53,-1.63 0.04,-2.73 0.42,-0.94 4.66,-2.41 3.82,-4.46 0.53,-0.42 z"/>
-        <path class="r-anim" id="SK-TC" d="m 159.56829,49.17235 0.78,0.4 2.44,-0.62 2.13,0.11 -0.07,2.17 0.83,1.24 0.93,0.51 2.08,3.91 1.63,1.65 -0.1,1.73 1.56,1.65 0.26,1.19 -0.34,0.94 0.69,0.98 0.11,1.19 1.82,1.32 0.31,2.28 1.34,0.57 3.4,3.23 2.03,1.13 1.25,0.2 0.1,1.64 3.25,1.11 0.27,2.78 1.44,1.37 -0.85,1.84 -1.75,1.13 -0.94,1.43 3.35,1.14 1.57,2.49 -0.36,0.89 0.33,0.91 -0.75,1.2 0.5,1.25 -0.16,2.62 -1.21,0.69 -0.33,1.32 -1.93,2.32 -0.68,0.49 -3.23,0.48 -2.24,1.45 -0.05,1.08 -1.13,1.8 -1.22,0.13 -1.9,1.11 -0.63,-0.12 0,1.14 1.41,1.54 5.22,0.48 1.48,-1.36 2.18,-0.52 0.31,-1.36 1.17,-1.8 1.38,-0.45 -0.2,1.07 0.83,1.08 1.76,-0.06 2.14,-0.84 4.56,1.42 2.43,-0.56 2.06,2.04 0.31,0.97 -0.83,1.8 -0.6,-0.19 -0.01,1.05 -1.08,1.8 1.7,2.41 -1.4,2.83 0.52,0.65 -0.31,4.64 2.34,1.22 1.17,1.4 1.02,-0.13 1.1,0.78 0.17,1.26 0.63,-0.11 0.86,1.02 1.33,0.21 -0.1,3.34 3.32,3.49 0.58,1.79 0.99,0.29 0.21,2.41 0,0 0.01,0.82 -0.64,0.49 -1.2,3.06 -1.47,2.31 -1.43,0.97 -1.72,-0.57 -1.21,0.99 -1.09,4.77 -2.86,2.32 0.49,2.14 -0.18,1.32 -2.12,-0.98 -1.08,0.26 -1.5,-0.36 -2.02,-1.04 -1.66,1.7 -1.97,3.9 -1.39,0.93 -0.79,1.35 0.13,1.71 -0.47,1.16 -1.21,0.13 -1.08,0.95 -3.8,0.04 -3.05,-0.82 -1.69,0.07 -0.5,3.65 0,0 -1.95,0.1 -2.9,2.71 -2.86,1.34 -3.24,3.29 -1.96,1.12 -0.45,1.56 -1.37,-1.27 -0.32,-1.3 -0.27,1.24 -0.88,0.53 -3.17,-0.96 -0.66,-0.92 -0.53,-2.62 -1.55,-1.67 -2,-3.39 -1.17,-0.93 -3.14,0.04 -0.36,-0.51 0.03,-1.05 0.84,-0.96 -1.64,-1.35 2.42,-2.34 0.31,-1.88 -1.15,-1.71 -1.44,-4.04 -1.27,-0.68 -1.09,0.28 -1.6,-0.86 -1.42,0.78 -1.66,-1.61 -1.37,-4.32 -3.55,-3.24 -1.46,0.51 -1.93,-1.11 -4.97,0.11 -1.2,-1.45 -1.33,0.13 -1.43,1.47 0.51,3.48 0.77,0.71 0.85,3 0.73,0.58 0.05,2.54 -0.33,1.16 -1.15,1.03 -0.81,-0.16 -0.53,0.95 -1.48,0.53 0,0 -1.97,0.65 -1.61,-1.42 -3.56,-0.26 -3.3,-1.22 -0.55,0.31 -1.14,-1.55 -0.54,1.05 -0.32,-0.03 0.1,-0.97 -0.26,0.93 -0.46,-0.03 -0.73,-1.45 0.2,-1.53 -0.45,-0.13 -1.64,-0.16 -0.22,2.29 -1.25,-0.1 -0.6,0.47 -0.4,-0.56 -1.8,0.3 -4.420004,-2.13 -2.12,-3.23 -2.35,-1.84 -0.8,1.09 -0.77,-0.16 -1.47,1.39 -0.46,-0.16 -2.06,1.29 0.12,0.88 -1.84,-0.14 -0.57,-0.44 -0.02,-0.66 -0.78,0.03 -0.36,1.44 0.96,1.66 -0.25,0.18 -4.53,0.9 -1.92,-0.86 -1.38,1.66 -0.96,0.39 -0.28,1.14 -1.11,-0.48 -0.74,0.82 -3.49,-6.33 -0.9,-3.47 -0.99,-0.16 0.04,-1.67 -0.64,-1.15 0.99,-2.92 1.51,-0.53 0.34,-1.71 -0.4,-1.44 -1.4,-0.47 -1.25,-2.42 -1.21,-0.08 -0.65,-0.94 -0.62,0.44 -2.06,-1.16 0.2,-0.66 -0.53,-1.33 -3.59,2.81 -0.57,-0.37 -1.08,0.52 -1.67,-1.34 0.13,-0.99 3.83,-1.99 0.79,-3.39 0,0 2.14,-2.12 1.16,0.17 0.68,-1.99 0.95,0.27 1.04,-1.39 2.73,0.91 3.92,3.94 0.99,0.37 1.46,-0.81 1.06,0.3 1.54,-1.23 3.03,-0.2 0.85,-2.23 2.08,-0.32 0.48,-1.28 1.02,-0.89 3.58,-0.02 2.06,-1.11 1.95,0.21 1.58,-2.09 1.96,-1.47 2.17,-3.6 2.390004,-1.65 0.34,-1.57 6.98,-0.47 2.07,0.75 1.66,-0.85 1.63,-4.95 0.3,-3.64 1.05,-2.12 0.12,-2.63 1.31,-1.4 1.06,-0.74 4.32,0.17 1.4,-0.76 3.91,0.64 4.88,-2.39 3.07,-3.59 -0.09,-1.41 1.97,-4.23 -0.5,-3.48 0.41,-0.62 0.67,-0.06 -1.18,-2.49 0.73,-1.35 0,-1.43 1.94,-1.65 -0.53,-1.35 0,-2.91 1.61,-2.01 0.37,-2.19 0.6,-0.58 0.07,-1.93 -1.04,-0.51 0.11,-2.46 4.13,-4 -0.03,-2.53 4.08,-1.22 4.5,-0.39 3.64,-1.39 0.24,-0.57 z"/>
-        <path class="r-anim" id="SK-ZI" d="m 281.26829,0.30235 1.03,1.46 -0.58,1.41 0.84,1.19 2.24,1.23 1.38,0.09 0.73,1.12 1.23,0.38 -0.06,5.61 2.37,4.77 0.23,3.04 1.28,1.55 0.32,1.44 1.44,1.67 0.25,1.09 1.5,-0.35 1.62,1.56 3.03,-1.61 -0.33,2.48 1.2,1.14 -2.01,4.42 3.15,0.05 2.11,0.95 0.73,-0.1 3.36,2.67 1.3,-0.87 1.27,-2.21 0.85,-0.64 1.87,-0.68 2.49,0.62 0.19,4.9 1.16,2.05 -0.15,1.97 -0.68,1.67 0.43,1.8 0.97,1.26 -1.42,4.16 0.24,0.59 1.39,0.36 1.28,2.85 -3.3,1.77 -0.31,2.52 -2.38,2.5 0.26,1.56 -0.84,1.88 0.8,1.2 1.03,0.25 0.85,0.96 1.1,-0.03 1.03,-1.03 1.3,1.17 1,-0.52 1.12,0.82 3.52,0.01 0,0 0.62,2.05 3.23,4.97 -0.38,1.2 0.28,0.54 -0.94,2.31 0.64,0.23 2.27,-0.94 0.3,1.17 1.7,-0.12 1.66,2.62 0.59,-0.31 0.15,-1.15 0.99,1.93 1.18,-0.24 2.64,0.46 1.34,-0.83 1.41,0.86 -0.14,2.23 -1.45,3.9 0.18,2.72 -1.08,2.75 0.01,3.08 -3.27,1.43 -1.85,-0.63 -0.33,0.88 3.65,2.61 1.15,2.75 1.45,0.96 -0.52,1.35 1.61,4.58 1.81,0.15 0.42,0.41 -2.29,1.99 -3.28,0.64 -0.43,1.09 0,0 -1.91,-1.98 -2.54,1.43 -8.11,-0.37 -4.77,0.66 -1.13,-0.44 -0.61,-0.85 -2.36,-0.09 -2.3,1.45 -1.22,0.04 -1.82,1.11 -1.52,-1.8 -4.78,1.75 -3.04,0 -3.12,-2.53 -1.48,-0.55 -2.75,-1.99 -0.79,-1.04 -2.24,-0.84 -1.56,-0.05 -1.41,-0.83 -1.51,1.04 -3.09,-0.41 -3.64,1.95 -1.65,0.42 -6.74,0 -5.07,5.85 -2.08,4.51 -6.92,1.1 -0.21,-0.61 1.61,-1.36 -0.07,-2.23 -0.63,-1.57 -2.04,-0.94 -3.67,1.03 -1.97,1.91 -1.41,-0.52 -1.33,0.73 -1.1,-0.43 -4.92,0.77 -2.11,-0.4 -0.69,0.32 -1.32,-0.08 -0.87,-0.89 -0.6,-0.03 -1.85,0.82 -0.79,2.87 -1.35,1.71 -1.13,0.12 -0.68,-0.41 -0.46,0.49 0.84,3.7 -0.9,1.62 0.13,1.44 0.51,0.95 2.45,2.12 -0.47,3.63 -1.63,1.31 -0.87,1.63 -2.84,0.37 -2.41,-0.65 -1.45,1.1 -1,-0.06 -1.12,-1.07 -1.84,-0.27 0.07,-1.25 -0.71,-0.06 -0.11,-1.5 -0.8,-0.19 -1.96,1.03 -1.33,1.82 -1.64,0.75 -0.44,0.9 0,0 -0.21,-2.41 -0.99,-0.29 -0.58,-1.79 -3.32,-3.49 0.1,-3.34 -1.33,-0.21 -0.86,-1.02 -0.63,0.11 -0.17,-1.26 -1.1,-0.78 -1.02,0.13 -1.17,-1.4 -2.34,-1.22 0.31,-4.64 -0.52,-0.65 1.4,-2.83 -1.7,-2.41 1.08,-1.8 0.01,-1.05 0.6,0.19 0.83,-1.8 -0.31,-0.97 -2.06,-2.04 -2.43,0.56 -4.56,-1.42 -2.14,0.84 -1.76,0.06 -0.83,-1.08 0.2,-1.07 -1.38,0.45 -1.17,1.8 -0.31,1.36 -2.18,0.52 -1.48,1.36 -5.22,-0.48 -1.41,-1.54 0,-1.14 0.63,0.12 1.9,-1.11 1.22,-0.13 1.13,-1.8 0.05,-1.08 2.24,-1.45 3.23,-0.48 0.68,-0.49 1.93,-2.32 0.33,-1.32 1.21,-0.69 0.16,-2.62 -0.5,-1.25 0.75,-1.2 -0.33,-0.91 0.36,-0.89 -1.57,-2.49 -3.35,-1.14 0.94,-1.43 1.75,-1.13 0.85,-1.84 -1.44,-1.37 -0.27,-2.78 -3.25,-1.11 -0.1,-1.64 -1.25,-0.2 -2.03,-1.13 -3.4,-3.23 -1.34,-0.57 -0.31,-2.28 -1.82,-1.32 -0.11,-1.19 -0.69,-0.98 0.34,-0.94 -0.26,-1.19 -1.56,-1.65 0.1,-1.73 -1.63,-1.65 -2.08,-3.91 -0.93,-0.51 -0.83,-1.24 0.07,-2.17 -2.13,-0.11 -2.44,0.62 -0.78,-0.4 0,0 4.23,-1.29 1.35,-1.22 1.24,-2.37 1.46,-0.8 -0.51,-0.88 1.55,-1.6 0.23,-0.82 -1.15,-4.35 0.7,-0.57 1.62,1.19 1.21,0.24 1.04,-0.29 0.72,-1.28 2.27,-1.21 0.11,-1.58 0.66,-1.34 0.91,-0.56 0.01,-0.93 1.17,-0.17 0.33,-1.09 1.61,-0.87 0.27,-1.23 0.82,-0.21 1.62,-1.56 -1.22,-3.01 0.06,-0.97 1.06,-0.62 0.15,-0.94 2.26,-1.16 3.06,-0.33 0.58,0.34 0.03,1.64 1.74,0.3 1.3,-0.44 0.68,0.31 0.92,-0.92 3.65,-0.87 1.1,1.2 2.25,-0.23 3.31,2 1.48,0 2.98,-2.87 1.74,-0.38 0.88,-0.98 2.76,-0.79 2.22,0.46 1.33,-0.39 0.66,0.62 2.6,0.28 4.59,-0.77 0.75,0.95 1.66,0.84 0.05,0.85 0.77,-0.18 0.17,0.36 -1.09,3 0.69,1.01 -0.47,0.56 -0.42,3.13 1.4,0.46 0.71,2.31 0.86,1.04 -0.4,1.59 -1.66,1.52 0.4,1.92 0.74,0.9 1.99,-0.56 1.27,0.59 2.66,-0.1 1.24,-1.1 -0.18,-0.49 0.79,-1.45 1.94,0.26 0.38,-0.75 1.78,0.21 2.03,1.96 1.27,0.17 1,-0.35 0.78,-0.99 1.33,1.04 2.64,-1.47 1.61,0.52 0.79,-0.81 -0.56,-0.73 0.09,-1.37 -0.59,-0.56 0,-0.77 1.97,-2.45 1.4,0.36 0.7,-1.03 0.3,-1.43 -0.92,-1.64 1.33,-2.08 -0.47,-0.82 0.79,-0.68 -0.04,-2.58 2.7,-2.46 0.28,-0.85 1.2,0.03 1.02,-0.56 1.48,0.35 1.3,-0.57 0.8,0.31 0.17,0.8 4.49,-1.03 0.59,-1.07 -0.19,-1.72 0.92,-0.89 -0.18,-1.51 3.12,-1.16 0.77,-1.09 0.12,-1.54 0.62,-0.53 2.99,-0.78 -0.12,-1.4 0.47,-0.89 0.92,0.26 z"/>
-      <!-- Demo piny -->
-      <circle class="demo-pin" cx="282" cy="183" r="5" fill="#C41E3A" stroke="#fff" stroke-width="2" style="animation-delay:0s"/>
-      <circle class="demo-pin" cx="134" cy="118" r="5" fill="#C41E3A" stroke="#fff" stroke-width="2" style="animation-delay:0.6s"/>
-      <circle class="demo-pin" cx="475" cy="154" r="5" fill="#C41E3A" stroke="#fff" stroke-width="2" style="animation-delay:1.2s"/>
-      <circle class="demo-pin" cx="252" cy="73" r="5" fill="#D4AF37" stroke="#fff" stroke-width="2" style="animation-delay:0.3s"/>
-      <circle class="demo-pin" cx="37" cy="210" r="5" fill="#C41E3A" stroke="#fff" stroke-width="2" style="animation-delay:0.9s"/>
-    </svg>
-  </div>
-
-  <a href="interaktivna-mapa.html" class="btn-gallery-link">
-    Pridať môj kroj na mapu
-    <span class="btn-arrow">→</span>
-  </a>
-</div>
-</section>
-
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, getCountFromServer } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-  try {
-    const app = initializeApp({
-      apiKey: "AIzaSyBL1YxV9LaZ2Q8Q-hbua25hkpf7dtMflaA",
-      authDomain: "interaktivna-mapa-vysiviek.firebaseapp.com",
-      projectId: "interaktivna-mapa-vysiviek",
-      storageBucket: "interaktivna-mapa-vysiviek.firebasestorage.app",
-      messagingSenderId: "544786217510",
-      appId: "1:544786217510:web:176b1994aa1425cc4784e7"
-    }, "homepage");
-    const db = getFirestore(app);
-    const snap = await getCountFromServer(collection(db, "pins"));
-    const count = snap.data().count;
-    const el = document.getElementById('homePinCount');
-    if (el) {
-      if (count === 0) el.textContent = '✦ Buďte prví — mapa čaká na váš kroj';
-      else if (count === 1) el.textContent = '✦ Už 1 človek zdieľal svoj kroj';
-      else if (count < 5) el.textContent = `✦ Už ${count} ľudia zdieľali svoj kroj`;
-      else el.textContent = `✦ Už ${count} ľudí zdieľalo svoj kroj`;
-    }
-  } catch(e) {
-    const el = document.getElementById('homePinCount');
-    if (el) el.textContent = '✦ Buďte prví — mapa čaká na váš kroj';
-  }
-</script>
-
 
 <!-- CITÁT -->
 <section id="citat">
   <blockquote>„V každom stehu je ukryté posolstvo — trpezlivosť, láska a hrdosť na to, kto sme."</blockquote>
-
 </section>
 
 <!-- FOOTER -->
@@ -742,82 +319,10 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
 </footer>
 
 <script>
-  function toggleMenu() {
-    const m = document.getElementById('mobileMenu');
-    const h = document.getElementById('hamburger');
-    m.classList.toggle('open');
-    h.classList.toggle('open');
-  }
-  function closeMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.getElementById('hamburger').classList.remove('open');
-  }
-
-  // DROPDOWN — spoľahlivé JavaScript hover
-  document.querySelectorAll('nav ul li').forEach(li => {
-    let timer;
-    li.addEventListener('mouseenter', () => {
-      clearTimeout(timer);
-      const dd = li.querySelector('.dropdown');
-      if (dd) { dd.style.opacity = '1'; dd.style.visibility = 'visible'; dd.style.pointerEvents = 'all'; }
-    });
-    li.addEventListener('mouseleave', () => {
-      timer = setTimeout(() => {
-        const dd = li.querySelector('.dropdown');
-        if (dd) { dd.style.opacity = '0'; dd.style.visibility = 'hidden'; dd.style.pointerEvents = 'none'; }
-      }, 150);
-    });
-  });
-
-  // MAPA - počítadlo pinov
-  function updatePinCount(e) {
-    const el = document.getElementById('mapPinCount');
-    if (!el) return;
-    const count = e.detail;
-    if (count === 0) { el.textContent = '✦ Buďte prví, kto pridá svoj kroj'; }
-    else if (count === 1) { el.textContent = '✦ Už 1 človek zdieľal svoj kroj'; }
-    else if (count < 5) { el.textContent = '✦ Už ' + count + ' ľudia zdieľali svoj kroj'; }
-    else { el.textContent = '✦ Už ' + count + ' ľudí zdieľalo svoj kroj'; }
-  }
-  document.addEventListener('pinCountUpdate', updatePinCount);
-
-  // Načítaj počet pinov z Firebase
-  (async () => {
-    try {
-      const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
-      const { getFirestore, collection, onSnapshot } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
-      const cfg = { apiKey:"AIzaSyBL1YxV9LaZ2Q8Q-hbua25hkpf7dtMflaA", authDomain:"interaktivna-mapa-vysiviek.firebaseapp.com", projectId:"interaktivna-mapa-vysiviek", storageBucket:"interaktivna-mapa-vysiviek.firebasestorage.app", messagingSenderId:"544786217510", appId:"1:544786217510:web:176b1994aa1425cc4784e7" };
-      const app = getApps().length ? getApps()[0] : initializeApp(cfg);
-      const db = getFirestore(app);
-      onSnapshot(collection(db, 'pins'), snap => {
-        document.dispatchEvent(new CustomEvent('pinCountUpdate', { detail: snap.size }));
-      });
-    } catch(e) { console.log('Firebase counter:', e); }
-  })();
-  function handleSubmit(e) {
-    e.preventDefault();
-    document.getElementById('newsletter-confirm').style.display = 'block';
-    e.target.style.display = 'none';
-  }
-
-  // DROPDOWN — JavaScript riešenie pre spoľahlivé hover
-  document.querySelectorAll('nav ul li').forEach(li => {
-    let timer;
-    li.addEventListener('mouseenter', () => {
-      clearTimeout(timer);
-      const dd = li.querySelector('.dropdown');
-      if (dd) { dd.style.opacity = '1'; dd.style.visibility = 'visible'; dd.style.pointerEvents = 'all'; }
-    });
-    li.addEventListener('mouseleave', () => {
-      timer = setTimeout(() => {
-        const dd = li.querySelector('.dropdown');
-        if (dd) { dd.style.opacity = '0'; dd.style.visibility = 'hidden'; dd.style.pointerEvents = 'none'; }
-      }, 100);
-    });
-  });
+  // Hero slideshow
   const slides = document.querySelectorAll('.hero-slide');
-  if (slides.length > 0) {
-    let cur = 0;
+  let cur = 0;
+  if (slides.length > 1) {
     setInterval(() => {
       slides[cur].classList.remove('active');
       cur = (cur + 1) % slides.length;
@@ -825,20 +330,26 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     }, 5000);
   }
 
-  // PARALLAX
-  window.addEventListener('scroll', () => {
-    const ornWrap = document.querySelector('.hero-ornament-wrap');
-    if (ornWrap) ornWrap.style.transform = `translateY(${window.scrollY * 0.12}px)`;
-  });
-
-  // TIMELINE
-  const tlItems = document.querySelectorAll('.tl-item');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 150);
+  // Doll hover cycling
+  document.querySelectorAll('.doll-card[data-imgs]').forEach(function(card) {
+    var imgs = JSON.parse(card.getAttribute('data-imgs'));
+    var idx = 1;
+    var interval = null;
+    var altImg = card.querySelector('.doll-img-alt');
+    card.addEventListener('mouseenter', function() {
+      idx = 1;
+      altImg.src = imgs[idx];
+      interval = setInterval(function() {
+        idx = (idx + 1) % imgs.length;
+        var next = new Image();
+        next.src = imgs[idx];
+        next.onload = function() { altImg.src = imgs[idx]; };
+      }, 700);
     });
-  }, { threshold: 0.2 });
-  tlItems.forEach(item => observer.observe(item));
+    card.addEventListener('mouseleave', function() {
+      clearInterval(interval);
+    });
+  });
 </script>
 </body>
 </html>
