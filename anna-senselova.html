@@ -19,29 +19,81 @@ nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(-
 #hero > * { position: relative; z-index: 1; }
 .section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
 h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem); color: var(--red); line-height: 1.75; }
-h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--red); line-height: 1.75; margin-bottom: 0.5rem; }
+h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.2rem, 4vw, 3.5rem); color: var(--red); line-height: 1.75; margin-bottom: 0.5rem; }
+h3 { font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem; }
 .gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1rem auto 1.8rem; }
 .hero-dates { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.2em; color: var(--gold-dark); text-transform: uppercase; }
 
-/* FOTO KARTY */
+/* FOTO KARTY – vintage efekt */
 #fotky { padding: 5rem 2rem; background: var(--section-alt); }
-.fotky-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 960px; margin: 0 auto; }
-.foto-card { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; }
+.fotky-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 960px; margin: 0 auto; }
 
-@property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
-@keyframes border-spin { to { --angle: 360deg; } }
-@keyframes gold-shimmer { from { background-position: -100% 0; } to { background-position: 200% 0; } }
+.foto-card {
+  position: relative;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+.foto-card:hover { transform: scale(1.03) rotate(0.3deg); }
 
-.foto-card::before { content: ''; position: absolute; inset: -2px; background: conic-gradient(from var(--angle), transparent 20%, var(--gold) 40%, var(--red) 60%, var(--gold) 80%, transparent 100%); opacity: 0; transition: opacity 0.4s; z-index: 2; animation: border-spin 3s linear infinite paused; }
-.foto-card:hover::before { opacity: 1; animation-play-state: running; }
-.foto-card-inner { position: absolute; inset: 2px; overflow: hidden; z-index: 1; background: #1a0a0e; }
-.foto-card img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%) contrast(1.05) brightness(0.95); transition: transform 0.7s cubic-bezier(0.4,0,0.2,1), filter 0.5s ease; }
-.foto-card:hover img { transform: scale(1.08); filter: grayscale(60%) contrast(1.1) brightness(1.05); }
-.foto-card-inner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(212,175,55,0.25) 50%, transparent 70%); background-size: 200% 100%; background-position: -100% 0; opacity: 0; transition: opacity 0.3s; z-index: 2; pointer-events: none; }
-.foto-card:hover .foto-card-inner::after { opacity: 1; animation: gold-shimmer 0.9s ease forwards; }
-.foto-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(26,10,14,0.8)); padding: 1.5rem 1rem 0.8rem; z-index: 3; transform: translateY(6px); opacity: 0; transition: opacity 0.4s, transform 0.4s; }
-.foto-card:hover .foto-caption { opacity: 1; transform: translateY(0); }
-.foto-caption span { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+/* Vintage rám */
+.foto-card::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(135deg, #e8dfc8, #f5efe0, #d4c9a8, #f0e8d0);
+  z-index: 0;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.25), inset 0 0 12px rgba(0,0,0,0.08);
+}
+.foto-card::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1px solid rgba(160,124,16,0.3);
+  z-index: 1;
+}
+
+.foto-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+.foto-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(40%) contrast(0.95) brightness(0.92) saturate(0.7);
+  transition: filter 0.5s ease;
+}
+.foto-card:hover img {
+  filter: sepia(20%) contrast(1.0) brightness(0.98) saturate(0.85);
+}
+
+/* Vintage vignette overlay */
+.foto-card-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(26,10,14,0.35) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.foto-caption {
+  position: absolute;
+  bottom: -2rem;
+  left: 0; right: 0;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--gold-dark);
+  letter-spacing: 0.06em;
+  z-index: 3;
+}
 
 /* PRÍBEH */
 #pribeh { padding: 6rem 2rem; background: var(--cream); }
@@ -57,27 +109,129 @@ h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.5rem, 5vw, 4rem);
 
 /* RODOSTROM */
 #rodostrom { padding: 6rem 2rem; background: var(--section-alt); }
-.strom-wrap { max-width: 760px; margin: 2.5rem auto 0; }
-.gen { margin-bottom: 0.5rem; }
-.gen-label { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.8rem; text-align: center; }
+.strom-wrap { max-width: 820px; margin: 2.5rem auto 0; }
+
+/* Generácie */
+.gen { margin-bottom: 0; }
+.gen-label { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-bottom: 0.6rem; }
 .gen-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-.osoba { background: var(--cream); border: 1px solid rgba(212,175,55,0.4); border-top: 2px solid var(--red); padding: 0.7rem 1.2rem; text-align: center; min-width: 160px; transition: box-shadow 0.3s, transform 0.3s; }
-.osoba:hover { box-shadow: 0 4px 18px rgba(196,30,58,0.15); transform: translateY(-3px); }
-.osoba.hlavna { border-top-color: var(--gold); }
-.osoba-meno { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--ink); }
+
+.osoba {
+  background: var(--cream);
+  border: 1px solid rgba(212,175,55,0.35);
+  border-top: 2px solid var(--red);
+  padding: 0.65rem 1rem;
+  text-align: center;
+  min-width: 150px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: default;
+}
+.osoba:hover { box-shadow: 0 4px 16px rgba(196,30,58,0.12); transform: translateY(-2px); }
+.osoba.hlavna { border-top-color: var(--gold); background: #fff; }
+.osoba-meno { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); }
 .osoba.hlavna .osoba-meno { color: var(--red); }
-.osoba-roky { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--gold-dark); margin-top: 0.2rem; }
-.osoba-poznamka { font-size: 0.78rem; color: #888; font-style: italic; margin-top: 0.2rem; }
-.connector { display: flex; justify-content: center; margin: 0.4rem 0; }
-.connector-line { width: 1px; height: 28px; background: linear-gradient(180deg, var(--gold), var(--red)); }
-.strom-note { text-align: center; margin-top: 2rem; font-size: 0.88rem; color: #aaa; font-style: italic; }
+.osoba-roky { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--gold-dark); margin-top: 0.15rem; }
+.osoba-poznamka { font-size: 0.75rem; color: #999; font-style: italic; margin-top: 0.15rem; }
+
+.connector { display: flex; justify-content: center; margin: 0.35rem 0; }
+.connector-line { width: 1px; height: 24px; background: linear-gradient(180deg, var(--gold), var(--red)); }
+
+/* BIOGRAFIE */
+#biografie { padding: 6rem 2rem; background: var(--cream); }
+.bio-wrap { max-width: 820px; margin: 0 auto; }
+.bio-item { margin-bottom: 3.5rem; padding-bottom: 3.5rem; border-bottom: 1px solid rgba(212,175,55,0.25); }
+.bio-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.bio-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+.bio-meno { font-family: 'Pinyon Script', cursive; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--red); line-height: 1.6; }
+.bio-roky { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; color: var(--gold-dark); text-transform: uppercase; }
+.bio-titul { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; color: #aaa; text-transform: uppercase; margin-bottom: 1rem; }
+.bio-gold-line { width: 80px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); margin: 0.6rem 0 1.2rem; }
+.bio-text p { font-size: 1rem; color: #444; line-height: 1.85; margin-bottom: 0.9rem; }
+.bio-zdroj { font-size: 0.75rem; color: #bbb; font-style: italic; margin-top: 0.5rem; }
+.bio-zdroj a { color: var(--gold-dark); text-decoration: none; }
+.bio-zdroj a:hover { color: var(--red); }
 
 /* FOOTER */
 footer { background: #111; color: var(--cream); text-align: center; padding: 3rem 2rem; }
 footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 0.5rem; }
 footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-top: 0.3rem; }
 
-@media (max-width: 700px) { .fotky-grid { grid-template-columns: 1fr; max-width: 400px; } .pribeh-layout { grid-template-columns: 1fr; } .pribeh-photo-wrap { position: static; max-width: 220px; margin: 0 auto 2rem; } }
+@media (max-width: 700px) {
+  .fotky-grid { grid-template-columns: 1fr; max-width: 360px; }
+  .pribeh-layout { grid-template-columns: 1fr; }
+  .pribeh-photo-wrap { position: static; max-width: 200px; margin: 0 auto 2rem; }
+  .foto-caption { position: static; margin-top: 0.5rem; }
+}
+
+/* RODOSTROM – grafický */
+#rodostrom { padding: 6rem 2rem; background: var(--section-alt); position: relative; }
+.strom-wrap { max-width: 900px; margin: 2.5rem auto 0; position: relative; }
+.gen { margin-bottom: 0; }
+.gen-label { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-bottom: 1rem; }
+.gen-row { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+
+/* Spojnica medzi generáciami */
+.strom-connector { display: flex; justify-content: center; margin: 0.5rem 0; }
+.strom-connector::before { content: ''; display: block; width: 1px; height: 32px; background: linear-gradient(180deg, var(--gold), var(--red)); }
+
+/* Karta osoby */
+.osoba-node {
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+  width: 130px;
+}
+.osoba-node:hover { transform: translateY(-5px); }
+.osoba-node.hlavna .osoba-foto-wrap { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,0.3), 0 4px 18px rgba(0,0,0,0.18); }
+
+.osoba-foto-wrap {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--red);
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+  background: #e8dfd0;
+  display: flex; align-items: center; justify-content: center;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.osoba-node:hover .osoba-foto-wrap { box-shadow: 0 0 0 3px rgba(196,30,58,0.25), 0 4px 16px rgba(0,0,0,0.15); }
+
+.osoba-foto-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(80%); }
+.osoba-foto-placeholder { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--gold-dark); letter-spacing: 0.05em; }
+
+.osoba-node .osoba-meno { font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; font-weight: 600; color: var(--ink); text-align: center; line-height: 1.3; }
+.osoba-node.hlavna .osoba-meno { color: var(--red); }
+.osoba-node .osoba-roky { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--gold-dark); margin-top: 0.15rem; text-align: center; }
+
+/* Tooltip */
+.strom-tooltip {
+  position: fixed;
+  background: #fff;
+  border: 1px solid var(--gold);
+  border-top: 3px solid var(--red);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 340px;
+  z-index: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.strom-tooltip.visible { opacity: 1; }
+
+.tooltip-foto-wrap { flex-shrink: 0; width: 80px; height: 80px; border-radius: 50%; overflow: hidden; background: #e8dfd0; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,0.4); }
+.tooltip-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(70%); display: none; }
+.tooltip-foto-placeholder { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold-dark); }
+
+.tooltip-content { flex: 1; min-width: 0; }
+.tooltip-meno { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--red); line-height: 1.3; }
+.tooltip-roky { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.12em; color: var(--gold-dark); margin: 0.2rem 0; text-transform: uppercase; }
+.tooltip-titul { font-size: 0.78rem; color: #888; font-style: italic; margin-bottom: 0.5rem; line-height: 1.4; }
+.tooltip-text { font-size: 0.88rem; color: #444; line-height: 1.6; }
+
 </style>
 </head>
 <body>
@@ -86,6 +240,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
   <a href="index.html" class="nav-back">← Späť na hlavnú</a>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <p class="section-label">Príbeh</p>
   <h1>Anna Šenšelová</h1>
@@ -93,32 +248,40 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
   <p class="hero-dates">1882 – 1976 · Očová</p>
 </section>
 
+<!-- FOTKY -->
 <section id="fotky">
-  <div style="text-align:center; margin-bottom:2.5rem;">
+  <div style="text-align:center; margin-bottom:3rem;">
     <p class="section-label">Rodinné fotografie</p>
   </div>
   <div class="fotky-grid">
-    <div class="foto-card">
-      <div class="foto-card-inner">
-        <img src="anna_senselova_fotka1.jpeg" alt="Rodinná fotografia">
-        <div class="foto-caption"><span>Rodinná fotografia</span></div>
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <div class="foto-card">
+        <div class="foto-card-inner">
+          <img src="anna_senselova_fotka1.jpeg" alt="Rodinná fotografia">
+        </div>
       </div>
+      <p class="foto-caption" style="margin-top:0.8rem;">Rodinná fotografia</p>
     </div>
-    <div class="foto-card">
-      <div class="foto-card-inner">
-        <img src="a_nna_senselova_fotka2jpeg.jpeg" alt="Rodinné stretnutie">
-        <div class="foto-caption"><span>Rodinné stretnutie</span></div>
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <div class="foto-card">
+        <div class="foto-card-inner">
+          <img src="a_nna_senselova_fotka2jpeg.jpeg" alt="Rodinné stretnutie">
+        </div>
       </div>
+      <p class="foto-caption" style="margin-top:0.8rem;">Rodinné stretnutie</p>
     </div>
-    <div class="foto-card">
-      <div class="foto-card-inner">
-        <img src="anna_senselova_fotka3.jpeg" alt="Anna Šenšelová s rodinou">
-        <div class="foto-caption"><span>Anna Šenšelová s rodinou</span></div>
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <div class="foto-card">
+        <div class="foto-card-inner">
+          <img src="anna_senselova_fotka3.jpeg" alt="Anna Šenšelová s rodinou">
+        </div>
       </div>
+      <p class="foto-caption" style="margin-top:0.8rem;">Anna Šenšelová s rodinou</p>
     </div>
   </div>
 </section>
 
+<!-- PRÍBEH -->
 <section id="pribeh">
   <div class="pribeh-layout">
     <div class="pribeh-photo-wrap">
@@ -127,72 +290,262 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
     </div>
     <div class="pribeh-text">
       <h2>Žena, ktorá zachránila krásu tisícich stehov</h2>
-      <div class="gold-line"></div>
+      <div class="gold-line" style="margin-left:0;"></div>
       <p>Anna Šenšelová (1882 – 1976) bola výnimočná, nesmierne skromná a húževnatá žena, ktorej život sa stal neoddeliteľnou súčasťou histórie slovenského výšivkárstva. Narodila sa na Štedrý deň v Očovej v rodine národovcov a už od detstva ju sprevádzala láska k slovenskej kultúre.</p>
       <p>Hoci jej pôvodným snom bola botanika a práca v záhrade, osud ju v roku 1910 zavial do Martina. Práve tam vznikala legendárna <em>Lipa</em>, účastinárska spoločnosť pre ľudový priemysel, a Anna bola povolaná, aby sa stala jej hybnou silou.</p>
       <p>Aby svojej práci rozumela čo najlepšie, neváhala v 28 rokoch zasadnúť do školských lavíc v Prahe, kde si osvojila najrôznejšie techniky vyšívania. Po návrate sa naplno oddala záchrane tradícií:</p>
       <ul>
         <li>V martinskom múzeu trpezlivo študovala a odkresľovala staré vzory, aby sa na ne nezabudlo.</li>
         <li>Pešo prechodila slovenské dediny, hľadala šikovné vyšívačky a získavala si ich dôveru.</li>
-        <li>Osobne dohliadala na kvalitu každej jednej dečky či kroja, pričom dbala na zachovanie čistoty a pôvodnej krásy ľudového ornamentu.</li>
+        <li>Osobne dohliadala na kvalitu každej jednej dečky či kroja — dbala na zachovanie čistoty a pôvodnej krásy ľudového ornamentu.</li>
+        <li>Viedla predajňu Lipy, kde slovenské výšivky nachádzali cestu k zákazníkom doma i v zahraničí.</li>
       </ul>
-      <p>Pod jej vedením Lipa nielen vyrábala nádherné výšivky, ale získavala ocenenia na medzinárodných výstavách od Viedne až po Košice. Anna Šenšelová stála na čele tohto podniku neuveriteľných <strong>42 rokov</strong>, až do jeho zániku v roku 1953.</p>
-      <p class="pribeh-signature">Odkaz Anny Šenšelovej sa takmer stratil v zabudnutí. Dve igelitky plné výšiviek, objavené v pivnici po starých rodičoch, ma priviedli k jej príbehu — a ten ma od tej chvíle nepúšťa. Táto stránka je môj malý príspevok k tomu, aby sa naň nezabudlo.</p>
+      <p>Pod jej vedením Lipa získavala ocenenia na medzinárodných výstavách od Viedne až po Košice. Anna Šenšelová stála na čele tohto podniku neuveriteľných <strong>42 rokov</strong>, až do jeho zániku v roku 1953.</p>
+      <p class="pribeh-signature">Odkaz Anny Šenšelovej sa takmer stratil v zabudnutí. Dve igelitky plné výšiviek, objavené v pivnici po starých rodičoch, ma priviedli k jej príbehu — a ten ma od tej chvíle nepúšťa.</p>
     </div>
   </div>
 </section>
 
+<!-- RODOSTROM -->
 <section id="rodostrom">
   <div style="text-align:center;">
-    <p class="section-label">Pôvod</p>
+    <p class="section-label">Rodová línia</p>
     <h2>Rodostrom</h2>
     <div class="gold-line"></div>
-    <p style="font-size:1rem; color:#555; font-style:italic; max-width:600px; margin:0 auto;">Anna pochádzala z dlhej línie evanjelických národovcov. Jej rodina bola hlboko zakorenená v slovenskom národnom hnutí.</p>
+    <p style="font-size:1rem; color:#555; font-style:italic; max-width:600px; margin:0 auto;">Anna pochádzala z dlhej línie evanjelických národovcov. Prejdite myšou nad osobu pre viac informácií.</p>
   </div>
+
   <div class="strom-wrap">
 
-    <div class="gen">
+    <!-- SVG spojnice -->
+    <svg id="strom-svg" style="position:absolute; pointer-events:none; z-index:0;" width="100%" height="100%"></svg>
+
+    <!-- Generácia 1: Prastarí rodičia -->
+    <div class="gen" id="gen1">
       <p class="gen-label">Prastarí rodičia</p>
       <div class="gen-row">
-        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">rod otca</div></div>
-        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">rod matky</div></div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div></div>
-
-    <div class="gen">
-      <p class="gen-label">Starí rodičia</p>
-      <div class="gen-row">
-        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">otcova strana</div></div>
-        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">materina strana</div></div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div></div>
-
-    <div class="gen">
-      <p class="gen-label">Rodičia</p>
-      <div class="gen-row">
-        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">otec · národovec</div></div>
-        <div class="osoba"><div class="osoba-meno">— doplniť —</div><div class="osoba-poznamka">matka</div></div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div></div>
-
-    <div class="gen">
-      <p class="gen-label">Anna Šenšelová</p>
-      <div class="gen-row">
-        <div class="osoba hlavna">
-          <div class="osoba-meno">Anna Šenšelová</div>
-          <div class="osoba-roky">1882 – 1976</div>
-          <div class="osoba-poznamka">Očová · riaditeľka Lipy</div>
+        <div class="osoba-node" data-id="izak"
+          data-meno="Ľudovít Izák"
+          data-roky="1833 – 1929"
+          data-titul="Učiteľ · Národný pracovník · Zakladajúci člen Matice slovenskej"
+          data-text="Narodil sa v Háji pri Turčianskych Tepliciach. V roku 1848/49 sa zúčastnil slovenského povstania, kde osobne spoznal Ľudovíta Štúra. Bol zakladajúcim členom a jednateľom Matice slovenskej, zakladateľom školskej knižnice, spevokolu mládeže. 30 rokov učil na Dačovom Lome v čase najtvrdšej maďarizácie."
+          data-foto="">
+          <div class="osoba-foto-wrap">
+            <div class="osoba-foto-placeholder">L.I.</div>
+          </div>
+          <div class="osoba-meno">Ľudovít Izák</div>
+          <div class="osoba-roky">1833 – 1929</div>
+        </div>
+        <div class="osoba-node" data-id="hodza"
+          data-meno="Anna Hodžová"
+          data-roky="— doplniť —"
+          data-titul="— doplniť —"
+          data-text="Informácie o Anne Hodžovej sa dopĺňajú."
+          data-foto="">
+          <div class="osoba-foto-wrap">
+            <div class="osoba-foto-placeholder">A.H.</div>
+          </div>
+          <div class="osoba-meno">Anna Hodžová</div>
+          <div class="osoba-roky">— doplniť —</div>
         </div>
       </div>
     </div>
 
-    <p class="strom-note">Rodostrom sa dopĺňa — ak máte informácie o rode Šenšelovcov, <a href="spojme-sa.html" style="color:var(--red);">ozvite sa</a>.</p>
+    <!-- Spojnica -->
+    <div class="strom-connector"></div>
+
+    <!-- Generácia 2: Rodičia -->
+    <div class="gen" id="gen2">
+      <p class="gen-label">Rodičia</p>
+      <div class="gen-row">
+        <div class="osoba-node" data-id="stefan"
+          data-meno="Štefan Šenšel"
+          data-roky="— doplniť —"
+          data-titul="Učiteľ · Očová · Martin"
+          data-text="Štefan Šenšel bol učiteľom a otcom Anny Šenšelovej. Pochádzal z Očovej. Oženil sa s Ľudmilou Izákovou, dcérou národovca Ľudovíta Izáka. Informácie o jeho živote sa dopĺňajú."
+          data-foto="">
+          <div class="osoba-foto-wrap">
+            <div class="osoba-foto-placeholder">Š.Š.</div>
+          </div>
+          <div class="osoba-meno">Štefan Šenšel</div>
+          <div class="osoba-roky">— doplniť —</div>
+        </div>
+        <div class="osoba-node" data-id="ludmila"
+          data-meno="Ľudmila Šenšelová Izáková"
+          data-roky="— doplniť —"
+          data-titul="Dcéra Ľudovíta Izáka"
+          data-text="Ľudmila Šenšelová, rodená Izáková, bola dcérou národovca a učiteľa Ľudovíta Izáka. Jej otec strávil posledné roky života v jej domácnosti v Martine. Informácie sa dopĺňajú."
+          data-foto="">
+          <div class="osoba-foto-wrap">
+            <div class="osoba-foto-placeholder">Ľ.Š.</div>
+          </div>
+          <div class="osoba-meno">Ľudmila Izáková</div>
+          <div class="osoba-roky">— doplniť —</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spojnica -->
+    <div class="strom-connector"></div>
+
+    <!-- Generácia 3: Anna + súrodenci -->
+    <div class="gen" id="gen3">
+      <p class="gen-label">Anna Šenšelová a jej súrodenci</p>
+      <div class="gen-row">
+        <div class="osoba-node" data-id="ludovit"
+          data-meno="Ľudovít Šenšel"
+          data-roky="1888 – 1956"
+          data-titul="Evanjelický farár · Učiteľ · Poslanec · Odporca fašizmu"
+          data-text="Brat Anny. Študoval teológiu v Šoproni, pobýval v Lipsku a Edinburghu. Od 1914 farár v Liptovskej Porúbke. Zakladateľ časopisu Tvorba, predseda Hurbanovej spol. Organizoval protifašistický odboj. Poslanec SNR 1945–48. Po komunistickom prevrate vylúčený zo všetkých funkcií."
+          data-foto="">
+          <div class="osoba-foto-wrap">
+            <div class="osoba-foto-placeholder">Ľ.Š.</div>
+          </div>
+          <div class="osoba-meno">Ľudovít Šenšel</div>
+          <div class="osoba-roky">1888 – 1956</div>
+        </div>
+        <div class="osoba-node hlavna" data-id="anna"
+          data-meno="Anna Šenšelová"
+          data-roky="1882 – 1976"
+          data-titul="Riaditeľka Lipy · Zachránkyňa slovenského výšivkárstva"
+          data-text="Narodila sa na Štedrý deň v Očovej. V 28 rokoch odišla študovať vyšívanie do Prahy. 42 rokov viedla martinskú Lipu — pešo vyhľadávala vyšívačky po slovenských dedinách, zachraňovala vzory a budovala sieť remeselníčok. Lipa získavala ocenenia od Viedne po Košice."
+          data-foto="anna_fotka1.png">
+          <div class="osoba-foto-wrap">
+            <img src="anna_fotka1.png" alt="Anna Šenšelová" class="osoba-foto-img">
+          </div>
+          <div class="osoba-meno">Anna Šenšelová</div>
+          <div class="osoba-roky">1882 – 1976</div>
+        </div>
+        <div class="osoba-node" data-id="jan"
+          data-meno="Ján Šenšel"
+          data-roky="— doplniť —"
+          data-titul="— doplniť —"
+          data-text="Informácie o Jánovi Šenšelovi sa dopĺňajú. Ak máte záznamy o jeho živote, budeme vďační."
+          data-foto="">
+          <div class="osoba-foto-wrap">
+            <div class="osoba-foto-placeholder">J.Š.</div>
+          </div>
+          <div class="osoba-meno">Ján Šenšel</div>
+          <div class="osoba-roky">— doplniť —</div>
+        </div>
+        <div class="osoba-node" data-id="olga"
+          data-meno="Oľga Helvíghová"
+          data-roky="— doplniť —"
+          data-titul="— doplniť —"
+          data-text="Informácie o Oľge Helvíghovej sa dopĺňajú. Ak máte záznamy o jej živote, budeme vďační."
+          data-foto="">
+          <div class="osoba-foto-wrap">
+            <div class="osoba-foto-placeholder">O.H.</div>
+          </div>
+          <div class="osoba-meno">Oľga Helvíghová</div>
+          <div class="osoba-roky">— doplniť —</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end strom-wrap -->
+
+  <!-- Tooltip -->
+  <div class="strom-tooltip" id="stromTooltip">
+    <div class="tooltip-foto-wrap">
+      <img class="tooltip-foto" id="tooltipFoto" src="" alt="">
+      <div class="tooltip-foto-placeholder" id="tooltipPlaceholder"></div>
+    </div>
+    <div class="tooltip-content">
+      <div class="tooltip-meno" id="tooltipMeno"></div>
+      <div class="tooltip-roky" id="tooltipRoky"></div>
+      <div class="tooltip-titul" id="tooltipTitul"></div>
+      <div class="tooltip-text" id="tooltipText"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- BIOGRAFIE -->
+<section id="biografie">
+  <div style="text-align:center; margin-bottom:4rem;">
+    <p class="section-label">Rodová línia</p>
+    <h2>Osobnosti rodu</h2>
+    <div class="gold-line"></div>
+    <p style="font-size:1rem; color:#555; font-style:italic; max-width:580px; margin:0 auto;">Každý člen rodiny Šenšelovcov a Izákovcov bol vo svojej dobe aktívnym budovateľom slovenskej kultúry a národného povedomia.</p>
+  </div>
+
+  <div class="bio-wrap">
+
+    <!-- Ľudovít Izák -->
+    <div class="bio-item">
+      <div class="bio-header">
+        <div class="bio-meno">Ľudovít Izák</div>
+        <div class="bio-roky">1833 – 1929</div>
+      </div>
+      <div class="bio-titul">Učiteľ · Národný pracovník · Zakladajúci člen Matice slovenskej</div>
+      <div class="bio-gold-line"></div>
+      <div class="bio-text">
+        <p>Narodil sa 28. júla 1833 v Háji pri Turčianskych Tepliciach. Detstvo strávil v Turanoch, kde jeho otec Ján Izák pôsobil ako učiteľ. Študoval na evanjelickej škole v Martine, neskôr v Banskej Štiavnici a Levoči.</p>
+        <p>Len šestnásťročný sa v roku 1848/49 zúčastnil slovenského povstania, kde osobne spoznal Ľudovíta Štúra. Táto skúsenosť formovala celý jeho ďalší život. Po ukončení štúdií učil v Piliši, Baďane a od roku 1858 na evanjelickej škole v Banskej Štiavnici.</p>
+        <p>V Banskej Štiavnici rozvinul intenzívnu národnobuditeľskú činnosť: vlastnými prostriedkami založil slovenskú školskú knižnicu, spevokol pre mládež, organizoval slovenské majálesy. Bol zakladajúcim členom a jednateľom Matice slovenskej, rozširoval slovenskú tlač a organizoval ochotnícke divadlo. Miestni maďaróni ho roku 1878 prinútili odísť.</p>
+        <p>Uchýlil sa na Dačov Lom, kde ďalších 30 rokov — v čase najtvrdšej maďarizácie — učil a vychovával žiakov v národnom duchu. Bol nadaným hudobníkom a organistom. Posledné roky života strávil u dcéry Ľudmily, manželky učiteľa Štefana Šenšela, v Martine. Zomrel vo veku 95 rokov.</p>
+        <p class="bio-zdroj">Zdroj: <a href="https://www.narodnycintorinmartin.sk/izak-ludovit-606" target="_blank">Národný cintorín Martin</a></p>
+      </div>
+    </div>
+
+    <!-- Štefan Šenšel -->
+    <div class="bio-item">
+      <div class="bio-header">
+        <div class="bio-meno">Štefan Šenšel</div>
+        <div class="bio-roky">— doplniť —</div>
+      </div>
+      <div class="bio-titul">Učiteľ · Očová · Martin</div>
+      <div class="bio-gold-line"></div>
+      <div class="bio-text">
+        <p>Štefan Šenšel bol učiteľom a otcom Anny Šenšelovej. Pochádzal z Očovej, kde sa Anna narodila na Štedrý deň 1882. Oženil sa s Ľudmilou Izákovou, dcérou národovca Ľudovíta Izáka.</p>
+        <p>Informácie o jeho živote a pôsobení dopĺňame — ak máte záznamy alebo spomienky, budeme vďační za každý detail.</p>
+        <p class="bio-zdroj">Zdroj: <a href="https://sk.wikipedia.org/wiki/%C5%A0tefan_%C5%A0en%C5%A1el" target="_blank">Wikipedia – Štefan Šenšel</a> · <em>článok sa dopĺňa</em></p>
+      </div>
+    </div>
+
+    <!-- Ľudovít Štefan Šenšel -->
+    <div class="bio-item">
+      <div class="bio-header">
+        <div class="bio-meno">Ľudovít Štefan Šenšel</div>
+        <div class="bio-roky">1888 – 1956</div>
+      </div>
+      <div class="bio-titul">Evanjelický farár · Učiteľ · Poslanec · Odporca fašizmu</div>
+      <div class="bio-gold-line"></div>
+      <div class="bio-text">
+        <p>Brat Anny Šenšelovej sa narodil 13. apríla 1888 v Očovej v učiteľskej rodine. Gymnázium študoval v Banskej Bystrici, maturoval v Šoproni, kde tiež roku 1910 absolvoval teológiu. Následne pobýval v Lipsku a Edinburghu — do Škótska ho pozvali vďaka štipendu od slovakofila Roberta Williama Setona-Watsona. Jeho spolužiakom tu bol Martin Rázus.</p>
+        <p>Od roku 1914 až do smrti bol evanjelickým farárom v Liptovskej Porúbke. Bol jedným zo zakladateľov časopisu Tvorba, redaktorom Cirkevných listov a Tranovského kalendára, predsedom Hurbanovej evanjelickej literárnej spoločnosti. Učil na ľudovej škole v Liptovskej Porúbke a na Hodžovom gymnáziu v Liptovskom Mikuláši. Napísal Slovenskú štylistiku a učebnice náboženstva.</p>
+        <p>Počas druhej svetovej vojny organizoval protifašistický odboj — predsedal ilegálnemu revolučnému národnému výboru v Liptovskej Porúbke i okresnému RNV v Liptovskom Mikuláši. Po oslobodení bol poslancom Dočasného národného zhromaždenia (1945–46) a Slovenskej národnej rady za Demokratickú stranu. Po nástupe komunizmu v roku 1948 bol vylúčený zo všetkých funkcií. Zomrel 22. júla 1956.</p>
+        <p class="bio-zdroj">Zdroj: <a href="https://sk.wikipedia.org/wiki/%C4%BDudov%C3%ADt_%C5%A0tefan_%C5%A0en%C5%A1el" target="_blank">Wikipedia – Ľudovít Štefan Šenšel</a></p>
+      </div>
+    </div>
+
+    <!-- Ján Šenšel -->
+    <div class="bio-item">
+      <div class="bio-header">
+        <div class="bio-meno">Ján Šenšel</div>
+        <div class="bio-roky">— doplniť —</div>
+      </div>
+      <div class="bio-titul">Súrodenec Anny Šenšelovej</div>
+      <div class="bio-gold-line"></div>
+      <div class="bio-text">
+        <p>Informácie o Jánovi Šenšelovi sa dopĺňajú. Ak máte záznamy o jeho živote a pôsobení, budeme vďační za každý detail.</p>
+      </div>
+    </div>
+
+    <!-- Oľga Helvíghová -->
+    <div class="bio-item">
+      <div class="bio-header">
+        <div class="bio-meno">Oľga Helvíghová</div>
+        <div class="bio-roky">— doplniť —</div>
+      </div>
+      <div class="bio-titul">Súrodenec Anny Šenšelovej</div>
+      <div class="bio-gold-line"></div>
+      <div class="bio-text">
+        <p>Informácie o Oľge Helvíghovej sa dopĺňajú. Ak máte záznamy o jej živote a pôsobení, budeme vďační za každý detail.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -201,5 +554,53 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
   <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
   <p style="margin-top:0.3rem; font-size:0.72rem;">© 2026 · Anna Lockwoodová</p>
 </footer>
+
+<script>
+// Rodostrom tooltip
+const nodes = document.querySelectorAll('.osoba-node');
+const tooltip = document.getElementById('stromTooltip');
+
+nodes.forEach(node => {
+  node.addEventListener('mouseenter', (e) => {
+    const foto = node.dataset.foto;
+    const tooltipFoto = document.getElementById('tooltipFoto');
+    const tooltipPlaceholder = document.getElementById('tooltipPlaceholder');
+
+    if (foto) {
+      tooltipFoto.src = foto;
+      tooltipFoto.style.display = 'block';
+      tooltipPlaceholder.style.display = 'none';
+    } else {
+      tooltipFoto.style.display = 'none';
+      tooltipPlaceholder.style.display = 'block';
+      tooltipPlaceholder.textContent = node.querySelector('.osoba-foto-placeholder')?.textContent || '?';
+    }
+
+    document.getElementById('tooltipMeno').textContent = node.dataset.meno;
+    document.getElementById('tooltipRoky').textContent = node.dataset.roky;
+    document.getElementById('tooltipTitul').textContent = node.dataset.titul;
+    document.getElementById('tooltipText').textContent = node.dataset.text;
+
+    tooltip.classList.add('visible');
+    positionTooltip(e);
+  });
+
+  node.addEventListener('mousemove', positionTooltip);
+
+  node.addEventListener('mouseleave', () => {
+    tooltip.classList.remove('visible');
+  });
+});
+
+function positionTooltip(e) {
+  let x = e.clientX + 18;
+  let y = e.clientY - 20;
+  if (x + 360 > window.innerWidth) x = e.clientX - 360;
+  if (y + 220 > window.innerHeight) y = e.clientY - 220;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+}
+</script>
+
 </body>
 </html>
