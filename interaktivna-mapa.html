@@ -66,6 +66,57 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem
 .gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1rem auto; }
 .page-header p { font-size: 1rem; color: #555; max-width: 620px; margin: 0 auto; font-style: italic; }
 
+/* INFO SEKCIA */
+.map-info-section {
+  background: var(--cream);
+  border-bottom: 1px solid rgba(212,175,55,0.25);
+  padding: 3rem 2rem 2.5rem;
+}
+.map-info-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 4rem;
+  align-items: start;
+}
+.map-info-block h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.8rem;
+}
+.map-info-block p {
+  font-size: 0.97rem;
+  color: #444;
+  line-height: 1.85;
+}
+.photo-guidelines {
+  background: var(--section-alt);
+  border-left: 3px solid var(--gold);
+  padding: 1.2rem 1.4rem;
+  margin-top: 0.5rem;
+}
+.photo-guidelines p {
+  font-size: 0.92rem;
+  color: #444;
+  line-height: 1.85;
+  margin-bottom: 0.5rem;
+}
+.photo-guidelines p:last-child { margin-bottom: 0; }
+.photo-guidelines strong { color: var(--ink); font-weight: 600; }
+.map-info-divider {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0.5rem 0 0;
+}
+@media (max-width: 700px) {
+  .map-info-inner { grid-template-columns: 1fr; gap: 1.8rem; }
+}
+
 .map-layout { display: grid; grid-template-columns: 1fr 340px; min-height: calc(100vh - 220px); }
 .map-area { padding: 2.5rem; position: relative; background: var(--cream); }
 .map-instructions { text-align: center; margin-bottom: 1.5rem; }
@@ -74,8 +125,9 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem
 .svg-container { position: relative; max-width: 700px; margin: 0 auto; }
 .svg-container svg { width: 100%; height: auto; display: block; }
 
-.region { fill: #e8dfd0; stroke: #fff; stroke-width: 1.5; cursor: crosshair; transition: fill 0.25s; }
+.region { fill: #e8dfd0; stroke: #fff; stroke-width: 1.5; cursor: pointer; transition: fill 0.25s; }
 .region:hover { fill: #d4c4a8; }
+.region.active-region { fill: #c8a882; stroke: var(--gold); stroke-width: 2; }
 
 .pin-dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--red); border: 2px solid #fff; box-shadow: 0 2px 8px rgba(196,30,58,0.5); cursor: pointer; transform: translate(-50%, -50%); transition: transform 0.2s; z-index: 10; pointer-events: all; }
 .pin-dot:hover { transform: translate(-50%, -50%) scale(1.4); }
@@ -136,9 +188,57 @@ body.placing-pin .placing-banner { display: block; }
 .stats-bar { display: flex; gap: 2rem; justify-content: center; padding: 1rem; background: #fff; border-top: 1px solid rgba(212,175,55,0.2); font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; }
 .stats-bar span strong { color: var(--red); }
 
+/* ═══════════════════════════════════
+   REGIONÁLNA GALÉRIA
+═══════════════════════════════════ */
+#region-gallery { padding: 4rem 2rem 5rem; background: var(--section-alt); display: none; }
+#region-gallery.visible { display: block; }
+.region-gallery-header { text-align: center; margin-bottom: 2.5rem; }
+.region-gallery-header h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2rem, 4vw, 3.2rem); color: var(--red); line-height: 1.75; }
+.region-gallery-header .region-count { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark); margin-top: 0.3rem; }
+.region-close-btn { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #aaa; background: none; border: 1px solid rgba(0,0,0,0.12); padding: 0.4rem 1rem; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+.region-close-btn:hover { color: var(--red); border-color: var(--red); }
+.region-photos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+
+.region-photo-card { background: #fff; border: 1px solid rgba(212,175,55,0.25); border-top: 2px solid var(--red); overflow: hidden; }
+.region-photo-card .card-img-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #f0ebe0; display: flex; align-items: center; justify-content: center; }
+.region-photo-card .card-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; filter: sepia(15%) contrast(0.97); transition: filter 0.4s; }
+.region-photo-card:hover .card-img-wrap img { filter: sepia(5%) contrast(1); }
+.card-no-photo { font-size: 3rem; opacity: 0.2; }
+.region-photo-card .card-body { padding: 1rem 1.2rem; }
+.card-pin-name { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
+.card-pin-region { font-size: 0.82rem; color: #888; font-style: italic; margin-top: 0.1rem; }
+.card-pin-desc { font-size: 0.9rem; color: #444; margin-top: 0.5rem; line-height: 1.6; }
+.card-pin-delete { background: none; border: none; font-size: 0.75rem; color: #ccc; cursor: pointer; padding: 0.3rem 0 0; display: block; transition: color 0.2s; }
+.card-pin-delete:hover { color: var(--red); }
+
+.card-comments { border-top: 1px solid rgba(212,175,55,0.2); padding: 0.8rem 1.2rem 1rem; }
+.comments-title { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 0.6rem; }
+.comment-item { padding: 0.45rem 0; border-bottom: 1px solid rgba(212,175,55,0.1); position: relative; }
+.comment-item:last-of-type { border-bottom: none; }
+.comment-author { font-family: 'Cinzel', serif; font-size: 0.67rem; letter-spacing: 0.08em; color: var(--gold-dark); }
+.comment-text { font-size: 0.88rem; color: #444; line-height: 1.55; margin-top: 0.1rem; padding-right: 1.5rem; }
+.comment-delete { position: absolute; right: 0; top: 0.45rem; background: none; border: none; font-size: 0.65rem; color: #ddd; cursor: pointer; transition: color 0.2s; }
+.comment-delete:hover { color: var(--red); }
+.no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; padding: 0.2rem 0 0.4rem; }
+
+.comment-form { padding-top: 0.7rem; }
+.comment-form-row { display: flex; gap: 0.4rem; margin-top: 0.4rem; }
+.comment-form input[type="text"] { flex: 1; padding: 0.38rem 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; border: 1px solid rgba(212,175,55,0.35); background: var(--section-alt); color: var(--ink); outline: none; transition: border-color 0.2s; min-width: 0; }
+.comment-form input[type="text"]:focus { border-color: var(--gold); }
+.comment-form .author-input { max-width: 110px; flex-shrink: 0; }
+.btn-comment { padding: 0.38rem 0.8rem; font-family: 'Cinzel', serif; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; background: transparent; color: var(--red); border: 1px solid var(--red); cursor: pointer; transition: background 0.25s, color 0.25s; white-space: nowrap; flex-shrink: 0; }
+.btn-comment:hover { background: var(--red); color: #fff; }
+
+.region-empty { text-align: center; padding: 3rem 2rem; color: #bbb; font-style: italic; grid-column: 1 / -1; font-size: 1rem; }
+
 @media (max-width: 900px) {
   .map-layout { grid-template-columns: 1fr; }
   .sidebar { border-left: none; border-top: 1px solid rgba(212,175,55,0.3); }
+}
+@media (max-width: 600px) {
+  .region-photos-grid { grid-template-columns: 1fr; }
+  .map-info-inner { grid-template-columns: 1fr; gap: 1.8rem; }
 }
 </style>
 </head>
@@ -156,10 +256,31 @@ body.placing-pin .placing-banner { display: block; }
   <p>Pridajte svoj kroj alebo výšivku na mapu a pomôžte nám zmapovať krásu ľudového odevu naprieč celým Slovenskom.</p>
 </div>
 
+<!-- INFO SEKCIA -->
+<div class="map-info-section">
+  <div class="map-info-inner">
+    <div class="map-info-block">
+      <h3>Cieľ tejto mapy</h3>
+      <p>Táto interaktívna mapa vznikla s jediným zámerom — spoločnými silami vytvoriť čo najucelennejší obraz o krojoch a výšivkách v jednotlivých regiónoch Slovenska. Každý pin, ktorý tu pribudne, je malým príspevkom k niečomu väčšiemu: kolektívnemu zmapovaniu dedičstva nášho národa.</p>
+      <p>Verím, že práve takýmto zdieľaním — bez ohľadu na to, či máte k dispozícii starý svadobný kroj alebo len vyšívanú čipku po starej mame — môžeme spoločne zachovať to, čo by inak upadlo do zabudnutia.</p>
+    </div>
+    <div class="map-info-block">
+      <h3>Ako fotografovať</h3>
+      <div class="photo-guidelines">
+        <p>Aby si fotografie zachovali <strong>výpovednú hodnotu a úroveň zozbieraného materiálu</strong>, prosím dodržujte niekoľko jednoduchých zásad:</p>
+        <p>✦ Kroje, krojové súčiastky alebo výšivky foťte na <strong>čistom bielom alebo čiernom podklade</strong> — ideálne zhora (kolmo nadol).</p>
+        <p>✦ Dbajte na dobré svetlo, aby boli viditeľné detaily výšivky, farby a vzory.</p>
+        <p>✦ Ak fotografujete oblečený kroj, použite neutrálne pozadie bez rozptyľujúcich prvkov.</p>
+      </div>
+    </div>
+    <div class="map-info-divider"></div>
+  </div>
+</div>
+
 <div class="map-layout">
   <div class="map-area">
     <div class="map-instructions">
-      <p>Kliknite na miesto na mape a pridajte svoj pin ✦ Prejdite myšou nad pin pre náhľad</p>
+      <p>Kliknite na kraj pre zobrazenie fotiek ✦ Zlatý pin = fotografia ✦ Červený pin = bez fotky</p>
     </div>
     <div class="svg-container" id="svgContainer">
       <svg viewBox="0 0 613 305" xmlns="http://www.w3.org/2000/svg" id="slovakiaMap">
@@ -241,13 +362,38 @@ body.placing-pin .placing-banner { display: block; }
 
 <div class="placing-banner">Kliknite na miesto na mape · ESC pre zrušenie</div>
 
+
+<!-- REGIONÁLNA GALÉRIA -->
+<section id="region-gallery">
+  <div class="region-gallery-header">
+    <p class="section-label">Zbierka komunity</p>
+    <h2 id="regionGalleryTitle">Región</h2>
+    <div class="gold-line"></div>
+    <p class="region-count" id="regionGalleryCount"></p>
+    <button class="region-close-btn" onclick="closeRegionGallery()">✕ Zatvoriť galériu</button>
+  </div>
+  <div class="region-photos-grid" id="regionPhotosGrid"></div>
+</section>
 <script>
 let pins = [];
 let placingMode = false;
 let pendingPin = null;
 let photoDataUrl = null;
+let activeRegionId = null;
 
-// Unikátne ID návštevníka (uložené v prehliadači)
+// Mapovanie SVG ID krajov na slovenské názvy
+const REGION_NAMES = {
+  'SK-BC': 'Banskobystrický kraj',
+  'SK-BL': 'Bratislavský kraj',
+  'SK-KI': 'Košický kraj',
+  'SK-NI': 'Nitriansky kraj',
+  'SK-PV': 'Prešovský kraj',
+  'SK-TA': 'Trnavský kraj',
+  'SK-TC': 'Trenčiansky kraj',
+  'SK-ZI': 'Žilinský kraj'
+};
+
+// Unikátne ID návštevníka
 let visitorId = localStorage.getItem('anna_visitor_id');
 if (!visitorId) {
   visitorId = 'v_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -258,10 +404,171 @@ const svgContainer = document.getElementById('svgContainer');
 const pinsContainer = document.getElementById('pinsContainer');
 const tooltip = document.getElementById('pinTooltip');
 
+// ─── KLIK NA REGIÓN ────────────────────────────────
+document.querySelectorAll('.region').forEach(region => {
+  region.addEventListener('click', function(e) {
+    if (placingMode) return; // počas umiestňovania pinu ignoruj
+    const rid = this.id;
+    if (activeRegionId === rid) {
+      closeRegionGallery();
+      return;
+    }
+    // Zruš predošlé zvýraznenie
+    document.querySelectorAll('.region.active-region').forEach(r => r.classList.remove('active-region'));
+    this.classList.add('active-region');
+    activeRegionId = rid;
+    openRegionGallery(rid);
+  });
+});
+
+function openRegionGallery(regionId) {
+  const name = REGION_NAMES[regionId] || regionId;
+  document.getElementById('regionGalleryTitle').textContent = name;
+  renderRegionGallery(regionId);
+  const gallery = document.getElementById('region-gallery');
+  gallery.classList.add('visible');
+  // Scroll na galériu
+  setTimeout(() => gallery.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+}
+
+function closeRegionGallery() {
+  document.getElementById('region-gallery').classList.remove('visible');
+  document.querySelectorAll('.region.active-region').forEach(r => r.classList.remove('active-region'));
+  activeRegionId = null;
+}
+
+function refreshRegionGallery() {
+  if (activeRegionId) renderRegionGallery(activeRegionId);
+}
+
+function renderRegionGallery(regionId) {
+  const allPins = window._fbPins || pins;
+  const regionName = REGION_NAMES[regionId] || regionId;
+  // Filtrujeme piny patriace do kraja: porovnáme región pinu s názvom kraja (flexibilne)
+  const regionPins = allPins.filter(p => {
+    const pr = (p.region || '').toLowerCase();
+    const rn = regionName.toLowerCase();
+    const shortName = rn.replace(' kraj', '');
+    return pr.includes(shortName) || rn.includes(pr) || pr === 'slovensko';
+  });
+  // Ak nie sú piny z daného regiónu ale je zadaný konkrétny kraj, ukáž len tie čo majú zhodu
+  const exactPins = allPins.filter(p => {
+    const pr = (p.region || '').toLowerCase();
+    const shortName = regionName.toLowerCase().replace(' kraj', '');
+    return pr.includes(shortName);
+  });
+  const displayPins = exactPins.length > 0 ? exactPins : [];
+
+  const count = displayPins.length;
+  document.getElementById('regionGalleryCount').textContent =
+    count === 0 ? 'Zatiaľ žiadne príspevky z tohto kraja' :
+    count === 1 ? '1 príspevok z tohto kraja' :
+    count < 5 ? `${count} príspevky z tohto kraja` : `${count} príspevkov z tohto kraja`;
+
+  const grid = document.getElementById('regionPhotosGrid');
+  if (displayPins.length === 0) {
+    grid.innerHTML = `<div class="region-empty">
+      <p>Z <strong>${regionName}</strong> zatiaľ nikto nič nezdieľal.</p>
+      <p style="margin-top:0.5rem;">Buďte prví — pridajte pin na mapu vyššie!</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = displayPins.map(pin => buildPinCard(pin)).join('');
+  renderAllComments();
+}
+
+function buildPinCard(pin) {
+  const canDelete = pin.visitorId === visitorId;
+  return `
+  <div class="region-photo-card" id="card-${pin.id}">
+    <div class="card-img-wrap">
+      ${pin.photo
+        ? `<img src="${pin.photo}" alt="${pin.name}">`
+        : `<div class="card-no-photo">🪡</div>`}
+    </div>
+    <div class="card-body">
+      <div class="card-pin-name">${pin.name}</div>
+      <div class="card-pin-region">${pin.region}</div>
+      ${pin.desc ? `<div class="card-pin-desc">${pin.desc}</div>` : ''}
+      ${canDelete ? `<button class="card-pin-delete" onclick="deletePin('${pin.id}')">✕ Zmazať môj príspevok</button>` : ''}
+    </div>
+    <div class="card-comments" id="comments-${pin.id}">
+      <div class="comments-title">Komentáre</div>
+      <div class="comments-list" id="comments-list-${pin.id}">
+        <p class="no-comments">Zatiaľ žiadne komentáre.</p>
+      </div>
+      <div class="comment-form">
+        <div class="comment-form-row">
+          <input type="text" class="author-input" id="comment-author-${pin.id}" placeholder="Vaše meno">
+          <input type="text" id="comment-text-${pin.id}" placeholder="Napíšte komentár…">
+          <button class="btn-comment" onclick="submitComment('${pin.id}')">Odoslať</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ─── KOMENTÁRE ────────────────────────────────────
+function refreshComments() {
+  renderAllComments();
+}
+
+function renderAllComments() {
+  const allComments = window._fbComments || [];
+  // Pre každú viditeľnú kartu
+  document.querySelectorAll('.comments-list').forEach(el => {
+    const pinId = el.id.replace('comments-list-', '');
+    const pinComments = allComments
+      .filter(c => c.pinId === pinId)
+      .sort((a, b) => {
+        const ta = a.createdAt?.seconds || 0;
+        const tb = b.createdAt?.seconds || 0;
+        return ta - tb;
+      });
+    if (pinComments.length === 0) {
+      el.innerHTML = '<p class="no-comments">Zatiaľ žiadne komentáre.</p>';
+    } else {
+      el.innerHTML = pinComments.map(c => {
+        const canDel = c.visitorId === visitorId;
+        return `<div class="comment-item">
+          <span class="comment-author">${c.author || 'Anonymný'}</span>
+          ${canDel ? `<button class="comment-delete" onclick="deleteCommentBtn('${c.id}')" title="Zmazať">✕</button>` : ''}
+          <div class="comment-text">${c.text}</div>
+        </div>`;
+      }).join('');
+    }
+  });
+}
+
+async function submitComment(pinId) {
+  const textEl = document.getElementById('comment-text-' + pinId);
+  const authorEl = document.getElementById('comment-author-' + pinId);
+  const text = textEl.value.trim();
+  const author = authorEl.value.trim() || 'Anonymný';
+  if (!text) return;
+  textEl.value = '';
+  if (typeof window.saveComment === 'function') {
+    await window.saveComment(pinId, text, author);
+  } else {
+    // Lokálny fallback
+    if (!window._fbComments) window._fbComments = [];
+    window._fbComments.push({ id: Date.now().toString(), pinId, text, author, visitorId, createdAt: { seconds: Date.now()/1000 } });
+    renderAllComments();
+  }
+}
+
+async function deleteCommentBtn(commentId) {
+  if (!confirm('Zmazať komentár?')) return;
+  if (typeof window.deleteComment === 'function') {
+    await window.deleteComment(commentId);
+  }
+}
+
+// ─── FOTO UPLOAD ──────────────────────────────────
 function handlePhoto(e) {
   const file = e.target.files[0];
   if (!file) return;
-  // Resize before storing
   const reader = new FileReader();
   reader.onload = (ev) => {
     const img = new Image();
@@ -283,6 +590,7 @@ function handlePhoto(e) {
   reader.readAsDataURL(file);
 }
 
+// ─── UMIESTŇOVANIE PINU ───────────────────────────
 function startPlacing() {
   const name = document.getElementById('pinName').value.trim();
   if (!name) { alert('Prosím zadajte meno.'); return; }
@@ -311,7 +619,6 @@ document.getElementById('slovakiaMap').addEventListener('click', function(e) {
   document.getElementById('clickHint').style.display = 'none';
   document.getElementById('addPinBtn').textContent = 'Umiestniť pin na mape →';
   document.getElementById('addPinBtn').disabled = false;
-  // Reset form
   document.getElementById('pinName').value = '';
   document.getElementById('pinRegion').value = '';
   document.getElementById('pinDesc').value = '';
@@ -336,7 +643,7 @@ function addPin(x, y, data) {
   if (typeof window.saveToFirebase === 'function') {
     window.saveToFirebase(pinData);
   } else {
-    const pin = { id: Date.now(), ...pinData };
+    const pin = { id: Date.now().toString(), ...pinData };
     pins.push(pin);
     renderPinDot(pin);
     renderPinsList();
@@ -344,6 +651,7 @@ function addPin(x, y, data) {
   }
 }
 
+// ─── PINY NA MAPE ─────────────────────────────────
 function renderPinDot(pin) {
   const dot = document.createElement('div');
   dot.className = 'pin-dot' + (pin.photo ? ' has-photo' : '');
@@ -376,6 +684,7 @@ function moveTooltip(e) {
 }
 function hideTooltip() { tooltip.classList.remove('visible'); }
 
+// ─── SIDEBAR ZOZNAM ───────────────────────────────
 function renderPinsList() {
   const allPins = window._fbPins || pins;
   const list = document.getElementById('pinsList');
@@ -405,10 +714,12 @@ function updateStats() {
 }
 
 async function deletePin(pinId) {
-  if (!confirm('Naozaj chcete zmazať tento pin?')) return;
+  if (!confirm('Naozaj chcete zmazať tento príspevok?')) return;
   if (typeof window.deleteFromFirebase === 'function') {
     window.deleteFromFirebase(pinId);
   }
+  // Zavri galériu ak je otvorená a obnov
+  if (activeRegionId) setTimeout(() => renderRegionGallery(activeRegionId), 600);
 }
 </script>
 </body>
