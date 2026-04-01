@@ -3,183 +3,667 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lipa – Vyšívané poklady Anny Šenšelovej</title>
+<title>Lipa – ľudový priemysel, účastinárska spoločnosť | Anna Šenšelová</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A; --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A;
+  --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
-  nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); text-decoration: none; }
-  .nav-back { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
-  .nav-back:hover { color: var(--red); }
-  .nav-breadcrumb { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.12em; color: #aaa; text-transform: uppercase; }
-  .nav-breadcrumb span { color: var(--red); }
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
+nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); flex-shrink: 0; text-decoration: none; }
+nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
+nav ul li { position: relative; }
+nav ul li > a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); transition: color 0.3s; display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 0; white-space: nowrap; }
+nav ul li > a:hover { color: var(--red); }
+nav ul li > a .arrow { font-size: 0.6rem; opacity: 0.5; transition: transform 0.3s; }
+nav ul li:hover > a .arrow { transform: rotate(180deg); }
+.dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid var(--gold); border-top: 2px solid var(--red); min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 200; visibility: hidden; }
+nav ul li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); visibility: visible; }
+.dropdown a { display: block; padding: 0.6rem 1.2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.07em; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.15); transition: background 0.2s, color 0.2s, padding 0.2s; white-space: nowrap; }
+.dropdown a:last-child { border-bottom: none; }
+.dropdown a:hover { background: #fdf8f0; color: var(--red); padding-left: 1.5rem; }
+.dropdown .dropdown-label { display: block; padding: 0.5rem 1.2rem 0.3rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); border-bottom: 1px solid rgba(212,175,55,0.3); margin-bottom: 0.2rem; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 0.3rem; background: none; border: none; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--red); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+@media (max-width: 800px) { nav ul { display: none; } .hamburger { display: flex; } }
+.mobile-menu { display: none; position: fixed; top: 56px; left: 0; right: 0; background: rgba(249,247,242,0.98); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); z-index: 99; padding: 1rem 0; max-height: calc(100vh - 56px); overflow-y: auto; }
+.mobile-menu.open { display: block; }
+.mobile-menu a { display: block; padding: 0.65rem 2rem; font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; transition: color 0.2s, background 0.2s; }
+.mobile-menu a:hover { color: var(--red); background: rgba(196,30,58,0.04); }
+.mobile-section-label { display: block; padding: 0.8rem 2rem 0.3rem; font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); border-top: 1px solid rgba(212,175,55,0.25); margin-top: 0.3rem; }
 
-  #hero { min-height: 55vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; background: var(--cream); position: relative; overflow: hidden; }
-  #hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 40%, rgba(196,30,58,0.06) 0%, transparent 55%), radial-gradient(circle at 80% 60%, rgba(212,175,55,0.08) 0%, transparent 55%); pointer-events: none; }
-  #hero > * { position: relative; z-index: 1; }
+/* HERO */
+#hero {
+  min-height: 60vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 9rem 2rem 5rem;
+  position: relative; overflow: hidden;
+  background: #1a0a0e;
+}
+#hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 75% 40%, rgba(212,175,55,0.10) 0%, transparent 55%);
+  pointer-events: none; z-index: 0;
+}
+#hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255,255,255,0.01) 3px,
+    rgba(255,255,255,0.01) 4px
+  );
+  pointer-events: none; z-index: 0;
+}
+#hero > * { position: relative; z-index: 1; }
+.hero-label { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); opacity: 0; animation: fadeDown 1s 0.2s forwards; margin-bottom: 1rem; }
+.hero-title { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 9vw, 7.5rem); color: #fff; line-height: 1.15; opacity: 0; animation: fadeUp 1.2s 0.5s forwards; }
+.hero-title em { color: var(--gold); font-style: normal; }
+.hero-divider { width: 200px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.4rem auto; opacity: 0; animation: fadeIn 1s 1s forwards; }
+.hero-subtitle { font-family: 'Cinzel', serif; font-size: clamp(0.72rem, 1.4vw, 0.88rem); font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; max-width: 600px; color: rgba(249,247,242,0.75); opacity: 0; animation: fadeUp 1s 1.2s forwards; line-height: 1.9; }
+.hero-year { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(212,175,55,0.7); margin-top: 1.2rem; opacity: 0; animation: fadeUp 1s 1.5s forwards; }
 
-  .section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
-  h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem); color: var(--red); line-height: 1.75; }
-  .hero-sub { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-top: 0.5rem; }
-  .gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto; }
+/* SHARED */
+section { padding: 5.5rem 2rem; }
+.section-inner { max-width: 900px; margin: 0 auto; }
+.section-inner.centered { text-align: center; }
+.section-label { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; display: block; }
+h2.script { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 5rem); color: var(--red); line-height: 1.4; margin-bottom: 0.5rem; }
+h2.cinzel { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 600; letter-spacing: 0.1em; color: var(--red); text-transform: uppercase; margin-bottom: 0.5rem; }
+.gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1rem auto 2rem; }
+.gold-line.left { margin-left: 0; }
+p.lead { font-size: 1.15rem; line-height: 1.9; color: #333; margin-bottom: 1.4rem; }
+p.body { font-size: 1.02rem; line-height: 1.85; color: #444; margin-bottom: 1.2rem; }
+p.body:last-child { margin-bottom: 0; }
 
-  .content-wrap { max-width: 860px; margin: 0 auto; padding: 5rem 2rem; }
+/* INTRO — 2-COL */
+#intro { background: var(--section-alt); }
+.intro-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+.intro-aside { position: sticky; top: 90px; }
+.intro-emblem {
+  width: 100%; aspect-ratio: 1;
+  background: linear-gradient(145deg, #ede5d8, #d4c5aa);
+  border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.intro-emblem svg { opacity: 0.55; }
+.intro-emblem-caption { margin-top: 0.8rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); text-align: center; font-style: italic; }
+.intro-text h2.script { text-align: left; }
+.intro-text .gold-line { margin-left: 0; }
+.intro-text blockquote { border-left: 3px solid var(--gold); padding: 0.8rem 1.4rem; margin: 1.8rem 0; font-style: italic; font-size: 1.05rem; color: #555; background: rgba(212,175,55,0.05); }
+@media (max-width: 720px) { .intro-grid { grid-template-columns: 1fr; } .intro-aside { position: static; max-width: 200px; margin: 0 auto 2.5rem; } }
 
-  .img-hero { width: 100%; aspect-ratio: 16/7; background: linear-gradient(135deg, #e8e0d0, #d4c9b0); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.6rem; border: 1px solid var(--gold); margin-bottom: 3.5rem; }
-  .placeholder-label { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; }
+/* SORTIMENT */
+#sortiment { background: var(--cream); }
+.sortiment-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 2.5rem; }
+.sort-card { border: 1px solid rgba(212,175,55,0.4); padding: 2rem 1.6rem; position: relative; transition: box-shadow 0.3s, border-color 0.3s; }
+.sort-card:hover { box-shadow: 0 4px 24px rgba(196,30,58,0.10); border-color: var(--red); }
+.sort-card::before { content: attr(data-num); position: absolute; top: -0.9rem; right: 1.2rem; font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; background: var(--cream); color: var(--gold-dark); padding: 0 0.5rem; }
+.sort-card h3 { font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem; }
+.sort-card p { font-size: 0.95rem; color: #555; line-height: 1.75; }
 
-  .intro-text { font-size: 1.2rem; font-style: italic; color: #444; border-left: 3px solid var(--red); padding-left: 1.5rem; margin-bottom: 3rem; line-height: 1.9; }
+/* TIMELINE */
+#historia { background: var(--section-alt); }
+.timeline { position: relative; max-width: 780px; margin: 0 auto; text-align: left; }
+.timeline::before { content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--gold), var(--red), var(--gold)); }
+.tl-item { display: flex; gap: 1.8rem; margin-bottom: 2.8rem; opacity: 0; transform: translateX(-20px); transition: opacity 0.6s, transform 0.6s; }
+.tl-item.visible { opacity: 1; transform: translateX(0); }
+.tl-dot { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--cream); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 0.68rem; color: var(--gold-dark); font-weight: 600; letter-spacing: 0.04em; font-family: 'Cinzel', serif; }
+.tl-dot.red { border-color: var(--red); color: var(--red); }
+.tl-content { padding-top: 0.5rem; }
+.tl-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; color: var(--red); margin-bottom: 0.3rem; }
+.tl-content p { font-size: 0.97rem; color: #444; line-height: 1.8; }
 
-  h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.2rem, 4vw, 3.5rem); color: var(--red); line-height: 1.75; margin-bottom: 0.3rem; }
-  h3 { font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin: 2rem 0 0.8rem; }
-  p { font-size: 1.05rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
+/* VYSTAVY */
+#vystavy { background: var(--cream); }
+.vystavy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+.vystava-card { background: var(--section-alt); border-top: 3px solid var(--gold); padding: 1.8rem 1.6rem; transition: border-color 0.3s, box-shadow 0.3s; }
+.vystava-card:hover { border-color: var(--red); box-shadow: 0 6px 28px rgba(196,30,58,0.10); }
+.vystava-card .rok { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 600; color: var(--gold-dark); display: block; margin-bottom: 0.4rem; letter-spacing: 0.06em; }
+.vystava-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 0.6rem; letter-spacing: 0.04em; }
+.vystava-card p { font-size: 0.93rem; color: #555; line-height: 1.75; }
 
-  .steps { margin: 2rem 0; display: flex; flex-direction: column; gap: 1.5rem; }
-  .step { display: grid; grid-template-columns: 48px 1fr; gap: 1.2rem; align-items: start; }
-  .step-num { width: 48px; height: 48px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold-dark); flex-shrink: 0; background: var(--cream); }
-  .step-content h4 { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin-bottom: 0.4rem; }
-  .step-content p { font-size: 0.98rem; margin-bottom: 0; }
+/* FINANCIE — TABUĽKA */
+#financie { background: var(--section-alt); }
+.table-wrap { overflow-x: auto; margin-top: 2.5rem; }
+table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+thead tr { background: var(--red); }
+thead th { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; padding: 0.9rem 1rem; text-align: center; font-weight: 600; }
+tbody tr { border-bottom: 1px solid rgba(212,175,55,0.25); transition: background 0.2s; }
+tbody tr:hover { background: rgba(212,175,55,0.06); }
+tbody td { padding: 0.7rem 1rem; text-align: center; color: #444; font-size: 0.93rem; }
+tbody td:first-child { font-family: 'Cinzel', serif; font-weight: 600; color: var(--red); font-size: 0.88rem; }
+tfoot tr { background: rgba(196,30,58,0.05); border-top: 2px solid var(--gold); }
+tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: #888; text-align: center; }
+.table-note { font-size: 0.82rem; font-style: italic; color: #888; margin-top: 1rem; text-align: center; }
 
-  .img-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 2.5rem 0; align-items: start; }
-  .img-duo .img-wrap { position: relative; overflow: hidden; border: 1px solid var(--gold); }
-  .img-duo img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
-  .img-duo .img-wrap:hover img { transform: scale(1.04); }
-  /* Lesk */
-  .img-duo .img-wrap::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -75%;
-    width: 50%; height: 100%;
-    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
-    transform: skewX(-20deg);
-    transition: none;
-    pointer-events: none;
-  }
-  .img-duo .img-wrap:hover::after {
-    left: 130%;
-    transition: left 0.65s ease;
-  }
-  .img-caption { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-top: 0.5rem; }
+/* BRATISLAVA */
+#bratislava { background: var(--cream); }
+.ba-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+.ba-decor {
+  background: linear-gradient(145deg, #ede5d8, #d4c5aa);
+  border: 1px solid var(--gold);
+  aspect-ratio: 4/5;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.ba-decor svg { opacity: 0.4; }
+.ba-decor-caption { margin-top: 0.8rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); text-align: center; font-style: italic; }
+@media (max-width: 720px) { .ba-layout { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { #zeny-a-praca .section-inner > div { grid-template-columns: 1fr !important; gap: 2rem !important; } }
 
-  .img-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 2.5rem 0; }
+/* SLOVENSKOST */
+#slovenskost { background: var(--section-alt); }
+.quote-block { max-width: 760px; margin: 0 auto; text-align: center; }
+.quote-block blockquote { font-family: 'Pinyon Script', cursive; font-size: clamp(1.8rem, 4.5vw, 3.2rem); color: var(--red); line-height: 1.75; margin-bottom: 1rem; }
+.quote-block cite { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); font-style: normal; }
+.slovenskost-body { max-width: 780px; margin: 3rem auto 0; }
 
-  .pull-quote { background: var(--red); color: var(--cream); padding: 2.5rem 2rem; text-align: center; margin: 3rem 0; }
-  .pull-quote blockquote { font-family: 'Pinyon Script', cursive; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.75; }
-  .pull-quote cite { display: block; margin-top: 0.8rem; font-family: 'Cinzel', serif; font-style: normal; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
+/* ODKAZ */
+#odkaz { background: var(--red); color: var(--cream); text-align: center; padding: 5.5rem 2rem; }
+#odkaz .section-label { color: rgba(249,247,242,0.6); }
+#odkaz h2.script { color: #fff; }
+#odkaz .gold-line { opacity: 0.5; }
+#odkaz p { font-size: 1.05rem; max-width: 720px; margin: 0 auto 1.2rem; line-height: 1.9; color: rgba(249,247,242,0.88); }
+#odkaz p:last-child { margin-bottom: 0; }
 
-  .dot-list { list-style: none; padding: 0; margin: 0.5rem 0 1.5rem; }
-  .dot-list li { padding: 0.4rem 0 0.4rem 1.6rem; position: relative; font-size: 1.02rem; color: #333; line-height: 1.75; }
-  .dot-list li::before { content: '✦'; position: absolute; left: 0; color: var(--red); font-size: 0.6rem; top: 0.65rem; }
+/* FOOTER */
+footer { background: #111; color: var(--cream); text-align: center; padding: 3rem 2rem; }
+footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-top: 0.3rem; }
+footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
+footer a { color: var(--gold); opacity: 0.7; text-decoration: none; transition: opacity 0.3s; }
+footer a:hover { opacity: 1; }
 
-  .closing { background: var(--section-alt); padding: 4rem 2rem; text-align: center; margin-top: 4rem; }
-  .closing p { max-width: 680px; margin: 0 auto; font-size: 1.1rem; font-style: italic; color: #444; }
+/* ANIMÁCIE */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  .article-nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem; border-top: 1px solid rgba(212,175,55,0.3); max-width: 860px; margin: 0 auto; }
-  .article-nav a { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
-  .article-nav a:hover { color: var(--red); }
-
-  footer { background: #111; color: var(--cream); text-align: center; padding: 2.5rem 2rem; }
-  footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--gold); }
-  footer p { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; margin-top: 0.4rem; }
-
-  @media (max-width: 600px) { .img-duo, .img-trio { grid-template-columns: 1fr; } .step { grid-template-columns: 38px 1fr; } }
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s, transform 0.7s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="index.html" class="logo">Anna Šenšelová</a>
-  <div style="display:flex; align-items:center; gap:2rem;">
-    <span class="nav-breadcrumb">Príbeh <span>›</span> Lipa</span>
-    <a href="index.html" class="nav-back">← Späť na hlavnú</a>
-  </div>
+  <ul>
+    <li>
+      <a href="#">Príbeh <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <span class="dropdown-label">Príbeh</span>
+        <a href="anna-senselova.html">Anna Šenšelová</a>
+        <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
+        <a href="lipa.html" style="color:var(--red);">Lipa</a>
+        <a href="zivena.html">Živena</a>
+        <a href="#">Ženský feminizmus 20. storočia</a>
+        <a href="o-nas.html">O nás</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Galéria <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <span class="dropdown-label">Galéria</span>
+        <a href="galeria-vysiviek.html">Vzorkovník výšiviek Anny Šenšelovej</a>
+        <a href="galeria-vysiviek.html">Iné ľudové výšivky a odev</a>
+        <a href="galeria-babik.html">Krojované bábiky</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Slovenské výšivky <span class="arrow">▼</span></a>
+      <div class="dropdown">
+        <span class="dropdown-label">Regióny</span>
+        <a href="#">Hont</a>
+        <a href="#">Detva a Podpoľanie</a>
+        <a href="#">Záhorie</a>
+        <a href="#">Orava</a>
+      </div>
+    </li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-section-label">Príbeh</span>
+  <a href="anna-senselova.html">Anna Šenšelová</a>
+  <a href="lipa.html">Lipa</a>
+  <a href="zivena.html">Živena</a>
+  <span class="mobile-section-label">Galéria</span>
+  <a href="galeria-vysiviek.html">Výšivky</a>
+  <a href="galeria-babik.html">Krojované bábiky</a>
+  <span class="mobile-section-label">Slovenské výšivky</span>
+  <a href="#">Hont</a>
+  <a href="#">Detva a Podpoľanie</a>
+  <a href="#">Kontakt</a>
+</div>
+
+<!-- HERO -->
 <section id="hero">
-  <p class="section-label">Príbeh · Lipa</p>
-  <h1>Lipa</h1>
-  <p class="hero-sub">Účastinárska spoločnosť pre ľudový priemysel · Martin · 1910 – 1953</p>
-  <div class="gold-line"></div>
+  <p class="hero-label">Turčiansky Svätý Martin · 1910 – 1938</p>
+  <h1 class="hero-title"><em>Lipa</em></h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">Ľudový priemysel · Účastinárska spoločnosť<br>Strážkyňa slovenského výšivkárstva a ľudovej umeleckej výroby</p>
 </section>
 
-<div class="content-wrap">
-  <div style="background: #fff; padding: 16px 16px 40px 16px; box-shadow: 2px 2px 8px rgba(0,0,0,0.12), 0 4px 24px rgba(0,0,0,0.08); margin-bottom: 0.5rem;">
-    <img src="lipa_obrazok.png" alt="Lipa – Ľudový priemysel, účastinárska spoločnosť v Turčianskom Sv. Martine" style="width:100%; display:block; object-fit:contain;">
-  </div>
-  <p style="font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:#aaa; text-align:right; margin-bottom:3rem; padding-right:0.5rem;">Zdroj: <a href="https://dikda.eu" target="_blank" style="color:var(--gold-dark); text-decoration:none;">DIKDA – Digitálna knižnica SNK</a></p>
-
-  <p class="intro-text">Lipa, založená v roku 1910 v Martine, nebola len obchodom s výšivkami. Bol to jeden z najprogresívnejších slovenských podnikov svojej doby, ktorý dokázal prepojiť archaickú krásu dedinských izieb s nárokmi európskych salónov.</p>
-
-  <p>Jej cieľom bolo nielen chrániť slovenské vzory, ale vytvoriť fungujúci ekonomický systém pre slovenské ženy.</p>
-
-
-
-  <h2>Vizionársky biznis model.</h2>
-  <div class="gold-line" style="margin-left:0;"></div>
-  <h3>Rozptýlená manufaktúra</h3>
-  <p>Lipa fungovala na princípe, ktorý by sme dnes nazvali „outsourcing" s prísnou kontrolou kvality. Celý proces mal presne stanovené kroky:</p>
-
-  <div class="steps">
-    <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Terénny prieskum a vzorkovníky</h4><p>Správkyne spoločnosti — medzi ktorými pôsobila aj Anna Šenšelová — cestovali po rázovitých regiónoch Slovenska. Z týchto podkladov vytvárali precízne vzorkovníky, ktoré určovali, čo a ako sa bude vyšívať.</p></div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Sieť vyšívačiek</h4><p>Lipa si vybudovala širokú sieť spolupracovníčok v obciach ako Čataj, Slovenský Grob, Detva či okolie Trenčína a Piešťan. Ženy vyšívali podľa presných zadaní, čím sa zabezpečila jednotná estetická línia podniku.</p></div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Materiálová réžia</h4><p>Lipa vyšívačkám dodávala vlastné plátna a nite, čím garantovala, že finálny produkt bude trvácny a luxusný.</p></div></div>
-    <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Inštitút korektúry</h4><p>Každý hotový kus prešiel prísnou kontrolou. Táto nekompromisnosť vybudovala Lipe meno značky, na ktorú sa dalo spoľahnúť aj pri objednávkach z Paríža či Viedne.</p></div></div>
-  </div>
-
-
-
-  <h2>Cesta k ženskej nezávislosti.</h2>
-  <div class="gold-line" style="margin-left:0;"></div>
-  <p>Lipa priniesla do slovenských dedín revolučnú zmenu – vlastný finančný príjem pre ženy. Za vyšívanie sa platilo férovo a v hotovosti. Pre mnohé ženy to bola prvá skúsenosť s ekonomickou slobodou.</p>
-
-  <div class="img-duo">
-    <div>
-      <div class="img-wrap">
-        <img src="biely_golier.jpeg" alt="Výšivka z produkcie Lipy">
+<!-- INTRO -->
+<section id="intro">
+  <div class="section-inner">
+    <div class="intro-grid">
+      <div class="intro-aside">
+        <div class="intro-emblem">
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="80" cy="80" r="70" stroke="#C41E3A" stroke-width="1.2"/>
+            <circle cx="80" cy="80" r="55" stroke="#D4AF37" stroke-width="0.8"/>
+            <circle cx="80" cy="80" r="38" stroke="#C41E3A" stroke-width="0.7"/>
+            <line x1="80" y1="10" x2="80" y2="150" stroke="#D4AF37" stroke-width="0.6"/>
+            <line x1="10" y1="80" x2="150" y2="80" stroke="#D4AF37" stroke-width="0.6"/>
+            <line x1="30" y1="30" x2="130" y2="130" stroke="#C41E3A" stroke-width="0.5"/>
+            <line x1="130" y1="30" x2="30" y2="130" stroke="#C41E3A" stroke-width="0.5"/>
+            <circle cx="80" cy="80" r="7" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+            <circle cx="80" cy="25" r="4" fill="#C41E3A" opacity="0.7"/>
+            <circle cx="80" cy="135" r="4" fill="#C41E3A" opacity="0.7"/>
+            <circle cx="25" cy="80" r="4" fill="#C41E3A" opacity="0.7"/>
+            <circle cx="135" cy="80" r="4" fill="#C41E3A" opacity="0.7"/>
+            <circle cx="40" cy="40" r="3" fill="#D4AF37" opacity="0.6"/>
+            <circle cx="120" cy="40" r="3" fill="#D4AF37" opacity="0.6"/>
+            <circle cx="40" cy="120" r="3" fill="#D4AF37" opacity="0.6"/>
+            <circle cx="120" cy="120" r="3" fill="#D4AF37" opacity="0.6"/>
+          </svg>
+        </div>
+        <p class="intro-emblem-caption">Výšivkárska tradícia<br>1910 – 1938</p>
       </div>
-      <p class="img-caption">Ukážka výšivky z produkcie Lipy</p>
-    </div>
-    <div>
-      <div class="img-wrap">
-        <img src="lipa_golier.jpg" alt="Paličkovaný golier z dielne Lipy">
+      <div class="intro-text reveal">
+        <span class="section-label">Vznik a poslanie</span>
+        <h2 class="script">Strážkyňa slovenského ľudového umenia.</h2>
+        <div class="gold-line left"></div>
+        <p class="lead">Lipa, ľudový priemysel, účastinárska spoločnosť vznikla <strong>3. augusta 1910</strong> v Turčianskom Svätom Martine. Stojí za ňou jedna žena viac ako ktokoľvek iný — <strong>Elena Maróthy-Šoltésová</strong>, predsedníčka spolku Živena, prozaička, redaktorka a jedna z najvýznamnejších osobností slovenského ženského hnutia svojej doby.</p>
+        <p class="body">Šoltésová viedla Živenu od roku 1894 ako jediný celonárodný kultúrny spolok Slovákov po zániku Matice slovenskej. Keď videla, že výstavy slovenských výšiviek doma i v zahraničí majú ohlas, navrhla urobiť rozhodujúci krok: premeniť nadšenie do trvalej obchodnej štruktúry. Tak vznikla Lipa — na jej podnet a pod hlavičkou Živeny — ako účastinárska spoločnosť s jasným cieľom: zabezpečiť slovenským výšivačkám prácu a ich výrobkom stály odbyt.</p>
+        <p class="body">Myšlienka takejto spoločnosti dozrievala dlhé desaťročia. Od 80. rokov 19. storočia sa o to pokúšali Pavol Socháň, Pavel Križko, Andrej Kmeť, Drahotína Križková, Ľudmila Markovičová, Karol A. Medvecký a ďalší — no narazili na ľahostajnosť národnej inteligencie aj nedostatok finančného zázemia. Šoltésovej sa podarilo to, čo ostatným nie: spojiť kultúrne presvedčenie so životaschopným obchodným modelom.</p>
+        <p class="body">Spočiatku Lipa nemala vlastné priestory — od 1. marca 1911 získala miestnosť v dome Gustáva Šimka v Martine. Šoltésová ako predsednička sa okamžite pustila do práce: rozoslala výzvy výborníčkam po celom Slovensku, aby zmapovali siete výšivačiek ochotných pracovať „na zárobok", a vyzývala na vytypovanie výrobcov pre trvalú spoluprácu. Lipa rozposielala materiál na vyšívanie, paličkovanie a šitie priamo k výrobkyniam.</p>
+        <blockquote>„Išlo im hlavne o to, aby sa vzdelaný svet dozvedel, aký zaujímavý národ žije tu pod Tatrami, akým vrodeným citom pre krásu je preniknutý a ako vkusne okrášľuje si ručnou prácou šatstvo a príbytky."<br><small style="font-size:0.82rem; letter-spacing:0.06em;">— akcionárka Lipy, 1912</small></blockquote>
+        <p class="body">Výsledky boli povzbudzujúce — od marca do konca júna 1911 dosiahla Lipa zisk 2 184 K pri predaji tovaru za 12 368 K. Hodnota vyrobeného tovaru za prvých päť mesiacov predstavovala 18 953 K, pričom hlavní výrobcovia pochádzali z Bratislavskej, Nitrianskej a Zvolenskej župy. Medzi výšivačkami, ktoré vďaka Lipe dostali pravidelný príjem za svoju prácu, boli aj ženy z Hontu — regiónu, odkiaľ pochádzali výnimočné výšivky ako tie, ktoré neskôr zachytila a uchovala <a href="anna-senselova.html" style="color:var(--red); text-decoration:none; border-bottom:1px solid rgba(196,30,58,0.3);">Anna Šenšelová</a>.</p>
       </div>
-      <p class="img-caption">Paličkovaný ozdobný golier z dielne Lipy, nájdený v pozostalostiach Anny Šenšelovej</p>
     </div>
   </div>
+</section>
 
-  <h2>Adaptácia tradície pre moderný svet.</h2>
-  <div class="gold-line" style="margin-left:0;"></div>
-  <p>Úspech Lipy spočíval v schopnosti inovovať. Motívy z rukávcov, čepcov či košieľ citlivo aplikovali na:</p>
-  <ul class="dot-list">
-    <li><strong>Bytový textil:</strong> Obrusy, dečky a posteľnú bielizeň.</li>
-    <li><strong>Mestskú módu:</strong> Moderné blúzky, goliere a manžety.</li>
-  </ul>
+<!-- SORTIMENT -->
+<section id="sortiment">
+  <div class="section-inner">
+    <div class="centered reveal">
+      <span class="section-label">Čo Lipa ponúkala</span>
+      <h2 class="script">Bohatstvo sortimentu.</h2>
+      <div class="gold-line"></div>
+      <p class="body" style="max-width:680px; margin:0 auto 0.5rem;">Sortiment Lipy pokrýval takmer všetky oblasti ľudového remesla a umeleckej výroby — od jemných výšiviek cez krojové doplnky až po bytový textil a suveníry.</p>
+    </div>
+    <div class="sortiment-cols">
+      <div class="sort-card reveal reveal-delay-1" data-num="01">
+        <h3>Výšivky a čipky</h3>
+        <p>Ťažisko ponuky tvorili výšivky zo západného a stredného Slovenska — jemné tylové práce z Bratislavskej župy, aparné výšivky z Nitrianskej župy, slatinské, detvianske a očovské vzory zo Zvolenskej župy, výšivky z Hontianskej, Tekóvskej a Trenčianskej župy. Nechýbali ani slovenské, české ani paličkované čipky.</p>
+      </div>
+      <div class="sort-card reveal reveal-delay-2" data-num="02">
+        <h3>Dámske a detské odievanie</h3>
+        <p>V oddelení pre dámy ponúkala Lipa rôzne ozdoby ženských šiat — tylové čipky, dierkované, tylové a batistové blúzy, kimona, čepce, šály, slnečníky, kapsičky, zlatom vyšívané pásy. Pre deti boli k dispozícii zásterky, čepčeky, povijany, detské šaty hotové aj vystrihnuté.</p>
+      </div>
+      <div class="sort-card reveal reveal-delay-3" data-num="03">
+        <h3>Bytový textil a doplnky</h3>
+        <p>V Lipe sa vyhotovovali záclony, stolné garnitúry, koberce a iný bytový textil. Predávali sa predtlačené vzory, prikrývky na postele, drapérie, vitráže a lambrequiny, postelné garnitúry, sedlá do košieľ i zásterky. Tovar pre mužov zahŕňal najmä drevársky a košikársky tovar, hračky a keramiku.</p>
+      </div>
+      <div class="sort-card reveal reveal-delay-1" data-num="04">
+        <h3>Kroje a svojráz</h3>
+        <p>Lipa dbala na zachovanie pôvodného ľudového kroja a propagovala jeho uplatňovanie v dámskej móde. Vyhotovovala svojrázne dámske a pánske župany, blúzy a ďalšie odevné kusy v originálnom slovenskom slohu — tak v luxusnom, ako aj jednoduchom vyhotovení.</p>
+      </div>
+      <div class="sort-card reveal reveal-delay-2" data-num="05">
+        <h3>Módna rubrika v Živene</h3>
+        <p>Od roku 1913 začala Lipa uverejňovať v časopise Živena pravidelnú módnu rubriku — prehľad o móde, návrhy a vlastné názory na uplatnenie slovenských výšiviek a čipiek v módnom oblečení. Rubrika slúžila aj na propagáciu slovenského ľudového umenia.</p>
+      </div>
+      <div class="sort-card reveal reveal-delay-3" data-num="06">
+        <h3>Publikácie a suveníry</h3>
+        <p>V roku 1916 vydala Lipa publikáciu Slovenské kroje. Vydavateľstvo Lipy prišlo neskôr s myšlienkou vydávať zobrané spisy slovenských spisovateliek Vansovej, Timravy, Podjavorinskej a Soltésovej pre odberateľov Živeny ako prémiové diela za zníženú cenu.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ZENY A PRACA -->
+<section id="zeny-a-praca" style="background: var(--ink); color: var(--cream); padding: 5.5rem 2rem;">
+  <div class="section-inner" style="max-width:960px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start;">
 
+      <div class="reveal">
+        <span class="section-label" style="color:var(--gold);">Prevratový rozmer</span>
+        <h2 class="script" style="color:#fff;">Práca, dôstojnosť,<br>nezávislosť.</h2>
+        <div class="gold-line" style="margin-left:0; opacity:0.6;"></div>
+        <p style="font-size:1.05rem; line-height:1.9; color:rgba(249,247,242,0.85); margin-bottom:1.2rem;">Lipa nebola len obchod s výšivkami. Od samého začiatku mala jasný sociálny cieľ: <strong style="color:#fff;">dať ženám na dedinách prácu a férovú odmenu za ňu.</strong></p>
+        <p style="font-size:1.02rem; line-height:1.85; color:rgba(249,247,242,0.75); margin-bottom:1.2rem;">Predsednička Živeny Elena Maróthy-Šoltésová sa hneď po vzniku spoločnosti obrátila na výborníčky po celom Slovensku, aby jej pomohli zmapovať siete výšivačiek — žien, ktoré by chceli pracovať „na zárobok". Lipa im zaručovala pravidelný odbyt ich práce a vyplácala im mzdy za výrobu priamo.</p>
+        <p style="font-size:1.02rem; line-height:1.85; color:rgba(249,247,242,0.75); margin-bottom:1.2rem;">Zároveň vyzývala na vytypovanie výrobcov, s ktorými by Lipa mohla vstúpiť do trvalých pracovných vzťahov. Rozposielala materiál na vyšívanie, paličkovanie a šitie priamo k výrobkyniam — čo znamenalo, že žena na dedine mohla zarábať bez toho, aby opustila domácnosť alebo závisela od náhodného odberateľa.</p>
+        <p style="font-size:1.02rem; line-height:1.85; color:rgba(249,247,242,0.75);">Výrobkyne pochádzali z viacerých žúp — najviac z Bratislavskej, ale aj z Nitrianskej, Zvolenskej, Hontianskej a Trenčianskej. Za prvých päť mesiacov existencie Lipy bola hodnota vyrobeného tovaru 18 953 K — čo predstavovalo priame príjmy pre desiatky žien naprieč krajom.</p>
+      </div>
 
-  <h2>Medzinárodný ohlas.</h2>
-  <div class="gold-line" style="margin-left:0;"></div>
-  <p>Lipa úspešne konkurovala priemyselnej výrobe. Jej výrobky pravidelne získavali ocenenia na svetových výstavách — strieborné medaily vo Viedni aj v Košiciach a pred vypuknutím druhej svetovej vojny mala Lipa dostať zlatú medailu priamo z Paríža.</p>
-</div>
+      <div class="reveal" style="display:flex; flex-direction:column; gap:1.6rem; padding-top:0.5rem;">
 
-<div class="closing">
-  <p class="section-label" style="text-align:center; margin-bottom:1rem;">Odkaz Lipy</p>
-  <p>Lipa zomkla slovenské ženy a ich talent premenila na svetovo uznávané umenie, ktoré obdivoval celý svet. Tento odkaz ženskej súdržnosti a hrdosti potrebujeme aj dnes, aby sme s rovnakou odvahou chránili naše vzácne dedičstvo.</p>
-</div>
+        <div style="border-left:3px solid var(--gold); padding:1.2rem 1.4rem; background:rgba(212,175,55,0.06);">
+          <p style="font-size:1.05rem; font-style:italic; color:rgba(249,247,242,0.9); line-height:1.85; margin-bottom:0.6rem;">„Keď upisovali naše dámy prvé účastiny Lipy, dávali tých 27 K na účastinu ani na nejakú národnú daň, nepočítajúc na to, že by z toho osoh kynul. Išlo im hlavne o to, aby sa vzdelaný svet dozvedel, aký zaujímavý národ žije tu pod Tatrami, akým vrodeným citom pre krásu je preniknutý a ako vkusne okrášľuje si ručnou prácou šatstvo a príbytky."</p>
+          <cite style="font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); font-style:normal;">— akcionárka Lipy, 1912</cite>
+        </div>
 
-<div class="article-nav">
-  <a href="index.html">← Späť na Príbeh</a>
-  <a href="zivena.html">Živena →</a>
-</div>
+        <div style="border:1px solid rgba(212,175,55,0.25); padding:1.6rem;">
+          <h3 style="font-family:'Cinzel',serif; font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">Čo to v praxi znamenalo</h3>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.8rem;">
+            <li style="display:flex; gap:1rem; align-items:baseline; font-size:0.97rem; color:rgba(249,247,242,0.78); line-height:1.7;">
+              <span style="color:var(--gold); flex-shrink:0;">✦</span>
+              Výšivačky dostávali za svoju prácu mzdu — text z prvého roka hovorí o 18 953 K vyplatených výrobcom za päť mesiacov.
+            </li>
+            <li style="display:flex; gap:1rem; align-items:baseline; font-size:0.97rem; color:rgba(249,247,242,0.78); line-height:1.7;">
+              <span style="color:var(--gold); flex-shrink:0;">✦</span>
+              Lipa im zabezpečovala stály odbyt — žena nemusela hľadať kupca sama ani predávať pod cenou.
+            </li>
+            <li style="display:flex; gap:1rem; align-items:baseline; font-size:0.97rem; color:rgba(249,247,242,0.78); line-height:1.7;">
+              <span style="color:var(--gold); flex-shrink:0;">✦</span>
+              Materiál chodil priamo k výrobkyniam — práca bola možná z domu, bez nutnosti sťahovania do mesta.
+            </li>
+            <li style="display:flex; gap:1rem; align-items:baseline; font-size:0.97rem; color:rgba(249,247,242,0.78); line-height:1.7;">
+              <span style="color:var(--gold); flex-shrink:0;">✦</span>
+              Šoltésová rozposielala letáky a propagovala činnosť Lipy — aktívne budovala sieť výrobkýň po celom Slovensku.
+            </li>
+            <li style="display:flex; gap:1rem; align-items:baseline; font-size:0.97rem; color:rgba(249,247,242,0.78); line-height:1.7;">
+              <span style="color:var(--gold); flex-shrink:0;">✦</span>
+              Cieľom bolo aj pozdvihnutie úrovne slovenskej ženy — ako ju formuloval spolok Živena, ktorý Lipu zakladal.
+            </li>
+          </ul>
+        </div>
 
+        <div style="border:1px solid rgba(196,30,58,0.4); padding:1.4rem; background:rgba(196,30,58,0.06);">
+          <p style="font-size:0.95rem; line-height:1.8; color:rgba(249,247,242,0.72); font-style:italic;">Toto nebola dobročinnosť. Bola to premyslená obchodná stratégia, ktorá mala zmysel pre obe strany — výšivačky dostávali príjem, Lipa dostávala tovar. Práve táto logika robila z Lipy niečo, čo by sme dnes nazvali <strong style="color:#fff; font-style:normal;">sociálnym podnikaním</strong>.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTÓRIA / TIMELINE -->
+<section id="historia">
+  <div class="section-inner">
+    <div class="centered reveal" style="margin-bottom:3.5rem;">
+      <span class="section-label">Chronológia</span>
+      <h2 class="script">Dejiny Lipy.</h2>
+      <div class="gold-line"></div>
+      <p class="body" style="max-width:680px; margin:0 auto;">Od skromných začiatkov v Martine až po búrlivé medzivojnové roky — príbeh spoločnosti, ktorá po tri desaťročia bojovala za ľudové umenie.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot red">1910</div>
+        <div class="tl-content">
+          <h3>Vznik Lipy v Turčianskom Svätom Martine</h3>
+          <p>Lipa, ľudový priemysel, účastinárska spoločnosť vznikla v úzkej spolupráci so spolkom Živena. Základný kapitál bol stanovený na 25 000 K. Cieľom bola komerčná podpora a predaj výrobkov slovenského ľudového umenia, najmä výšiviek a čipiek.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">1911</div>
+        <div class="tl-content">
+          <h3>Prvá sezóna a rozlet</h3>
+          <p>Od marca do júna 1911 Lipa dosiahla zisk 2 184 K. Prvé valné zhromaždenie (2. augusta 1911) jednomyseľne zvýšilo základný kapitál na 50 000 K vydaním 1 000 nových účastín v hodnote 25 K. Vedenie načrtlo plány na rozšírenie siete výrobcov a skladov v ďalších župách.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">1912</div>
+        <div class="tl-content">
+          <h3>Medzinárodné uznanie — Košice a Miškovce</h3>
+          <p>Na Výstave obchodnej a priemyselnej komory v Košiciach získala kolekcia Lipy strieborné medaily. Na krajinskej výstave domáceho priemyslu v Miškovci tiež získala striebornú medailu. Lipa sa prezentovala a získavala pôdu aj v Budapešti, Prešove a Abonyi a v ďalších mestách Uhorska.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">1913</div>
+        <div class="tl-content">
+          <h3>Viedeň, Čechy a módna rubrika</h3>
+          <p>V máji 1913 usporiadali viedenskí Slováci pod vedením Kornela Stodolu výstavu ľudových výšiviek, krojov a keramiky. Lipa spustila pravidelnú módnu rubriku v Živene. V jeseni 1913 a na jar 1914 usporiadala Lipa výstavy v Plzni, Jaroměři, Mladej Boleslavi, Klatovoch, Písku a Jičíne s tradičným úspechom.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">1914</div>
+        <div class="tl-content">
+          <h3>Adriatická výstava vo Viedni</h3>
+          <p>Lipa sa zúčastnila Adriatickej výstavy vo Viedni, od ktorej si sľubovala rozšírenie obchodných aktivít v oblasti Jadranu. Výstava nesplnila očakávania kvôli politickej kríze a vypuknutiu vojny. Akcia priniesla značnú stratu 777 K a stala sa predzvesťou budúcich ťažkostí.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">1915</div>
+        <div class="tl-content">
+          <h3>Prvá svetová vojna — obmedzenia aj príležitosti</h3>
+          <p>Predaj tovaru klesol na 15 000 K (v roku 1914 bol 37 000 K), za práce vyplatila Lipa len 4 922 K oproti 23 254 K v roku 1914. Čistý zisk klesol z 4 032 K na 293 K. Napriek tomu účasť Lipy na Výstave krojov, oblekov a ich súčiastok v Obecnom dome v Prahe (do 8. mája 1915) zvýšila prestíž slovenských výšiviek a záujem o ne v Čechách.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot red">1917</div>
+        <div class="tl-content">
+          <h3>Najúspešnejší rok — 43 264 K</h3>
+          <p>Účtovný rok 1916–1917 bol najúspešnejším rokom Lipy od jej vzniku. Predala tovar za 43 264 K. Pri náraste dopytu sa uprednostňovali styky s výrobcami, ktorým sa vyplatilo 30 319 K, čo bolo o 15 590 K viac ako v roku 1916 a o 25 397 K viac ako v roku 1915.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">1925</div>
+        <div class="tl-content">
+          <h3>Medzivojnové výstavy — predajné akcie</h3>
+          <p>Po prvej svetovej vojne Lipa neusporiadala samostatné výstavy — obmedzovala sa na malé predajné akcie, najmä v predvianočnom období v rôznych slovenských mestách. Prvou reprezentatívnejšou akciou bola Národopisná výstava v Banskej Bystrici (máj 1925), kde sa prezentovala spolu so Živenou a Detvou. V rámci Dunajských veľtrhov v Bratislave (23. 8. – 3. 9. 1925) vystavovala Lipa pod hlavičkou Živeny spolu so Skalickým družstvom a zaznamenala značný komerčný úspech.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot red">1927</div>
+        <div class="tl-content">
+          <h3>Stála expozitúra v Bratislave</h3>
+          <p>18. decembra 1927 Lipa otvorila stálu výstavku a predajňu v budove Tatrabanky na bývalomNámestí republiky (dnes Námestie SNP č. 33, budova Ministerstva kultúry SR). Filiálku otvorili najmä pričinením Kornela Stodolu. Súčasne — od 6. do 18. decembra 1927 — usporiadala Lipa s ústredím Živeny a jej miestnymi odbormi výstavy a bazáre slovenského ľudového umenia v Bratislave, Banskej Bystrici, Kremnici, Nitre, Rimavskej Sobote, Ružomberku, Spišskej Novej Vsi, Martine, Zvolene, Žiline a Topoľčanoch.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">1929</div>
+        <div class="tl-content">
+          <h3>Hospodárska kríza</h3>
+          <p>Od roku 1929 bolo vidieť istú stabilizáciu pomerov, no aktivity Lipy nikdy nedosiahli úrovne prvého desaťročia existencie. Bolo to zapríčinené hospodárskou krízou, ale aj veľkou konkurenciou v odbore ľudovej umeleckej výroby.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">1938</div>
+        <div class="tl-content">
+          <h3>Záver činnosti bratislavskej filiálky</h3>
+          <p>Filiálka Lipy v Bratislave pracovala do roku 1938. Napriek nepriaznivým podmienkam Lipa ostala po celý čas svojej existencie dôležitým symbolom slovenského ľudového umenia a kultúrnej identity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VÝSTAVY -->
+<section id="vystavy">
+  <div class="section-inner">
+    <div class="centered reveal">
+      <span class="section-label">Prezentácia svetu</span>
+      <h2 class="script">Výstavy Lipy.</h2>
+      <div class="gold-line"></div>
+      <p class="body" style="max-width:700px; margin:0 auto;">Výstavy boli pre Lipu nielen zdrojom komerčného príjmu, ale predovšetkým nástrojom šírenia slovenskej kultúry — v Uhorsku, v Čechách, vo Viedni aj na medzinárodnom poli.</p>
+    </div>
+    <div class="vystavy-grid">
+      <div class="vystava-card reveal reveal-delay-1">
+        <span class="rok">1912</span>
+        <h3>Košice — strieborné medaily</h3>
+        <p>Na Výstave obchodnej a priemyselnej komory získala kolekcia Lipy strieborné medaily. Výrobky z Bratislavskej župy tvorili 55 % predaného tovaru. Lipa sa prezentovala aj v Budapešti, Prešove a Abonyi.</p>
+      </div>
+      <div class="vystava-card reveal reveal-delay-2">
+        <span class="rok">1913</span>
+        <h3>Viedeň — ľudové výšivky, kroje a keramika</h3>
+        <p>Viedenskí Slováci na čele s Kornelom Stodolom usporiadali výstavu, ktorá bola dokladom toho, že slovenské ľudové výšivky vzbudzujú pozornosť aj v cudzích, nás dosiaľ neznajúcich kruhoch. Valné zhromaždenie vyjadrilo veľkú vďaku organizátorom.</p>
+      </div>
+      <div class="vystava-card reveal reveal-delay-3">
+        <span class="rok">1913 – 1914</span>
+        <h3>Čechy — turné slovenských výšiviek</h3>
+        <p>V jeseni 1913 a na jar 1914 usporiadala Lipa výstavy v Plzni, Jaroměři, Mladej Boleslavi, Klatovoch, Písku a Jičíne. Mali tradičné úspechy, priniesli morálne povzbudenie aj komerčný úspech a hromadnú návštevu.</p>
+      </div>
+      <div class="vystava-card reveal reveal-delay-1">
+        <span class="rok">1913</span>
+        <h3>Hradec Králové — propagácia v Čechách</h3>
+        <p>Výstavu slovenských výšiviek a čipiek v Hradci Králové usporiadalo Mestské priemyslové museum a Spolek pro podporu ženského vzdělání pričinením Pavla Sochána (máj 1913). Tieto akcie boli príležitosťou na šírenie slovenskej kultúry v českej spoločnosti aj v regionálnom meradle.</p>
+      </div>
+      <div class="vystava-card reveal reveal-delay-2">
+        <span class="rok">1915</span>
+        <h3>Praha — Výstava krojov a oblekov</h3>
+        <p>Výstava krojov, oblekov a ich súčiastok v Obecnom dome v Prahe (do 8. mája) ju usporiadalo Sdružení pro svéráz krojový. Exponáty Lipy sa vyznačovali jemnosťou a precíznosťou. Úspech Lipy vyvolal nové volanie po zdobení šiat slovenskou výšivkou v slovenskom mestskom prostredí.</p>
+      </div>
+      <div class="vystava-card reveal reveal-delay-3">
+        <span class="rok">1925</span>
+        <h3>Banská Bystrica a Bratislava</h3>
+        <p>Národopisná výstava v Banskej Bystrici (máj 1925) bola prvou väčšou povojnovou akciou. Prezentovali sa kroje stredného Slovenska z okolia Detvy a Zvolena. Dunajské veľtrhy v Bratislave (23. 8. – 3. 9. 1925) priniesli značný komerčný úspech.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRATISLAVA -->
+<section id="bratislava">
+  <div class="section-inner">
+    <div class="ba-layout">
+      <div>
+        <div class="ba-decor">
+          <svg width="140" height="160" viewBox="0 0 140 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="20" width="100" height="120" stroke="#D4AF37" stroke-width="1"/>
+            <rect x="30" y="30" width="80" height="100" stroke="#C41E3A" stroke-width="0.7"/>
+            <line x1="70" y1="20" x2="70" y2="140" stroke="#D4AF37" stroke-width="0.6"/>
+            <line x1="20" y1="80" x2="120" y2="80" stroke="#D4AF37" stroke-width="0.6"/>
+            <circle cx="70" cy="80" r="18" fill="none" stroke="#C41E3A" stroke-width="1"/>
+            <circle cx="70" cy="80" r="8" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+            <circle cx="70" cy="80" r="2.5" fill="#C41E3A" opacity="0.8"/>
+            <circle cx="45" cy="55" r="4" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <circle cx="95" cy="55" r="4" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <circle cx="45" cy="105" r="4" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            <circle cx="95" cy="105" r="4" fill="none" stroke="#D4AF37" stroke-width="1"/>
+          </svg>
+        </div>
+        <p class="ba-decor-caption">Expozitúra Lipy<br>Námestie republiky č. 33, Bratislava<br>1927 – 1938</p>
+      </div>
+      <div class="reveal">
+        <span class="section-label">Stála predajňa</span>
+        <h2 class="script">Lipa v Bratislave.</h2>
+        <div class="gold-line left"></div>
+        <p class="body">Po roku 1918 sa čoraz častejšie ozývali hlasy, aby Lipa otvorila predajňu svojich výrobkov v hlavnom meste Slovenska. Expozitúra Lipy v Bratislave pozostávala zo stálej výstavky a predajne, ktoré boli otvorené <strong>18. decembra 1927</strong> v budove Tatrabanky na bývalomNámestí republiky — dnes Námestie SNP č. 33, budova Ministerstva kultúry SR.</p>
+        <p class="body">Filiálku otvorili najmä pričinením Kornela Stodolu, s ktorým Lipa od počiatku pravidelne spolupracovala. V predajni boli k dispozícii najmä kroje, kožúšky, čipky, keramika, hračky a podobné výrobky, ktorých mala Lipa na sklade bohatý výber.</p>
+        <p class="body">Na objednávku sa v Lipe vyhotovovali najmä dámska, detská a postelná bielizeň, blúzy, svojrázne dámske a pánske župany vyhotovené v „originálnom slovenskom slohu", tak v luxusnom, ako aj v jednoduchom vyhotovení. Sortiment výrobkov sa oproti obdobiu vzniku Lipy zásadne nemenil, postupne sa ale viac presadzovali výrobky suvenírového charakteru.</p>
+        <p class="body">Filiálka Lipy v Bratislave pracovala do roku <strong>1938</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLOVENSKOST -->
+<section id="slovenskost">
+  <div class="section-inner">
+    <div class="centered reveal">
+      <span class="section-label">Kultúrne poslanie</span>
+      <h2 class="script">Slovenský svojráz.</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="quote-block reveal">
+      <blockquote>„Vzory sú takmer všetky slovenské a prevedenie je také precízne, že prichádza sa diviť nad tenkosťou a grációznosťou našich slovenských výšivkárok."</blockquote>
+      <cite>— z propagačného materiálu Lipy, 1911</cite>
+    </div>
+    <div class="slovenskost-body reveal">
+      <p class="body">Lipu nevytvoril iba obchodný záujem. Stál za ňou hlboký kultúrny a národný program — snaha zachovať slovenské ľudové umenie, šíriť ho v spoločnosti a uplatniť ho v modernom odievaní aj bytovom prostredí. Táto myšlienka sa odráža aj v článkoch o Lipe v českých časopisoch, kde sa o nej písalo ako o spoločnosti, ktorá chce presvedčiť cudzinu, že umelecké predmety, s ktorými obchoduje, sú výtvorom slovenských rúk.</p>
+      <p class="body">Lipa chcela využívať predovšetkým slovenské motívy. Žiadala od výrobcov, aby používali ľudové ornamenty a tým zachovávali úctu k pôvodným vzorom — tzv. <em>ušľachtilým pravvzorom</em> — a pôsobila proti osvajovaniu tzv. <em>bazárových vzorov</em>, ktoré u výrobcov objednávali obchodníci.</p>
+      <p class="body">Ďalším záujmom Lipy bolo, aby sa zachovali ľudové kroje. Lipa podporovala zachovávanie tradičného ľudového odevu jednak tým, že podporovala jeho výrobcov zákazkami, jednak tým, že uplatňovala ľudové motívy na dámskom ošatení podľa existujúcej módy. Propagovala najmä výšivky a čipky na bytovom textile ako výzvy k slovenským ženám, aby pri ozdobovaní svojich bytov dávali prednosť slovenským výšivkám.</p>
+      <p class="body">Popri propagácii a komerčnom uplatnení ľudového umenia sa Lipa teda zaraďuje aj do <strong>svojrázového hnutia</strong> — širšieho kultúrneho pohybu, ktorý usiloval o vytvorenie moderného národného štýlu v odievaní, bytovom umení a každodennom živote.</p>
+      <p style="font-size:0.82rem; color:#999; font-style:italic; margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid rgba(212,175,55,0.2);">Zdroj: Michal Kalavský — <em>Lipa, ľudový priemysel, účastinárska spoločnosť</em>. Zborník Slovenského národného múzea XCIV – 2000 – História 40, s. 47–65.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ODKAZ -->
+<section id="odkaz">
+  <span class="section-label">Dedičstvo</span>
+  <h2 class="script" style="color:#fff;">Odkaz Lipy.</h2>
+  <div class="gold-line" style="opacity:0.4;"></div>
+  <p>Lipa zohrala v dejinách slovenského ľudového umenia nenahraditeľnú úlohu. Bola prvou inštitucionálnou oporou výšivkárok a remeselníčok, ktoré by inak zostali bez možnosti predávať svoju prácu za férovú cenu. Zabezpečovala odbyt výrobcom z viacerých žúp — Bratislavskej, Nitrianskej, Zvolenskej, Hontianskej, Tekóvskej a Trenčianskej.</p>
+  <p>Jej príbeh je zároveň príbehom slovenských žien — výšivačiek, predavačiek, predsedníčok, akcionárok — ktoré v nej videli nielen obchod, ale aj spôsob, ako pozdvihnúť úroveň slovenského národného života a zachovať kultúrne dedičstvo pre budúce generácie.</p>
+  <p>Práve táto hodnota — kombinácia remesla, obchodu a národného uvedomenia — robí z Lipy jedinečný fenomén slovenských dejín na prelome 19. a 20. storočia.</p>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-name">Anna Šenšelová</div>
-  <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
+  <svg class="footer-ornament ornament-sm ornament" viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
+    <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+    <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+    <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+    <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+    <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+  </svg>
+  <p>© 2026 Anna Šenšelová by Anna Lockwoodová</p>
+  <p style="margin-top:0.3rem; font-size:0.72rem;">Vytvorené s láskou a úctou k predošlým generáciám.</p>
 </footer>
 
+<script>
+  // NAV DROPDOWN
+  document.querySelectorAll('nav ul li').forEach(li => {
+    let timer;
+    li.addEventListener('mouseenter', () => {
+      clearTimeout(timer);
+      const dd = li.querySelector('.dropdown');
+      if (dd) { dd.style.opacity='1'; dd.style.visibility='visible'; dd.style.pointerEvents='all'; }
+    });
+    li.addEventListener('mouseleave', () => {
+      timer = setTimeout(() => {
+        const dd = li.querySelector('.dropdown');
+        if (dd) { dd.style.opacity='0'; dd.style.visibility='hidden'; dd.style.pointerEvents='none'; }
+      }, 150);
+    });
+  });
+
+  // MOBILE MENU
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+
+  // SCROLL REVEAL — timeline items
+  const tlItems = document.querySelectorAll('.tl-item');
+  const tlObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 120);
+    });
+  }, { threshold: 0.15 });
+  tlItems.forEach(item => tlObserver.observe(item));
+
+  // SCROLL REVEAL — general
+  const revealEls = document.querySelectorAll('.reveal');
+  const revObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revObserver.observe(el));
+</script>
 </body>
 </html>
