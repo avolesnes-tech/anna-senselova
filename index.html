@@ -4,36 +4,242 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vyšívané poklady Anny Šenšelovej</title>
+
+<!-- FIX 3: Open Graph / meta tagy -->
+<meta name="description" content="Stránka venovaná skúmaniu rodinnej histórie, slovenskej výšivky a úlohe Anny Šenšelovej a spolku Lipa v jej záchrane.">
+<meta property="og:title" content="Vyšívané poklady Anny Šenšelovej">
+<meta property="og:description" content="Príbeh pratety Anny Šenšelovej, ktorá celý život venovala slovenskému výšivkárstvu. Výšivky, bábiky a odkaz spolku Lipa.">
+<meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vyšívané poklady Anny Šenšelovej">
+<meta name="twitter:description" content="Príbeh pratety Anny Šenšelovej, výšivky a odkaz spolku Lipa.">
+<meta name="twitter:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
+/* =============================================
+   RESET & TOKENS
+   FIX 5: Rozšírený systém CSS custom properties
+   ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A;
-  --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4;
+  /* Colors */
+  --cream: #F9F7F2;
+  --ink: #1A1A1A;
+  --red: #C41E3A;
+  --gold: #D4AF37;
+  --gold-dark: #A07C10;
+  --section-alt: #F2EDE4;
+  --overlay-dark: rgba(26,10,14,0.75);
+
+  /* Typography scale */
+  --text-xs: 0.65rem;
+  --text-sm: 0.78rem;
+  --text-base: 1rem;
+  --text-md: 1.05rem;
+  --text-nav: 0.88rem;
+  --text-label: 0.78rem;
+
+  /* Spacing scale */
+  --sp-1: 0.5rem;
+  --sp-2: 1rem;
+  --sp-3: 1.5rem;
+  --sp-4: 2rem;
+  --sp-5: 2.5rem;
+  --sp-6: 3rem;
+  --sp-8: 4rem;
+  --sp-10: 5rem;
+  --sp-12: 6rem;
+
+  /* Layout */
+  --max-content: 860px;
+  --max-wide: 960px;
+  --max-gallery: 980px;
+  --max-dolls: 900px;
+  --nav-height: 64px;
+
+  /* Shadows */
+  --shadow-card: 4px 8px 28px rgba(0,0,0,0.22);
+  --shadow-dropdown: 0 8px 32px rgba(0,0,0,0.10);
+
+  /* Transitions */
+  --transition-fast: 0.25s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* FIX 6: prefers-reduced-motion — vypnutie animácií */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 html { scroll-behavior: smooth; }
-body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9998; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
-nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); flex-shrink: 0; }
-nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* =============================================
+   NAV
+   ============================================= */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9998;
+  background: rgba(249,247,242,0.96);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 2.5rem;
+  height: var(--nav-height);
+}
+
+nav .logo {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 2rem;
+  color: var(--red);
+  flex-shrink: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.8rem;
+  align-items: center;
+}
+
 nav ul li { position: relative; }
-nav ul li > a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); transition: color 0.3s; display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 0; white-space: nowrap; }
+
+nav ul li > a {
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: var(--text-nav);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: var(--sp-1) 0;
+  white-space: nowrap;
+}
+
 nav ul li > a:hover { color: var(--red); }
-.dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid var(--gold); border-top: 2px solid var(--red); min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 200; }
-nav ul li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
-.dropdown a { display: block; padding: 0.6rem 1.2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.15); transition: background 0.2s, color 0.2s; white-space: nowrap; }
+
+/* FIX 4: Focus states pre accessibility */
+nav ul li > a:focus-visible,
+.gallery-card:focus-visible,
+.btn:focus-visible,
+.btn-gallery-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: #fff;
+  border: 1px solid var(--gold);
+  border-top: 2px solid var(--red);
+  min-width: 220px;
+  box-shadow: var(--shadow-dropdown);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  z-index: 200;
+}
+
+nav ul li:hover .dropdown {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown a {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: var(--text-nav);
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+}
+
 .dropdown a:hover { background: #fdf8f0; color: var(--red); }
-.dropdown .dropdown-label { display: block; padding: 0.5rem 1.2rem 0.3rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); border-bottom: 1px solid rgba(212,175,55,0.3); }
-.hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 0.4rem; z-index: 10000; flex-shrink: 0; position: relative; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+
+/* FIX 4: Focus v dropdown */
+.dropdown a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+
+.dropdown .dropdown-label {
+  display: block;
+  padding: 0.5rem 1.2rem 0.3rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  border-bottom: 1px solid rgba(212,175,55,0.3);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  z-index: 10000;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.hamburger:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 800px) {
+/* FIX 5: Konzistentné breakpointy — md: 768px */
+@media (max-width: 768px) {
   nav { padding: 0.6rem 1.2rem; }
   nav .logo { font-size: 1.5rem; }
   .hamburger { display: flex; }
+
   nav ul {
     display: none;
     flex-direction: column;
@@ -45,15 +251,17 @@ nav ul li:hover .dropdown { opacity: 1; pointer-events: all; transform: translat
     background: rgba(249,247,242,0.99);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 5rem 2rem 3rem;
+    padding: 5rem var(--sp-4) var(--sp-6);
     align-items: flex-start;
     z-index: 9999;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
+
   nav ul.open { display: flex; }
   nav ul li { width: 100%; border-bottom: 1px solid rgba(212,175,55,0.2); }
-  nav ul li > a { font-size: 1rem; padding: 1rem 0; width: 100%; justify-content: space-between; }
+  nav ul li > a { font-size: var(--text-base); padding: var(--sp-2) 0; width: 100%; justify-content: space-between; }
+
   .dropdown {
     position: static;
     transform: none;
@@ -67,91 +275,702 @@ nav ul li:hover .dropdown { opacity: 1; pointer-events: all; transform: translat
     min-width: unset;
     width: 100%;
   }
+
   .dropdown.open { display: block; }
   nav ul li > a:hover .dropdown,
   nav ul li:hover .dropdown { opacity: 1; pointer-events: all; transform: none; }
 }
+
+/* =============================================
+   HERO
+   ============================================= */
 #hero {
-  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 7rem 2rem 4rem; position: relative; overflow: hidden; background: #1a0a0e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7rem var(--sp-4) var(--sp-8);
+  position: relative;
+  overflow: hidden;
+  background: #1a0a0e;
 }
-.hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; filter: grayscale(30%) brightness(0.45) sepia(0.2); z-index: 0; }
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  filter: grayscale(30%) brightness(0.45) sepia(0.2);
+  z-index: 0;
+}
+
 .hero-slide.active { opacity: 1; }
-#hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,10,14,0.2) 0%, rgba(26,10,14,0.3) 60%, rgba(249,247,242,0.85) 100%); z-index: 1; pointer-events: none; }
+
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26,10,14,0.2) 0%, rgba(26,10,14,0.3) 60%, rgba(249,247,242,0.85) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
 #hero > *:not(.hero-slide) { position: relative; z-index: 2; }
+
 .ornament { display: block; margin: 0 auto; width: 320px; max-width: 90%; }
 .ornament-sm { width: 180px; }
-.hero-ornament-wrap { margin-bottom: 1.5rem; opacity: 0; animation: fadeDown 1.2s 0.2s forwards; }
+
+.hero-ornament-wrap { margin-bottom: var(--sp-3); opacity: 0; animation: fadeDown 1.2s 0.2s forwards; }
 .hero-title { font-family: 'Pinyon Script', cursive; font-size: clamp(1.8rem, 3.5vw, 3rem); color: #fff; line-height: 1.75; opacity: 0; animation: fadeUp 1.2s 0.5s forwards; }
 .hero-divider { width: 180px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto; opacity: 0; animation: fadeIn 1s 1s forwards; }
 .hero-subtitle { font-family: 'Cinzel', serif; font-size: clamp(0.75rem, 1.5vw, 0.9rem); font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; max-width: 680px; color: rgba(249,247,242,0.85); opacity: 0; animation: fadeUp 1s 0.9s forwards; }
-.hero-sub2 { font-size: 1rem; font-style: italic; color: rgba(249,247,242,0.7); max-width: 620px; margin-top: 1rem; opacity: 0; animation: fadeUp 1s 1.1s forwards; }
-.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 2.2rem; opacity: 0; animation: fadeUp 1s 1.4s forwards; }
-.btn { display: inline-block; padding: 0.75rem 2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.9); color: #fff; background: rgba(26,10,14,0.35); backdrop-filter: blur(4px); cursor: pointer; transition: background 0.3s, border-color 0.3s, box-shadow 0.3s; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
+.hero-sub2 { font-size: var(--text-base); font-style: italic; color: rgba(249,247,242,0.7); max-width: 620px; margin-top: var(--sp-2); opacity: 0; animation: fadeUp 1s 1.1s forwards; }
+.hero-ctas { display: flex; gap: var(--sp-2); flex-wrap: wrap; justify-content: center; margin-top: 2.2rem; opacity: 0; animation: fadeUp 1s 1.4s forwards; }
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem var(--sp-4);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.9);
+  color: #fff;
+  background: rgba(26,10,14,0.35);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: background var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+
 .btn:hover { background: rgba(255,255,255,0.15); border-color: #fff; box-shadow: 0 0 18px rgba(255,255,255,0.2); }
 .btn-gold { border-color: var(--gold); color: var(--gold); background: rgba(26,10,14,0.35); text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
 .btn-gold:hover { background: rgba(212,175,55,0.15); border-color: var(--gold); box-shadow: 0 0 18px rgba(212,175,55,0.25); }
-section { padding: 6rem 2rem; }
-.section-inner { max-width: 860px; margin: 0 auto; text-align: center; }
-.section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
-h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 5rem); color: var(--red); line-height: 1.75; margin-bottom: 0.5rem; }
-.gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1rem auto 1.8rem; }
-#pribeh { background: var(--section-alt); }
-.pribeh-layout { display: grid; grid-template-columns: 280px 1fr; gap: 3.5rem; align-items: start; text-align: left; max-width: 960px; margin: 0 auto; }
-.pribeh-photo-wrap { position: sticky; top: 90px; transition: transform 0.4s; }
-.pribeh-photo-wrap:hover { transform: scale(1.02); }
-@media (max-width: 800px) {
-  .pribeh-photo-wrap { position: static; max-width: 260px; margin: 0 auto 2rem; }
+
+/* =============================================
+   SECTIONS — spoločné
+   ============================================= */
+section { padding: var(--sp-12) var(--sp-4); }
+
+.section-inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  text-align: center;
 }
-.pribeh-photo { width: 100%; display: block; filter: grayscale(100%) contrast(1.08) brightness(0.97); box-shadow: 4px 8px 28px rgba(0,0,0,0.22); }
-.pribeh-photo-caption { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); text-align: center; margin-top: 0.7rem; font-style: italic; }
-.pribeh-text p { font-size: 1.05rem; color: #333; margin-bottom: 1.1rem; line-height: 1.85; }
-.pribeh-signature { font-style: italic; font-size: 1rem; color: #555; border-left: 3px solid var(--gold); padding-left: 1.2rem; margin-top: 1.5rem; }
+
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: var(--text-label);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: var(--sp-1);
+}
+
+h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  color: var(--red);
+  line-height: 1.75;
+  margin-bottom: var(--sp-1);
+}
+
+.gold-line {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: var(--sp-2) auto 1.8rem;
+}
+
+/* =============================================
+   FIX 1: Scroll-triggered animácie (Intersection Observer)
+   Elementy začínajú skryté, trieda .is-visible ich odhalí
+   ============================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Oneskorenie pre postupné nabiehanie skupín */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* =============================================
+   PRÍBEH
+   ============================================= */
+#pribeh { background: var(--section-alt); }
+
+.pribeh-header {
+  max-width: var(--max-wide);
+  margin: 0 auto var(--sp-6);
+  text-align: center;
+}
+
+.pribeh-meta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: var(--sp-2);
+}
+
+.pribeh-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 3.5rem;
+  align-items: start;
+  text-align: left;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.pribeh-photo-wrap {
+  position: sticky;
+  top: 90px;
+  transition: transform 0.4s;
+}
+
+.pribeh-photo-wrap:hover { transform: scale(1.02); }
+
+.pribeh-photo {
+  width: 100%;
+  display: block;
+  filter: grayscale(100%) contrast(1.08) brightness(0.97);
+  box-shadow: var(--shadow-card);
+}
+
+.pribeh-photo-caption {
+  font-size: var(--text-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-align: center;
+  margin-top: 0.7rem;
+  font-style: italic;
+}
+
+.pribeh-text-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: var(--sp-2);
+}
+
+.pribeh-text p {
+  font-size: var(--text-md);
+  color: #333;
+  margin-bottom: 1.1rem;
+  line-height: 1.85;
+}
+
+.pribeh-signature {
+  font-style: italic;
+  font-size: var(--text-base);
+  color: #555;
+  border-left: 3px solid var(--gold);
+  padding-left: 1.2rem;
+  margin-top: var(--sp-3);
+}
+
+.pribeh-links {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+}
+
+/* =============================================
+   GALÉRIA VÝŠIVIEK
+   ============================================= */
 #galeria-vysiviek { background: var(--section-alt); }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
-.gallery-card { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; outline: none; }
+
+/* FIX 5: Inline štýly presunuté do CSS */
+.gallery-intro {
+  font-size: var(--text-base);
+  color: #555;
+  max-width: 640px;
+  margin: 0 auto 0.8rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: var(--sp-5);
+  max-width: var(--max-gallery);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gallery-card {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+}
+
 .card-inner { position: relative; width: 100%; height: 100%; overflow: hidden; }
-.card-strip { position: absolute; inset: 0; width: 100%; height: 200%; display: flex; flex-direction: column; transform: translateY(0); transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), scale 0.5s ease; scale: 1; }
-.gallery-card:hover .card-strip { transform: translateY(-50%); scale: 1.04; }
+
+.card-strip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 200%;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition: transform var(--transition-slow), scale 0.5s ease;
+  scale: 1;
+}
+
+.gallery-card:hover .card-strip,
+.gallery-card:focus-visible .card-strip { transform: translateY(-50%); scale: 1.04; }
+
 .card-img { width: 100%; height: 50%; object-fit: cover; flex-shrink: 0; display: block; }
-.shimmer { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%); background-size: 200% 100%; background-position: -100% 0; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 2; }
-.gallery-card:hover .shimmer { opacity: 1; animation: shimmer-move 0.8s ease forwards; }
+
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.gallery-card:hover .shimmer,
+.gallery-card:focus-visible .shimmer { opacity: 1; animation: shimmer-move 0.8s ease forwards; }
+
 @keyframes shimmer-move { from { background-position: -100% 0; } to { background-position: 200% 0; } }
-.overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(26,10,14,0.75)); padding: 1.5rem 1rem 0.9rem; display: flex; flex-direction: column; gap: 0.15rem; z-index: 3; transform: translateY(6px); opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; }
-.gallery-card:hover .overlay { opacity: 1; transform: translateY(0); }
+
+.overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, var(--overlay-dark));
+  padding: 1.5rem var(--sp-2) 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 3;
+  transform: translateY(6px);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.gallery-card:hover .overlay,
+.gallery-card:focus-visible .overlay { opacity: 1; transform: translateY(0); }
+
 .overlay-title { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; color: #fff; }
 .overlay-region { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+
+/* FIX 2: Lightbox */
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,4,6,0.93);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  padding: var(--sp-4);
+}
+
+.lightbox-backdrop.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-inner {
+  position: relative;
+  max-width: min(820px, 94vw);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.lightbox-img {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 16px 64px rgba(0,0,0,0.6);
+}
+
+.lightbox-meta {
+  text-align: center;
+}
+
+.lightbox-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 2rem;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.lightbox-region {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.3rem;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition-base), background var(--transition-base);
+  line-height: 1;
+}
+
+.lightbox-close:hover { border-color: var(--gold); background: rgba(212,175,55,0.12); }
+.lightbox-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+
+.lightbox-nav:hover { border-color: var(--gold); background: rgba(212,175,55,0.12); }
+.lightbox-nav:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.lightbox-prev { left: var(--sp-2); }
+.lightbox-next { right: var(--sp-2); }
+
+/* =============================================
+   GALÉRIA BÁBIK
+   ============================================= */
 #galeria-babik { background: var(--cream); }
-.doll-card { position: relative; aspect-ratio: 2/3; overflow: hidden; cursor: pointer; background: #ede5d8; }
-.doll-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: opacity 0.5s ease, transform 0.6s ease; }
+
+/* FIX 5: Inline štýly presunuté do CSS */
+.dolls-intro {
+  font-size: var(--text-base);
+  color: #555;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.dolls-wrapper {
+  max-width: var(--max-dolls);
+  margin: var(--sp-5) auto 0;
+}
+
+.doll-card {
+  position: relative;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  cursor: pointer;
+  background: #ede5d8;
+}
+
+.doll-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
 .doll-card img.doll-img-main { opacity: 1; z-index: 1; }
 .doll-card img.doll-img-alt { opacity: 0; z-index: 2; }
-.doll-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.38) 50%, transparent 70%); background-size: 200% 100%; background-position: -100% 0; opacity: 0; z-index: 3; pointer-events: none; transition: opacity 0.3s; }
+
+.doll-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.38) 50%, transparent 70%);
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
 .doll-card:hover::after { opacity: 1; animation: doll-shimmer 0.75s ease forwards; }
 @keyframes doll-shimmer { from { background-position: -100% 0; } to { background-position: 210% 0; } }
+
 .doll-card:hover img.doll-img-main { opacity: 0; transform: scale(1.06); }
 .doll-card:hover img.doll-img-alt { opacity: 1; transform: scale(1.06); }
-.dolls-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 2.5rem; }
-#citat { background: var(--red); color: var(--cream); padding: 5rem 2rem; text-align: center; }
-#citat blockquote { font-family: 'Pinyon Script', cursive; font-size: clamp(2rem, 5vw, 3.8rem); max-width: 800px; margin: 0 auto; line-height: 1.75; }
-footer { background: #111; color: var(--cream); text-align: center; padding: 3rem 2rem; }
-footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 0.5rem; }
-footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-top: 0.3rem; }
-footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
+
+.dolls-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-top: var(--sp-5);
+}
+
+/* FIX 5: Inline štýly pre dolls CTA presunuté do CSS */
+.section-cta {
+  text-align: center;
+  margin-top: 2.8rem;
+}
+
+/* =============================================
+   CITÁT
+   ============================================= */
+#citat {
+  background: var(--red);
+  color: var(--cream);
+  padding: var(--sp-10) var(--sp-4);
+  text-align: center;
+}
+
+#citat blockquote {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* =============================================
+   FOOTER — rozšírený
+   FIX: Footer s navigáciou a rýchlymi odkazmi
+   ============================================= */
+footer {
+  background: #111;
+  color: var(--cream);
+  text-align: center;
+  padding: var(--sp-12) var(--sp-4) var(--sp-6);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--sp-8);
+  max-width: 860px;
+  margin: 0 auto var(--sp-8);
+  text-align: left;
+}
+
+.footer-col-center { text-align: center; }
+
+.footer-name {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: var(--sp-1);
+}
+
+.footer-tagline {
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
+  opacity: 0.45;
+  font-style: italic;
+  margin-top: 0.3rem;
+  text-transform: none;
+}
+
+.footer-col-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--sp-2);
+  opacity: 0.8;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: var(--cream);
+  opacity: 0.55;
+  letter-spacing: 0.06em;
+  transition: opacity var(--transition-base), color var(--transition-base);
+}
+
+.footer-links a:hover { opacity: 1; color: var(--gold); }
+.footer-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(212,175,55,0.15);
+  margin: 0 auto var(--sp-4);
+  max-width: 860px;
+}
+
+footer .footer-ornament { margin: 0 auto var(--sp-3); opacity: 0.3; }
+
+.footer-copy { font-size: var(--text-sm); letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-top: 0.3rem; }
+.footer-note { margin-top: 0.3rem; font-size: var(--text-xs); opacity: 0.35; }
+
+.footer-disclaimer {
+  margin-top: 1.4rem;
+  font-size: var(--text-xs);
+  opacity: 0.3;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+/* =============================================
+   TLAČOVÉ ŠTÝLY
+   ============================================= */
+@media print {
+  nav, .hero-ctas, .lightbox-backdrop, footer .footer-top { display: none !important; }
+  #hero { min-height: auto; padding: 2rem; }
+  .hero-slide { display: none; }
+  #hero::after { display: none; }
+  .hero-title, .hero-subtitle, .hero-sub2 { color: #000 !important; opacity: 1 !important; }
+  section { padding: 2rem 1rem; }
+  .gallery-card:hover .card-strip { transform: none; }
+  * { box-shadow: none !important; }
+}
+
+/* =============================================
+   ANIMÁCIE
+   ============================================= */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.btn-gallery-link { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2.4rem; font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: var(--red); border: 1px solid var(--red); background: transparent; transition: border-color 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
-.btn-gallery-link::after { content: ''; position: absolute; bottom: -1px; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transition: left 0.45s ease; }
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn-gallery-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 2.4rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--red);
+  border: 1px solid var(--red);
+  background: transparent;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gallery-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transition: left 0.45s ease;
+}
+
 .btn-gallery-link:hover::after { left: 100%; }
 .btn-gallery-link:hover { border-color: var(--gold); box-shadow: 0 2px 18px rgba(212,175,55,0.18); }
-.btn-arrow { transition: transform 0.3s; display: inline-block; }
+
+.btn-arrow { transition: transform var(--transition-base); display: inline-block; }
 .btn-gallery-link:hover .btn-arrow { transform: translateX(5px); }
-@media (max-width: 700px) { .pribeh-layout { grid-template-columns: 1fr; } .dolls-grid { grid-template-columns: repeat(2, 1fr); } .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 800px) { #pribeh { scroll-margin-top: 60px; } }
+
+/* =============================================
+   FIX 5: Konzistentné responzívne breakpointy
+   sm: 640px, md: 768px
+   ============================================= */
+@media (max-width: 768px) {
+  #pribeh { scroll-margin-top: 60px; }
+  .pribeh-photo-wrap { position: static; max-width: 260px; margin: 0 auto var(--sp-4); }
+  .pribeh-layout { grid-template-columns: 1fr; }
+  .dolls-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+    text-align: center;
+  }
+
+  .footer-col-center { order: -1; }
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
+}
+
+@media (max-width: 640px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .dolls-grid { grid-template-columns: repeat(2, 1fr); }
+  .pribeh-links { flex-direction: column; }
+}
 </style>
 </head>
 <body>
+
+<!-- FIX 2: Lightbox -->
+<div class="lightbox-backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Detail výšivky">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Zatvoriť">×</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Predchádzajúca">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Nasledujúca">›</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <div class="lightbox-meta">
+      <div class="lightbox-title" id="lightbox-title"></div>
+      <div class="lightbox-region" id="lightbox-region"></div>
+    </div>
+  </div>
+</div>
 
 <nav>
   <div class="logo">Anna Šenšelová</div>
@@ -174,13 +993,14 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
       <a href="#galeria-vysiviek">Galéria ▼</a>
       <div class="dropdown">
         <span class="dropdown-label">Galéria</span>
+        <!-- FIX: Opravený duplicitný odkaz -->
         <a href="galeria-vysiviek.html">Vzorkovník výšiviek Anny Šenšelovej</a>
-        <a href="galeria-vysiviek.html">Iné ľudové výšivky a odev</a>
+        <a href="galeria-ludove.html">Iné ľudové výšivky a odev</a>
         <a href="galeria-babik.html">Krojované bábiky</a>
       </div>
     </li>
     <li><a href="interaktivna-mapa.html">Slovenské výšivky</a></li>
-    <li><a href="#">Blog</a></li>
+    <!-- FIX: Blog odkaz odstránený, keďže stránka neexistuje -->
   </ul>
 </nav>
 
@@ -191,7 +1011,7 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
   <div class="hero-slide" style="background-image:url('https://avolesnes-tech.github.io/anna-senselova/hero3.jpg')"></div>
 
   <div class="hero-ornament-wrap">
-    <svg class="ornament" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="ornament" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <polygon points="160,10 175,40 160,70 145,40" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.7"/>
       <line x1="143" y1="40" x2="60" y2="40" stroke="#D4AF37" stroke-width="0.8"/>
       <circle cx="90" cy="40" r="3.5" fill="none" stroke="#D4AF37" stroke-width="1"/>
@@ -216,25 +1036,27 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
 
 <!-- PRÍBEH / LIPA -->
 <section id="pribeh">
-  <div style="max-width:960px; margin:0 auto; text-align:center; margin-bottom:3rem;">
+  <!-- FIX 5: Inline štýly nahradené CSS triedami -->
+  <div class="pribeh-header reveal">
     <p class="section-label">Príbeh · Lipa</p>
     <h2>Lipa a slovenské výšivkárstvo</h2>
-    <p style="font-family:'Cinzel',serif; font-size:0.82rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--red); margin-bottom:1rem;">Martin · 1910 – 1953 · pod vedením Anny Šenšelovej</p>
+    <p class="pribeh-meta">Martin · 1910 – 1953 · pod vedením Anny Šenšelovej</p>
     <div class="gold-line"></div>
   </div>
   <div class="pribeh-layout">
-    <div class="pribeh-photo-wrap">
-      <img src="https://avolesnes-tech.github.io/anna-senselova/anna_fotka1.png" alt="Anna Šenšelová" class="pribeh-photo">
+    <div class="pribeh-photo-wrap reveal reveal-delay-1">
+      <!-- FIX 2: lazy loading -->
+      <img src="https://avolesnes-tech.github.io/anna-senselova/anna_fotka1.png" alt="Anna Šenšelová" class="pribeh-photo" loading="lazy">
       <p class="pribeh-photo-caption">Anna Šenšelová<br>správkyňa Lipy · 42 rokov</p>
     </div>
-    <div class="pribeh-text">
-      <p style="font-family:'Cinzel',serif; font-size:0.85rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--red); margin-bottom:1rem;">Tradícia ako živý podnik</p>
+    <div class="pribeh-text reveal reveal-delay-2">
+      <p class="pribeh-text-label">Tradícia ako živý podnik</p>
       <div class="gold-line" style="margin-left:0;"></div>
       <p>Lipa nebola len obchodom s výšivkami. Bol to jeden z najprogresívnejších slovenských podnikov svojej doby — a za jeho chodom stála neúnavná Anna Šenšelová, ktorá ho viedla neuveriteľných <strong>42 rokov</strong>.</p>
       <p>Správkyne pešo prechodili slovenské dediny, odkresľovali staré vzory a budovali sieť vyšívačiek po celom Slovensku. Každý hotový kus prešiel prísnou kontrolou — výsledkom boli výrobky, ktoré získali uznanie na výstavách od Viedne až po Košice a nachádzali zákazníkov v celej Európe.</p>
       <p>Lipa dala slovenskému výšivkárstvu niečo vzácne: <strong>živú platformu</strong> — miesto, kde sa staré vzory nestratili v múzeách, ale ďalej žili v rukách remeselníčok. A zároveň priniesla ženám vlastný príjem, čo bola pre mnohé prvá skúsenosť s ekonomickou slobodou.</p>
       <p class="pribeh-signature">Odkaz Lipy sa takmer stratil v zabudnutí. Dve igelitky plné výšiviek, objavené v pivnici po starých rodičoch, ma priviedli k tomuto príbehu — a ten ma od tej chvíle nepúšťa.</p>
-      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.6rem;">
+      <div class="pribeh-links">
         <a href="lipa.html" class="btn-gallery-link">Celý príbeh Lipy <span class="btn-arrow">→</span></a>
         <a href="anna-senselova.html" class="btn-gallery-link">Kto bola Anna Šenšelová <span class="btn-arrow">→</span></a>
       </div>
@@ -244,135 +1066,219 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
 
 <!-- GALÉRIA VÝŠIVIEK -->
 <section id="galeria-vysiviek">
-  <div class="section-inner">
+  <div class="section-inner reveal">
     <p class="section-label">Zbierka</p>
     <h2>Poklady zo vzorkovníkov.</h2>
     <div class="gold-line"></div>
-    <p style="font-size:1rem; color:#555; max-width:640px; margin:0 auto 0.8rem;">Tieto vyšívané fragmenty pochádzajú z pozostalosti Anny Šenšelovej. S bližším určovaním mi nezištne pomohli <em>Zuzka Tajek Piešová</em>, <em>Stanislav Talapka</em> a <em>Tamara Simončíková Heribanová</em> — som im za to nesmierne vďačná.</p>
+    <!-- FIX 5: Inline štýl nahradený triedou gallery-intro -->
+    <p class="gallery-intro">Tieto vyšívané fragmenty pochádzajú z pozostalosti Anny Šenšelovej. S bližším určovaním mi nezištne pomohli <em>Zuzka Tajek Piešová</em>, <em>Stanislav Talapka</em> a <em>Tamara Simončíková Heribanová</em> — som im za to nesmierne vďačná.</p>
   </div>
-  <div class="gallery-grid" style="max-width:980px; margin:0 auto; grid-template-columns:repeat(3,1fr);">
-    <div class="gallery-card" tabindex="0">
+
+  <!-- FIX 5: Inline štýly na gallery-grid presunuté do CSS -->
+  <div class="gallery-grid">
+
+    <!-- FIX 2: lazy loading + FIX 1: reveal + FIX 4: tabindex, aria -->
+    <div class="gallery-card reveal reveal-delay-1" tabindex="0" role="button"
+         aria-label="Otvoriť detail: Biela výšivka, Hontiansky motív"
+         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/biela_vysivka_1.jpeg"
+         data-lightbox-title="Biela výšivka"
+         data-lightbox-region="Hontiansky motív"
+         data-lightbox-index="0">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/biela_vysivka_2.jpeg" alt="Biela výšivka">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/biela_vysivka_1.jpeg" alt="Biela výšivka – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/biela_vysivka_2.jpeg" alt="Biela výšivka" loading="lazy">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/biela_vysivka_1.jpeg" alt="Biela výšivka – detail" loading="lazy">
         </div>
-        <div class="shimmer"></div>
-        <div class="overlay"><span class="overlay-title">Biela výšivka</span><span class="overlay-region">Hontiansky motív</span></div>
+        <div class="shimmer" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true"><span class="overlay-title">Biela výšivka</span><span class="overlay-region">Hontiansky motív</span></div>
       </div>
     </div>
-    <div class="gallery-card" tabindex="0">
+
+    <div class="gallery-card reveal reveal-delay-2" tabindex="0" role="button"
+         aria-label="Otvoriť detail: Bošácka výšivka, Bošácky región"
+         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka1.jpeg"
+         data-lightbox-title="Bošácka výšivka"
+         data-lightbox-region="Bošácky región"
+         data-lightbox-index="1">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka2.jpeg" alt="Bošácka výšivka">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka1.jpeg" alt="Bošácka výšivka – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka2.jpeg" alt="Bošácka výšivka" loading="lazy">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka1.jpeg" alt="Bošácka výšivka – detail" loading="lazy">
         </div>
-        <div class="shimmer"></div>
-        <div class="overlay"><span class="overlay-title">Bošácka výšivka</span><span class="overlay-region">Bošácky región</span></div>
+        <div class="shimmer" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true"><span class="overlay-title">Bošácka výšivka</span><span class="overlay-region">Bošácky región</span></div>
       </div>
     </div>
-    <div class="gallery-card" tabindex="0">
+
+    <div class="gallery-card reveal reveal-delay-3" tabindex="0" role="button"
+         aria-label="Otvoriť detail: Ciferská výšivka, Záhorie"
+         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka1.jpeg"
+         data-lightbox-title="Ciferská výšivka"
+         data-lightbox-region="Záhorie"
+         data-lightbox-index="2">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka2.jpeg" alt="Ciferská výšivka">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka1.jpeg" alt="Ciferská výšivka – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka2.jpeg" alt="Ciferská výšivka" loading="lazy">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka1.jpeg" alt="Ciferská výšivka – detail" loading="lazy">
         </div>
-        <div class="shimmer"></div>
-        <div class="overlay"><span class="overlay-title">Ciferská výšivka</span><span class="overlay-region">Záhorie</span></div>
+        <div class="shimmer" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true"><span class="overlay-title">Ciferská výšivka</span><span class="overlay-region">Záhorie</span></div>
       </div>
     </div>
-    <div class="gallery-card" tabindex="0">
+
+    <div class="gallery-card reveal reveal-delay-1" tabindex="0" role="button"
+         aria-label="Otvoriť detail: Detva – krivá ihla, Podpoľanie"
+         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla1.jpeg"
+         data-lightbox-title="Detva – krivá ihla"
+         data-lightbox-region="Podpoľanie"
+         data-lightbox-index="3">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla2.jpeg" alt="Detva – krivá ihla">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla1.jpeg" alt="Detva – krivá ihla – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla2.jpeg" alt="Detva – krivá ihla" loading="lazy">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla1.jpeg" alt="Detva – krivá ihla – detail" loading="lazy">
         </div>
-        <div class="shimmer"></div>
-        <div class="overlay"><span class="overlay-title">Detva – krivá ihla</span><span class="overlay-region">Podpoľanie</span></div>
+        <div class="shimmer" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true"><span class="overlay-title">Detva – krivá ihla</span><span class="overlay-region">Podpoľanie</span></div>
       </div>
     </div>
-    <div class="gallery-card" tabindex="0">
+
+    <div class="gallery-card reveal reveal-delay-2" tabindex="0" role="button"
+         aria-label="Otvoriť detail: Hnedý golier, Gemerský motív"
+         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier1.jpeg"
+         data-lightbox-title="Hnedý golier"
+         data-lightbox-region="Gemerský motív"
+         data-lightbox-index="4">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier2.jpeg" alt="Hnedý golier">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier1.jpeg" alt="Hnedý golier – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier2.jpeg" alt="Hnedý golier" loading="lazy">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier1.jpeg" alt="Hnedý golier – detail" loading="lazy">
         </div>
-        <div class="shimmer"></div>
-        <div class="overlay"><span class="overlay-title">Hnedý golier</span><span class="overlay-region">Gemerský motív</span></div>
+        <div class="shimmer" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true"><span class="overlay-title">Hnedý golier</span><span class="overlay-region">Gemerský motív</span></div>
       </div>
     </div>
-    <div class="gallery-card" tabindex="0">
+
+    <div class="gallery-card reveal reveal-delay-3" tabindex="0" role="button"
+         aria-label="Otvoriť detail: Strieborný golier, Krajkárstvo"
+         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier1.jpeg"
+         data-lightbox-title="Strieborný golier"
+         data-lightbox-region="Krajkárstvo"
+         data-lightbox-index="5">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier2.jpeg" alt="Strieborný golier">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier1.jpeg" alt="Strieborný golier – detail">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier2.jpeg" alt="Strieborný golier" loading="lazy">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier1.jpeg" alt="Strieborný golier – detail" loading="lazy">
         </div>
-        <div class="shimmer"></div>
-        <div class="overlay"><span class="overlay-title">Strieborný golier</span><span class="overlay-region">Krajkárstvo</span></div>
+        <div class="shimmer" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true"><span class="overlay-title">Strieborný golier</span><span class="overlay-region">Krajkárstvo</span></div>
       </div>
     </div>
+
   </div>
-  <div style="text-align:center; margin-top:2.8rem;">
+
+  <!-- FIX 5: Inline štýl nahradený triedou section-cta -->
+  <div class="section-cta reveal">
     <a href="galeria-vysiviek.html" class="btn-gallery-link">Pozrieť celú galériu výšiviek <span class="btn-arrow">→</span></a>
   </div>
 </section>
 
 <!-- GALÉRIA BÁBIK -->
 <section id="galeria-babik">
-  <div class="section-inner">
+  <div class="section-inner reveal">
     <p class="section-label">Krojované bábiky</p>
     <h2>Z pivnice do výkladu.</h2>
     <div class="gold-line"></div>
-    <p style="font-size:1rem; color:#555; max-width:640px; margin:0 auto;">Tieto bábiky sú naše rodinné dedičstvo po starých rodičoch. Neviem s istotou, či priamo súvisia s Annou, no aj ony vo mne prebudili chuť pátrať po tradíciách a minulosti.</p>
+    <!-- FIX 5: Inline štýl nahradený triedou dolls-intro -->
+    <p class="dolls-intro">Tieto bábiky sú naše rodinné dedičstvo po starých rodičoch. Neviem s istotou, či priamo súvisia s Annou, no aj ony vo mne prebudili chuť pátrať po tradíciách a minulosti.</p>
   </div>
 
-  <div class="dolls-grid" style="max-width:900px; margin:2.5rem auto 0;">
-    <div class="doll-card" data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika2a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika2b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika2c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika2e.jpeg"]'>
-      <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika2a.jpeg" alt="Krojovaná bábika 2">
-      <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika2b.jpeg" alt="Krojovaná bábika 2 – detail">
-    </div>
-    <div class="doll-card" data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika3a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika3b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika3c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika3d.jpeg"]'>
-      <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika3a.jpeg" alt="Krojovaná bábika 3">
-      <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika3c.jpeg" alt="Krojovaná bábika 3 – detail">
-    </div>
-    <div class="doll-card" data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika4a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4d.jpeg"]'>
-      <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika4a.jpeg" alt="Krojovaná bábika 4">
-      <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika4b.jpeg" alt="Krojovaná bábika 4 – detail">
-    </div>
-    <div class="doll-card" data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika5a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika5b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika5d.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika5e.jpeg"]'>
-      <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika5a.jpeg" alt="Krojovaná bábika 5">
-      <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika5b.jpeg" alt="Krojovaná bábika 5 – detail">
+  <!-- FIX 5: Inline štýly na dolls-grid presunuté do CSS triedy dolls-wrapper -->
+  <div class="dolls-wrapper">
+    <div class="dolls-grid">
+
+      <div class="doll-card reveal reveal-delay-1"
+           data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika2a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika2b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika2c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika2e.jpeg"]'>
+        <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika2a.jpeg" alt="Krojovaná bábika 2" loading="lazy">
+        <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika2b.jpeg" alt="Krojovaná bábika 2 – detail" loading="lazy">
+      </div>
+
+      <div class="doll-card reveal reveal-delay-2"
+           data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika3a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika3b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika3c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika3d.jpeg"]'>
+        <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika3a.jpeg" alt="Krojovaná bábika 3" loading="lazy">
+        <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika3c.jpeg" alt="Krojovaná bábika 3 – detail" loading="lazy">
+      </div>
+
+      <div class="doll-card reveal reveal-delay-3"
+           data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika4a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4d.jpeg"]'>
+        <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika4a.jpeg" alt="Krojovaná bábika 4" loading="lazy">
+        <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika4b.jpeg" alt="Krojovaná bábika 4 – detail" loading="lazy">
+      </div>
+
+      <div class="doll-card reveal reveal-delay-4"
+           data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika5a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika5b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika5d.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika5e.jpeg"]'>
+        <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika5a.jpeg" alt="Krojovaná bábika 5" loading="lazy">
+        <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika5b.jpeg" alt="Krojovaná bábika 5 – detail" loading="lazy">
+      </div>
+
     </div>
   </div>
 
-  <div style="text-align:center; margin-top:2.8rem;">
+  <div class="section-cta reveal">
     <a href="galeria-babik.html" class="btn-gallery-link">Dozvedieť sa viac o zbierke bábik <span class="btn-arrow">→</span></a>
   </div>
 </section>
 
 <!-- CITÁT -->
 <section id="citat">
-  <blockquote>„V každom stehu je ukryté posolstvo — trpezlivosť, láska a hrdosť na to, kto sme."</blockquote>
+  <blockquote class="reveal">„V každom stehu je ukryté posolstvo — trpezlivosť, láska a hrdosť na to, kto sme."</blockquote>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER — rozšírený s navigáciou -->
 <footer>
-  <div class="footer-name">Anna Šenšelová</div>
-  <svg class="footer-ornament ornament-sm ornament" viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
-    <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-    <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
-    <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
-    <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
-    <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
-  </svg>
-  <p>© 2026 Vyšívané poklady Anny Šenšelovej · Anna Lockwoodová</p>
-  <p style="margin-top:0.3rem; font-size:0.72rem;">Vytvorené s láskou a úctou k predošlým generáciám.</p>
-  <p style="margin-top:1.4rem; font-size:0.65rem; opacity:0.35; max-width:560px; margin-left:auto; margin-right:auto; line-height:1.7; letter-spacing:0.04em;">Zbierka výšiviek, bábik a pozostalosti po rodine Šenšelovcov nie je mojím osobným vlastníctvom — je dedičstvom celej rodiny. Výšivky, bábiky ani kroje nie sú na predaj.</p>
+  <div class="footer-top">
+    <div>
+      <p class="footer-col-title">Príbeh</p>
+      <ul class="footer-links">
+        <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
+        <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
+        <li><a href="lipa.html">Lipa</a></li>
+        <li><a href="zivena.html">Živena</a></li>
+        <li><a href="o-nas.html">O nás</a></li>
+      </ul>
+    </div>
+    <div class="footer-col-center">
+      <div class="footer-name">Anna Šenšelová</div>
+      <svg class="footer-ornament ornament-sm ornament" viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
+        <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+        <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+        <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+      </svg>
+      <p class="footer-tagline">Vytvorené s láskou a úctou k predošlým generáciám.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Galéria</p>
+      <ul class="footer-links">
+        <li><a href="galeria-vysiviek.html">Vzorkovník výšiviek</a></li>
+        <li><a href="galeria-ludove.html">Ľudové výšivky a odev</a></li>
+        <li><a href="galeria-babik.html">Krojované bábiky</a></li>
+        <li><a href="interaktivna-mapa.html">Slovenské výšivky — mapa</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <p class="footer-copy">© 2026 Vyšívané poklady Anny Šenšelovej · Anna Lockwoodová</p>
+  <p class="footer-disclaimer">Zbierka výšiviek, bábik a pozostalosti po rodine Šenšelovcov nie je mojím osobným vlastníctvom — je dedičstvom celej rodiny. Výšivky, bábiky ani kroje nie sú na predaj.</p>
 </footer>
 
 <script>
-  // Hero slideshow
+  /* =============================================
+     HERO SLIDESHOW
+     ============================================= */
   const slides = document.querySelectorAll('.hero-slide');
   let cur = 0;
   if (slides.length > 1) {
@@ -383,21 +1289,24 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     }, 5000);
   }
 
-  // Hamburger menu
+  /* =============================================
+     HAMBURGER MENU
+     ============================================= */
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
+
   hamburger.addEventListener('click', function() {
     const isOpen = navMenu.classList.toggle('open');
     hamburger.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
-  // Close menu on link click (non-dropdown links)
+
   navMenu.querySelectorAll('li > a').forEach(function(link) {
     link.addEventListener('click', function(e) {
       const li = this.closest('li');
       const dropdown = li.querySelector('.dropdown');
-      if (dropdown && window.innerWidth <= 800) {
+      if (dropdown && window.innerWidth <= 768) {
         e.preventDefault();
         dropdown.classList.toggle('open');
       } else {
@@ -408,6 +1317,7 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
       }
     });
   });
+
   navMenu.querySelectorAll('.dropdown a').forEach(function(link) {
     link.addEventListener('click', function() {
       navMenu.classList.remove('open');
@@ -417,12 +1327,122 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
     });
   });
 
-  // Doll hover cycling
+  /* =============================================
+     FIX 1: INTERSECTION OBSERVER — scroll animácie
+     ============================================= */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target); // raz odhalené, ďalej nepozorovať
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* =============================================
+     FIX 2: LIGHTBOX — klávesnica, focus trap, navigácia
+     ============================================= */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxRegion = document.getElementById('lightbox-region');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+
+  const galleryCards = Array.from(document.querySelectorAll('.gallery-card[data-lightbox-index]'));
+  let currentLightboxIndex = 0;
+  let lastFocused = null;
+
+  function openLightbox(card) {
+    lastFocused = document.activeElement;
+    currentLightboxIndex = parseInt(card.dataset.lightboxIndex);
+    updateLightbox(currentLightboxIndex);
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+  }
+
+  function updateLightbox(index) {
+    const card = galleryCards[index];
+    lightboxImg.src = card.dataset.lightboxImg;
+    lightboxImg.alt = card.dataset.lightboxTitle + ' – detail';
+    lightboxTitle.textContent = card.dataset.lightboxTitle;
+    lightboxRegion.textContent = card.dataset.lightboxRegion;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function lightboxNavPrev() {
+    currentLightboxIndex = (currentLightboxIndex - 1 + galleryCards.length) % galleryCards.length;
+    updateLightbox(currentLightboxIndex);
+  }
+
+  function lightboxNavNext() {
+    currentLightboxIndex = (currentLightboxIndex + 1) % galleryCards.length;
+    updateLightbox(currentLightboxIndex);
+  }
+
+  // Otvoriť lightbox kliknutím alebo Enterom
+  galleryCards.forEach(card => {
+    card.addEventListener('click', () => openLightbox(card));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(card);
+      }
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', lightboxNavPrev);
+  lightboxNext.addEventListener('click', lightboxNavNext);
+
+  // Zatvoriť kliknutím na pozadie
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // FIX 4: Klávesnica — Escape, šípky, focus trap
+  lightbox.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxNavPrev();
+    if (e.key === 'ArrowRight') lightboxNavNext();
+
+    // Focus trap — Tab ostáva vnútri lightboxu
+    if (e.key === 'Tab') {
+      const focusable = lightbox.querySelectorAll('button');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  /* =============================================
+     DOLL HOVER CYCLING
+     ============================================= */
   document.querySelectorAll('.doll-card[data-imgs]').forEach(function(card) {
     var imgs = JSON.parse(card.getAttribute('data-imgs'));
     var idx = 1;
     var interval = null;
     var altImg = card.querySelector('.doll-img-alt');
+
     card.addEventListener('mouseenter', function() {
       idx = 1;
       altImg.src = imgs[idx];
@@ -433,6 +1453,7 @@ footer .footer-ornament { margin: 1.2rem auto 0.8rem; opacity: 0.3; }
         next.onload = function() { altImg.src = imgs[idx]; };
       }, 700);
     });
+
     card.addEventListener('mouseleave', function() {
       clearInterval(interval);
     });
