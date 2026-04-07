@@ -4,6 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anna Šenšelová – Vyšívané poklady</title>
+
+<!-- SEO -->
+<meta name="description" content="Príbeh Anny Šenšelovej (1882–1976) — ženy, ktorá 42 rokov zachraňovala slovenské výšivkárstvo ako riaditeľka martinskej Lipy. Rodostrom, Zástava slobody a rodinná história.">
+<meta name="author" content="Anna Lockwoodová">
+
+<!-- Open Graph (Facebook, WhatsApp, iMessage…) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Anna Šenšelová – Vyšívané poklady">
+<meta property="og:description" content="Príbeh ženy, ktorá 42 rokov zachraňovala slovenské výšivkárstvo. Pešo prechodila slovenské dediny, hľadala vyšívačky a budovala sieť remeselníčok pod hlavičkou spolku Lipa.">
+<meta property="og:image" content="anna_senselova_fotka1.jpeg">
+<meta property="og:image:alt" content="Anna Šenšelová – rodinná fotografia">
+<meta property="og:locale" content="sk_SK">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anna Šenšelová – Vyšívané poklady">
+<meta name="twitter:description" content="Príbeh ženy, ktorá 42 rokov zachraňovala slovenské výšivkárstvo. Pešo prechodila slovenské dediny, hľadala vyšívačky a budovala sieť remeselníčok pod hlavičkou spolku Lipa.">
+<meta name="twitter:image" content="anna_senselova_fotka1.jpeg">
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -513,7 +532,27 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
   pointer-events: none;
   transition: opacity 0.2s ease;
 }
-.strom-tooltip.visible { opacity: 1; }
+.strom-tooltip.visible { opacity: 1; pointer-events: all; }
+
+/* Zatvárací krížik — skrytý na desktope, viditeľný na mobile */
+.tooltip-close {
+  display: none;
+  position: absolute;
+  top: 0.4rem; right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: #aaa;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+}
+.tooltip-close:hover { color: var(--red); }
+
+@media (hover: none) {
+  .tooltip-close { display: block; }
+  .strom-tooltip { position: relative; }
+}
 
 .tooltip-foto-wrap { flex-shrink: 0; width: 80px; height: 80px; border-radius: 50%; overflow: hidden; background: #e8dfd0; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,0.4); }
 .tooltip-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(70%); display: none; }
@@ -807,6 +846,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 
   <!-- Tooltip -->
   <div class="strom-tooltip" id="stromTooltip">
+    <button class="tooltip-close" id="tooltipClose" aria-label="Zavrieť">×</button>
     <div class="tooltip-foto-wrap">
       <img class="tooltip-foto" id="tooltipFoto" src="" alt="">
       <div class="tooltip-foto-placeholder" id="tooltipPlaceholder"></div>
@@ -1024,13 +1064,15 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 })();
 
 
-const nodes = document.querySelectorAll('.osoba-node');
-const tooltip = document.getElementById('stromTooltip');
+// ── RODOSTROM TOOLTIP ─────────────────────────────────────
+(function() {
+  const nodes   = document.querySelectorAll('.osoba-node');
+  const tooltip = document.getElementById('stromTooltip');
+  const isMobile = () => window.matchMedia('(hover: none)').matches;
 
-nodes.forEach(node => {
-  node.addEventListener('mouseenter', (e) => {
+  function fillTooltip(node) {
     const foto = node.dataset.foto;
-    const tooltipFoto = document.getElementById('tooltipFoto');
+    const tooltipFoto        = document.getElementById('tooltipFoto');
     const tooltipPlaceholder = document.getElementById('tooltipPlaceholder');
 
     if (foto) {
@@ -1043,30 +1085,68 @@ nodes.forEach(node => {
       tooltipPlaceholder.textContent = node.querySelector('.osoba-foto-placeholder')?.textContent || '?';
     }
 
-    document.getElementById('tooltipMeno').textContent = node.dataset.meno;
-    document.getElementById('tooltipRoky').textContent = node.dataset.roky;
+    document.getElementById('tooltipMeno').textContent  = node.dataset.meno;
+    document.getElementById('tooltipRoky').textContent  = node.dataset.roky;
     document.getElementById('tooltipTitul').textContent = node.dataset.titul;
-    document.getElementById('tooltipText').textContent = node.dataset.text;
+    document.getElementById('tooltipText').textContent  = node.dataset.text;
+  }
 
-    tooltip.classList.add('visible');
-    positionTooltip(e);
-  });
+  function positionTooltip(e) {
+    let x = e.clientX + 18;
+    let y = e.clientY - 20;
+    if (x + 360 > window.innerWidth)  x = e.clientX - 360;
+    if (y + 220 > window.innerHeight) y = e.clientY - 220;
+    tooltip.style.left = x + 'px';
+    tooltip.style.top  = y + 'px';
+  }
 
-  node.addEventListener('mousemove', positionTooltip);
-
-  node.addEventListener('mouseleave', () => {
+  function hideTooltip() {
     tooltip.classList.remove('visible');
-  });
-});
+  }
 
-function positionTooltip(e) {
-  let x = e.clientX + 18;
-  let y = e.clientY - 20;
-  if (x + 360 > window.innerWidth) x = e.clientX - 360;
-  if (y + 220 > window.innerHeight) y = e.clientY - 220;
-  tooltip.style.left = x + 'px';
-  tooltip.style.top = y + 'px';
-}
+  nodes.forEach(node => {
+    // Desktop: hover
+    node.addEventListener('mouseenter', (e) => {
+      if (isMobile()) return;
+      fillTooltip(node);
+      tooltip.classList.add('visible');
+      positionTooltip(e);
+    });
+    node.addEventListener('mousemove', (e) => {
+      if (isMobile()) return;
+      positionTooltip(e);
+    });
+    node.addEventListener('mouseleave', () => {
+      if (isMobile()) return;
+      hideTooltip();
+    });
+
+    // Mobile: kliknutie
+    node.addEventListener('click', (e) => {
+      if (!isMobile()) return;
+      e.stopPropagation();
+      const isOpen = tooltip.classList.contains('visible') &&
+                     tooltip.dataset.activeId === node.dataset.id;
+      hideTooltip();
+      if (!isOpen) {
+        fillTooltip(node);
+        tooltip.dataset.activeId = node.dataset.id;
+        tooltip.classList.add('visible');
+      }
+    });
+  });
+
+  // Mobile: klik mimo tooltip zatvára
+  document.addEventListener('click', (e) => {
+    if (isMobile() && !tooltip.contains(e.target)) {
+      hideTooltip();
+    }
+  });
+
+  // Zatvoriť tlačidlo v tooltip (mobile)
+  const closeBtn = document.getElementById('tooltipClose');
+  if (closeBtn) closeBtn.addEventListener('click', hideTooltip);
+})();
 
 // ── LIGHTBOX ──────────────────────────────────────────────
 function openLightbox(src, caption) {
