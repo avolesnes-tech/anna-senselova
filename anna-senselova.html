@@ -543,6 +543,61 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 .tooltip-titul { font-size: 0.78rem; color: #888; font-style: italic; margin-bottom: 0.5rem; line-height: 1.4; }
 .tooltip-text { font-size: 0.88rem; color: #444; line-height: 1.6; }
 
+/* LIGHTBOX */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  padding: 2rem;
+  cursor: zoom-out;
+}
+.lightbox-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 8px 60px rgba(0,0,0,0.6);
+  transition: transform 0.35s ease;
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.lightbox-close:hover { color: var(--gold); }
+.lightbox-caption {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.06em;
+  text-align: center;
+  white-space: nowrap;
+}
+.zastava-foto-card img { cursor: zoom-in; transition: opacity 0.3s; }
+.zastava-foto-card img:hover { opacity: 0.85; }
+
 </style>
 </head>
 <body>
@@ -615,7 +670,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
       <p>Anna Šenšelová (1882 – 1976) bola výnimočná, nesmierne skromná a húževnatá žena, ktorej život sa stal neoddeliteľnou súčasťou histórie slovenského výšivkárstva. Narodila sa na Štedrý deň v Očovej v rodine národovcov a už od detstva ju sprevádzala láska k slovenskej kultúre.</p>
       <p>Hoci jej pôvodným snom bola botanika a práca v záhrade, osud ju v roku 1910 zavial do Martina. Práve tam vznikala legendárna <em>Lipa</em>, účastinárska spoločnosť pre ľudový priemysel, a Anna bola povolaná, aby sa stala jej hybnou silou.</p>
       <p>Aby svojej práci rozumela čo najlepšie, neváhala v 28 rokoch zasadnúť do školských lavíc v Prahe, kde si osvojila najrôznejšie techniky vyšívania. Po návrate sa naplno oddala záchrane tradícií:</p>
-      <ul>
+      <ul style="color: var(--red);">
         <li>V martinskom múzeu trpezlivo študovala a odkresľovala staré vzory, aby sa na ne nezabudlo.</li>
         <li>Pešo prechodila slovenské dediny, hľadala šikovné vyšívačky a získavala si ich dôveru. Sama strihala látky, ktoré následne posielala vyšívačkám.</li>
         <li>Osobne dohliadala na kvalitu každej jednej dečky či kroja — dbala na zachovanie čistoty a pôvodnej krásy ľudového ornamentu.</li>
@@ -814,7 +869,8 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
     <!-- Foto placeholder: vyšívačky -->
     <div class="zastava-foto-grid">
       <div class="zastava-foto-card">
-        <img src="zastava_slobody_vysivacky.jpeg" alt="Vyšívačky zástavy slobody" style="width:100%; aspect-ratio:4/3; object-fit:cover; filter:grayscale(100%) contrast(1.05); border-top:3px solid var(--red);">
+        <img src="zastava_slobody_vysivacky.jpeg" alt="Vyšívačky zástavy slobody" style="width:100%; aspect-ratio:4/3; object-fit:cover; filter:grayscale(100%) contrast(1.05); border-top:3px solid var(--red);"
+          onclick="openLightbox(this.src, this.closest('.zastava-foto-card').querySelector('.zastava-foto-caption').innerText)">
         <p class="zastava-foto-caption">Vyšívačky zástavy slobody —<br>Darina Trnovská (neskôr Šenšelová) druhá zľava v hornom rade</p>
       </div>
       <div class="zastava-foto-card">
@@ -879,6 +935,13 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
   <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
   <p style="margin-top:0.3rem; font-size:0.72rem;">© 2026 · Anna Lockwoodová</p>
 </footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Zavrieť">×</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
 
 <script>
 // ── CAROUSEL ──────────────────────────────────────────────
@@ -1021,6 +1084,22 @@ function positionTooltip(e) {
   if (y + 220 > window.innerHeight) y = e.clientY - 220;
   tooltip.style.left = x + 'px';
   tooltip.style.top = y + 'px';
+}
+
+// ── LIGHTBOX ──────────────────────────────────────────────
+function openLightbox(src, caption) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxCaption').textContent = caption || '';
+  lb.classList.add('open');
+  document.addEventListener('keydown', lightboxKey);
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.removeEventListener('keydown', lightboxKey);
+}
+function lightboxKey(e) {
+  if (e.key === 'Escape') closeLightbox();
 }
 </script>
 
