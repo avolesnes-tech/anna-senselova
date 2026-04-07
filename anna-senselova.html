@@ -153,6 +153,185 @@ h3 { font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 0.16em; t
 .bio-zdroj a { color: var(--gold-dark); text-decoration: none; }
 .bio-zdroj a:hover { color: var(--red); }
 
+/* ZÁSTAVA SECTION */
+#zastava { padding: 6rem 2rem; background: var(--cream); position: relative; overflow: hidden; }
+#zastava::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 20%, rgba(196,30,58,0.04) 0%, transparent 55%),
+              radial-gradient(ellipse at 20% 80%, rgba(212,175,55,0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+.zastava-wrap { max-width: 860px; margin: 0 auto; position: relative; }
+
+.zastava-intro { font-size: 1.05rem; color: #444; line-height: 1.9; margin-bottom: 2rem; font-style: italic; border-left: 3px solid var(--gold); padding-left: 1.4rem; }
+
+.zastava-story-block { margin-bottom: 3rem; }
+.zastava-story-block h3 { margin-bottom: 0.5rem; }
+.zastava-story-block p { font-size: 1.02rem; color: #3a3a3a; line-height: 1.9; margin-bottom: 0.9rem; }
+
+/* Zástava foto grid */
+.zastava-foto-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  margin: 2.5rem 0;
+}
+.zastava-foto-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.zastava-foto-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #f0ece0;
+  border: 1px solid rgba(212,175,55,0.35);
+  border-top: 3px solid var(--red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--gold-dark);
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.zastava-foto-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212,175,55,0.06) 0%, transparent 50%);
+}
+.zastava-foto-placeholder svg {
+  opacity: 0.3;
+  width: 36px;
+  height: 36px;
+  stroke: var(--red);
+}
+.zastava-foto-caption {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--gold-dark);
+  text-align: center;
+  margin-top: 0.6rem;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* PDF odkaz */
+.zastava-source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-decoration: none;
+  border: 1px solid rgba(212,175,55,0.5);
+  padding: 0.55rem 1.1rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: transparent;
+  margin-top: 0.5rem;
+}
+.zastava-source-link:hover {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+.zastava-source-link svg {
+  width: 14px; height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* PDF modal */
+.pdf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 2rem;
+}
+.pdf-modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.pdf-modal {
+  background: var(--cream);
+  border-top: 3px solid var(--red);
+  width: 100%;
+  max-width: 780px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+}
+.pdf-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.4rem;
+  border-bottom: 1px solid rgba(212,175,55,0.3);
+  flex-shrink: 0;
+}
+.pdf-modal-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+.pdf-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 1.5rem;
+  line-height: 1;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 0.2rem;
+}
+.pdf-modal-close:hover { opacity: 1; }
+.pdf-modal iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+  min-height: 0;
+}
+
+/* Ženy Lipy highlight box */
+.lipa-highlight {
+  background: var(--section-alt);
+  border-left: 3px solid var(--red);
+  padding: 1.4rem 1.8rem;
+  margin: 2rem 0;
+}
+.lipa-highlight p {
+  font-size: 1rem;
+  color: #3a3a3a;
+  line-height: 1.85;
+  margin-bottom: 0.7rem;
+}
+.lipa-highlight p:last-child { margin-bottom: 0; }
+
 /* FOOTER */
 footer { background: #111; color: var(--cream); text-align: center; padding: 3rem 2rem; }
 footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 0.5rem; }
@@ -239,6 +418,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 <body>
 <nav>
   <a href="index.html" class="logo">Anna Šenšelová</a>
+  <a href="#zastava" class="nav-back" style="margin-right:1.5rem;">Zástava slobody</a>
   <a href="index.html" class="nav-back">← Späť na hlavnú</a>
 </nav>
 
@@ -463,6 +643,101 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 
 </section>
 
+
+<!-- ZÁSTAVA SLOBODY -->
+<section id="zastava">
+  <div class="zastava-wrap">
+    <div style="text-align:center; margin-bottom:3rem;">
+      <p class="section-label">Výšivka v DNA</p>
+      <h2>Zástava slobody a naše korene</h2>
+      <div class="gold-line"></div>
+    </div>
+
+    <p class="zastava-intro">
+      Keď som začala pátrať po histórii Lipy a Anne Šenšelovej, nečakala som, že objavím niečo, čo ma doslova zastaví v pohybe. Zistila som totiž, že moja láska k vyšívaniu nie je len záľubou — je niečím hlboko zakoreneným, takmer genetickým. Rodina Šenšelovcov mala k ihle a niti vzťah, o ktorom sa mi ani nesnívalo.
+    </p>
+
+    <div class="zastava-story-block">
+      <h3>Tajná misia pod záves</h3>
+      <p>
+        Bol rok 1918 a Slovensko stálo na prahu obrovskej zmeny. Skupina mikulášskych diev sa rozhodla privítať toto oslobodenie spôsobom, ktorý bol v tej dobe nielen symbolický, ale aj nebezpečný — vyšiť vlajku slobody. Pracovali za zamknutými dverami, so zatiahnutými oblokmi, a keď sa niekto pýtal, čo robia, odpovedali, že „vyšívajú oltárne rúcho".
+      </p>
+      <p>
+        Financoval ich Branko Lacko, ktorý zohnal pravý čínsky biely hodváb. Nákres zástavy zhotovil akademický maliar Kostelníček, zlaté a strieborné nite im dodalo ľudové výšivkárske družstvo <em>Lipa</em> z Turčianskeho Sv. Martina — to isté Lipa, kde o niekoľko rokov neskôr pôsobila Anna Šenšelová. Vzory z Čiech, Slovenska, Moravy a Sliezska vyšívala slečinka Uličných, každý roh zástavy mal svoju vyšívačku — štyri devy, štyri kvety, jeden spoločný čin.
+      </p>
+      <p>
+        Každá z vyšívačiek si pred prácou odstrihla prameň vlasov a zavyšívala ho do vzorky zástavy. Kúsok seba doslova všili do látky, do histórie.
+      </p>
+    </div>
+
+    <!-- Foto placeholder: vyšívačky -->
+    <div class="zastava-foto-grid">
+      <div class="zastava-foto-card">
+        <div class="zastava-foto-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          Sem vložiť fotku
+        </div>
+        <p class="zastava-foto-caption">Vyšívačky zástavy slobody —<br>Darina druhá zľava v hornom rade</p>
+      </div>
+      <div class="zastava-foto-card">
+        <div class="zastava-foto-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          Sem vložiť fotku
+        </div>
+        <p class="zastava-foto-caption">Zástava slobody</p>
+      </div>
+      <div class="zastava-foto-card">
+        <div class="zastava-foto-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          Sem vložiť fotku
+        </div>
+        <p class="zastava-foto-caption">Slávnostné zhromaždenie<br>8. december 1918, Liptovský Sv. Mikuláš</p>
+      </div>
+    </div>
+
+    <div class="zastava-story-block">
+      <h3>Moja prastará mama Darina</h3>
+      <p>
+        Medzi tými štyrmi odvážnymi devami bola aj moja prastará mama, <strong>Darina Trnovská</strong>, neskôr Šenšelová — svagriná samotnej Anny Šenšelovej. Keď som to objavila, zostala som chvíľu sedieť bez slova. Nielen že som pochádzala z rodiny spojenej s Lipou — moja vlastná prastará mama fyzicky sedela pri tej istej látke, s ihlou v ruke, a vyšívala kus histórie. A časť seba — doslova, vo vlase — nechala vtknutú v zástave, ktorá dnes odpočíva v múzeu.
+      </p>
+      <p>
+        Zástava bola verejne predstavená 8. decembra 1918 na zhromaždení 15 000 ľudí v Liptovskom Sv. Mikuláši. Posvätili ju spoločne Andrej Hlinka a Jur Janoška. Vojaci pod ňou zložili prísahu. Hviezdoslav napísal špeciálne pre tento deň báseň. Bolo to chvíľa, ktorá sa nedá vymyslieť.
+      </p>
+      <p>
+        V roku 1968, pri päťdesiatom výročí vzniku republiky, sa zástava vrátila domov do Liptovského Mikuláša. A medzi troma vyšívačkami, ktoré ju opäť predstavili verejnosti, bola aj Darina — vtedy už Darina Šenšelová-Trnovská. Hodváb zošedivel, výšivky stratili lesk, no tie ženy nestratili nič.
+      </p>
+    </div>
+
+    <div class="lipa-highlight">
+      <p><strong>Výšivka nebola v rodine len koníček. Bola to misia.</strong></p>
+      <p>
+        Annina matka, <strong>Ľudmila Šenšelová Izáková</strong>, sprostredkovala kontakt medzi Annou a vyšívačkami v Slatine — tiché, nenápadné spojivo, bez ktorého by sa možno Lipa nikdy nedostala k tým správnym ženám. V predajni Lipy v Martine pracovala aj Annina neter, <strong>Viera Helvíghová</strong> — žena s láskou k remeslu, ktorá odišla príliš skoro, zomrela veľmi mladá. Jej staršia sestra, <strong>Daina Helvíghová</strong>, sa potom starala o obe Viery dcéry a neskôr sa v Martine postarala aj o samu Annu Šenšelovú v jej pokročilom veku. Ženy sa niesli navzájom. Vždy.
+      </p>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <p style="font-size:0.95rem; color:#555; line-height:1.8; margin-bottom:1.2rem;">
+        Príbeh zástavy bol prvýkrát zdokumentovaný Jozefom Jurášom, evanjelickým farárom a politickým väzňom, otcom Jána Juráša — krstného syna Anny Šenšelovej. Tento text pochádza z osobného archívu rodiny Jurášovcov a je jedným z mála priamych svedectiev o vzniku zástavy slobody.
+      </p>
+      <button class="zastava-source-link" onclick="document.getElementById('pdfModal').classList.add('open')">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5V8H19l-6-6.5zM8 13h8v1H8v-1zm0 3h8v1H8v-1zm0-6h3v1H8v-1z"/></svg>
+        Prečítať pôvodný text Jozefa Juráša (PDF)
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- PDF Modal -->
+<div class="pdf-modal-overlay" id="pdfModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="pdf-modal">
+    <div class="pdf-modal-header">
+      <span class="pdf-modal-title">Mikulášska Zástava Slobody · Jozef Juráš</span>
+      <button class="pdf-modal-close" onclick="document.getElementById('pdfModal').classList.remove('open')" aria-label="Zavrieť">×</button>
+    </div>
+    <iframe src="Mikula_s_ska_za_stava_slobody.pdf" title="Mikulášska zástava slobody"></iframe>
+  </div>
+</div>
 
 <footer>
   <div class="footer-name">Anna Šenšelová</div>
