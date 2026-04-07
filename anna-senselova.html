@@ -29,10 +29,35 @@
 :root { --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A; --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4; }
 html { scroll-behavior: smooth; }
 body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; }
-nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); text-decoration: none; }
-.nav-back { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
-.nav-back:hover { color: var(--red); }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9998; background: rgba(249,247,242,0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 2.5rem; height: 64px; }
+nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); text-decoration: none; flex-shrink: 0; }
+nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
+nav ul li { position: relative; }
+nav ul li > a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); transition: color 0.3s ease; display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 0; white-space: nowrap; }
+nav ul li > a:hover { color: var(--red); }
+.dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid var(--gold); border-top: 2px solid var(--red); min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; z-index: 200; }
+nav ul li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+.dropdown a { display: block; padding: 0.6rem 1.2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.15); transition: background 0.25s ease, color 0.25s ease; white-space: nowrap; }
+.dropdown a:hover { background: #fdf8f0; color: var(--red); }
+.dropdown .dropdown-label { display: block; padding: 0.5rem 1.2rem 0.3rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); border-bottom: 1px solid rgba(212,175,55,0.3); }
+.hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 0.4rem; z-index: 10000; flex-shrink: 0; position: relative; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 768px) {
+  nav { padding: 0.6rem 1.2rem; }
+  nav .logo { font-size: 1.5rem; }
+  .hamburger { display: flex; }
+  nav ul { display: none; flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0; width: 100%; max-height: calc(100vh - 64px); background: rgba(249,247,242,0.99); backdrop-filter: blur(10px); padding: 1rem 2rem 3rem; align-items: flex-start; z-index: 10000; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+  nav ul.open { display: flex; }
+  nav ul li { width: 100%; border-bottom: 1px solid rgba(212,175,55,0.2); }
+  nav ul li > a { font-size: 1rem; padding: 1rem 0; width: 100%; justify-content: space-between; }
+  .dropdown { position: static; transform: none; opacity: 1; pointer-events: none; box-shadow: none; border: none; border-top: 1px solid rgba(212,175,55,0.2); background: rgba(242,237,228,0.6); display: none; min-width: unset; width: 100%; }
+  .dropdown.open { display: block !important; pointer-events: auto !important; }
+  nav ul li > a:hover .dropdown, nav ul li:hover .dropdown { opacity: 1; pointer-events: none; transform: none; display: none; }
+  nav ul li .dropdown.open { display: block !important; pointer-events: auto !important; }
+}
 /* HERO CAROUSEL */
 #hero {
   position: relative;
@@ -624,7 +649,32 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 <body>
 <nav>
   <a href="index.html" class="logo">Anna Šenšelová</a>
-  <a href="index.html" class="nav-back">← Späť na hlavnú</a>
+  <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li>
+      <a href="#">Príbeh ▾</a>
+      <div class="dropdown">
+        <span class="dropdown-label">Príbeh</span>
+        <a href="anna-senselova.html">Anna Šenšelová</a>
+        <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
+        <a href="lipa.html">Lipa</a>
+        <a href="zivena.html">Živena</a>
+        <a href="o-nas.html">O nás</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Galéria ▾</a>
+      <div class="dropdown">
+        <span class="dropdown-label">Galéria</span>
+        <a href="galeria-vysiviek.html">Vzorkovník výšiviek</a>
+        <a href="galeria-ludove.html">Ľudové výšivky a odev</a>
+        <a href="galeria-babik.html">Krojované bábiky</a>
+      </div>
+    </li>
+    <li><a href="interaktivna-mapa.html">Slovenské výšivky</a></li>
+  </ul>
 </nav>
 
 <!-- HERO CAROUSEL -->
@@ -1148,7 +1198,56 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
   if (closeBtn) closeBtn.addEventListener('click', hideTooltip);
 })();
 
-// ── LIGHTBOX ──────────────────────────────────────────────
+// ── HAMBURGER MENU ────────────────────────────────────────
+(function() {
+  const hamburger = document.getElementById('hamburger');
+  const navMenu   = document.getElementById('nav-menu');
+  if (!hamburger || !navMenu) return;
+
+  function isMobile() { return document.documentElement.clientWidth <= 768; }
+
+  function closeMenu() {
+    navMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+
+  hamburger.addEventListener('click', function() {
+    const isOpen = navMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  navMenu.querySelectorAll('li > a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      const li = this.closest('li');
+      const dropdown = li.querySelector('.dropdown');
+      if (dropdown && isMobile()) {
+        e.preventDefault();
+        navMenu.querySelectorAll('.dropdown.open').forEach(function(d) {
+          if (d !== dropdown) d.classList.remove('open');
+        });
+        dropdown.classList.toggle('open');
+      } else {
+        closeMenu();
+      }
+    });
+  });
+
+  navMenu.querySelectorAll('.dropdown a').forEach(function(link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  window.addEventListener('resize', function() {
+    if (!isMobile()) {
+      closeMenu();
+      navMenu.querySelectorAll('.dropdown.open').forEach(function(d) {
+        d.classList.remove('open');
+      });
+    }
+  });
+})();
+
 function openLightbox(src, caption) {
   const lb = document.getElementById('lightbox');
   document.getElementById('lightboxImg').src = src;
