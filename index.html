@@ -286,7 +286,8 @@ nav ul li:hover .dropdown {
 
   .dropdown.open { display: block; pointer-events: auto; }
   nav ul li > a:hover .dropdown,
-  nav ul li:hover .dropdown { opacity: 1; pointer-events: none; transform: none; }
+  nav ul li:hover .dropdown { opacity: 1; pointer-events: none; transform: none; display: none; }
+  nav ul li .dropdown.open { display: block !important; pointer-events: auto !important; }
 }
 
 /* =============================================
@@ -1311,14 +1312,12 @@ footer .footer-ornament { margin: 0 auto var(--sp-3); opacity: 0.3; }
     navMenu.classList.remove('open');
     hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
   }
 
   hamburger.addEventListener('click', function() {
     const isOpen = navMenu.classList.toggle('open');
     hamburger.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', String(isOpen));
-    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
   navMenu.querySelectorAll('li > a').forEach(function(link) {
