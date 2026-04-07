@@ -213,11 +213,6 @@ nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(-
   pointer-events: none;
 }
 
-@media (max-width: 700px) {
-  .carousel-arrow { display: none; }
-  .carousel-counter { display: none; }
-  .carousel-caption { display: none; }
-}
 
 /* GLOBAL TYPOGRAPHY */
 .section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
@@ -426,10 +421,39 @@ footer .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; 
 footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-top: 0.3rem; }
 
 @media (max-width: 700px) {
+  /* Carousel */
+  .carousel-arrow { display: none; }
+  .carousel-counter { display: none; }
+  .carousel-caption { display: none; }
+
+  /* Príbeh */
   .fotky-grid { grid-template-columns: 1fr; max-width: 360px; }
   .pribeh-layout { grid-template-columns: 1fr; }
   .pribeh-photo-wrap { position: static; max-width: 200px; margin: 0 auto 2rem; }
   .foto-caption { position: static; margin-top: 0.5rem; }
+
+  /* Zástavový foto grid: 3 stĺpce → 1 stĺpec */
+  .zastava-foto-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+
+  /* Rodostrom: zmenšiť karty aby sa zmestili na úzku obrazovku */
+  .strom-wrap { padding: 0 0.5rem; }
+  .gen-row { gap: 0.75rem; }
+  .osoba-node { width: 100px; }
+  .osoba-foto-wrap { width: 56px; height: 56px; }
+  .osoba-node .osoba-meno { font-size: 0.78rem; }
+  .osoba-node .osoba-roky { font-size: 0.55rem; }
+
+  /* Rodostrom tooltip: na mobile pevná poloha dole */
+  .strom-tooltip {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    top: auto;
+    max-width: 100%;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.18);
+  }
 }
 
 /* RODOSTROM */
