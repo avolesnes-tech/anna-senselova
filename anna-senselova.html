@@ -14,88 +14,218 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
 nav .logo { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--red); text-decoration: none; }
 .nav-back { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
 .nav-back:hover { color: var(--red); }
-#hero { min-height: 55vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 9rem 2rem 5rem; background: var(--cream); position: relative; overflow: hidden; }
-#hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.05) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.06) 0%, transparent 60%); pointer-events: none; }
-#hero > * { position: relative; z-index: 1; }
+/* HERO CAROUSEL */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  background: #0e0c0a;
+}
+
+/* Slides */
+.carousel-slides {
+  position: absolute;
+  inset: 0;
+}
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  will-change: opacity, transform;
+}
+.carousel-slide.active {
+  opacity: 1;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%) sepia(25%) contrast(1.05) brightness(0.55);
+  transform: scale(1.06);
+  transition: transform 7s ease-out;
+}
+.carousel-slide.active img {
+  transform: scale(1.0);
+}
+
+/* Grain overlay */
+.carousel-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Vignette */
+.carousel-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Bottom gradient for text legibility */
+.carousel-bottom-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  background: linear-gradient(to top, rgba(10,8,6,0.88) 0%, transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Hero text */
+.carousel-text {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 5;
+  text-align: center;
+  padding: 0 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carousel-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroFadeUp 1.1s 0.3s forwards ease-out;
+  margin-bottom: 0.6rem;
+}
+.carousel-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(4rem, 10vw, 8rem);
+  color: #fff;
+  line-height: 1.1;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroFadeUp 1.1s 0.55s forwards ease-out;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+}
+.carousel-gold-line {
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1rem auto;
+  opacity: 0;
+  animation: heroFadeUp 1.1s 0.8s forwards ease-out;
+}
+.carousel-dates {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroFadeUp 1.1s 1s forwards ease-out;
+}
+
+@keyframes heroFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Caption overlay — bottom left */
+.carousel-caption {
+  position: absolute;
+  bottom: 5rem;
+  left: 2.5rem;
+  z-index: 6;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+/* Navigation arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 7;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  color: rgba(255,255,255,0.5);
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+.carousel-arrow:hover { color: var(--gold); }
+.carousel-arrow svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.2; }
+.carousel-arrow.prev { left: 1.5rem; }
+.carousel-arrow.next { right: 1.5rem; }
+
+/* Dots */
+.carousel-dots {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 7;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.carousel-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.4s, width 0.4s, border-radius 0.4s;
+}
+.carousel-dot.active {
+  background: var(--gold);
+  width: 22px;
+  border-radius: 3px;
+}
+
+/* Counter */
+.carousel-counter {
+  position: absolute;
+  top: 50%;
+  right: 2.5rem;
+  transform: translateY(-50%);
+  z-index: 7;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.35);
+  writing-mode: vertical-rl;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  .carousel-arrow { display: none; }
+  .carousel-counter { display: none; }
+  .carousel-caption { display: none; }
+}
+
+/* GLOBAL TYPOGRAPHY */
 .section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
 h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem); color: var(--red); line-height: 1.75; }
 h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.2rem, 4vw, 3.5rem); color: var(--red); line-height: 1.75; margin-bottom: 0.5rem; }
 h3 { font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem; }
 .gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1rem auto 1.8rem; }
 .hero-dates { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.2em; color: var(--gold-dark); text-transform: uppercase; }
-
-/* FOTO KARTY – vintage efekt */
-#fotky { padding: 5rem 2rem; background: var(--section-alt); }
-.fotky-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 960px; margin: 0 auto; }
-
-.foto-card {
-  position: relative;
-  aspect-ratio: 1;
-  cursor: pointer;
-  transition: transform 0.4s ease;
-}
-.foto-card:hover { transform: scale(1.03) rotate(0.3deg); }
-
-/* Vintage rám */
-.foto-card::before {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  background: linear-gradient(135deg, #e8dfc8, #f5efe0, #d4c9a8, #f0e8d0);
-  z-index: 0;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.25), inset 0 0 12px rgba(0,0,0,0.08);
-}
-.foto-card::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border: 1px solid rgba(160,124,16,0.3);
-  z-index: 1;
-}
-
-.foto-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 2;
-}
-.foto-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  background: #f0ece0;
-  filter: sepia(40%) contrast(0.95) brightness(0.92) saturate(0.7);
-  transition: filter 0.5s ease;
-}
-.foto-card:hover img {
-  filter: sepia(20%) contrast(1.0) brightness(0.98) saturate(0.85);
-}
-
-/* Vintage vignette overlay */
-.foto-card-inner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 60%, rgba(26,10,14,0.35) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.foto-caption {
-  position: absolute;
-  bottom: -2rem;
-  left: 0; right: 0;
-  text-align: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.8rem;
-  font-style: italic;
-  color: var(--gold-dark);
-  letter-spacing: 0.06em;
-  z-index: 3;
-}
 
 /* PRÍBEH */
 #pribeh { padding: 6rem 2rem; background: var(--cream); }
@@ -418,49 +548,56 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 <body>
 <nav>
   <a href="index.html" class="logo">Anna Šenšelová</a>
-  <a href="#zastava" class="nav-back" style="margin-right:1.5rem;">Zástava slobody</a>
   <a href="index.html" class="nav-back">← Späť na hlavnú</a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO CAROUSEL -->
 <section id="hero">
-  <p class="section-label">Príbeh</p>
-  <h1>Anna Šenšelová</h1>
-  <div class="gold-line"></div>
-  <p class="hero-dates">1882, Očová – 1976, Martin</p>
-</section>
+  <div class="carousel-slides">
 
-<!-- FOTKY -->
-<section id="fotky">
-  <div style="text-align:center; margin-bottom:3rem;">
-    <p class="section-label">Rodinné fotografie</p>
+    <div class="carousel-slide active" data-caption="Rodinná fotografia">
+      <img src="anna_senselova_fotka1.jpeg" alt="Rodinná fotografia">
+    </div>
+
+    <div class="carousel-slide" data-caption="Rodinné stretnutie">
+      <img src="anna_senselova_fotka2.jpeg" alt="Rodinné stretnutie">
+    </div>
+
+    <div class="carousel-slide" data-caption="Anna Šenšelová s rodinou">
+      <img src="anna_senselova_fotka3.jpeg" alt="Anna Šenšelová s rodinou">
+    </div>
+
+    <!-- Sem pridaj ďalšie fotky rovnakým spôsobom:
+    <div class="carousel-slide" data-caption="Popis fotky">
+      <img src="nazov_fotky.jpg" alt="Popis fotky">
+    </div>
+    -->
+
   </div>
-  <div class="fotky-grid">
-    <div style="display:flex; flex-direction:column; align-items:center;">
-      <div class="foto-card">
-        <div class="foto-card-inner">
-          <img src="anna_senselova_fotka1.jpeg" alt="Rodinná fotografia">
-        </div>
-      </div>
-      <p class="foto-caption" style="margin-top:0.8rem;">Rodinná fotografia</p>
-    </div>
-    <div style="display:flex; flex-direction:column; align-items:center;">
-      <div class="foto-card">
-        <div class="foto-card-inner">
-          <img src="anna_senselova_fotka2.jpeg" alt="Rodinné stretnutie">
-        </div>
-      </div>
-      <p class="foto-caption" style="margin-top:0.8rem;">Rodinné stretnutie</p>
-    </div>
-    <div style="display:flex; flex-direction:column; align-items:center;">
-      <div class="foto-card">
-        <div class="foto-card-inner">
-          <img src="anna_senselova_fotka3.jpeg" alt="Anna Šenšelová s rodinou">
-        </div>
-      </div>
-      <p class="foto-caption" style="margin-top:0.8rem;">Anna Šenšelová s rodinou</p>
-    </div>
+
+  <div class="carousel-grain"></div>
+  <div class="carousel-vignette"></div>
+  <div class="carousel-bottom-fade"></div>
+
+  <div class="carousel-text">
+    <p class="carousel-label">Príbeh</p>
+    <h1 class="carousel-title">Anna Šenšelová</h1>
+    <div class="carousel-gold-line"></div>
+    <p class="carousel-dates">1882, Očová &ndash; 1976, Martin</p>
   </div>
+
+  <p class="carousel-caption" id="carouselCaption">Rodinná fotografia</p>
+
+  <button class="carousel-arrow prev" id="carouselPrev" aria-label="Predchádzajúca">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="carousel-arrow next" id="carouselNext" aria-label="Nasledujúca">
+    <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+  </button>
+
+  <div class="carousel-dots" id="carouselDots"></div>
+
+  <div class="carousel-counter" id="carouselCounter">01 / 03</div>
 </section>
 
 <!-- PRÍBEH -->
@@ -744,7 +881,104 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 </footer>
 
 <script>
-// Rodostrom tooltip
+// ── CAROUSEL ──────────────────────────────────────────────
+(function() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsWrap = document.getElementById('carouselDots');
+  const counter  = document.getElementById('carouselCounter');
+  const caption  = document.getElementById('carouselCaption');
+  const total    = slides.length;
+  let current    = 0;
+  let timer      = null;
+  let isAnimating = false;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Snímka ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function updateUI(idx) {
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === idx);
+    });
+    counter.textContent = pad(idx + 1) + ' / ' + pad(total);
+    // Caption fade
+    caption.style.opacity = '0';
+    setTimeout(() => {
+      caption.textContent = slides[idx].dataset.caption || '';
+      caption.style.opacity = '1';
+    }, 400);
+  }
+
+  function goTo(idx, dir) {
+    if (isAnimating || idx === current) return;
+    isAnimating = true;
+
+    const prev = current;
+    current = (idx + total) % total;
+
+    // Ken Burns: reset next slide image scale
+    const nextImg = slides[current].querySelector('img');
+    nextImg.style.transition = 'none';
+    nextImg.style.transform = 'scale(1.06)';
+
+    slides[prev].classList.remove('active');
+    slides[current].classList.add('active');
+
+    // Trigger Ken Burns on next slide
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        nextImg.style.transition = 'transform 7s ease-out';
+        nextImg.style.transform = 'scale(1.0)';
+      });
+    });
+
+    updateUI(current);
+
+    setTimeout(() => { isAnimating = false; }, 1300);
+    resetTimer();
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 5500);
+  }
+
+  document.getElementById('carouselNext').addEventListener('click', next);
+  document.getElementById('carouselPrev').addEventListener('click', prev);
+
+  // Touch / swipe
+  let touchX = null;
+  document.getElementById('hero').addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  document.getElementById('hero').addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+    touchX = null;
+  }, { passive: true });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft')  prev();
+  });
+
+  // Init
+  updateUI(0);
+  caption.style.transition = 'opacity 0.5s ease';
+  resetTimer();
+})();
+
+
 const nodes = document.querySelectorAll('.osoba-node');
 const tooltip = document.getElementById('stromTooltip');
 
