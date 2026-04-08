@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stránka nenájdená – Vyšívané poklady Anny Šenšelovej</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A;
+  --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; line-height: 1.7;
+  overflow-x: hidden;
+  opacity: 1; transition: opacity 0.35s ease;
+}
+body.page-leaving { opacity: 0; }
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute; top: -100%; left: 1rem;
+  background: var(--red); color: #fff;
+  padding: 0.55rem 1.2rem;
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; z-index: 99999;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(249,247,242,0.96); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.6rem 2.5rem; height: 64px;
+}
+nav .logo {
+  font-family: 'Pinyon Script', cursive; font-size: 2rem;
+  color: var(--red); text-decoration: none; flex-shrink: 0;
+}
+.nav-back {
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold-dark); text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-back:hover { color: var(--red); }
+.nav-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ── MAIN ── */
+main {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 5rem;
+  position: relative; overflow: hidden;
+}
+
+/* Jemný gradient pozadie */
+main::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 25% 40%, rgba(196,30,58,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 60%, rgba(212,175,55,0.07) 0%, transparent 55%);
+  pointer-events: none;
+}
+main > * { position: relative; z-index: 1; }
+
+/* ── Vyšívací ornament – SVG ── */
+.ornament-wrap {
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeDown 1s 0.2s forwards;
+}
+
+/* ── 404 číslo ── */
+.error-number {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(6rem, 20vw, 14rem);
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+.gold-line {
+  width: 160px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1.5rem auto;
+  opacity: 0;
+  animation: fadeIn 1s 0.9s forwards;
+}
+
+.error-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: 0.8rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.8s forwards;
+}
+
+.error-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--ink); line-height: 1.75;
+  opacity: 0;
+  animation: fadeUp 1s 1s forwards;
+}
+
+.error-text {
+  font-size: 1.05rem; color: #555;
+  max-width: 520px; margin: 1.5rem auto 0;
+  font-style: italic; line-height: 1.85;
+  opacity: 0;
+  animation: fadeUp 1s 1.2s forwards;
+}
+
+/* ── CTA tlačidlá ── */
+.error-ctas {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 1.4s forwards;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none;
+  background: var(--red); color: var(--cream);
+  border: 1px solid var(--red);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.btn-primary:hover { background: #a01830; box-shadow: 0 4px 18px rgba(196,30,58,0.3); }
+.btn-primary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none;
+  color: var(--red); border: 1px solid var(--red);
+  background: transparent;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-secondary:hover { background: var(--red); color: var(--cream); }
+.btn-secondary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ── Rýchle linky ── */
+.quick-links {
+  margin-top: 3.5rem;
+  opacity: 0;
+  animation: fadeIn 1s 1.8s forwards;
+}
+.quick-links p {
+  font-family: 'Cinzel', serif; font-size: 0.7rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold-dark); margin-bottom: 1rem;
+}
+.quick-links ul {
+  list-style: none;
+  display: flex; flex-wrap: wrap;
+  gap: 0.6rem; justify-content: center;
+}
+.quick-links ul li a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem; color: #777;
+  text-decoration: none; letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(212,175,55,0.4);
+  padding-bottom: 1px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.quick-links ul li a:hover { color: var(--red); border-color: var(--red); }
+.quick-links ul li a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.quick-links ul li::after { content: '·'; color: var(--gold); margin-left: 0.6rem; font-size: 0.8rem; }
+.quick-links ul li:last-child::after { content: ''; }
+
+/* ── FOOTER ── */
+footer {
+  background: #111; color: var(--cream);
+  text-align: center; padding: 2.5rem 2rem;
+}
+.footer-name {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 2rem; color: var(--gold);
+}
+footer p {
+  font-size: 0.75rem; letter-spacing: 0.12em;
+  text-transform: uppercase; opacity: 0.55; margin-top: 0.4rem;
+}
+
+/* ── prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* Pri reduced motion – okamžite zobraziť všetko */
+  .ornament-wrap, .error-number, .gold-line, .error-label,
+  .error-title, .error-text, .error-ctas, .quick-links {
+    opacity: 1 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 0.6rem 1.2rem; }
+  nav .logo { font-size: 1.5rem; }
+  .error-ctas { flex-direction: column; align-items: center; }
+}
+
+/* ── Animácie ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes stitch {
+  0%   { stroke-dashoffset: 400; }
+  100% { stroke-dashoffset: 0; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Preskočiť na obsah</a>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Anna Šenšelová</a>
+  <a href="index.html" class="nav-back">← Späť na hlavnú</a>
+</nav>
+
+<!-- MAIN -->
+<main id="main-content">
+
+  <!-- Vyšívací ornament -->
+  <div class="ornament-wrap" aria-hidden="true">
+    <svg width="220" height="60" viewBox="0 0 220 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Stredový diamant -->
+      <polygon points="110,12 124,30 110,48 96,30"
+        fill="none" stroke="#C41E3A" stroke-width="1.2" opacity="0.7"
+        stroke-dasharray="400" stroke-dashoffset="400"
+        style="animation: stitch 2s 0.5s ease forwards;"/>
+      <!-- Ľavá linka -->
+      <line x1="94" y1="30" x2="30" y2="30" stroke="#D4AF37" stroke-width="0.8"/>
+      <circle cx="70" cy="30" r="3" fill="none" stroke="#D4AF37" stroke-width="1"/>
+      <circle cx="70" cy="30" r="1" fill="#D4AF37"/>
+      <ellipse cx="34" cy="30" rx="6" ry="3" fill="none" stroke="#D4AF37" stroke-width="0.9" opacity="0.7"/>
+      <!-- Pravá linka -->
+      <line x1="126" y1="30" x2="190" y2="30" stroke="#D4AF37" stroke-width="0.8"/>
+      <circle cx="150" cy="30" r="3" fill="none" stroke="#D4AF37" stroke-width="1"/>
+      <circle cx="150" cy="30" r="1" fill="#D4AF37"/>
+      <ellipse cx="186" cy="30" rx="6" ry="3" fill="none" stroke="#D4AF37" stroke-width="0.9" opacity="0.7"/>
+      <!-- Malé červené body -->
+      <circle cx="50" cy="30" r="2" fill="#C41E3A" opacity="0.6"/>
+      <circle cx="170" cy="30" r="2" fill="#C41E3A" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <p class="error-label">Stránka nenájdená</p>
+  <div class="error-number" aria-label="Chyba 404">404</div>
+  <div class="gold-line"></div>
+
+  <h1 class="error-title">Táto stránka sa stratila<br>v pivnici.</h1>
+
+  <p class="error-text">
+    Ako výšivka zabudnutá medzi starou bielizňou — stránka, ktorú hľadáte,
+    tu nie je. Možno sme ju presunuli, možno ešte len čaká na objavenie.
+  </p>
+
+  <div class="error-ctas">
+    <a href="index.html" class="btn-primary">← Späť na hlavnú</a>
+    <a href="spojme-sa.html" class="btn-secondary">Napíšte mi</a>
+  </div>
+
+  <!-- Rýchle linky -->
+  <nav class="quick-links" aria-label="Rýchla navigácia">
+    <p>Alebo skúste niektorú z týchto stránok</p>
+    <ul>
+      <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
+      <li><a href="lipa.html">Lipa</a></li>
+      <li><a href="zivena.html">Živena</a></li>
+      <li><a href="interaktivna-mapa.html">Mapa krojov</a></li>
+      <li><a href="spojme-sa.html">Spojme sa</a></li>
+    </ul>
+  </nav>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Anna Šenšelová</div>
+  <p>Vyšívané poklady Anny Šenšelovej · Hontiansky región · Slovensko</p>
+</footer>
+
+<script>
+/* Page transition (fade in) */
+(function() {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'none';
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      document.body.style.transition = 'opacity 0.4s ease';
+      document.body.style.opacity = '1';
+    });
+  });
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function() { window.location.href = href; }, 360);
+  });
+})();
+</script>
+</body>
+</html>

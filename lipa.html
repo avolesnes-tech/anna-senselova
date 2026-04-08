@@ -190,8 +190,8 @@ tbody tr:hover { background: rgba(212,175,55,0.06); }
 tbody td { padding: 0.7rem 1rem; text-align: center; color: #444; font-size: 0.93rem; }
 tbody td:first-child { font-family: 'Cinzel', serif; font-weight: 600; color: var(--red); font-size: 0.88rem; }
 tfoot tr { background: rgba(196,30,58,0.05); border-top: 2px solid var(--gold); }
-tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: #888; text-align: center; }
-.table-note { font-size: 0.82rem; font-style: italic; color: #888; margin-top: 1rem; text-align: center; }
+tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: #767676; text-align: center; }
+.table-note { font-size: 0.82rem; font-style: italic; color: #767676; margin-top: 1rem; text-align: center; }
 
 /* BRATISLAVA */
 #bratislava { background: var(--cream); }
@@ -826,10 +826,63 @@ footer a:hover { opacity: 1; }
   .intro-aside { position: static; max-width: 200px; margin: 0 auto 2.5rem; }
 }
 </style>
+<style>
+/* ── A11Y: Skip link ── */
+.skip-link {
+  position: absolute; top: -100%; left: 1rem;
+  background: var(--red); color: #fff;
+  padding: 0.55rem 1.2rem;
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; z-index: 99999;
+  transition: top 0.2s ease;
+  border-bottom: 2px solid var(--gold);
+}
+.skip-link:focus { top: 0; }
+
+/* ── Reading progress bar ── */
+.reading-progress {
+  position: fixed; top: 0; left: 0;
+  width: 0%; height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 99998; pointer-events: none;
+  transition: width 0.1s linear;
+}
+
+/* ── Page transition ── */
+body { opacity: 1; transition: opacity 0.35s ease; }
+body.page-leaving { opacity: 0; }
+
+/* ── Reveal animácie ── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ── prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── scroll-margin-top pre zakotvené sekcie ── */
+section[id], div[id] { scroll-margin-top: 72px; }
+</style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Preskočiť na obsah</a>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
 
 <!-- NAV -->
+<span id="main-content" style="position:absolute;margin-top:-80px;"></span>
 <nav>
   <a href="index.html" class="logo">Anna Šenšelová</a>
   <ul>
