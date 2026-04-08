@@ -26,6 +26,52 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* =============================================
+   SKIP LINK
+   ============================================= */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--red);
+  color: #fff;
+  padding: 0.55rem 1.2rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 99999;
+  transition: top 0.2s ease;
+  border-bottom: 2px solid var(--gold);
+}
+.skip-link:focus { top: 0; }
+
+/* =============================================
+   PAGE TRANSITION
+   ============================================= */
+body.page-leaving { opacity: 0; }
+
+/* =============================================
+   READING PROGRESS BAR
+   ============================================= */
+.reading-progress {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 9997;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* =============================================
+   SCROLL MARGIN — aby fixed nav neprekrýval sekcie
+   ============================================= */
+section[id] { scroll-margin-top: 80px; }
 :root { --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A; --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4; }
 html { scroll-behavior: smooth; }
 body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
@@ -647,6 +693,8 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Preskočiť na obsah</a>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
 <nav>
   <a href="index.html" class="logo">Anna Šenšelová</a>
   <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
@@ -678,7 +726,8 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 </nav>
 
 <!-- HERO CAROUSEL -->
-<section id="hero">
+<section id="hero" aria-label="Úvod">
+  <span id="main" style="position:absolute;"></span>
   <div class="carousel-slides">
 
     <div class="carousel-slide active" data-caption="Rodinná fotografia">
@@ -1083,10 +1132,19 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
   function next() { goTo(current + 1); }
   function prev() { goTo(current - 1); }
 
+  let isPaused = false;
+
   function resetTimer() {
     clearInterval(timer);
-    timer = setInterval(next, 5500);
+    timer = setInterval(() => { if (!isPaused) next(); }, 5500);
   }
+
+  // Pauza pri hoveri a focuse — WCAG 2.1 kritérium 2.2.2
+  const heroEl = document.getElementById('hero');
+  heroEl.addEventListener('mouseenter', () => { isPaused = true; });
+  heroEl.addEventListener('mouseleave', () => { isPaused = false; });
+  heroEl.addEventListener('focusin',    () => { isPaused = true; });
+  heroEl.addEventListener('focusout',   () => { isPaused = false; });
 
   document.getElementById('carouselNext').addEventListener('click', next);
   document.getElementById('carouselPrev').addEventListener('click', prev);
@@ -1262,6 +1320,40 @@ function closeLightbox() {
 function lightboxKey(e) {
   if (e.key === 'Escape') closeLightbox();
 }
+
+// ── PAGE TRANSITIONS ──────────────────────────────────────
+(function() {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'none';
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.body.style.transition = 'opacity 0.4s ease';
+      document.body.style.opacity = '1';
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || link.target === '_blank') return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(() => { window.location.href = href; }, 360);
+  });
+})();
+
+// ── READING PROGRESS ──────────────────────────────────────
+(function() {
+  const bar = document.getElementById('readingProgress');
+  if (!bar) return;
+  function update() {
+    const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
 </script>
 
 </body>
