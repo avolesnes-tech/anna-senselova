@@ -81,7 +81,8 @@ nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
 nav ul li { position: relative; }
 nav ul li > a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); transition: color 0.3s ease; display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 0; white-space: nowrap; }
 nav ul li > a:hover { color: var(--red); }
-.dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid var(--gold); border-top: 2px solid var(--red); min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; z-index: 200; }
+.dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid var(--gold); border-top: 2px solid var(--red); min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; z-index: 200; padding-top: 8px; }
+.dropdown::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; background: transparent; }
 nav ul li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
 .dropdown a { display: block; padding: 0.6rem 1.2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.15); transition: background 0.25s ease, color 0.25s ease; white-space: nowrap; }
 .dropdown a:hover { background: #fdf8f0; color: var(--red); }

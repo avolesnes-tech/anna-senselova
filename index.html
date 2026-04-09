@@ -197,7 +197,7 @@ nav ul li > a:focus-visible,
 
 .dropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(6px);
   background: #fff;
@@ -209,6 +209,20 @@ nav ul li > a:focus-visible,
   pointer-events: none;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
   z-index: 200;
+  /* Bridge gap between nav link and dropdown so hover doesn't break */
+  padding-top: 8px;
+  margin-top: 0;
+}
+
+/* Invisible bridge above dropdown to prevent hover gap */
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: transparent;
 }
 
 nav ul li:hover .dropdown {

@@ -59,7 +59,8 @@ nav ul li > a:hover { color: var(--red); }
 nav ul li > a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 nav ul li > a .arrow { font-size: 0.6rem; opacity: 0.5; transition: transform 0.3s; }
 nav ul li:hover > a .arrow { transform: rotate(180deg); }
-.dropdown { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid var(--gold); border-top: 2px solid var(--red); min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 200; visibility: hidden; }
+.dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(6px); background: #fff; border: 1px solid var(--gold); border-top: 2px solid var(--red); min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10); opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 200; visibility: hidden; padding-top: 8px; }
+.dropdown::before { content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px; background: transparent; }
 nav ul li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); visibility: visible; }
 .dropdown a { display: block; padding: 0.6rem 1.2rem; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.07em; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(212,175,55,0.15); transition: background 0.2s, color 0.2s, padding 0.2s; white-space: nowrap; }
 .dropdown a:last-child { border-bottom: none; }
