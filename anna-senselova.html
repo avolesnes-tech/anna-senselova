@@ -745,41 +745,44 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 .osoba-node.hlavna .osoba-meno { color: var(--red); }
 .osoba-node .osoba-roky { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--gold-dark); margin-top: 0.15rem; text-align: center; }
 
-/* Tooltip */
+/* Tooltip — desktop */
 .strom-tooltip {
+  display: none;
   position: fixed;
   background: #fff;
   border: 1px solid var(--gold);
   border-top: 3px solid var(--red);
   box-shadow: 0 12px 40px rgba(0,0,0,0.18);
-  display: flex;
+  flex-direction: row;
   gap: 1rem;
   padding: 1rem;
   max-width: 340px;
-  z-index: 500;
-  opacity: 0;
+  z-index: 9999;
   pointer-events: none;
-  transition: opacity 0.2s ease;
 }
-.strom-tooltip.visible { opacity: 1; pointer-events: all; }
+.strom-tooltip.visible {
+  display: flex;
+  pointer-events: all;
+}
 
-/* Zatvárací krížik — skrytý na desktope, viditeľný na mobile */
+/* Zatvárací krížik */
 .tooltip-close {
   display: none;
   position: absolute;
-  top: 0.4rem; right: 0.5rem;
+  top: 0.5rem; right: 0.6rem;
   background: none;
   border: none;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   line-height: 1;
-  color: #aaa;
+  color: #999;
   cursor: pointer;
   padding: 0.2rem 0.4rem;
+  z-index: 1;
 }
 .tooltip-close:hover { color: var(--red); }
 
-@media (hover: none) {
-  .tooltip-close { display: block; }
+/* Tooltip — mobile: panel dole cez celú šírku */
+@media (max-width: 768px) {
   .strom-tooltip {
     position: fixed !important;
     bottom: 0 !important;
@@ -787,21 +790,24 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
     right: 0 !important;
     top: auto !important;
     max-width: 100% !important;
-    max-height: 60vh;
+    width: 100%;
+    max-height: 55vh;
     overflow-y: auto;
-    border-radius: 0;
+    border-radius: 16px 16px 0 0;
     border-left: none;
     border-right: none;
-    box-shadow: 0 -8px 32px rgba(0,0,0,0.22);
-    z-index: 9999;
-    flex-direction: row;
+    border-bottom: none;
+    border-top: 3px solid var(--red);
+    box-shadow: 0 -6px 32px rgba(0,0,0,0.22);
+    padding: 2.5rem 1.2rem 1.5rem;
+    gap: 1rem;
     align-items: flex-start;
-    padding: 1.2rem 1rem 1.2rem 1rem;
-    padding-bottom: max(1.2rem, env(safe-area-inset-bottom));
+    pointer-events: all;
   }
-  .tooltip-content {
-    overflow-y: auto;
-    max-height: calc(60vh - 3rem);
+  .tooltip-close { display: block; }
+  .tooltip-text {
+    font-size: 0.95rem;
+    line-height: 1.65;
   }
 }
 
@@ -1396,7 +1402,9 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 (function() {
   const nodes   = document.querySelectorAll('.osoba-node');
   const tooltip = document.getElementById('stromTooltip');
-  const isMobile = () => window.matchMedia('(hover: none)').matches;
+  if (!tooltip) return;
+
+  const isTouchDevice = () => window.matchMedia('(max-width: 768px)').matches;
 
   function fillTooltip(node) {
     const foto = node.dataset.foto;
@@ -1410,73 +1418,86 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
     } else {
       tooltipFoto.style.display = 'none';
       tooltipPlaceholder.style.display = 'block';
-      tooltipPlaceholder.textContent = node.querySelector('.osoba-foto-placeholder')?.textContent || '?';
+      tooltipPlaceholder.textContent = '?';
     }
 
-    document.getElementById('tooltipMeno').textContent  = node.dataset.meno;
-    document.getElementById('tooltipRoky').textContent  = node.dataset.roky;
-    document.getElementById('tooltipTitul').textContent = node.dataset.titul;
-    document.getElementById('tooltipText').textContent  = node.dataset.text;
+    document.getElementById('tooltipMeno').textContent  = node.dataset.meno  || '';
+    document.getElementById('tooltipRoky').textContent  = node.dataset.roky  || '';
+    document.getElementById('tooltipTitul').textContent = node.dataset.titul || '';
+    document.getElementById('tooltipText').textContent  = node.dataset.text  || '';
   }
 
   function positionTooltip(e) {
+    // Na mobile nenastavujeme pozíciu — CSS ju fixuje dole
+    if (isTouchDevice()) {
+      tooltip.style.left = '';
+      tooltip.style.top  = '';
+      return;
+    }
     let x = e.clientX + 18;
     let y = e.clientY - 20;
-    if (x + 360 > window.innerWidth)  x = e.clientX - 360;
-    if (y + 220 > window.innerHeight) y = e.clientY - 220;
+    if (x + 360 > window.innerWidth)  x = e.clientX - 378;
+    if (y + 240 > window.innerHeight) y = window.innerHeight - 250;
+    if (y < 70) y = 70;
     tooltip.style.left = x + 'px';
     tooltip.style.top  = y + 'px';
   }
 
+  function showTooltip(node, e) {
+    fillTooltip(node);
+    tooltip.dataset.activeId = node.dataset.id;
+    positionTooltip(e || { clientX: 0, clientY: 0 });
+    tooltip.classList.add('visible');
+  }
+
   function hideTooltip() {
     tooltip.classList.remove('visible');
+    tooltip.dataset.activeId = '';
   }
 
   nodes.forEach(node => {
-    // Desktop: hover
-    node.addEventListener('mouseenter', (e) => {
-      if (isMobile()) return;
-      fillTooltip(node);
-      tooltip.classList.add('visible');
-      positionTooltip(e);
-    });
-    node.addEventListener('mousemove', (e) => {
-      if (isMobile()) return;
-      positionTooltip(e);
-    });
-    node.addEventListener('mouseleave', () => {
-      if (isMobile()) return;
-      hideTooltip();
-    });
-
-    // Mobile: kliknutie
+    // Klik funguje VŽDY — na mobile aj desktope
     node.addEventListener('click', (e) => {
-      if (!isMobile()) return;
       e.stopPropagation();
       const isOpen = tooltip.classList.contains('visible') &&
                      tooltip.dataset.activeId === node.dataset.id;
-      hideTooltip();
-      if (!isOpen) {
-        fillTooltip(node);
-        tooltip.dataset.activeId = node.dataset.id;
-        // reset inline styles so CSS fixed/bottom positioning takes over
-        tooltip.style.left = '';
-        tooltip.style.top  = '';
-        tooltip.classList.add('visible');
+      if (isOpen) {
+        hideTooltip();
+      } else {
+        showTooltip(node, e);
       }
+    });
+
+    // Hover — len na desktope (nad 768px)
+    node.addEventListener('mouseenter', (e) => {
+      if (isTouchDevice()) return;
+      showTooltip(node, e);
+    });
+    node.addEventListener('mousemove', (e) => {
+      if (isTouchDevice()) return;
+      if (tooltip.classList.contains('visible')) positionTooltip(e);
+    });
+    node.addEventListener('mouseleave', () => {
+      if (isTouchDevice()) return;
+      hideTooltip();
     });
   });
 
-  // Mobile: klik mimo tooltip zatvára
+  // Klik mimo tooltip zatvára (mobile aj desktop)
   document.addEventListener('click', (e) => {
-    if (isMobile() && !tooltip.contains(e.target)) {
+    if (!tooltip.contains(e.target)) {
       hideTooltip();
     }
   });
 
-  // Zatvoriť tlačidlo v tooltip (mobile)
+  // Zatvoriť tlačidlo
   const closeBtn = document.getElementById('tooltipClose');
-  if (closeBtn) closeBtn.addEventListener('click', hideTooltip);
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hideTooltip();
+    });
+  }
 })();
 
 // ── HAMBURGER MENU + DESKTOP DROPDOWN (hover s delay) ────────────────────────────────────────
