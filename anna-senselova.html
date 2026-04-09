@@ -322,7 +322,7 @@ h3 { font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 0.16em; t
 .pribeh-text ul { list-style: none; margin: 0.5rem 0 1.3rem; padding: 0; }
 .pribeh-text ul li { font-size: 1.02rem; color: #333; padding: 0.35rem 0 0.35rem 1.6rem; position: relative; line-height: 1.75; }
 .pribeh-text ul li::before { content: '✦'; position: absolute; left: 0; color: var(--red); font-size: 0.6rem; top: 0.6rem; }
-.pribeh-signature { font-style: italic; font-size: 1rem; color: #555; border-left: 3px solid var(--gold); padding-left: 1.2rem; margin-top: 1.5rem; }
+.pribeh-signature { font-style: italic; font-size: 1rem; color: #555; border-left: 3px solid var(--gold); padding-left: 1.2rem; margin-top: 2.2rem; padding-top: 0.2rem; }
 
 
 
@@ -504,6 +504,43 @@ h3 { font-family: 'Cinzel', serif; font-size: 0.88rem; letter-spacing: 0.16em; t
   margin-bottom: 0.7rem;
 }
 .lipa-highlight p:last-child { margin-bottom: 0; }
+
+/* OLGA KAPUSTOVÁ QUOTE */
+.olga-quote {
+  margin: 2rem 0 1.8rem;
+  padding: 1.6rem 1.8rem;
+  background: var(--section-alt);
+  border-left: 3px solid var(--gold);
+  position: relative;
+}
+.olga-quote::before {
+  content: '\201E';
+  position: absolute;
+  top: -0.5rem;
+  left: 1.2rem;
+  font-family: 'Pinyon Script', cursive;
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.2;
+  line-height: 1;
+  pointer-events: none;
+}
+.olga-quote-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 0.9rem;
+}
+.olga-quote p:not(.olga-quote-label) {
+  font-size: 1.02rem;
+  color: #3a3a3a;
+  line-height: 1.85;
+  font-style: normal;
+  margin-bottom: 0.75rem;
+}
+.olga-quote p:not(.olga-quote-label):last-child { margin-bottom: 0; }
 
 /* PODCAST SEKCIA */
 #podcast { padding: 5rem 2rem; background: var(--cream); }
@@ -914,6 +951,11 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
       <p>Vyhľadávala vyšívačky po slovenských dedinách a hľadala skúsené vyšívačky, ktoré pracovali pre Lipu. V okolí Trnavy pochodila Hrnčiarovce, Ružindol, Gocnod (dnešný Cífer) a Récu. V Čataji sa Lipa neuchytila, pretože tam mal vyšívačskú školu spolok Izabella. V okolí Zvolena boli vyšívačky v Slatine — s charakteristickou krivou ihlou, vyšívali bez predlohy — a v Detve. Vyšívačské obce boli aj Vajnory a Grob. V Hontianskej župe Horný a Dolný Dačov Lom, Litava, Bzovík a Trpín. V niektorých oblastiach Hontu vyšívačky pre Lipu nepracovali — tu zbierala výšivky a vzory Drahotína Kardossová, rod. Križková. Ak do Lipy prišla chybná práca od vyšívačiek, musela ju Anna sama opraviť alebo predať za nižšiu cenu.</p>
       <p>Anna zbierala staré vzorky výšiviek a podľa nich dbala na zachovávanie tradičného vzoru. Dozerala, aby sa ženy nenechali strhnúť módnymi trendmi z prichádzajúcich časopisov. Vzorník výšiviek, ktorý si dala vyšiť na Dačovom Lome, predala Slovenskému národnému múzeu v Martine.</p>
       <p>Pod Anniným vedením Lipa získavala ocenenia na medzinárodných výstavách od Viedne až po Košice. Anna Šenšelová stála na čele tohto podniku neuveriteľných <strong>42 rokov</strong>, až do jeho zániku v roku 1953.</p>
+      <div class="olga-quote">
+        <p class="olga-quote-label">Spomienka pranetere · Oľga Kapustová</p>
+        <p>Oľga Kapustová, pranetere Anny Šenšelovej, si ju pamätá ako tichú, skromnú a pracovitú ženu — „tetinku", ako ju deti v rodine volali. Najradšej trávila čas v záhradke pri dome a keď dozreli maliny, posielala deti von s miskami, nech sa napasú. Žila skromne a úsporne, odkladala si peniaze na starobu — no menová reforma v 50. rokoch jej úspory znehodnotila a o byt prišla. Ujala sa jej sestra Oľga s rodinou, v martinskom Helvíghovskom dome, kde Anna prežila posledné roky života.</p>
+      </div>
+
       <p class="pribeh-signature">Odkaz Anny Šenšelovej sa takmer stratil v zabudnutí. Dve igelitky výšiviek objavené v pivnici po starých rodičoch ma priviedli k pátraniu po jej príbehu. A nielen jej, ale aj mojom, pretože som skrz tieto výšivky začala pátrať po celej rodinnej histórii a skrz poznanie rodinnej minulosti sa začínam mať akosi radšej a som hrdá na to, kam siahajú moje korene.</p>
       <p style="font-size:0.75rem; color:#aaa; letter-spacing:0.06em; margin-top:1rem; font-style:italic;">zdroj: Zborník Slovenského národného múzea. Etnografia, Jan V. Ormis, 1982, rodinný archív</p>
     </div>

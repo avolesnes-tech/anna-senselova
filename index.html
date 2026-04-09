@@ -1004,11 +1004,46 @@ footer .footer-ornament { margin: 0 auto var(--sp-3); opacity: 0.3; }
   .lightbox-next { right: 0.5rem; }
 }
 
-@media (max-width: 640px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .dolls-grid { grid-template-columns: repeat(2, 1fr); }
-  .pribeh-links { flex-direction: column; }
+/* PODCAST TEASER */
+.podcast-teaser {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--gold-dark);
+  transition: color var(--transition-base);
 }
+.podcast-teaser:hover { color: var(--red); }
+.podcast-teaser:hover .podcast-teaser-arrow { transform: translateX(4px); }
+
+.podcast-teaser-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  transition: background var(--transition-base);
+}
+.podcast-teaser:hover .podcast-teaser-icon { background: var(--ink); }
+.podcast-teaser-icon svg {
+  width: 13px;
+  height: 13px;
+  fill: #fff;
+}
+.podcast-teaser-arrow {
+  display: inline-block;
+  transition: transform var(--transition-base);
+  font-style: normal;
+  opacity: 0.6;
+}
+
 </style>
 </head>
 <body>
@@ -1119,6 +1154,13 @@ footer .footer-ornament { margin: 0 auto var(--sp-3); opacity: 0.3; }
         <a href="lipa.html" class="btn-gallery-link">Celý príbeh Lipy <span class="btn-arrow">→</span></a>
         <a href="anna-senselova.html" class="btn-gallery-link">Kto bola Anna Šenšelová <span class="btn-arrow">→</span></a>
       </div>
+      <a href="https://fm.stvr.sk/rubriky/serialy_fm/robinsonky_fm/398042/robinsonky_fm-anna-senselova" target="_blank" rel="noopener" class="podcast-teaser">
+        <span class="podcast-teaser-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12v4a3 3 0 0 0 3 3h1a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H4.07A8.001 8.001 0 0 1 12 4a8.001 8.001 0 0 1 7.93 9H18a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h1a3 3 0 0 0 3-3v-4c0-5.523-4.477-10-10-10z"/></svg>
+        </span>
+        <span class="podcast-teaser-text">Počúvať: Anna Šenšelová v Robinsonky_FM</span>
+        <span class="podcast-teaser-arrow">→</span>
+      </a>
     </div>
   </div>
 </section>
