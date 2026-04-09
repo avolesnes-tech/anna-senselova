@@ -689,14 +689,18 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 
   /* Rodostrom tooltip: na mobile pevná poloha dole */
   .strom-tooltip {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    top: auto;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
     max-width: 100%;
     border-radius: 0;
     border-left: none;
     border-right: none;
     box-shadow: 0 -8px 32px rgba(0,0,0,0.18);
+    max-height: 60vh;
+    overflow-y: auto;
   }
 }
 
@@ -776,7 +780,29 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
 
 @media (hover: none) {
   .tooltip-close { display: block; }
-  .strom-tooltip { position: relative; }
+  .strom-tooltip {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    max-width: 100% !important;
+    max-height: 60vh;
+    overflow-y: auto;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.22);
+    z-index: 9999;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 1.2rem 1rem 1.2rem 1rem;
+    padding-bottom: max(1.2rem, env(safe-area-inset-bottom));
+  }
+  .tooltip-content {
+    overflow-y: auto;
+    max-height: calc(60vh - 3rem);
+  }
 }
 
 .tooltip-foto-wrap { flex-shrink: 0; width: 80px; height: 80px; border-radius: 50%; overflow: hidden; background: #e8dfd0; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,0.4); }
@@ -995,7 +1021,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
         </div>
         <div class="osoba-node" data-id="hodza"
           data-meno="Anna Hodžová"
-          data-roky="— doplniť —"
+          data-roky="1836 – 1914"
           data-titul="Neter Michala Miloslava Hodžu"
           data-text="Anna Hodžová bola neterou významného slovenského národovca a evanjelického farára Michala Miloslava Hodžu. Cez ňu sa rodina Šenšelovcov priamo napájala na jednu z najvýznamnejších línií slovenského národného obrodenia."
           data-foto="rodostrom_anna_hodzova.jpeg">
@@ -1003,7 +1029,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
             <img src="rodostrom_anna_hodzova.jpeg" alt="Anna Hodžová" class="osoba-foto-img" loading="lazy">
           </div>
           <div class="osoba-meno">Anna Hodžová</div>
-          <div class="osoba-roky">— doplniť —</div>
+          <div class="osoba-roky">1836 – 1914</div>
         </div>
       </div>
     </div>
@@ -1075,7 +1101,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
         </div>
         <div class="osoba-node" data-id="jan"
           data-meno="Ján Šenšel"
-          data-roky="— doplniť —"
+          data-roky="1891 – 1975"
           data-titul="Kúpeľný tajomník · Nový Smokovec"
           data-text="Ján Šenšel bol kúpeľným tajomníkom v Novom Smokovci. Oženil sa s Arankou Hubkovou, priekopníčkou kozmetiky na Slovensku, ktorá dlhé roky viedla modnú rubriku v časopise Živena."
           data-foto="rodostrom_jan_sensel.jpeg">
@@ -1083,11 +1109,11 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
             <img src="rodostrom_jan_sensel.jpeg" alt="Ján Šenšel" class="osoba-foto-img" loading="lazy">
           </div>
           <div class="osoba-meno">Ján Šenšel</div>
-          <div class="osoba-roky">— doplniť —</div>
+          <div class="osoba-roky">1891 – 1975</div>
         </div>
         <div class="osoba-node" data-id="olga"
           data-meno="Oľga Helvíghová"
-          data-roky="— doplniť —"
+          data-roky="1881 – 1964"
           data-titul="Obchodná škola Šoproň · Evanjelická farárka · Martin"
           data-text="Narodila sa 7.5.1881. Vyštudovala obchodnú školu v Šoproni. Vydala sa za evanjelického farára Júliusa Helvígha, s ktorým žili najskôr v Sučanoch a neskôr v Martine, kde opatrovali rodičov Šenšelovcov aj starého otca Ľudovíta Izáka."
           data-foto="rodostrom_olga.jpeg">
@@ -1095,7 +1121,7 @@ footer p { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
             <img src="rodostrom_olga.jpeg" alt="Oľga Helvíghová" class="osoba-foto-img" loading="lazy">
           </div>
           <div class="osoba-meno">Oľga Helvíghová</div>
-          <div class="osoba-roky">— doplniť —</div>
+          <div class="osoba-roky">1881 – 1964</div>
         </div>
       </div>
     </div>
