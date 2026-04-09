@@ -159,7 +159,7 @@ nav ul li > a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3p
   background: transparent;
 }
 
-nav ul li:hover .dropdown {
+.dropdown.dropdown-open {
   opacity: 1;
   pointer-events: all;
   transform: translateX(-50%) translateY(0);
@@ -995,7 +995,7 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
 
 <script>
 /* =============================================
-   HAMBURGER MENU
+   HAMBURGER MENU + DESKTOP DROPDOWN (hover s delay)
    ============================================= */
 (function() {
   const hamburger = document.getElementById('hamburger');
@@ -1016,19 +1016,29 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
     hamburger.setAttribute('aria-expanded', String(isOpen));
   });
 
+  // Desktop: hover s delay aby dropdown nezmizol pri pohybe mysi
+  navMenu.querySelectorAll('li').forEach(function(li) {
+    const dropdown = li.querySelector('.dropdown');
+    if (!dropdown) return;
+    let closeTimer = null;
+    function openDropdown() { if (isMobile()) return; clearTimeout(closeTimer); dropdown.classList.add('dropdown-open'); }
+    function scheduleClose() { if (isMobile()) return; closeTimer = setTimeout(function() { dropdown.classList.remove('dropdown-open'); }, 120); }
+    li.addEventListener('mouseenter', openDropdown);
+    li.addEventListener('mouseleave', scheduleClose);
+    dropdown.addEventListener('mouseenter', function() { clearTimeout(closeTimer); });
+    dropdown.addEventListener('mouseleave', scheduleClose);
+  });
+
+  // Mobile: klik na link s dropdownom
   navMenu.querySelectorAll('li > a').forEach(function(link) {
     link.addEventListener('click', function(e) {
       const li = this.closest('li');
       const dropdown = li.querySelector('.dropdown');
       if (dropdown && isMobile()) {
         e.preventDefault();
-        navMenu.querySelectorAll('.dropdown.open').forEach(function(d) {
-          if (d !== dropdown) d.classList.remove('open');
-        });
+        navMenu.querySelectorAll('.dropdown.open').forEach(function(d) { if (d !== dropdown) d.classList.remove('open'); });
         dropdown.classList.toggle('open');
-      } else {
-        closeMenu();
-      }
+      } else if (!dropdown) { closeMenu(); }
     });
   });
 
@@ -1037,12 +1047,7 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
   });
 
   window.addEventListener('resize', function() {
-    if (!isMobile()) {
-      closeMenu();
-      navMenu.querySelectorAll('.dropdown.open').forEach(function(d) {
-        d.classList.remove('open');
-      });
-    }
+    if (!isMobile()) { closeMenu(); navMenu.querySelectorAll('.dropdown').forEach(function(d) { d.classList.remove('open'); }); }
   });
 })();
 
