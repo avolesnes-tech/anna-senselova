@@ -427,10 +427,12 @@ h1 {
    GALÉRIA TVORBY — dominantná sekcia
    ============================================= */
 .tvorba-section {
-  background: #0f0c0d;
+  background: var(--section-alt);
   padding: 6rem 2rem;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(212,175,55,0.25);
+  border-bottom: 1px solid rgba(212,175,55,0.25);
 }
 
 .tvorba-section::before {
@@ -438,7 +440,7 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 15% 85%, rgba(212,175,55,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 85%, rgba(212,175,55,0.06) 0%, transparent 55%),
     radial-gradient(ellipse at 85% 15%, rgba(196,30,58,0.04) 0%, transparent 55%);
   pointer-events: none;
 }
@@ -456,14 +458,14 @@ h1 {
 }
 
 .tvorba-header .section-label {
-  color: rgba(212,175,55,0.65);
+  color: var(--red);
   margin-bottom: 0.8rem;
 }
 
 .tvorba-header h2 {
   font-family: 'Pinyon Script', cursive;
   font-size: clamp(2.8rem, 6vw, 4.5rem);
-  color: #fff;
+  color: var(--red);
   line-height: 1.1;
   margin-bottom: 0.8rem;
 }
@@ -472,156 +474,144 @@ h1 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   font-style: italic;
-  color: rgba(249,247,242,0.45);
+  color: rgba(51,51,51,0.75);
   max-width: 560px;
   margin: 0 auto;
   line-height: 1.8;
 }
 
-/* Zlatá linka v tmavej sekcii */
+/* Zlatá linka v svetlej sekcii */
 .tvorba-header .gold-line {
-  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
-/* Mriežka galérie */
-.artwork-grid-main {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  grid-template-rows: auto auto;
-  gap: 1.2rem;
-}
-
-/* Každá karta */
-.artwork-card {
+/* Carousel */
+.carousel-wrap {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  padding: 2rem 0 2.5rem;
+}
+
+.carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel-track:active { cursor: grabbing; }
+
+.carousel-slide {
+  flex: 0 0 320px;
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(212,175,55,0.2);
+  transition: flex-basis 0.65s cubic-bezier(0.4,0,0.2,1),
+              height 0.65s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.65s ease,
+              opacity 0.65s ease;
+  opacity: 0.55;
   cursor: zoom-in;
-  background: #1a1a1a;
+  flex-shrink: 0;
 }
 
-/* Prvá karta: vysoká, zaberá oba riadky */
-.artwork-card:nth-child(1) {
-  grid-row: span 2;
+.carousel-slide.active {
+  flex-basis: 480px;
+  height: 440px;
+  opacity: 1;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.22);
+  border-color: rgba(212,175,55,0.5);
+  z-index: 2;
 }
 
-/* Obrázky */
-.artwork-card-img {
+.carousel-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  min-height: 300px;
-  transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 0.5s ease;
-  filter: brightness(0.92) saturate(0.95);
-  will-change: transform;
-}
-
-.artwork-card:nth-child(1) .artwork-card-img {
-  min-height: 620px;
-}
-
-.artwork-card:hover .artwork-card-img {
-  transform: scale(1.05);
-  filter: brightness(1) saturate(1.05);
-}
-
-/* Lesk — shimmer pri hoveri */
-.artwork-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255,255,255,0.0) 35%,
-    rgba(255,255,255,0.14) 50%,
-    rgba(255,255,255,0.0) 65%,
-    transparent 100%
-  );
-  z-index: 3;
+  transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
   pointer-events: none;
-  transform: skewX(-15deg);
-  transition: left 0s;
 }
 
-.artwork-card:hover::before {
-  left: 160%;
-  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
+.carousel-slide:hover img { transform: scale(1.04); }
 
-/* Spodný overlay s titulom */
-.artwork-card-overlay {
+.carousel-slide-overlay {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  padding: 2.5rem 1.5rem 1.4rem;
-  background: linear-gradient(to top, rgba(8,4,6,0.85) 0%, transparent 100%);
-  z-index: 4;
-  transform: translateY(6px);
+  padding: 2.5rem 1.4rem 1.2rem;
+  background: linear-gradient(to top, rgba(15,8,10,0.75) 0%, transparent 100%);
+  z-index: 2;
   opacity: 0;
+  transform: translateY(6px);
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.artwork-card:hover .artwork-card-overlay {
+.carousel-slide.active .carousel-slide-overlay,
+.carousel-slide:hover .carousel-slide-overlay {
   opacity: 1;
   transform: translateY(0);
 }
 
-.artwork-card-label {
+.carousel-slide-label {
   font-family: 'Cinzel', serif;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(212,175,55,0.9);
-  display: block;
 }
 
-/* Zoom kruh v strede */
-.artwork-card-zoom {
+/* Carousel nav dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.6rem;
+}
+
+.carousel-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(160,124,16,0.25);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  padding: 0;
+}
+
+.carousel-dot.active {
+  background: var(--gold-dark);
+  transform: scale(1.4);
+}
+
+/* Carousel arrows */
+.carousel-arrow {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.75);
-  z-index: 5;
-  width: 54px;
-  height: 54px;
-  border: 1.5px solid rgba(255,255,255,0.65);
+  transform: translateY(-50%);
+  background: rgba(249,247,242,0.9);
+  border: 1px solid rgba(212,175,55,0.4);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(6px);
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.25s ease, border-color 0.25s ease;
+  color: var(--ink);
 }
+.carousel-arrow:hover { background: #fff; border-color: var(--gold); color: var(--red); }
+.carousel-arrow.prev { left: 0.5rem; }
+.carousel-arrow.next { right: 0.5rem; }
+.carousel-arrow svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; }
 
-.artwork-card-zoom svg {
-  width: 18px; height: 18px;
-  stroke: #fff; fill: none; stroke-width: 1.5;
-}
-
-.artwork-card:hover .artwork-card-zoom {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-/* Zlatý rám pri hoveri */
-.artwork-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid transparent;
-  z-index: 6;
-  pointer-events: none;
-  transition: border-color 0.4s ease;
-}
-
-.artwork-card:hover::after {
-  border-color: rgba(212,175,55,0.4);
+@media (max-width: 700px) {
+  .carousel-slide { flex: 0 0 220px; height: 280px; }
+  .carousel-slide.active { flex-basis: 300px; height: 330px; }
+  .carousel-arrow { display: none; }
 }
 
 /* Zachované pre lightbox dáta, skryté vizuálne */
@@ -690,39 +680,38 @@ h1 {
   line-height: 1.85;
 }
 
-/* Fotky kníh — fullwidth predeľovač medzi odstavcami */
+/* Fotky kníh — sticky po boku, text scrolluje vedľa */
+.knihy-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.knihy-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin: 4rem 0;
+}
+
+.knihy-block.reverse {
+  direction: rtl;
+}
+.knihy-block.reverse > * {
+  direction: ltr;
+}
+
+.knihy-sticky {
+  position: sticky;
+  top: calc(var(--nav-height) + 2rem);
+}
+
 .knihy-foto {
   width: 100%;
-  margin: 3.5rem 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
-}
-
-.knihy-foto img {
-  width: 100%;
-  height: 60vh;
-  min-height: 380px;
-  max-height: 520px;
-  object-fit: cover;
-  object-position: center 35%;
-  display: block;
-  filter: sepia(0.08) contrast(1.04) brightness(0.97);
-}
-
-.knihy-foto figcaption {
-  position: absolute;
-  bottom: 1.8rem;
-  right: 2rem;
-  font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
-}
-
-/* Fade-in pri scrolle */
-.knihy-foto {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.9s ease, transform 0.9s ease;
@@ -733,9 +722,38 @@ h1 {
   transform: translateY(0);
 }
 
-@media (max-width: 700px) {
-  .pribeh-section { padding: 3rem 1.4rem 1rem; }
-  .knihy-foto img { height: 50vw; min-height: 220px; }
+.knihy-foto img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+  filter: sepia(0.08) contrast(1.04) brightness(0.97);
+  border: 1px solid rgba(212,175,55,0.2);
+}
+
+.knihy-foto figcaption {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-top: 0.8rem;
+  opacity: 0.7;
+}
+
+.knihy-text {
+  padding: 1rem 0;
+}
+
+@media (max-width: 780px) {
+  .knihy-block {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    direction: ltr !important;
+  }
+  .knihy-sticky { position: static; }
+  .knihy-foto img { height: 260px; }
 }
 
 .clearfix::after { content: ''; display: table; clear: both; }
@@ -1146,84 +1164,70 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
       <div class="gold-line" style="margin: 1.2rem auto 0;"></div>
     </div>
 
-    <div class="artwork-grid-main reveal">
+    <div class="carousel-wrap reveal">
+      <button class="carousel-arrow prev" id="carPrev" aria-label="Predchádzajúci">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-arrow next" id="carNext" aria-label="Nasledujúci">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
 
-      <div class="artwork-card"
-           tabindex="0" role="button"
-           aria-label="Otvoriť: Akvarel a maľba"
-           data-src="anna_l_akvarel.jpg"
-           data-caption="Akvarel &amp; maľba"
-           data-index="0">
-        <img src="anna_l_akvarel.jpg"
-             alt="Akvarel a maľba"
-             class="artwork-card-img"
-             loading="eager" decoding="async"
-             sizes="(max-width:700px) 100vw, 55vw">
-        <div class="artwork-card-overlay">
-          <span class="artwork-card-label">Akvarel &amp; maľba</span>
+      <div class="carousel-track" id="carTrack">
+        <div class="carousel-slide active"
+             tabindex="0" role="button"
+             aria-label="Akvarel a maľba"
+             data-src="anna_l_akvarel.jpg"
+             data-caption="Akvarel &amp; maľba"
+             data-index="0">
+          <img src="anna_l_akvarel.jpg" alt="Akvarel a maľba" loading="eager" decoding="async">
+          <div class="carousel-slide-overlay">
+            <span class="carousel-slide-label">Akvarel &amp; maľba</span>
+          </div>
         </div>
-        <div class="artwork-card-zoom">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+
+        <div class="carousel-slide"
+             tabindex="0" role="button"
+             aria-label="Korálková brošňa"
+             data-src="anna_l_brosna.jpg"
+             data-caption="Korálková brošňa"
+             data-index="1">
+          <img src="anna_l_brosna.jpg" alt="Korálková brošňa" loading="lazy" decoding="async">
+          <div class="carousel-slide-overlay">
+            <span class="carousel-slide-label">Korálková brošňa</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide"
+             tabindex="0" role="button"
+             aria-label="Paper maché"
+             data-src="anna_l_papermache.jpg"
+             data-caption="Paper maché"
+             data-index="2">
+          <img src="anna_l_papermache.jpg" alt="Paper maché" loading="lazy" decoding="async">
+          <div class="carousel-slide-overlay">
+            <span class="carousel-slide-label">Paper maché</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide"
+             tabindex="0" role="button"
+             aria-label="Vyšívanie"
+             data-src="anna_l_vysivka.jpg"
+             data-caption="Vyšívanie"
+             data-index="3">
+          <img src="anna_l_vysivka.jpg" alt="Vyšívanie" loading="lazy" decoding="async">
+          <div class="carousel-slide-overlay">
+            <span class="carousel-slide-label">Vyšívanie</span>
+          </div>
         </div>
       </div>
 
-      <div class="artwork-card"
-           tabindex="0" role="button"
-           aria-label="Otvoriť: Korálková brošňa"
-           data-src="anna_l_brosna.jpg"
-           data-caption="Korálková brošňa"
-           data-index="1">
-        <img src="anna_l_brosna.jpg"
-             alt="Korálková brošňa"
-             class="artwork-card-img"
-             loading="lazy" decoding="async"
-             sizes="(max-width:700px) 100vw, 45vw">
-        <div class="artwork-card-overlay">
-          <span class="artwork-card-label">Korálková brošňa</span>
-        </div>
-        <div class="artwork-card-zoom">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        </div>
+      <div class="carousel-dots" id="carDots">
+        <button class="carousel-dot active" data-idx="0" aria-label="Snímka 1"></button>
+        <button class="carousel-dot" data-idx="1" aria-label="Snímka 2"></button>
+        <button class="carousel-dot" data-idx="2" aria-label="Snímka 3"></button>
+        <button class="carousel-dot" data-idx="3" aria-label="Snímka 4"></button>
       </div>
-
-      <div class="artwork-card"
-           tabindex="0" role="button"
-           aria-label="Otvoriť: Paper maché"
-           data-src="anna_l_papermache.jpg"
-           data-caption="Paper maché"
-           data-index="2">
-        <img src="anna_l_papermache.jpg"
-             alt="Paper maché"
-             class="artwork-card-img"
-             loading="lazy" decoding="async"
-             sizes="(max-width:700px) 100vw, 45vw">
-        <div class="artwork-card-overlay">
-          <span class="artwork-card-label">Paper maché</span>
-        </div>
-        <div class="artwork-card-zoom">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        </div>
-      </div>
-
-      <div class="artwork-card"
-           tabindex="0" role="button"
-           aria-label="Otvoriť: Vyšívanie"
-           data-src="anna_l_vysivka.jpg"
-           data-caption="Vyšívanie"
-           data-index="3">
-        <img src="anna_l_vysivka.jpg"
-             alt="Vyšívanie"
-             class="artwork-card-img"
-             loading="lazy" decoding="async"
-             sizes="(max-width:700px) 100vw, 45vw">
-        <div class="artwork-card-overlay">
-          <span class="artwork-card-label">Vyšívanie</span>
-        </div>
-        <div class="artwork-card-zoom">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1268,52 +1272,66 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
   <p class="reveal">Na toľkých zážitkoch som sa zasmiala, úplne som si ho vedela predstaviť, ako vystrájal všetky možné beťárčiny – a to ako malý chlapec, ale aj ako dospelý a seriózny muž. Najviac ma zaujalo, že sa nehanbil v knihe pomenovať a opísať aj svoje chyby. Táto brutálna úprimnosť mi dodala akýsi pocit slobody – že sa nemusíme vždy tváriť, že sme dokonalí.</p>
 </section>
 
-<figure class="knihy-foto" id="knihyFoto1">
-  <img src="anna_lockwoodova_knihy.jpeg"
-       alt="Autobiografia starého otca a knihy Šenšelovcov"
-       loading="lazy" decoding="async"
-       sizes="100vw">
-  <figcaption>Príbehy, ktoré som musela dozrieť čítať</figcaption>
-</figure>
-<p style="text-align:right; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.08rem; color:var(--red); margin: 0.6rem 2rem 2rem; line-height:1.7;">Na skúmanie starých príbehov som musela dozrieť.</p>
-
-<section class="pribeh-section">
-  <p class="reveal">Prostredníctvom autobiografie, životopisu seniora Ľudovíta Šenšela a publikácie „Šenšelovský rod" som sa preniesla sto a viac rokov dozadu a detailne spoznala svojich predkov. V hlave mi však stále ostávali výšivky. Chcela som vyriešiť záhadu, odkiaľ sa vlastne vzali v pivnici u starých rodičov a čo sú zač.</p>
-
-  <div class="highlight reveal">
-    S malou dušičkou som kontaktovala Tami Šimončíkovú Heribanovú, ktorá ma nasmerovala na pani Zuzanu Tajek Piešovú, odborníčku na kroje. Na môj obrovský údiv sa hneď podujala prísť za mnou domov, aby sa na výšivky mohla pozrieť zblízka.
+    </div>
   </div>
-</section>
-
-<figure class="knihy-foto" id="knihyFoto2">
-  <img src="anna_lockwoodova_knihy2.jpeg"
-       alt="Vlastný životopis Ľudovíta Šenšela, Pevný buď a Šenšelovský rod"
-       loading="lazy" decoding="async"
-       sizes="100vw">
-  <figcaption>Vlastný životopis · Pevný buď · Šenšelovský rod</figcaption>
-</figure>
-<div style="font-family:'Cormorant Garamond',serif; font-size:0.92rem; color:#555; margin: 0.4rem 2rem 2rem; line-height:1.85;">
-  <p style="font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.6rem;">Knihy o rode Šenšelovcov</p>
-  <ul style="list-style:none; padding:0;">
-    <li style="padding: 0.2rem 0; border-bottom:1px solid rgba(212,175,55,0.2);">Aj slnko, aj hrmavica — autobiografia Ivana Šenšela</li>
-    <li style="padding: 0.2rem 0; border-bottom:1px solid rgba(212,175,55,0.2);">Vlastný životopis Ľudovíta Šenšela</li>
-    <li style="padding: 0.2rem 0; border-bottom:1px solid rgba(212,175,55,0.2);">Šenšelovský rod</li>
-    <li style="padding: 0.2rem 0;">Pevný buď — životopis Ľudovíta Šenšela · Ivan Šenšel</li>
-  </ul>
 </div>
 
-<section class="pribeh-section">
-  <p class="reveal">Odkázala ma aj na pána Stanka Talapku – a keď som sa s ním spojila, až som nemohla uveriť jeho ochote pomôcť. Pozval ma priamo do Martina, kde viedla stopa tety Anny. Sadla som teda na vlak a vyrazila. Pán Talapka mi porozprával detaily ku jednotlivým výšivkám, odhadol ich pôvod a využitie, povedal mi o spolku Lipa a dokonca priniesol ukázať košeľu z ich dielne. S ocinom sme si pozreli aj nádhernú výstavu Karola Plicku a stálu expozíciu krojov v SNM.</p>
+<!-- KNIHY BLOK 1: foto napravo, text naľavo -->
+<div class="knihy-wrap">
+  <div class="knihy-block">
+    <div class="knihy-text">
+      <section class="pribeh-section" style="padding-top:0; padding-left:0; padding-right:0; max-width:100%;">
+        <p class="reveal">Prostredníctvom autobiografie, životopisu seniora Ľudovíta Šenšela a publikácie „Šenšelovský rod" som sa preniesla sto a viac rokov dozadu a detailne spoznala svojich predkov. V hlave mi však stále ostávali výšivky. Chcela som vyriešiť záhadu, odkiaľ sa vlastne vzali v pivnici u starých rodičov a čo sú zač.</p>
 
-  <p class="reveal">Tak ako sa nám niektoré veci v živote v prvom momente zdajú katastrofálne, s odstupom času vidím, že je to niekedy najlepšie, čo sa nám mohlo stať. Na jeseň 2025 mi zrušili pracovnú pozíciu v korporácii a ako matka troch detí som si ťažko hľadala prácu. S každým ďalším odmietnutím moja sebahodnota akosi klesala. Aj vďaka nezamestnanosti som však mala priestor venovať sa skúmaniu rodinnej histórie aj príbehu Lipy.</p>
+        <div class="highlight reveal">
+          S malou dušičkou som kontaktovala Tami Šimončíkovú Heribanovú, ktorá ma nasmerovala na pani Zuzanu Tajek Piešovú, odborníčku na kroje. Na môj obrovský údiv sa hneď podujala prísť za mnou domov, aby sa na výšivky mohla pozrieť zblízka.
+        </div>
+      </section>
+    </div>
+    <div class="knihy-sticky">
+      <figure class="knihy-foto" id="knihyFoto1">
+        <img src="anna_lockwoodova_knihy.jpeg"
+             alt="Autobiografia starého otca a knihy Šenšelovcov"
+             loading="lazy" decoding="async">
+        <figcaption>Príbehy, ktoré som musela dozrieť čítať</figcaption>
+      </figure>
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--red); margin-top:1rem; line-height:1.7;">Na skúmanie starých príbehov som musela dozrieť.</p>
+    </div>
+  </div>
+</div>
 
-  <p class="reveal">Nakoniec som si povedala, že musím vziať osud do vlastných rúk, a začala som sa venovať samostúdiu webdizajnu pomocou AI. Videla som v tom ideálnu príležitosť zhmotniť všetky informácie, ktoré som nadobudla počas môjho pátrania, a zároveň testovať moje nové zručnosti. Takto sa aspoň malým kúskom pričiním o to, aby sa na prácu našich predkov nezabudlo.</p>
+<!-- KNIHY BLOK 2: foto naľavo, text napravo -->
+<div class="knihy-wrap">
+  <div class="knihy-block reverse">
+    <div class="knihy-text">
+      <section class="pribeh-section" style="padding-top:0; padding-left:0; padding-right:0; max-width:100%;">
+        <p class="reveal">Odkázala ma aj na pána Stanka Talapku – a keď som sa s ním spojila, až som nemohla uveriť jeho ochote pomôcť. Pozval ma priamo do Martina, kde viedla stopa tety Anny. Sadla som teda na vlak a vyrazila. Pán Talapka mi porozprával detaily ku jednotlivým výšivkám, odhadol ich pôvod a využitie, povedal mi o spolku Lipa a dokonca priniesol ukázať košeľu z ich dielne. S ocinom sme si pozreli aj nádhernú výstavu Karola Plicku a stálu expozíciu krojov v SNM.</p>
 
-  <p class="reveal">Keď som si dala za cieľ vytvoriť túto stránku, moja detektívna činnosť ešte nabrala na obrátkach. Vo svojich 38 rokoch som sa spoznala s mojím dvojstupňovým ujom – veľmi rozhľadeným a zanieteným človekom, pomocníkom od prvého stretnutia. Spojila som sa aj s pani Olgou Kapustovou, mojou sesternicou z tretieho kolena, a verím, že tu ešte nekončíme.</p>
+        <p class="reveal">Tak ako sa nám niektoré veci v živote v prvom momente zdajú katastrofálne, s odstupom času vidím, že je to niekedy najlepšie, čo sa nám mohlo stať. Na jeseň 2025 mi zrušili pracovnú pozíciu v korporácii a ako matka troch detí som si ťažko hľadala prácu. S každým ďalším odmietnutím moja sebahodnota akosi klesala. Aj vďaka nezamestnanosti som však mala priestor venovať sa skúmaniu rodinnej histórie aj príbehu Lipy.</p>
 
-  <p class="pribeh-signature reveal">Verím, že poznanie vlastnej minulosti je absolútne obohacujúci zážitok — je to ako chýbajúci dielik puzzle v našom vnútri, pretože každá generácia pred nami do nás všepila niečo, čo tá ďalšia zachovala. A tak sme prepojení jednou niťou, ani o tom na prvý pohľad nevieme.</p>
-</section>
+        <p class="reveal">Nakoniec som si povedala, že musím vziať osud do vlastných rúk, a začala som sa venovať samostúdiu webdizajnu pomocou AI. Videla som v tom ideálnu príležitosť zhmotniť všetky informácie, ktoré som nadobudla počas môjho pátrania, a zároveň testovať moje nové zručnosti. Takto sa aspoň malým kúskom pričiním o to, aby sa na prácu našich predkov nezabudlo.</p>
 
+        <p class="reveal">Keď som si dala za cieľ vytvoriť túto stránku, moja detektívna činnosť ešte nabrala na obrátkach. Vo svojich 38 rokoch som sa spoznala s mojím dvojstupňovým ujom – veľmi rozhľadeným a zanieteným človekom, pomocníkom od prvého stretnutia. Spojila som sa aj s pani Olgou Kapustovou, mojou sesternicou z tretieho kolena, a verím, že tu ešte nekončíme.</p>
+
+        <p class="pribeh-signature reveal">Verím, že poznanie vlastnej minulosti je absolútne obohacujúci zážitok — je to ako chýbajúci dielik puzzle v našom vnútri, pretože každá generácia pred nami do nás všepila niečo, čo tá ďalšia zachovala. A tak sme prepojení jednou niťou, ani o tom na prvý pohľad nevieme.</p>
+      </section>
+    </div>
+    <div class="knihy-sticky">
+      <figure class="knihy-foto" id="knihyFoto2">
+        <img src="anna_lockwoodova_knihy2.jpeg"
+             alt="Vlastný životopis Ľudovíta Šenšela, Pevný buď a Šenšelovský rod"
+             loading="lazy" decoding="async">
+        <figcaption>Vlastný životopis · Pevný buď · Šenšelovský rod</figcaption>
+      </figure>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:0.9rem; color:#555; margin-top:1rem; line-height:1.85;">
+        <p style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.5rem;">Knihy o rode Šenšelovcov</p>
+        <ul style="list-style:none; padding:0;">
+          <li style="padding:0.25rem 0; border-bottom:1px solid rgba(212,175,55,0.2);">Aj slnko, aj hrmavica — autobiografia Ivana Šenšela</li>
+          <li style="padding:0.25rem 0; border-bottom:1px solid rgba(212,175,55,0.2);">Vlastný životopis Ľudovíta Šenšela</li>
+          <li style="padding:0.25rem 0; border-bottom:1px solid rgba(212,175,55,0.2);">Šenšelovský rod</li>
+          <li style="padding:0.25rem 0;">Pevný buď — životopis Ľudovíta Šenšela · Ivan Šenšel</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -1373,6 +1391,99 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
 </footer>
 
 <script>
+/* =============================================
+   CAROUSEL
+   ============================================= */
+(function() {
+  const track  = document.getElementById('carTrack');
+  const slides = Array.from(track ? track.querySelectorAll('.carousel-slide') : []);
+  const dots   = Array.from(document.querySelectorAll('.carousel-dot'));
+  const prev   = document.getElementById('carPrev');
+  const next   = document.getElementById('carNext');
+  if (!track || slides.length === 0) return;
+
+  let current = 0;
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current] && dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current] && dots[current].classList.add('active');
+    centerActive();
+  }
+
+  function centerActive() {
+    const wrap = track.parentElement;
+    const activeSlide = slides[current];
+    const wrapW = wrap.offsetWidth;
+    const slideLeft = activeSlide.offsetLeft;
+    const slideW = activeSlide.offsetWidth;
+    const offset = slideLeft - (wrapW / 2) + (slideW / 2);
+    track.style.transform = `translateX(${-offset}px)`;
+  }
+
+  prev && prev.addEventListener('click', () => goTo(current - 1));
+  next && next.addEventListener('click', () => goTo(current + 1));
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => goTo(parseInt(dot.dataset.idx)));
+  });
+
+  slides.forEach((slide, i) => {
+    slide.addEventListener('click', () => {
+      if (i !== current) { goTo(i); return; }
+      // Open lightbox for active slide
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      const lbCap = document.getElementById('lightboxCaption');
+      if (lb && lbImg) {
+        lbImg.src = slide.dataset.src;
+        lbImg.alt = slide.dataset.caption;
+        lbCap && (lbCap.innerHTML = slide.dataset.caption);
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+    slide.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); slide.click(); }
+    });
+  });
+
+  // Drag / swipe
+  let startX = null, startTranslate = 0;
+  track.addEventListener('mousedown', e => { startX = e.clientX; track.style.transition = 'none'; });
+  window.addEventListener('mousemove', e => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    const cur = parseFloat(track.style.transform.replace('translateX(', '')) || 0;
+    track.style.transform = `translateX(${cur + dx - (e.movementX ? 0 : 0)}px)`;
+  });
+  window.addEventListener('mouseup', e => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    track.style.transition = '';
+    if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+    else centerActive();
+  });
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+  }, { passive: true });
+
+  // Auto-advance
+  let autoTimer = setInterval(() => goTo(current + 1), 4000);
+  track.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  track.addEventListener('mouseleave', () => { autoTimer = setInterval(() => goTo(current + 1), 4000); });
+
+  window.addEventListener('resize', centerActive);
+  setTimeout(centerActive, 50);
+})();
+
 /* =============================================
    HAMBURGER MENU + DESKTOP DROPDOWN (hover s delay)
    ============================================= */
