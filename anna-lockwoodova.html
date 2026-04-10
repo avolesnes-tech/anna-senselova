@@ -1180,7 +1180,7 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
     </div>
 
     <!-- TEXT -->
-    <div class="profile-text">
+    <div class="profile-text clearfix">
       <h2 class="reveal">Kde sa stretáva<br>minulosť s prítomnosťou.</h2>
       <div class="gold-line reveal"></div>
 
@@ -1188,67 +1188,23 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
 
       <p class="reveal">Nikdy som sa o folklór alebo ľudové odievanie veľmi nezaujímala, ale toto bol presne ten moment, kedy sa to zmenilo. Hneď som si spomenula na autobiografiu môjho starého otca – musím s hanbou priznať, nikdy predtým nedočítanú. Teraz to vnímam tak, že som na ňu musela jednoducho dozrieť. Príbeh o jeho živote sa mi teraz čítal úplne inak, hltala som ho viac než akýkoľvek bestseller.</p>
 
+      <figure class="inline-photo float-right reveal">
+        <img src="anna_lockwoodova_knihy.jpeg" alt="Autobiografia starého otca a knihy Šenšelovcov" loading="lazy" decoding="async">
+        <figcaption>Príbehy, ktoré som musela dozrieť čítať</figcaption>
+      </figure>
+
       <p class="reveal">Na toľkých zážitkoch som sa zasmiala, úplne som si ho vedela predstaviť, ako vystrájal všetky možné beťárčiny – a to ako malý chlapec, ale aj ako dospelý a seriózny muž. Najviac ma zaujalo, že sa nehanbil v knihe pomenovať a opísať aj svoje chyby. Táto brutálna úprimnosť mi dodala akýsi pocit slobody – že sa nemusíme vždy tváriť, že sme dokonalí.</p>
 
       <p class="reveal">Prostredníctvom autobiografie, životopisu seniora Ľudovíta Šenšela a publikácie „Šenšelovský rod" som sa preniesla sto a viac rokov dozadu a detailne spoznala svojich predkov. V hlave mi však stále ostávali výšivky. Chcela som vyriešiť záhadu, odkiaľ sa vlastne vzali v pivnici u starých rodičov a čo sú zač.</p>
 
-    </div>
-  </div>
-</div>
-
-<!-- FOTO MOMENT — stop-scrolling -->
-<div class="foto-moment" id="fotoMoment">
-  <img
-    src="anna_lockwoodova_knihy.jpeg"
-    alt="Knihy zo Šenšelovského rodu — autobiografia a životopis seniora Ľudovíta Šenšela"
-    class="foto-moment-img"
-    id="fotoMomentImg"
-    loading="lazy"
-    decoding="async"
-  >
-  <div class="foto-moment-overlay"></div>
-  <div class="foto-moment-caption">
-    <span class="foto-moment-caption-text">Príbehy, ktoré som musela dozrieť čítať</span>
-    <span class="foto-moment-caption-label">Autobiografia &amp; Životopis seniora Ľudovíta Šenšela</span>
-  </div>
-</div>
-
-<!-- OBSAH — pokračovanie -->
-<div class="content-wrap" style="padding-top: 0;">
-  <div class="profile-layout" style="padding-top: 0;">
-    <div style="display:none;"></div>
-    <div class="profile-text">
+      <figure class="inline-photo float-left reveal">
+        <img src="anna_lockwoodova_knihy2.jpeg" alt="Vlastný životopis Ľudovíta Šenšela, Pevný buď a Šenšelovský rod" loading="lazy" decoding="async">
+        <figcaption>Vlastný životopis · Pevný buď · Šenšelovský rod</figcaption>
+      </figure>
 
       <div class="highlight reveal">
         S malou dušičkou som kontaktovala Tami Šimončíkovú Heribanovú, ktorá ma nasmerovala na pani Zuzanu Tajek Piešovú, odborníčku na kroje. Na môj obrovský údiv sa hneď podujala prísť za mnou domov, aby sa na výšivky mohla pozrieť zblízka.
       </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- FOTO MOMENT 2 — knihy Šenšelovcov -->
-<div class="foto-moment" id="fotoMoment2">
-  <img
-    src="anna_lockwoodova_knihy2.jpeg"
-    alt="Vlastný životopis Ľudovíta Šenšela, Pevný buď a Šenšelovský rod"
-    class="foto-moment-img"
-    id="fotoMomentImg2"
-    loading="lazy"
-    decoding="async"
-  >
-  <div class="foto-moment-overlay"></div>
-  <div class="foto-moment-caption">
-    <span class="foto-moment-caption-text">Sto rokov dozadu, strana po strane</span>
-    <span class="foto-moment-caption-label">Vlastný životopis · Pevný buď · Šenšelovský rod</span>
-  </div>
-</div>
-
-<!-- pokračovanie príbehu -->
-<div class="content-wrap" style="padding-top: 0;">
-  <div class="profile-layout" style="padding-top: 0;">
-    <div style="display:none;"></div>
-    <div class="profile-text">
 
       <p class="reveal">Odkázala ma aj na pána Stanka Talapku – a keď som sa s ním spojila, až som nemohla uveriť jeho ochote pomôcť. Pozval ma priamo do Martina, kde viedla stopa tety Anny. Sadla som teda na vlak a vyrazila. Pán Talapka mi porozprával detaily ku jednotlivým výšivkám, odhadol ich pôvod a využitie, povedal mi o spolku Lipa a dokonca priniesol ukázať košeľu z ich dielne. S ocinom sme si pozreli aj nádhernú výstavu Karola Plicku a stálu expozíciu krojov v SNM.</p>
 
@@ -1390,45 +1346,6 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
   }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-})();
-
-/* =============================================
-   FOTO MOMENT — clip-path reveal + parallax
-   ============================================= */
-(function() {
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function initFotoMoment(momentId, imgId) {
-    const fotoMoment = document.getElementById(momentId);
-    const fotoImg    = document.getElementById(imgId);
-    if (!fotoMoment || !fotoImg) return;
-
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          fotoMoment.classList.add('is-visible');
-          revealObs.unobserve(fotoMoment);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealObs.observe(fotoMoment);
-
-    if (!prefersReduced) {
-      function onScroll() {
-        const rect = fotoMoment.getBoundingClientRect();
-        const vh = window.innerHeight;
-        if (rect.bottom < 0 || rect.top > vh) return;
-        const progress = (vh - rect.top) / (vh + rect.height);
-        const offset = (progress - 0.5) * 80;
-        fotoImg.style.transform = 'translateY(' + offset + 'px)';
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
-  }
-
-  initFotoMoment('fotoMoment',  'fotoMomentImg');
-  initFotoMoment('fotoMoment2', 'fotoMomentImg2');
 })();
 
 /* =============================================
