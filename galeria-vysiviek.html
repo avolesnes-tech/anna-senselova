@@ -695,9 +695,24 @@ h1.page-title {
 /* Panel scroll body */
 .panel-body {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(196,30,58,0.45) rgba(212,175,55,0.1);
+}
+.panel-body::-webkit-scrollbar {
+  width: 5px;
+}
+.panel-body::-webkit-scrollbar-track {
+  background: rgba(212,175,55,0.08);
+}
+.panel-body::-webkit-scrollbar-thumb {
+  background: rgba(196,30,58,0.45);
+  border-radius: 2px;
+}
+.panel-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(196,30,58,0.75);
 }
 
 /* Main image area */
@@ -1546,11 +1561,11 @@ footer {
              data-index="12"
              data-name="Ciferský rukáv"
              data-region=""
-             data-tags='["Doplňujú sa informácie o výšivke."]'
+             data-tags='["Paličkovaná čipka", "Krížikový steh", "Plná plocha"]'
              data-photos='["vysivky1/cifer_rukav1.jpeg", "vysivky1/cifer_rukav2.jpeg", "vysivky1/cifer_rukav3.jpeg"]'
-             data-origin="Doplňujú sa informácie o výšivke."
-             data-technique="Doplňujú sa informácie o výšivke."
-             data-use="Doplňujú sa informácie o výšivke.">
+             data-origin="Cífer, Trnavský kraj. Na čiernej časti výšivky je použitý haras."
+             data-technique="Paličkovaná čipka, krížikový steh a plná plocha výšivka."
+             data-use="Koniec rukávov mužskej košele.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cifer_rukav2.jpeg"
                alt="Ciferský rukáv"
                loading="lazy" decoding="async">
