@@ -399,82 +399,47 @@ h1.page-title {
   .stat-number { font-size: 2.2rem; }
 }
 
-/* =============================================
-   FILTER BAR
-   ============================================= */
-.filter-section {
-  padding: var(--sp-4) var(--sp-4) var(--sp-2);
-  background: var(--cream);
-  position: sticky;
-  top: var(--nav-height);
-  z-index: 100;
-  border-bottom: 1px solid rgba(212,175,55,0.2);
-}
 
-.filter-inner {
+
+
+/* =============================================
+   GALLERY HINT BAR
+   ============================================= */
+.gallery-hint {
   max-width: var(--max-wide);
   margin: 0 auto;
+  padding: 0 var(--sp-4) var(--sp-4);
+}
+.gallery-hint-inner {
   display: flex;
   align-items: center;
-  gap: var(--sp-2);
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid rgba(212,175,55,0.22);
+  background: rgba(212,175,55,0.04);
 }
-
-.filter-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+.hint-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.98rem;
   color: var(--gold-dark);
-  white-space: nowrap;
-  flex-shrink: 0;
+  letter-spacing: 0.03em;
+  text-align: center;
+  line-height: 1.5;
 }
-
-.filter-tags {
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  flex: 1;
-}
-
-.filter-tag {
-  font-family: 'Cinzel', serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 0.4rem 1rem;
-  border: 1px solid rgba(212,175,55,0.4);
-  background: transparent;
-  color: var(--ink);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  opacity: 0.6;
-  white-space: nowrap;
-}
-.filter-tag:hover { border-color: var(--red); color: var(--red); opacity: 1; }
-.filter-tag.active {
-  background: var(--red);
-  border-color: var(--red);
-  color: #fff;
-  opacity: 1;
-}
-.filter-tag:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-
-.filter-count {
-  font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  color: var(--gold-dark);
-  opacity: 0.6;
-  margin-left: auto;
-  white-space: nowrap;
-}
+.hint-ornament { opacity: 0.35; flex-shrink: 0; }
 
 @media (max-width: 640px) {
-  .filter-section { padding: var(--sp-2) var(--sp-2); }
-  .filter-inner { gap: var(--sp-1); }
-  .filter-tag { font-size: 0.62rem; padding: 0.35rem 0.75rem; }
-  .filter-count { display: none; }
+  .gallery-hint { padding: 0 var(--sp-2) var(--sp-3); }
+  .gallery-hint-inner { gap: 0.75rem; padding: var(--sp-2); }
+  .hint-text { font-size: 0.88rem; }
+}
+
+/* Mobile: always show overlay so names are visible */
+@media (max-width: 768px) {
+  .emb-overlay { opacity: 1; }
+  .emb-overlay-hint { display: none; }
 }
 
 /* =============================================
@@ -495,12 +460,14 @@ h1.page-title {
 
 @media (max-width: 1100px) { .masonry-grid { column-count: 3; } }
 @media (max-width: 768px)  { .masonry-grid { column-count: 2; } }
-@media (max-width: 440px)  { .masonry-grid { column-count: 1; } }
+/* 2 columns maintained even on small phones for better gallery UX */
 
 .masonry-item {
   break-inside: avoid;
   margin-bottom: 1.2rem;
   position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 280px;
 }
 
 /* Každý 5., 6., 7. item má iný aspect-ratio pre dynamiku */
@@ -589,8 +556,9 @@ h1.page-title {
   gap: 0.4rem;
 }
 
-/* Index badge */
+/* Index badge — hidden */
 .emb-index {
+  display: none;
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
@@ -616,8 +584,8 @@ h1.page-title {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.65s ease, transform 0.65s ease;
-  will-change: opacity, transform;
 }
+
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -1124,7 +1092,7 @@ footer {
 }
 
 @media print {
-  nav, .filter-section, .detail-panel, .panel-backdrop, footer { display: none !important; }
+  nav, .detail-panel, .panel-backdrop, footer { display: none !important; }
   .masonry-grid { column-count: 3; }
 }
 </style>
@@ -1250,46 +1218,37 @@ footer {
     <p class="section-label">Zbierka · Výšivky</p>
     <h1 class="page-title">Vzorkovník výšiviek.</h1>
     <div class="gold-line"></div>
-    <p class="page-hero-desc">Tieto vyšívané fragmenty pochádzajú z pozostalosti Anny Šenšelovej. S bližším určovaním mi nezištne pomohli <em>Zuzka Tajek Piešová</em>, <em>Stanislav Talapka</em> a <em>Tamara Simončíková Heribanová</em> — som im za to nesmierne vďačná.</p>
+    <p class="page-hero-desc">Tieto vyšívané fragmenty pochádzajú z pozostalosti Anny Šenšelovej. S bližším určovaním mi nezištne pomohli <em>Tamara Šimončíková Heribanová</em>, <em>Stanislav Talapka</em> a <em>Zuzana Tajek Piešová</em> — som im za to nesmierne vďačná.</p>
     <div class="hero-stats">
       <div class="stat-item">
-        <span class="stat-number" id="statTotal">16</span>
+        <span class="stat-number" id="statTotal">31</span>
         <span class="stat-label">Výšiviek</span>
       </div>
       <div class="stat-item">
-        <span class="stat-number">48</span>
+        <span class="stat-number">90</span>
         <span class="stat-label">Fotografií</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-number">9</span>
-        <span class="stat-label">Regiónov</span>
-      </div>
+
     </div>
   </div>
 </header>
 
-<!-- FILTER BAR -->
-<div class="filter-section" role="navigation" aria-label="Filter podľa regiónu">
-  <div class="filter-inner">
-    <span class="filter-label">Región:</span>
-    <div class="filter-tags" role="group" aria-label="Filtrovacie tlačidlá">
-      <button class="filter-tag active" data-filter="all">Všetky</button>
-      <button class="filter-tag" data-filter="Hontianska oblasť">Hont</button>
-      <button class="filter-tag" data-filter="Bošácky región">Bošáca</button>
-      <button class="filter-tag" data-filter="Záhorie">Záhorie</button>
-      <button class="filter-tag" data-filter="Podpoľanie">Podpoľanie</button>
-      <button class="filter-tag" data-filter="Gemerský región">Gemer</button>
-      <button class="filter-tag" data-filter="Krajkárstvo">Krajka</button>
-      <button class="filter-tag" data-filter="Orava">Orava</button>
-      <button class="filter-tag" data-filter="Liptov">Liptov</button>
-      <button class="filter-tag" data-filter="Myjavská pahorkatina">Myjava</button>
-    </div>
-    <span class="filter-count" id="filterCount">Zobrazuje sa 31 z 31</span>
-  </div>
-</div>
 
 <!-- MAIN GALLERY -->
 <main id="main-content">
+  <!-- GALLERY HINT -->
+  <div class="gallery-hint" role="note">
+    <div class="gallery-hint-inner">
+      <svg class="hint-ornament" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M9 1 L11 7 L17 9 L11 11 L9 17 L7 11 L1 9 L7 7 Z" stroke="#D4AF37" stroke-width="0.8" fill="none"/>
+      </svg>
+      <p class="hint-text">Kliknite na výšivku — zobrazí sa detail s fotografiami a popisom</p>
+      <svg class="hint-ornament" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M9 1 L11 7 L17 9 L11 11 L9 17 L7 11 L1 9 L7 7 Z" stroke="#D4AF37" stroke-width="0.8" fill="none"/>
+      </svg>
+    </div>
+  </div>
+
   <div class="gallery-outer">
     <div class="masonry-grid" id="masonryGrid">
 
@@ -1308,7 +1267,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/biela_dierkova2.jpeg"
                alt="Biela dierkova"
-               loading="lazy">
+               loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">01</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Biela dierkova</span>
@@ -1332,7 +1291,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/biele_gatre2.jpeg"
                alt="Biele gatre"
-               loading="lazy">
+               loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">02</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Biele gatre</span>
@@ -1356,7 +1315,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/biely_limec2.jpeg"
                alt="Biely límec"
-               loading="lazy">
+               loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">03</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Biely límec</span>
@@ -1380,7 +1339,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/biely_obrus1.jpeg"
                alt="Biely obrus"
-               loading="lazy">
+               loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">04</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Biely obrus</span>
@@ -1404,7 +1363,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/bordovy_fragment2.jpeg"
                alt="Bordový fragment"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">05</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Bordový fragment</span>
@@ -1428,7 +1387,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/bosaca_metraz2.jpeg"
                alt="Bošácky metrážový"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">06</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Bošácky metrážový</span>
@@ -1452,7 +1411,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/bosaca_set2.jpeg"
                alt="Bošácky set"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">07</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Bošácky set</span>
@@ -1476,7 +1435,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/bosaca_zlta2.jpeg"
                alt="Bošácka žltá"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">08</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Bošácka žltá</span>
@@ -1500,7 +1459,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cicmany_metraz2.jpeg"
                alt="Čičmiansky metrážový"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">09</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Čičmiansky metrážový</span>
@@ -1524,7 +1483,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cicmany_set2.jpeg"
                alt="Čičmiansky set"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">10</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Čičmiansky set</span>
@@ -1548,7 +1507,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cicmany_stare2.jpeg"
                alt="Čičmianske staré"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">11</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Čičmianske staré</span>
@@ -1572,7 +1531,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cifer_haras2.jpeg"
                alt="Ciferský haras"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">12</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Ciferský haras</span>
@@ -1596,7 +1555,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cifer_rukav2.jpeg"
                alt="Ciferský rukáv"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">13</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Ciferský rukáv</span>
@@ -1620,7 +1579,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/decka_detva2.jpeg"
                alt="Dečka — Detva"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">14</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Dečka — Detva</span>
@@ -1644,7 +1603,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/hneda_cipka2.jpeg"
                alt="Hnedá čipka"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">15</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Hnedá čipka</span>
@@ -1668,7 +1627,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/hnedy_golier2.jpeg"
                alt="Hnedý golier"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">16</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Hnedý golier</span>
@@ -1692,7 +1651,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/hodvabne_nite2.jpeg"
                alt="Hodvábne nite"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">17</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Hodvábne nite</span>
@@ -1716,7 +1675,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/horne_srnie2.jpeg"
                alt="Horné Srnie"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">18</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Horné Srnie</span>
@@ -1740,7 +1699,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/hradiste2.jpeg"
                alt="Hradište"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">19</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Hradište</span>
@@ -1764,7 +1723,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/kovova_cipka2.jpeg"
                alt="Kovová čipka"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">20</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Kovová čipka</span>
@@ -1788,7 +1747,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/kovovy_fragment2.jpeg"
                alt="Kovový fragment"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">21</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Kovový fragment</span>
@@ -1812,7 +1771,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/krizik_metraz2.jpeg"
                alt="Krížikový metrážový"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">22</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Krížikový metrážový</span>
@@ -1836,7 +1795,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/naprsenka_2.jpeg"
                alt="Náprsenka"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">23</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Náprsenka</span>
@@ -1860,7 +1819,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/oranzova_krajka2.jpeg"
                alt="Oranžová krajka"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">24</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Oranžová krajka</span>
@@ -1884,7 +1843,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/puchov_2.jpeg"
                alt="Púchov"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">25</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Púchov</span>
@@ -1908,7 +1867,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/ruzovy_haras2.jpeg"
                alt="Ružový haras"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">26</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Ružový haras</span>
@@ -1932,7 +1891,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/soporna_2.jpeg"
                alt="Šoporňa"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">27</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Šoporňa</span>
@@ -1956,7 +1915,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/strieborny_golier2.jpeg"
                alt="Strieborný golier"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">28</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Strieborný golier</span>
@@ -1980,7 +1939,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/trencianska_tepla2.jpeg"
                alt="Trenčianska teplá"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">29</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Trenčianska teplá</span>
@@ -2004,7 +1963,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/trencin_2.jpeg"
                alt="Trenčín"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">30</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Trenčín</span>
@@ -2028,7 +1987,7 @@ footer {
              data-use="Doplňujú sa informácie o výšivke.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/vajnory_metraz2.jpeg"
                alt="Vajnorský metrážový"
-               loading="lazy">
+               loading="lazy" decoding="async">
           <span class="emb-index" aria-hidden="true">31</span>
           <div class="emb-overlay" aria-hidden="true">
             <span class="emb-overlay-name">Vajnorský metrážový</span>
@@ -2185,37 +2144,7 @@ footer {
 
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-  /* =============================================
-     FILTER
-     ============================================= */
-  const filterTags = document.querySelectorAll('.filter-tag');
-  const masonryItems = document.querySelectorAll('.masonry-item');
-  const filterCountEl = document.getElementById('filterCount');
-  const emptyState = document.getElementById('emptyState');
-  let currentFilter = 'all';
 
-  function applyFilter(filter) {
-    currentFilter = filter;
-    let visible = 0;
-    masonryItems.forEach(item => {
-      const match = filter === 'all' || item.dataset.region === filter;
-      item.classList.toggle('hidden', !match);
-      if (match) visible++;
-    });
-    const total = masonryItems.length;
-    filterCountEl.textContent = filter === 'all'
-      ? `Zobrazuje sa ${total} z ${total}`
-      : `Zobrazuje sa ${visible} z ${total}`;
-    emptyState.classList.toggle('visible', visible === 0);
-  }
-
-  filterTags.forEach(btn => {
-    btn.addEventListener('click', function() {
-      filterTags.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      applyFilter(this.dataset.filter);
-    });
-  });
 
   /* =============================================
      DETAIL PANEL
