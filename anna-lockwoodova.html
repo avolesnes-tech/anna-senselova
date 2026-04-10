@@ -8,6 +8,15 @@
 <meta name="description" content="Anna Lockwoodová Šenšelová — praneter Anny Šenšelovej, autorka projektu. Jej príbeh, tvorba a cesta k objaveniu rodinného dedičstva.">
 <meta name="author" content="Anna Lockwoodová">
 
+<meta property="og:title" content="Anna Lockwoodová — Autorka projektu Vyšívané poklady">
+<meta property="og:description" content="Praneter Anny Šenšelovej, výtvarníčka a tvorkyňa tohto projektu. Akvarel, výšivka, korálkové brošne, paper maché a vášeň pre rodinné dedičstvo.">
+<meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/anna_lockwoodova.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anna Lockwoodová — Autorka projektu Vyšívané poklady">
+<meta name="twitter:description" content="Praneter Anny Šenšelovej, výtvarníčka a tvorkyňa tohto projektu.">
+<meta name="twitter:image" content="https://avolesnes-tech.github.io/anna-senselova/anna_lockwoodova.jpg">
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* =============================================
@@ -63,10 +72,30 @@ body.page-leaving { opacity: 0; }
   --gold: #D4AF37;
   --gold-dark: #A07C10;
   --section-alt: #F2EDE4;
+  --overlay-dark: rgba(26,10,14,0.75);
   --nav-height: 64px;
   --shadow-card: 4px 8px 28px rgba(0,0,0,0.22);
+  --shadow-dropdown: 0 8px 32px rgba(0,0,0,0.10);
   --transition-base: 0.3s ease;
   --transition-fast: 0.25s ease;
+  --transition-slow: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  --text-xs: 0.65rem;
+  --text-sm: 0.78rem;
+  --text-base: 1rem;
+  --text-md: 1.05rem;
+  --text-nav: 0.88rem;
+  --text-label: 0.78rem;
+  --sp-1: 0.5rem;
+  --sp-2: 1rem;
+  --sp-3: 1.5rem;
+  --sp-4: 2rem;
+  --sp-5: 2.5rem;
+  --sp-6: 3rem;
+  --sp-8: 4rem;
+  --sp-10: 5rem;
+  --sp-12: 6rem;
+  --max-content: 860px;
+  --max-wide: 960px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -103,8 +132,6 @@ nav .logo {
   text-decoration: none;
   flex-shrink: 0;
 }
-
-nav ul {
   list-style: none;
   display: flex;
   gap: 1.8rem;
@@ -342,15 +369,6 @@ h1 {
   box-shadow: var(--shadow-card);
 }
 
-.photo-frame::before {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border: 1px solid rgba(212,175,55,0.45);
-  pointer-events: none;
-  z-index: 2;
-}
-
 .profile-photo {
   display: block;
   width: 100%;
@@ -410,23 +428,96 @@ h1 {
 }
 
 /* =============================================
-   GALÉRIA TVORBY — interaktívna
+   GALÉRIA TVORBY — dominantná sekcia
    ============================================= */
+.tvorba-section {
+  background: var(--section-alt);
+  padding: 5rem 2rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.tvorba-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 0% 50%, rgba(212,175,55,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse at 100% 50%, rgba(196,30,58,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.tvorba-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.tvorba-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.tvorba-header .section-label {
+  margin-bottom: 0.8rem;
+}
+
+.tvorba-header h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  color: var(--red);
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+}
+
+.tvorba-header .tvorba-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #666;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Featured layout: 1 veľký + 3 menšie */
+.artwork-featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.artwork-item-featured {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  cursor: zoom-in;
+}
+
+.artwork-item-side {
+  grid-column: 2;
+  cursor: zoom-in;
+}
+
+.artwork-item-featured .artwork-img-wrap {
+  aspect-ratio: 4 / 5;
+}
+
+.artwork-item-side .artwork-img-wrap {
+  aspect-ratio: 3 / 2;
+}
+
+/* ============ */
 .artwork-section-label {
   font-family: 'Cinzel', serif;
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #A07C10;
+  color: var(--gold-dark);
   margin-bottom: 1rem;
   margin-top: 0.5rem;
-}
-
-.artwork-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin: 0.5rem 0 2rem;
 }
 
 .artwork-item {
@@ -437,15 +528,16 @@ h1 {
 .artwork-img-wrap {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(212,175,55,0.5);
-  aspect-ratio: 1;
+  border: 1px solid rgba(212,175,55,0.45);
   background: #ede6d6;
   transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
-.artwork-item:hover .artwork-img-wrap {
+.artwork-item:hover .artwork-img-wrap,
+.artwork-item-featured:hover .artwork-img-wrap,
+.artwork-item-side:hover .artwork-img-wrap {
   border-color: var(--red);
-  box-shadow: 0 6px 24px rgba(196,30,58,0.18);
+  box-shadow: 0 8px 40px rgba(196,30,58,0.2);
 }
 
 .artwork-img-wrap img {
@@ -453,12 +545,13 @@ h1 {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.55s ease;
+  transition: transform 0.6s ease;
 }
 
-.artwork-item:hover .artwork-img-wrap img { transform: scale(1.06); }
+.artwork-item:hover .artwork-img-wrap img,
+.artwork-item-featured:hover .artwork-img-wrap img,
+.artwork-item-side:hover .artwork-img-wrap img { transform: scale(1.05); }
 
-/* Zoom icon overlay */
 .artwork-img-wrap::after {
   content: '';
   position: absolute;
@@ -468,8 +561,10 @@ h1 {
   pointer-events: none;
 }
 
-.artwork-item:hover .artwork-img-wrap::after {
-  background: rgba(196,30,58,0.08);
+.artwork-item:hover .artwork-img-wrap::after,
+.artwork-item-featured:hover .artwork-img-wrap::after,
+.artwork-item-side:hover .artwork-img-wrap::after {
+  background: rgba(196,30,58,0.06);
 }
 
 .zoom-icon {
@@ -481,35 +576,124 @@ h1 {
   z-index: 2;
   pointer-events: none;
   transition: opacity var(--transition-base), transform var(--transition-base);
-  background: rgba(26,10,14,0.65);
+  background: rgba(26,10,14,0.6);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .zoom-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   stroke: #fff;
   fill: none;
   stroke-width: 1.8;
 }
 
-.artwork-item:hover .zoom-icon {
+.artwork-item:hover .zoom-icon,
+.artwork-item-featured:hover .zoom-icon,
+.artwork-item-side:hover .zoom-icon {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
 
 .artwork-label {
-  margin-top: 0.55rem;
+  margin-top: 0.7rem;
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #A07C10;
+  color: var(--gold-dark);
+}
+
+.artwork-label-featured {
+  margin-top: 0.9rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+/* =============================================
+   FOTO MOMENT — stop-scrolling, full-width
+   ============================================= */
+.foto-moment {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  min-height: 480px;
+  overflow: hidden;
+  margin: 4rem 0;
+}
+
+.foto-moment-img {
+  position: absolute;
+  inset: -10% 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: center 30%;
+  will-change: transform;
+  transition: clip-path 1.1s cubic-bezier(0.77, 0, 0.175, 1);
+  clip-path: inset(100% 0 0 0);
+  filter: sepia(0.08) contrast(1.04);
+}
+
+.foto-moment.is-visible .foto-moment-img {
+  clip-path: inset(0% 0 0 0);
+}
+
+.foto-moment-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26,10,14,0.08) 0%,
+    rgba(26,10,14,0.0) 40%,
+    rgba(26,10,14,0.55) 100%
+  );
+  z-index: 1;
+}
+
+.foto-moment-caption {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  z-index: 2;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
+  transition: opacity 0.8s ease 0.9s, transform 0.8s ease 0.9s;
+}
+
+.foto-moment.is-visible .foto-moment-caption {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.foto-moment-caption-text {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  color: #fff;
+  line-height: 1.3;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.45);
+  display: block;
+  white-space: nowrap;
+}
+
+.foto-moment-caption-label {
+  display: block;
+  margin-top: 0.6rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(212,175,55,0.85);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
 }
 
 /* =============================================
@@ -765,9 +949,84 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
 @media (max-width: 700px) {
   .profile-layout { grid-template-columns: 1fr; }
   .photo-wrap { position: static; max-width: 260px; margin: 0 auto 2rem; }
-  .artwork-grid { grid-template-columns: repeat(2, 1fr); }
+  .artwork-featured-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .artwork-item-featured { grid-column: 1; grid-row: auto; }
+  .artwork-item-featured .artwork-img-wrap { aspect-ratio: 4 / 3; }
+  .artwork-item-side { grid-column: 1; }
+  .artwork-item-side .artwork-img-wrap { aspect-ratio: 4 / 3; }
   .footer-top { flex-direction: column; align-items: center; text-align: center; }
+  .tvorba-section { padding: 3rem 1.2rem; }
+  .omne-life-steps { grid-template-columns: 1fr 1fr !important; }
 }
+
+/* =============================================
+   O MNE — prose verzia
+   ============================================= */
+.omne-section {
+  background: var(--cream);
+  padding: 5rem 2rem;
+  border-top: 1px solid rgba(212,175,55,0.25);
+}
+
+.omne-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.omne-inner .section-label {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.omne-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  color: var(--red);
+  line-height: 1.1;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.omne-divider {
+  margin: 1.2rem auto 2.8rem;
+}
+
+.omne-prose p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.95;
+  margin-bottom: 1.4rem;
+}
+
+.omne-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.omne-prose em {
+  font-style: italic;
+  color: var(--ink);
+}
+
+.omne-prose .omne-places {
+  font-style: italic;
+  color: var(--red);
+  font-size: 0.88rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.08em;
+}
+
+.omne-highlight-quote {
+  border-left: 3px solid var(--gold);
+  padding-left: 1.4rem;
+  margin: 2.2rem 0;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.9;
+}
+
 </style>
 </head>
 <body>
@@ -819,6 +1078,7 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
         <a href="galeria-vysiviek.html">Vzorkovník výšiviek</a>
         <a href="galeria-ludove.html">Ľudové výšivky a odev</a>
         <a href="galeria-babik.html">Krojované bábiky</a>
+        <a href="interaktivna-mapa.html">Slovenské výšivky — mapa</a>
       </div>
     </li>
     <li><a href="interaktivna-mapa.html">Slovenské výšivky</a></li>
@@ -830,8 +1090,108 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
   <span id="main" style="position:absolute;"></span>
   <p class="section-label">Príbeh · O autorke</p>
   <h1>Anna Lockwoodová</h1>
-  <p class="hero-sub">Praneter · Objaviteľka · Tvorca tejto stránky</p>
+  <p class="hero-sub">za slobodna Šenšelová · Annina praneter · tvorca tejto stránky</p>
   <div class="gold-line"></div>
+</section>
+
+<!-- GALÉRIA TVORBY — dominantná sekcia hneď pod hero -->
+<section class="tvorba-section" id="tvorba">
+  <div class="tvorba-inner">
+    <div class="tvorba-header reveal">
+      <p class="section-label">Výtvarná tvorba</p>
+      <h2>Moja tvorba</h2>
+      <p class="tvorba-sub">V tvorbe nikdy neostanem len pri jednej technike. Celý život sa u mňa striedajú obdobia extrémneho nadšenia pre nové nápady, ktoré po čase vystrieda objav ďalších postupov. Umenie a tvorba boli odjakživa mojou vášňou — a dnes už viem, že je to preto, lebo to mám v krvi.</p>
+      <div class="gold-line" style="margin: 1.2rem auto 0;"></div>
+    </div>
+
+    <div class="artwork-featured-grid reveal">
+
+      <!-- FEATURED: veľký obrázok vľavo -->
+      <div class="artwork-item-featured"
+           tabindex="0"
+           role="button"
+           aria-label="Otvoriť: Akvarel a maľba"
+           data-src="anna_l_akvarel.jpg"
+           data-caption="Akvarel &amp; maľba"
+           data-index="0">
+        <div class="artwork-img-wrap">
+          <img src="anna_l_akvarel.jpg" alt="Akvarel a maľba" loading="eager" decoding="async">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <p class="artwork-label-featured">Akvarel &amp; maľba</p>
+      </div>
+
+      <!-- SIDE: 3 menšie vpravo -->
+      <div class="artwork-item-side"
+           tabindex="0"
+           role="button"
+           aria-label="Otvoriť: Korálková brošňa"
+           data-src="anna_l_brosna.jpg"
+           data-caption="Korálková brošňa"
+           data-index="1">
+        <div class="artwork-img-wrap">
+          <img src="anna_l_brosna.jpg" alt="Korálková brošňa" loading="lazy" decoding="async">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <p class="artwork-label">Korálková brošňa</p>
+      </div>
+
+      <div class="artwork-item-side"
+           tabindex="0"
+           role="button"
+           aria-label="Otvoriť: Paper maché"
+           data-src="anna_l_papermache.jpg"
+           data-caption="Paper maché"
+           data-index="2">
+        <div class="artwork-img-wrap">
+          <img src="anna_l_papermache.jpg" alt="Paper maché" loading="lazy" decoding="async">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <p class="artwork-label">Paper maché</p>
+      </div>
+
+      <div class="artwork-item-side"
+           tabindex="0"
+           role="button"
+           aria-label="Otvoriť: Vyšívanie"
+           data-src="anna_l_vysivka.jpg"
+           data-caption="Vyšívanie"
+           data-index="3">
+        <div class="artwork-img-wrap">
+          <img src="anna_l_vysivka.jpg" alt="Vyšívanie" loading="lazy" decoding="async">
+          <div class="zoom-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <p class="artwork-label">Vyšívanie</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- O MNE -->
+<section class="omne-section">
+  <div class="omne-inner">
+
+    <span class="section-label reveal">Trochu o mne</span>
+    <h2 class="omne-title reveal">Kreatívna duša</h2>
+    <div class="gold-line omne-divider reveal"></div>
+
+    <div class="omne-prose">
+
+      <p class="reveal">Som kreatívna duša. Po štúdiu marketingu na vysokej škole som dva roky žila s manželom v Škótsku, v romantickej chalúpke na samote, kde sa nám narodila naša prvá dcéra <em>Amelia</em>. Keď mala tri mesiace, presťahovali sme sa na Slovensko — najprv do Liptova, potom do Bratislavy, chvíľu späť do Liptova, kde sa nám narodil <em>Teo</em>, až sme nakoniec pred dvanástimi rokmi zakotvili v Senci. Pred troma rokmi sa nám tu narodila druhá dcéra <em>Charlotte</em>.</p>
+
+      <p class="reveal">Okrem umeleckých koníčkov sa rada venujem záhrade, pečeniu a našim dvom psom. A keď mi zostane čas, milujem si vyčistiť hlavu behom.</p>
+
+    </div>
+  </div>
 </section>
 
 <!-- OBSAH -->
@@ -843,7 +1203,7 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
       <div class="photo-frame">
         <img src="anna_lockwoodova.jpg" alt="Anna Lockwoodová" class="profile-photo">
       </div>
-      <p class="photo-caption">Anna Lockwoodová Šenšelová<br>Autorka projektu</p>
+      <p class="photo-caption">Anna Lockwoodová<br>Autorka projektu</p>
     </div>
 
     <!-- TEXT -->
@@ -851,89 +1211,81 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
       <h2 class="reveal">Kde sa stretáva<br>minulosť s prítomnosťou.</h2>
       <div class="gold-line reveal"></div>
 
-      <p class="reveal">Môj život je od začiatku poprepletaný dotykmi s umením, tradičným remeslom a kreativitou. Od malička som sa rada učila nové výtvarné techniky — a táto vášeň mi zostala dodnes.</p>
+      <p class="reveal">Ku objavovaniu príbehu mojej prastarej tety Anny Šenšelovej ma priviedla zvedavosť a objav dvoch igelitiek starých výšiviek v pivnici po starých rodičoch. Keďže výšivaniu som sa dlho venovala (modernej výšivke, nie tradičným folklórnym vzorom), držať v rukách tieto precízne spracované kúsky histórie vo mne vzbudilo neskutočný obdiv k našim predkom a ženám, ktorých ruky dokázali niečo takéto vytvoriť.</p>
 
-      <p class="reveal">V posledných rokoch som sa vo voľnom čase venovala vyšívaniu, akvarelovej maľbe, tvorbe korálkových šitých brošní a nedávno som sa zamilovala do techniky paper maché.</p>
+      <p class="reveal">Nikdy som sa o folklór alebo ľudové odievanie veľmi nezaujímala, ale toto bol presne ten moment, kedy sa to zmenilo. Hneď som si spomenula na autobiografiu môjho starého otca – musím s hanbou priznať, nikdy predtým nedočítanú. Teraz to vnímam tak, že som na ňu musela jednoducho dozrieť. Príbeh o jeho živote sa mi teraz čítal úplne inak, hltala som ho viac než akýkoľvek bestseller.</p>
 
-      <!-- GALÉRIA TVORBY -->
-      <p class="artwork-section-label reveal" style="color:#A07C10;">Ukážky tvorby</p>
-      <div class="artwork-grid reveal">
+      <p class="reveal">Na toľkých zážitkoch som sa zasmala, úplne som si ho vedela predstaviť, ako vystrájal všetky možné beťárčiny – a to ako malý chlapec, ale aj ako dospelý a seriózny muž. Najviac ma zaujalo, že sa nehanbil v knihe pomenovať a opísať aj svoje chyby. Táto brutálna úprimnosť mi dodala akýsi pocit slobody – že sa nemusíme vždy tváriť, že sme dokonalí.</p>
 
-        <div class="artwork-item"
-             tabindex="0"
-             role="button"
-             aria-label="Otvoriť: Akvarel a maľba"
-             data-src="anna_l_akvarel.jpg"
-             data-caption="Akvarel &amp; maľba"
-             data-index="0">
-          <div class="artwork-img-wrap">
-            <img src="anna_l_akvarel.jpg" alt="Akvarel a maľba" loading="lazy" decoding="async">
-            <div class="zoom-icon">
-              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
-          </div>
-          <p class="artwork-label" style="color:#A07C10;">Akvarel &amp; maľba</p>
-        </div>
+      <p class="reveal">Prostredníctvom autobiografie, životopisu seniora Ľudovíta Šenšela a publikácie „Šenšelovský rod" som sa preniesla sto a viac rokov dozadu a detailne spoznala svojich predkov. V hlave mi však stále ostávali výšivky. Chcela som vyriešiť záhadu, odkiaľ sa vlastne vzali v pivnici u starých rodičov a čo sú zač.</p>
 
-        <div class="artwork-item"
-             tabindex="0"
-             role="button"
-             aria-label="Otvoriť: Korálková brošňa"
-             data-src="anna_l_brosna.jpg"
-             data-caption="Korálková brošňa"
-             data-index="1">
-          <div class="artwork-img-wrap">
-            <img src="anna_l_brosna.jpg" alt="Korálková brošňa" loading="lazy" decoding="async">
-            <div class="zoom-icon">
-              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
-          </div>
-          <p class="artwork-label" style="color:#A07C10;">Korálková brošňa</p>
-        </div>
+    </div>
+  </div>
+</div>
 
-        <div class="artwork-item"
-             tabindex="0"
-             role="button"
-             aria-label="Otvoriť: Paper maché"
-             data-src="anna_l_papermache.jpg"
-             data-caption="Paper maché"
-             data-index="2">
-          <div class="artwork-img-wrap">
-            <img src="anna_l_papermache.jpg" alt="Paper maché" loading="lazy" decoding="async">
-            <div class="zoom-icon">
-              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
-          </div>
-          <p class="artwork-label" style="color:#A07C10;">Paper maché</p>
-        </div>
+<!-- FOTO MOMENT — stop-scrolling -->
+<div class="foto-moment" id="fotoMoment">
+  <img
+    src="anna_lockwoodova_knihy.jpeg"
+    alt="Knihy zo Šenšelovského rodu — autobiografia a životopis seniora Ľudovíta Šenšela"
+    class="foto-moment-img"
+    id="fotoMomentImg"
+    loading="lazy"
+    decoding="async"
+  >
+  <div class="foto-moment-overlay"></div>
+  <div class="foto-moment-caption">
+    <span class="foto-moment-caption-text">Príbehy, ktoré som musela dozrieť čítať</span>
+    <span class="foto-moment-caption-label">Autobiografia &amp; Životopis seniora Ľudovíta Šenšela</span>
+  </div>
+</div>
 
-        <div class="artwork-item"
-             tabindex="0"
-             role="button"
-             aria-label="Otvoriť: Vyšívanie"
-             data-src="anna_l_vysivka.jpg"
-             data-caption="Vyšívanie"
-             data-index="3">
-          <div class="artwork-img-wrap">
-            <img src="anna_l_vysivka.jpg" alt="Vyšívanie" loading="lazy" decoding="async">
-            <div class="zoom-icon">
-              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-            </div>
-          </div>
-          <p class="artwork-label" style="color:#A07C10;">Vyšívanie</p>
-        </div>
-
-      </div>
-
-      <p class="reveal">Keď mi ako matke troch detí, po poslednej materskej, zrušili pozíciu v IT korporáte, začala som sa vo voľnom čase viac venovať tvorbe. A práve vtedy som náhodou natrafila na dedičstvo po starých rodičoch a tete Anne.</p>
+<!-- OBSAH — pokračovanie -->
+<div class="content-wrap" style="padding-top: 0;">
+  <div class="profile-layout" style="padding-top: 0;">
+    <div style="display:none;"></div>
+    <div class="profile-text">
 
       <div class="highlight reveal">
-        „Vďaka tomu som začala skúmať svoj rodostrom. Poznanie rodinnej minulosti — príbehy mojich starých, prastarých, či praprastarých rodičov — mi dáva akýsi pocit väčšej vlastnej hodnoty. Nachádzam v ich životoch veľa paralel s tým svojím."
+        S malou dušičkou som kontaktovala Tami Šimončíkovú Heribanovú, ktorá ma nasmerovala na pani Zuzanu Tajek Piešovú, odborníčku na kroje. Na môj obrovský údiv sa hneď podujala prísť za mnou domov, aby sa na výšivky mohla pozrieť zblízka.
       </div>
 
-      <p class="reveal">Toto poznanie ma ako človeka neuveriteľne obohatilo a vzbudilo vo mne pocit hrdosti na to, že som Slovenka. Zároveň mám odjakživa blízko k ručným prácam, a preto som chcela zachovať posolstvo ukryté v starých výšivkách — a spojiť svoje novo získané zručnosti s tvorbou webu a vytvoriť túto stránku.</p>
+    </div>
+  </div>
+</div>
 
-      <p class="pribeh-signature reveal">Verím, že inšpirujem aj ďalších k skúmaniu nášho spoločného dedičstva alebo individuálnej rodinnej histórie. Pretože verím, že vďaka tomu si budeme svoju krajinu viac vážiť a zachováme si to dobré, čo tu máme.</p>
+<!-- FOTO MOMENT 2 — knihy Šenšelovcov -->
+<div class="foto-moment" id="fotoMoment2">
+  <img
+    src="anna_lockwoodova_knihy2.jpeg"
+    alt="Vlastný životopis Ľudovíta Šenšela, Pevný buď a Šenšelovský rod"
+    class="foto-moment-img"
+    id="fotoMomentImg2"
+    loading="lazy"
+    decoding="async"
+  >
+  <div class="foto-moment-overlay"></div>
+  <div class="foto-moment-caption">
+    <span class="foto-moment-caption-text">Sto rokov dozadu, strana po strane</span>
+    <span class="foto-moment-caption-label">Vlastný životopis · Pevný buď · Šenšelovský rod</span>
+  </div>
+</div>
+
+<!-- pokračovanie príbehu -->
+<div class="content-wrap" style="padding-top: 0;">
+  <div class="profile-layout" style="padding-top: 0;">
+    <div style="display:none;"></div>
+    <div class="profile-text">
+
+      <p class="reveal">Odkázala ma aj na pána Stanka Talapku – a keď som sa s ním spojila, až som nemohla uveriť jeho ochote pomôcť. Pozval ma priamo do Martina, kde viedla stopa tety Anny. Sadla som teda na vlak a vyrazila. Pán Talapka mi porozprával detaily ku jednotlivým výšivkám, odhadol ich pôvod a využitie, povedal mi o spolku Lipa a dokonca priniesol ukázať košeľu z ich dielne. S ocinom sme si pozreli aj nádhernú výstavu Karola Plicku a stálu expozíciu krojov v SNM.</p>
+
+      <p class="reveal">Tak ako sa nám niektoré veci v živote v prvom momente zdajú katastrofálne, s odstupom času vidím, že je to niekedy najlepšie, čo sa nám mohlo stať. Na jeseň 2025 mi zrušili pracovnú pozíciu v korporácii a ako matka troch detí som si ťažko hľadala prácu. S každým ďalším odmietnutím moja sebahodnota akosi klesala. Aj vďaka nezamestnanosti som však mala priestor venovať sa skúmaniu rodinnej histórie aj príbehu Lipy.</p>
+
+      <p class="reveal">Nakoniec som si povedala, že musím vziať osud do vlastných rúk, a začala som sa venovať samostúdiu webdizajnu pomocou AI. Videla som v tom ideálnu príležitosť zhmotniť všetky informácie, ktoré som nadobudla počas môjho pátrania, a zároveň testovať moje nové zručnosti. Takto sa aspoň malým kúskom pričiním o to, aby sa na prácu našich predkov nezabudlo.</p>
+
+      <p class="reveal">Keď som si dala za cieľ vytvoriť túto stránku, moja detektívna činnosť ešte nabrala na obrátkach. Vo svojich 38 rokoch som sa spoznala s mojím dvojstupňovým ujom – veľmi rozhľadeným a zanietenýmčlovekom, pomocníkom od prvého stretnutia. Spojila som sa aj s pani Olgou Kapustovou, mojou sesternicou z tretieho kolena, a verím, že tu ešte nekončíme.</p>
+
+      <p class="pribeh-signature reveal">Verím, že poznanie vlastnej minulosti je absolútne obohacujúci zážitok — je to ako chýbajúci dielik puzzle v našom vnútri, pretože každá generácia pred nami do nás všepila niečo, čo tá ďalšia zachovala. A tak sme prepojení jednou niťou, ani o tom na prvý pohľad nevieme.</p>
     </div>
 
   </div>
@@ -1068,6 +1420,45 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
 })();
 
 /* =============================================
+   FOTO MOMENT — clip-path reveal + parallax
+   ============================================= */
+(function() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initFotoMoment(momentId, imgId) {
+    const fotoMoment = document.getElementById(momentId);
+    const fotoImg    = document.getElementById(imgId);
+    if (!fotoMoment || !fotoImg) return;
+
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          fotoMoment.classList.add('is-visible');
+          revealObs.unobserve(fotoMoment);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealObs.observe(fotoMoment);
+
+    if (!prefersReduced) {
+      function onScroll() {
+        const rect = fotoMoment.getBoundingClientRect();
+        const vh = window.innerHeight;
+        if (rect.bottom < 0 || rect.top > vh) return;
+        const progress = (vh - rect.top) / (vh + rect.height);
+        const offset = (progress - 0.5) * 80;
+        fotoImg.style.transform = 'translateY(' + offset + 'px)';
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  }
+
+  initFotoMoment('fotoMoment',  'fotoMomentImg');
+  initFotoMoment('fotoMoment2', 'fotoMomentImg2');
+})();
+
+/* =============================================
    LIGHTBOX — interaktívna galéria
    ============================================= */
 (function() {
@@ -1079,7 +1470,7 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
   const lbNext     = document.getElementById('lbNext');
   const lbInner    = document.getElementById('lightboxInner');
 
-  const items = Array.from(document.querySelectorAll('.artwork-item[data-src]'));
+  const items = Array.from(document.querySelectorAll('[data-src][data-index]'));
   let current = 0;
   let lastFocused = null;
 
