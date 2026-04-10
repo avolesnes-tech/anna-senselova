@@ -4,1088 +4,600 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anna Lockwoodová – Vyšívané poklady Anny Šenšelovej</title>
-
 <meta name="description" content="Anna Lockwoodová Šenšelová — praneter Anny Šenšelovej, autorka projektu. Jej príbeh, tvorba a cesta k objaveniu rodinného dedičstva.">
 <meta name="author" content="Anna Lockwoodová">
-
 <meta property="og:title" content="Anna Lockwoodová — Autorka projektu Vyšívané poklady">
-<meta property="og:description" content="Praneter Anny Šenšelovej, výtvarníčka a tvorkyňa tohto projektu. Akvarel, výšivka, korálkové brošne, paper maché a vášeň pre rodinné dedičstvo.">
+<meta property="og:description" content="Praneter Anny Šenšelovej, výtvarníčka a tvorkyňa tohto projektu.">
 <meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/anna_lockwoodova.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Anna Lockwoodová — Autorka projektu Vyšívané poklady">
 <meta name="twitter:description" content="Praneter Anny Šenšelovej, výtvarníčka a tvorkyňa tohto projektu.">
 <meta name="twitter:image" content="https://avolesnes-tech.github.io/anna-senselova/anna_lockwoodova.jpg">
-
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* =============================================
-   SKIP LINK
-   ============================================= */
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: 1rem;
-  background: var(--red);
-  color: #fff;
-  padding: 0.55rem 1.2rem;
-  font-family: 'Cinzel', serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  z-index: 99999;
-  transition: top 0.2s ease;
-  border-bottom: 2px solid var(--gold);
-}
-.skip-link:focus { top: 0; }
 
-/* =============================================
-   PAGE TRANSITION
-   ============================================= */
-body.page-leaving { opacity: 0; }
-
-/* =============================================
-   READING PROGRESS BAR
-   ============================================= */
-.reading-progress {
-  position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--red), var(--gold));
-  z-index: 9997;
-  transition: width 0.1s linear;
-  pointer-events: none;
-}
-
-/* =============================================
-   RESET & TOKENS
-   ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --cream: #F9F7F2;
   --ink: #1A1A1A;
   --red: #C41E3A;
+  --red-dark: #9B1530;
   --gold: #D4AF37;
-  --gold-dark: #A07C10;
+  /* --gold-dark opravený na WCAG AA kontrast na krémovom pozadí */
+  --gold-dark: #6B5000;
   --section-alt: #F2EDE4;
-  --overlay-dark: rgba(26,10,14,0.75);
   --nav-height: 64px;
-  --shadow-card: 4px 8px 28px rgba(0,0,0,0.22);
-  --shadow-dropdown: 0 8px 32px rgba(0,0,0,0.10);
   --transition-base: 0.3s ease;
-  --transition-fast: 0.25s ease;
-  --transition-slow: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  --text-xs: 0.65rem;
-  --text-sm: 0.78rem;
-  --text-base: 1rem;
-  --text-md: 1.05rem;
-  --text-nav: 0.88rem;
-  --text-label: 0.78rem;
-  --sp-1: 0.5rem;
-  --sp-2: 1rem;
-  --sp-3: 1.5rem;
-  --sp-4: 2rem;
-  --sp-5: 2.5rem;
-  --sp-6: 3rem;
-  --sp-8: 4rem;
-  --sp-10: 5rem;
-  --sp-12: 6rem;
-  --max-content: 860px;
+  --transition-fast: 0.22s ease;
+  --max-prose: 700px;
   --max-wide: 960px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
 html { scroll-behavior: smooth; }
-body { background: var(--cream); color: var(--ink); font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 2.2vw, 18px);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
 
-/* =============================================
-   NAV — identický so zvyškom webu
-   ============================================= */
+/* SKIP LINK */
+.skip-link {
+  position: absolute; top: -100%; left: 1rem;
+  background: var(--red); color: #fff;
+  padding: 0.6rem 1.2rem;
+  font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; z-index: 99999; transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; }
+
+body.page-leaving { opacity: 0; transition: opacity 0.36s ease; }
+
+/* READING PROGRESS */
+.reading-progress {
+  position: fixed; top: var(--nav-height); left: 0; width: 0%; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 9997; transition: width 0.1s linear; pointer-events: none;
+}
+
+/* ===== NAV ===== */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 9998;
-  background: rgba(249,247,242,0.96);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem 2.5rem;
-  height: var(--nav-height);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9998;
+  background: rgba(249,247,242,0.97);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(212,175,55,0.4);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: var(--nav-height);
 }
 
 nav .logo {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 2rem;
-  color: var(--red);
-  text-decoration: none;
-  flex-shrink: 0;
+  font-family: 'Pinyon Script', cursive; font-size: 2rem;
+  color: var(--red); text-decoration: none; flex-shrink: 0; line-height: 1;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.8rem;
-  align-items: center;
-}
-
+nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
 nav ul li { position: relative; }
 
 nav ul li > a {
   text-decoration: none;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.88rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink);
+  font-family: 'Cormorant Garamond', serif; font-size: 0.88rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
   transition: color var(--transition-base);
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.5rem 0;
-  white-space: nowrap;
+  display: flex; align-items: center; gap: 0.3rem;
+  padding: 0.6rem 0; white-space: nowrap; min-height: 44px;
 }
-
 nav ul li > a:hover { color: var(--red); }
-
-nav ul li > a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+nav ul li > a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 2px; }
 
 .dropdown {
-  position: absolute;
-  top: 100%;
-  left: 50%;
+  position: absolute; top: calc(100% + 4px); left: 50%;
   transform: translateX(-50%) translateY(6px);
   background: #fff;
-  border: 1px solid var(--gold);
-  border-top: 2px solid var(--red);
-  min-width: 220px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
-  opacity: 0;
-  pointer-events: none;
+  border: 1px solid rgba(212,175,55,0.4); border-top: 2px solid var(--red);
+  min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  opacity: 0; pointer-events: none;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
   z-index: 200;
-  padding-top: 8px;
 }
-
-.dropdown::before {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: transparent;
-}
-
 .dropdown.dropdown-open {
-  opacity: 1;
-  pointer-events: all;
+  opacity: 1; pointer-events: all;
   transform: translateX(-50%) translateY(0);
 }
-
 .dropdown a {
-  display: block;
+  display: flex; align-items: center; min-height: 44px;
   padding: 0.6rem 1.2rem;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.88rem;
-  color: var(--ink);
-  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif; font-size: 0.92rem;
+  color: var(--ink); text-decoration: none;
   border-bottom: 1px solid rgba(212,175,55,0.15);
   transition: background var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
 }
-
+.dropdown a:last-child { border-bottom: none; }
 .dropdown a:hover { background: #fdf8f0; color: var(--red); }
 .dropdown a.active { color: var(--red); font-style: italic; }
-
 .dropdown .dropdown-label {
-  display: block;
-  padding: 0.5rem 1.2rem 0.3rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold-dark);
+  display: block; padding: 0.6rem 1.2rem 0.4rem;
+  font-family: 'Cinzel', serif; font-size: 0.68rem;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark);
   border-bottom: 1px solid rgba(212,175,55,0.3);
 }
 
+/* Hamburger */
 .hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.4rem;
-  z-index: 10000;
-  flex-shrink: 0;
+  display: none; flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; background: none; border: none; cursor: pointer;
+  padding: 0.6rem; z-index: 10000; flex-shrink: 0;
+  min-width: 44px; min-height: 44px;
 }
-
 .hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: transform var(--transition-base), opacity var(--transition-base);
+  display: block; width: 24px; height: 2px; background: var(--ink);
+  border-radius: 2px; transition: transform var(--transition-base), opacity var(--transition-base);
 }
-
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 @media (max-width: 768px) {
-  nav { padding: 0.6rem 1.2rem; }
-  nav .logo { font-size: 1.5rem; }
+  nav { padding: 0 1.2rem; }
+  nav .logo { font-size: 1.6rem; }
   .hamburger { display: flex; }
   nav ul {
-    display: none;
-    flex-direction: column;
-    gap: 0;
-    position: absolute;
-    top: 100%;
-    left: 0; right: 0;
-    width: 100%;
-    max-height: calc(100vh - var(--nav-height));
-    background: rgba(249,247,242,0.99);
-    backdrop-filter: blur(10px);
-    padding: 1rem 2rem 3rem;
-    align-items: flex-start;
-    z-index: 10000;
-    overflow-y: auto;
+    display: none; flex-direction: column; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0; width: 100%;
+    max-height: calc(100dvh - var(--nav-height));
+    background: rgba(249,247,242,0.99); backdrop-filter: blur(10px);
+    padding: 0.5rem 1.5rem 3rem; align-items: flex-start;
+    z-index: 10000; overflow-y: auto; -webkit-overflow-scrolling: touch;
     box-shadow: 0 8px 32px rgba(0,0,0,0.12);
   }
   nav ul.open { display: flex; }
   nav ul li { width: 100%; border-bottom: 1px solid rgba(212,175,55,0.2); }
-  nav ul li > a { font-size: 1rem; padding: 1rem 0; width: 100%; justify-content: space-between; }
+  nav ul li > a { font-size: 1rem; padding: 0.9rem 0; width: 100%; justify-content: space-between; min-height: 48px; }
   .dropdown {
-    position: static;
-    transform: none;
-    opacity: 1;
-    pointer-events: none;
-    box-shadow: none;
-    border: none;
+    position: static; transform: none !important; opacity: 1;
+    pointer-events: none; box-shadow: none; border: none;
     border-top: 1px solid rgba(212,175,55,0.2);
     background: rgba(242,237,228,0.6);
-    display: none;
-    min-width: unset;
-    width: 100%;
+    display: none; min-width: unset; width: 100%;
   }
   .dropdown.open { display: block !important; pointer-events: auto !important; }
+  .dropdown a { min-height: 48px; font-size: 0.95rem; }
 }
 
-/* =============================================
-   HERO
-   ============================================= */
+/* ===== HERO ===== */
 #hero {
-  min-height: 52vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  text-align: center;
-  padding: calc(var(--nav-height) + 4rem) 2rem 4rem;
-  background: var(--cream);
-  position: relative;
-  overflow: hidden;
+  min-height: 55vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: calc(var(--nav-height) + 3rem) 1.5rem 3.5rem;
+  background: var(--cream); position: relative; overflow: hidden;
 }
-
 #hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 25% 60%, rgba(196,30,58,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 40%, rgba(212,175,55,0.08) 0%, transparent 55%);
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 25% 60%, rgba(196,30,58,0.06) 0%, transparent 55%),
+              radial-gradient(ellipse at 75% 40%, rgba(212,175,55,0.07) 0%, transparent 55%);
   pointer-events: none;
 }
-
 #hero > * { position: relative; z-index: 1; }
 
 .section-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 0.6rem;
+  font-family: 'Cinzel', serif; font-size: 0.72rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 0.6rem; display: block;
 }
 
 h1 {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(3.5rem, 8vw, 7rem);
-  color: var(--red);
-  line-height: 1.1;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  color: var(--red); line-height: 1.1;
 }
 
 .hero-sub {
   font-family: 'Cinzel', serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(160,124,16,0.85);
-  margin-top: 0.7rem;
+  font-size: clamp(0.62rem, 1.8vw, 0.78rem);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-dark); margin-top: 0.8rem;
 }
 
 .gold-line {
-  width: 120px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  width: 100px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.65), transparent);
   margin: 1.2rem auto;
 }
 
-/* =============================================
-   PROFIL LAYOUT
-   ============================================= */
-.content-wrap { max-width: 100%; margin: 0; padding: 0; }
-
-.profile-layout {
-  display: block;
+/* ===== INTRO PRÍBEH (pred tvorbou) ===== */
+.pribeh-intro {
+  max-width: var(--max-prose); margin: 0 auto;
+  padding: 4rem 1.5rem 3rem;
 }
-
-/* Portrait foto — skrytá, informácia je v hero */
-.photo-wrap {
-  display: none;
-}
-
-.photo-frame {
-  position: relative;
-  display: inline-block;
-  background: #fff;
-  box-shadow: var(--shadow-card);
-}
-
-.profile-photo {
-  display: block;
-  width: 100%;
-  object-fit: cover;
-  object-position: center top;
-  filter: sepia(0.1) contrast(1.02);
-}
-
-.photo-caption {
-  font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-  margin-top: 1rem;
-  font-style: italic;
-  line-height: 1.6;
-}
-
-/* TEXT */
-.profile-text h2 {
+.pribeh-intro h2 {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  color: var(--red);
-  line-height: 1.2;
-  margin-bottom: 0.3rem;
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  color: var(--red); line-height: 1.2; margin-bottom: 0.4rem;
+}
+.pribeh-intro .gold-line { margin: 0.8rem 0 2rem; }
+.pribeh-intro p {
+  font-size: clamp(1rem, 2.5vw, 1.08rem);
+  color: #2e2e2e; line-height: 1.95; margin-bottom: 1.4rem;
 }
 
-.profile-text .gold-line { margin: 0.8rem 0 1.8rem; }
-
-.profile-text p, .pribeh-section p {
-  font-size: 1.08rem;
-  color: #333;
-  line-height: 1.95;
-  margin-bottom: 1.4rem;
-}
-
-.profile-text .highlight, .pribeh-section .highlight {
-  font-style: italic;
-  font-size: 1.08rem;
-  color: var(--ink);
-  border-left: 3px solid var(--red);
-  padding-left: 1.4rem;
-  margin: 2rem 0;
-  line-height: 1.85;
-}
-
-.pribeh-signature {
-  font-style: italic;
-  font-size: 1rem;
-  color: #555;
-  border-left: 3px solid var(--gold);
-  padding-left: 1.4rem;
-  margin-top: 2rem;
-  line-height: 1.85;
-}
-
-/* =============================================
-   GALÉRIA TVORBY — dominantná sekcia
-   ============================================= */
-.tvorba-section {
-  background: var(--section-alt);
-  padding: 6rem 2rem;
-  position: relative;
-  overflow: hidden;
+/* ===== O MNE ===== */
+.omne-section {
+  background: var(--section-alt); padding: 4rem 1.5rem;
   border-top: 1px solid rgba(212,175,55,0.25);
   border-bottom: 1px solid rgba(212,175,55,0.25);
 }
-
-.tvorba-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 15% 85%, rgba(212,175,55,0.06) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 15%, rgba(196,30,58,0.04) 0%, transparent 55%);
-  pointer-events: none;
+.omne-inner { max-width: var(--max-prose); margin: 0 auto; }
+.omne-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: var(--red); line-height: 1.1; text-align: center; margin-bottom: 0.5rem;
 }
-
-.tvorba-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+.omne-divider { margin: 1rem auto 2.4rem; }
+.omne-prose p {
+  font-size: clamp(1rem, 2.5vw, 1.05rem);
+  color: #2e2e2e; line-height: 1.95; margin-bottom: 1.3rem;
 }
+.omne-prose p:last-child { margin-bottom: 0; }
+.omne-prose em { font-style: italic; color: var(--ink); }
 
-.tvorba-header {
-  text-align: center;
-  margin-bottom: 3.5rem;
+/* ===== GALÉRIA TVORBY ===== */
+.tvorba-section {
+  background: var(--cream); padding: 4rem 0 3rem;
+  border-top: 1px solid rgba(212,175,55,0.25);
 }
-
-.tvorba-header .section-label {
-  color: var(--red);
-  margin-bottom: 0.8rem;
-}
-
+.tvorba-inner { max-width: var(--max-wide); margin: 0 auto; padding: 0 1.5rem; }
+.tvorba-header { text-align: center; margin-bottom: 2.5rem; }
 .tvorba-header h2 {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  color: var(--red);
-  line-height: 1.1;
-  margin-bottom: 0.8rem;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: var(--red); line-height: 1.1; margin-bottom: 0.6rem;
 }
-
-.tvorba-header .tvorba-sub {
+.tvorba-sub {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  font-style: italic;
-  color: rgba(51,51,51,0.75);
-  max-width: 560px;
-  margin: 0 auto;
-  line-height: 1.8;
+  font-size: clamp(0.95rem, 2vw, 1rem);
+  font-style: italic; color: #444;
+  max-width: 520px; margin: 0 auto; line-height: 1.8;
 }
 
-/* Zlatá linka v svetlej sekcii */
-.tvorba-header .gold-line {
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-
-/* Carousel */
+/* CAROUSEL */
 .carousel-wrap {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding: 2rem 0 2.5rem;
+  position: relative; overflow: hidden; width: 100%;
+  padding: 1rem 0 0.5rem; touch-action: pan-y;
 }
+.carousel-pause-btn {
+  display: block; margin: 0 auto 1.2rem;
+  background: none; border: 1px solid rgba(107,80,0,0.4);
+  color: var(--gold-dark);
+  font-family: 'Cinzel', serif; font-size: 0.64rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.45rem 1rem; cursor: pointer; border-radius: 2px;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+  min-height: 36px;
+}
+.carousel-pause-btn:hover { border-color: var(--red); color: var(--red); }
 
 .carousel-track {
-  display: flex;
-  align-items: center;
-  gap: 1.4rem;
-  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  cursor: grab;
-  user-select: none;
+  display: flex; align-items: center; gap: 1.2rem;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform; cursor: grab; user-select: none;
 }
-
 .carousel-track:active { cursor: grabbing; }
 
 .carousel-slide {
-  flex: 0 0 320px;
-  height: 380px;
-  overflow: hidden;
-  position: relative;
+  flex: 0 0 280px; height: 340px;
+  overflow: hidden; position: relative;
   border: 1px solid rgba(212,175,55,0.2);
-  transition: flex-basis 0.65s cubic-bezier(0.4,0,0.2,1),
-              height 0.65s cubic-bezier(0.4,0,0.2,1),
-              box-shadow 0.65s ease,
-              opacity 0.65s ease;
-  opacity: 0.55;
-  cursor: zoom-in;
-  flex-shrink: 0;
+  transition: flex-basis 0.6s cubic-bezier(0.4,0,0.2,1),
+              height 0.6s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.6s ease, opacity 0.6s ease;
+  opacity: 0.5; cursor: pointer; flex-shrink: 0; border-radius: 2px;
 }
-
 .carousel-slide.active {
-  flex-basis: 480px;
-  height: 440px;
-  opacity: 1;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.22);
-  border-color: rgba(212,175,55,0.5);
-  z-index: 2;
+  flex-basis: 440px; height: 400px; opacity: 1;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+  border-color: rgba(212,175,55,0.5); z-index: 2;
 }
-
 .carousel-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
   pointer-events: none;
 }
-
-.carousel-slide:hover img { transform: scale(1.04); }
+.carousel-slide.active:hover img { transform: scale(1.03); }
 
 .carousel-slide-overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 2.5rem 1.4rem 1.2rem;
-  background: linear-gradient(to top, rgba(15,8,10,0.75) 0%, transparent 100%);
-  z-index: 2;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 2rem 1.2rem 1rem;
+  background: linear-gradient(to top, rgba(15,8,10,0.72) 0%, transparent 100%);
+  z-index: 2; opacity: 0; transition: opacity 0.3s ease;
 }
-
-.carousel-slide.active .carousel-slide-overlay,
-.carousel-slide:hover .carousel-slide-overlay {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+.carousel-slide.active .carousel-slide-overlay { opacity: 1; }
 .carousel-slide-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(212,175,55,0.9);
+  font-family: 'Cinzel', serif; font-size: 0.64rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(249,240,210,0.95);
 }
 
-/* Carousel nav dots */
 .carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.6rem;
+  display: flex; justify-content: center; gap: 0.6rem; margin-top: 1.4rem;
 }
-
 .carousel-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: rgba(160,124,16,0.25);
-  border: none;
-  cursor: pointer;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(107,80,0,0.2); border: none; cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
-  padding: 0;
+  padding: 0; position: relative;
 }
+.carousel-dot::after { content: ''; position: absolute; inset: -8px; }
+.carousel-dot.active { background: var(--gold-dark); transform: scale(1.35); }
 
-.carousel-dot.active {
-  background: var(--gold-dark);
-  transform: scale(1.4);
-}
-
-/* Carousel arrows */
 .carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(249,247,242,0.9);
-  border: 1px solid rgba(212,175,55,0.4);
-  border-radius: 50%;
-  width: 40px; height: 40px;
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(249,247,242,0.92);
+  border: 1px solid rgba(212,175,55,0.4); border-radius: 50%;
+  width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.25s ease, border-color 0.25s ease;
-  color: var(--ink);
+  cursor: pointer; z-index: 10; color: var(--ink);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  touch-action: manipulation;
 }
-.carousel-arrow:hover { background: #fff; border-color: var(--gold); color: var(--red); }
-.carousel-arrow.prev { left: 0.5rem; }
-.carousel-arrow.next { right: 0.5rem; }
+.carousel-arrow:hover { background: #fff; color: var(--red); }
+.carousel-arrow.prev { left: 0.6rem; }
+.carousel-arrow.next { right: 0.6rem; }
 .carousel-arrow svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; }
 
-@media (max-width: 700px) {
-  .carousel-slide { flex: 0 0 220px; height: 280px; }
-  .carousel-slide.active { flex-basis: 300px; height: 330px; }
-  .carousel-arrow { display: none; }
+@media (max-width: 600px) {
+  .carousel-slide { flex: 0 0 74vw; height: 55vw; }
+  .carousel-slide.active { flex-basis: 84vw; height: 64vw; }
+  .carousel-arrow { width: 38px; height: 38px; }
+  .carousel-arrow.prev { left: 0.2rem; }
+  .carousel-arrow.next { right: 0.2rem; }
 }
 
-/* Zachované pre lightbox dáta, skryté vizuálne */
-.artwork-label, .artwork-label-featured,
-.artwork-item, .artwork-img-wrap,
-.artwork-item-featured, .artwork-item-side,
-.zoom-icon { display: none; }
-
-/* =============================================
-   PRÍBEH — full-width layout, žiadne stĺpce
-   ============================================= */
-.content-wrap {
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.profile-layout {
-  display: block;
-}
-
-.photo-wrap {
-  display: none;
-}
-
+/* ===== PRÍBEH SEKCIA ===== */
 .pribeh-section {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 5rem 2rem 2rem;
+  max-width: var(--max-prose); margin: 0 auto;
+  padding: 4rem 1.5rem 2rem;
 }
-
 .pribeh-section h2 {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  color: var(--red);
-  line-height: 1.2;
-  margin-bottom: 0.3rem;
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  color: var(--red); line-height: 1.2; margin-bottom: 0.3rem;
 }
-
 .pribeh-section .gold-line { margin: 0.8rem 0 2rem; }
-
 .pribeh-section p {
-  font-size: 1.08rem;
-  color: #333;
-  line-height: 1.95;
-  margin-bottom: 1.4rem;
+  font-size: clamp(1rem, 2.5vw, 1.08rem);
+  color: #2e2e2e; line-height: 1.95; margin-bottom: 1.4rem;
 }
-
 .pribeh-section .highlight {
-  font-style: italic;
-  font-size: 1.1rem;
-  color: var(--ink);
-  border-left: 3px solid var(--red);
-  padding-left: 1.4rem;
-  margin: 2rem 0;
-  line-height: 1.85;
+  font-style: italic; font-size: clamp(1rem, 2.5vw, 1.08rem);
+  color: var(--ink); border-left: 3px solid var(--red);
+  padding-left: 1.3rem; margin: 2rem 0; line-height: 1.85;
 }
-
 .pribeh-section .pribeh-signature {
-  font-style: italic;
-  font-size: 1rem;
-  color: #555;
-  border-left: 3px solid var(--gold);
-  padding-left: 1.4rem;
-  margin-top: 2rem;
-  line-height: 1.85;
+  font-style: italic; font-size: clamp(0.95rem, 2.2vw, 1rem);
+  color: #444; border-left: 3px solid rgba(212,175,55,0.7);
+  padding-left: 1.3rem; margin-top: 2rem; line-height: 1.85;
 }
 
-/* Fotky kníh — sticky po boku, text scrolluje vedľa */
-.knihy-wrap {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
+/* ===== KNIHY — sticky side layout ===== */
+.knihy-wrap { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
 
 .knihy-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
-  margin: 4rem 0;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3.5rem; align-items: start; margin: 2.5rem 0 4rem;
 }
-
-.knihy-block.reverse {
-  direction: rtl;
-}
-.knihy-block.reverse > * {
-  direction: ltr;
-}
+.knihy-block.reverse { direction: rtl; }
+.knihy-block.reverse > * { direction: ltr; }
 
 .knihy-sticky {
-  position: sticky;
-  top: calc(var(--nav-height) + 2rem);
+  position: sticky; top: calc(var(--nav-height) + 1.5rem);
 }
 
 .knihy-foto {
-  width: 100%;
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
+  width: 100%; margin: 0; position: relative; overflow: hidden;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
-.knihy-foto.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.knihy-foto.is-visible { opacity: 1; transform: translateY(0); }
 
 .knihy-foto img {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  object-position: center 35%;
-  display: block;
-  filter: sepia(0.08) contrast(1.04) brightness(0.97);
-  border: 1px solid rgba(212,175,55,0.2);
+  width: 100%; height: 380px;
+  object-fit: cover; object-position: center 35%; display: block;
+  filter: sepia(0.07) contrast(1.03) brightness(0.98);
+  border: 1px solid rgba(212,175,55,0.22); border-radius: 2px;
 }
 
 .knihy-foto figcaption {
-  font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-  margin-top: 0.8rem;
-  opacity: 0.7;
+  font-family: 'Cinzel', serif; font-size: 0.63rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-dark); margin-top: 0.7rem;
 }
 
-.knihy-text {
-  padding: 1rem 0;
+.knihy-quote {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+  color: var(--red-dark); margin-top: 1rem; line-height: 1.7;
 }
 
-@media (max-width: 780px) {
+.knihy-list-title {
+  font-family: 'Cinzel', serif; font-size: 0.65rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold-dark); margin: 1rem 0 0.5rem;
+}
+
+.knihy-list {
+  list-style: none; padding: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.9rem, 2.2vw, 0.95rem);
+  color: #333; line-height: 1.85;
+}
+.knihy-list li {
+  padding: 0.25rem 0; border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.knihy-list li:last-child { border-bottom: none; }
+.knihy-text { padding: 0.5rem 0; }
+
+@media (max-width: 720px) {
   .knihy-block {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    direction: ltr !important;
+    grid-template-columns: 1fr; gap: 1.8rem;
+    direction: ltr !important; margin: 2rem 0 3rem;
   }
   .knihy-sticky { position: static; }
-  .knihy-foto img { height: 260px; }
+  .knihy-foto img { height: 52vw; min-height: 200px; }
+  /* foto nad text na mobile */
+  .knihy-block .knihy-sticky { order: -1; }
+  .knihy-block.reverse .knihy-sticky { order: -1; }
 }
 
-.clearfix::after { content: ''; display: table; clear: both; }
-
-/* =============================================
-   LIGHTBOX
-   ============================================= */
-.lightbox-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(15, 10, 12, 0.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-  padding: 2rem;
-  cursor: zoom-out;
-}
-
-.lightbox-overlay.open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.lightbox-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 88vw;
-  max-height: 88vh;
-  cursor: default;
-}
-
-.lightbox-img {
-  max-width: 100%;
-  max-height: 78vh;
-  object-fit: contain;
-  box-shadow: 0 12px 80px rgba(0,0,0,0.7);
-  border: 1px solid rgba(212,175,55,0.2);
-  display: block;
-  transform: scale(0.95);
-  transition: transform 0.4s ease;
-}
-
-.lightbox-overlay.open .lightbox-img { transform: scale(1); }
-
-.lightbox-caption-wrap {
-  margin-top: 1.2rem;
+/* ===== CTA — INTERAKTÍVNA MAPA ===== */
+.cta-mapa {
+  background: var(--section-alt); padding: 4.5rem 1.5rem;
+  border-top: 1px solid rgba(212,175,55,0.3);
+  border-bottom: 1px solid rgba(212,175,55,0.3);
   text-align: center;
 }
-
-.lightbox-caption {
-  font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(212,175,55,0.8);
+.cta-mapa-inner { max-width: 580px; margin: 0 auto; }
+.cta-mapa .section-label { margin-bottom: 0.8rem; }
+.cta-mapa h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  color: var(--red); line-height: 1.15; margin-bottom: 1rem;
 }
-
-.lightbox-close {
-  position: absolute;
-  top: -1rem;
-  right: -1rem;
-  background: rgba(196,30,58,0.85);
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 1.1rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background var(--transition-base);
-  flex-shrink: 0;
+.cta-mapa p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.05rem);
+  color: #2e2e2e; line-height: 1.85; margin-bottom: 2rem;
 }
-
-.lightbox-close:hover { background: var(--red); }
-
-/* Nav arrows */
-.lb-arrow {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.45);
-  cursor: pointer;
-  padding: 1rem;
-  transition: color var(--transition-base);
-  z-index: 10;
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: var(--red); color: #fff;
+  font-family: 'Cinzel', serif; font-size: 0.74rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; padding: 1rem 2rem; border-radius: 2px;
+  transition: background var(--transition-base), transform var(--transition-fast);
+  min-height: 48px; touch-action: manipulation;
 }
+.cta-btn:hover { background: var(--red-dark); transform: translateY(-1px); }
+.cta-btn:active { transform: translateY(0); }
+.cta-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; flex-shrink: 0; }
 
-.lb-arrow:hover { color: var(--gold); }
-.lb-arrow svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.2; }
-.lb-arrow.prev { left: 1rem; }
-.lb-arrow.next { right: 1rem; }
-
-/* =============================================
-   ZÁVER
-   ============================================= */
+/* ===== ZÁVEREČNÝ CITÁT ===== */
 .closing-quote {
-  background: var(--red);
-  color: var(--cream);
-  padding: 5rem 2rem;
-  text-align: center;
+  background: var(--red); color: var(--cream);
+  padding: 4.5rem 1.5rem; text-align: center;
 }
-
 .closing-quote blockquote {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 1.75;
-  max-width: 750px;
-  margin: 0 auto;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.75; max-width: 700px; margin: 0 auto;
 }
-
 .closing-quote cite {
-  display: block;
-  margin-top: 1.2rem;
-  font-family: 'Cinzel', serif;
-  font-style: normal;
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  opacity: 0.65;
+  display: block; margin-top: 1.2rem;
+  font-family: 'Cinzel', serif; font-style: normal;
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(249,247,242,0.7);
 }
 
-/* =============================================
-   ARTICLE NAV
-   ============================================= */
+/* ===== ARTICLE NAV ===== */
 .article-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-  border-top: 1px solid rgba(212,175,55,0.3);
-  max-width: 960px;
-  margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.6rem 1.5rem;
+  border-top: 1px solid rgba(212,175,55,0.25);
+  max-width: var(--max-wide); margin: 0 auto; gap: 1rem;
 }
-
 .article-nav a {
-  font-family: 'Cinzel', serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-  text-decoration: none;
+  font-family: 'Cinzel', serif; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold-dark); text-decoration: none;
   transition: color var(--transition-base);
+  min-height: 44px; display: flex; align-items: center;
 }
-
 .article-nav a:hover { color: var(--red); }
 
-/* =============================================
-   FOOTER
-   ============================================= */
-footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
-
+/* ===== FOOTER ===== */
+footer { background: #111; color: var(--cream); padding: 3rem 1.5rem 2rem; }
 .footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  max-width: 900px;
-  margin: 0 auto 2rem;
-  gap: 2rem;
-  flex-wrap: wrap;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  max-width: 900px; margin: 0 auto 2rem; gap: 2rem; flex-wrap: wrap;
 }
-
 .footer-col-title {
-  font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.8rem;
+  font-family: 'Cinzel', serif; font-size: 0.65rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.8rem;
 }
-
 .footer-links { list-style: none; }
-.footer-links li { margin-bottom: 0.4rem; }
+.footer-links li { margin-bottom: 0.3rem; }
 .footer-links a {
-  text-decoration: none;
-  font-size: 0.82rem;
-  color: rgba(249,247,242,0.55);
-  letter-spacing: 0.06em;
+  text-decoration: none; font-size: 0.85rem;
+  color: rgba(249,247,242,0.6); letter-spacing: 0.05em;
   transition: color var(--transition-base);
+  display: inline-block; min-height: 36px; line-height: 36px;
 }
 .footer-links a:hover { color: var(--gold); }
-
 .footer-col-center { text-align: center; }
+.footer-name { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--gold); margin-bottom: 0.6rem; }
+.footer-tagline { font-size: 0.75rem; letter-spacing: 0.08em; color: rgba(249,247,242,0.35); margin-top: 0.8rem; font-style: italic; }
+.footer-divider { width: 100%; height: 1px; background: rgba(212,175,55,0.15); max-width: 900px; margin: 0 auto 1.5rem; }
+.footer-copy { text-align: center; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(249,247,242,0.26); margin-bottom: 0.6rem; }
+.footer-disclaimer { text-align: center; font-size: 0.7rem; color: rgba(249,247,242,0.2); font-style: italic; max-width: 600px; margin: 0 auto; line-height: 1.6; }
 
-.footer-name {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 2rem;
-  color: var(--gold);
-  margin-bottom: 0.6rem;
+@media (max-width: 600px) {
+  .footer-top { flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
 }
 
-.footer-tagline {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  opacity: 0.38;
-  margin-top: 0.8rem;
-  font-style: italic;
-}
+/* ===== REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-.footer-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(212,175,55,0.15);
-  max-width: 900px;
-  margin: 0 auto 1.5rem;
+/* ===== LIGHTBOX ===== */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(12,8,10,0.93);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  padding: 1.5rem; cursor: zoom-out;
 }
-
-.footer-copy {
-  text-align: center;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.3;
-  margin-bottom: 0.6rem;
+.lightbox-overlay.open { opacity: 1; pointer-events: all; }
+.lightbox-inner {
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  max-width: 90vw; max-height: 90vh; cursor: default;
 }
-
-.footer-disclaimer {
-  text-align: center;
-  font-size: 0.72rem;
-  opacity: 0.22;
-  font-style: italic;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
+.lightbox-img {
+  max-width: 100%; max-height: 78vh; object-fit: contain;
+  box-shadow: 0 12px 80px rgba(0,0,0,0.6);
+  border: 1px solid rgba(212,175,55,0.2); display: block;
+  transform: scale(0.96); transition: transform 0.35s ease;
 }
-
-/* =============================================
-   REVEAL ANIMATIONS
-   ============================================= */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+.lightbox-overlay.open .lightbox-img { transform: scale(1); }
+.lightbox-caption-wrap { margin-top: 1rem; text-align: center; }
+.lightbox-caption { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(212,175,55,0.85); }
+.lightbox-close {
+  position: absolute; top: -0.8rem; right: -0.8rem;
+  background: rgba(196,30,58,0.9); border: none; cursor: pointer; color: #fff;
+  width: 40px; height: 40px; border-radius: 50%; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition-base); touch-action: manipulation;
 }
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+.lightbox-close:hover { background: var(--red); }
+.lb-arrow {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.06); border: none;
+  color: rgba(255,255,255,0.5); cursor: pointer;
+  min-width: 48px; min-height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  transition: color var(--transition-base), background var(--transition-base); z-index: 10;
 }
-
-/* =============================================
-   RESPONSIVE
-   ============================================= */
-@media (max-width: 700px) {
-  .profile-layout { grid-template-columns: 1fr; }
-  .photo-wrap { position: static; max-width: 260px; margin: 0 auto 2rem; }
-  .artwork-grid-main { grid-template-columns: 1fr; }
-  .artwork-card:nth-child(1) { grid-row: span 1; }
-  .artwork-card:nth-child(1) .artwork-card-img { min-height: 280px; }
-  .footer-top { flex-direction: column; align-items: center; text-align: center; }
-  .tvorba-section { padding: 3rem 1.2rem; }
-  .omne-life-steps { grid-template-columns: 1fr 1fr !important; }
-}
-
-/* =============================================
-   O MNE — prose verzia
-   ============================================= */
-.omne-section {
-  background: var(--cream);
-  padding: 5rem 2rem;
-  border-top: 1px solid rgba(212,175,55,0.25);
-}
-
-.omne-inner {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.omne-inner .section-label {
-  display: block;
-  text-align: center;
-  margin-bottom: 0.8rem;
-}
-
-.omne-title {
-  font-family: 'Pinyon Script', cursive;
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  color: var(--red);
-  line-height: 1.1;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.omne-divider {
-  margin: 1.2rem auto 2.8rem;
-}
-
-.omne-prose p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
-  color: #333;
-  line-height: 1.95;
-  margin-bottom: 1.4rem;
-}
-
-.omne-prose p:last-child {
-  margin-bottom: 0;
-}
-
-.omne-prose em {
-  font-style: italic;
-  color: var(--ink);
-}
-
-.omne-prose .omne-places {
-  font-style: italic;
-  color: var(--red);
-  font-size: 0.88rem;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.08em;
-}
-
-.omne-highlight-quote {
-  border-left: 3px solid var(--gold);
-  padding-left: 1.4rem;
-  margin: 2.2rem 0;
-  font-style: italic;
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.9;
-}
+.lb-arrow:hover { color: var(--gold); background: rgba(255,255,255,0.1); }
+.lb-arrow svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.2; }
+.lb-arrow.prev { left: 0; }
+.lb-arrow.next { right: 0; }
 
 </style>
 </head>
@@ -1096,49 +608,41 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
 
 <!-- LIGHTBOX -->
 <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Zobrazenie obrázka">
-  <button class="lb-arrow prev" id="lbPrev" aria-label="Predchádzajúci">
-    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-  </button>
-
+  <button class="lb-arrow prev" id="lbPrev" aria-label="Predchádzajúci"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
   <div class="lightbox-inner" id="lightboxInner">
     <button class="lightbox-close" id="lightboxClose" aria-label="Zatvoriť">✕</button>
     <img src="" alt="" class="lightbox-img" id="lightboxImg">
-    <div class="lightbox-caption-wrap">
-      <p class="lightbox-caption" id="lightboxCaption"></p>
-    </div>
+    <div class="lightbox-caption-wrap"><p class="lightbox-caption" id="lightboxCaption"></p></div>
   </div>
-
-  <button class="lb-arrow next" id="lbNext" aria-label="Nasledujúci">
-    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-  </button>
+  <button class="lb-arrow next" id="lbNext" aria-label="Nasledujúci"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
 </div>
 
 <!-- NAV -->
-<nav>
-  <a href="index.html" class="logo">Anna Šenšelová</a>
-  <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
-    <span></span><span></span><span></span>
+<nav aria-label="Hlavná navigácia">
+  <a href="index.html" class="logo" aria-label="Anna Šenšelová — domov">Anna Šenšelová</a>
+  <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false" aria-controls="nav-menu">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
   </button>
-  <ul id="nav-menu">
+  <ul id="nav-menu" role="list">
     <li>
-      <a href="#">Príbeh ▾</a>
-      <div class="dropdown">
+      <a href="#" aria-haspopup="true" aria-expanded="false">Príbeh ▾</a>
+      <div class="dropdown" role="menu">
         <span class="dropdown-label">Príbeh</span>
-        <a href="anna-senselova.html">Anna Šenšelová</a>
-        <a href="anna-lockwoodova.html" class="active">Anna Lockwoodová</a>
-        <a href="lipa.html">Lipa</a>
-        <a href="zivena.html">Živena</a>
-        <a href="o-nas.html">O nás</a>
+        <a href="anna-senselova.html" role="menuitem">Anna Šenšelová</a>
+        <a href="anna-lockwoodova.html" class="active" role="menuitem" aria-current="page">Anna Lockwoodová</a>
+        <a href="lipa.html" role="menuitem">Lipa</a>
+        <a href="zivena.html" role="menuitem">Živena</a>
+        <a href="o-nas.html" role="menuitem">O nás</a>
       </div>
     </li>
     <li>
-      <a href="#">Galéria ▾</a>
-      <div class="dropdown">
+      <a href="#" aria-haspopup="true" aria-expanded="false">Galéria ▾</a>
+      <div class="dropdown" role="menu">
         <span class="dropdown-label">Galéria</span>
-        <a href="galeria-vysiviek.html">Vzorkovník výšiviek</a>
-        <a href="galeria-ludove.html">Ľudové výšivky a odev</a>
-        <a href="galeria-babik.html">Krojované bábiky</a>
-        <a href="interaktivna-mapa.html">Slovenské výšivky — mapa</a>
+        <a href="galeria-vysiviek.html" role="menuitem">Vzorkovník výšiviek</a>
+        <a href="galeria-ludove.html" role="menuitem">Ľudové výšivky a odev</a>
+        <a href="galeria-babik.html" role="menuitem">Krojované bábiky</a>
+        <a href="interaktivna-mapa.html" role="menuitem">Slovenské výšivky — mapa</a>
       </div>
     </li>
     <li><a href="interaktivna-mapa.html">Slovenské výšivky</a></li>
@@ -1146,156 +650,116 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
 </nav>
 
 <!-- HERO -->
-<section id="hero">
-  <span id="main" style="position:absolute;"></span>
+<section id="hero" aria-labelledby="hero-title">
+  <span id="main" style="position:absolute;top:0;"></span>
   <p class="section-label">Príbeh · O autorke</p>
-  <h1>Anna Lockwoodová</h1>
+  <h1 id="hero-title">Anna Lockwoodová</h1>
   <p class="hero-sub">za slobodna Šenšelová · Annina praneter · tvorkyňa tejto stránky</p>
-  <div class="gold-line"></div>
+  <div class="gold-line" aria-hidden="true"></div>
 </section>
 
-<!-- GALÉRIA TVORBY — dominantná sekcia hneď pod hero -->
-<section class="tvorba-section" id="tvorba">
-  <div class="tvorba-inner">
-    <div class="tvorba-header reveal">
-      <p class="section-label">Výtvarná tvorba</p>
-      <h2>Moja tvorba</h2>
-      <p class="tvorba-sub">V tvorbe nikdy neostanem len pri jednej technike. Celý život sa u mňa striedajú obdobia extrémneho nadšenia pre nové nápady, ktoré po čase vystrieda objav ďalších postupov. Umenie a tvorba boli odjakživa mojou vášňou — a dnes už viem, že je to preto, lebo to mám v krvi.</p>
-      <div class="gold-line" style="margin: 1.2rem auto 0;"></div>
-    </div>
-
-    <div class="carousel-wrap reveal">
-      <button class="carousel-arrow prev" id="carPrev" aria-label="Predchádzajúci">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <button class="carousel-arrow next" id="carNext" aria-label="Nasledujúci">
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-
-      <div class="carousel-track" id="carTrack">
-        <div class="carousel-slide active"
-             tabindex="0" role="button"
-             aria-label="Akvarel a maľba"
-             data-src="anna_l_akvarel.jpg"
-             data-caption="Akvarel &amp; maľba"
-             data-index="0">
-          <img src="anna_l_akvarel.jpg" alt="Akvarel a maľba" loading="eager" decoding="async">
-          <div class="carousel-slide-overlay">
-            <span class="carousel-slide-label">Akvarel &amp; maľba</span>
-          </div>
-        </div>
-
-        <div class="carousel-slide"
-             tabindex="0" role="button"
-             aria-label="Korálková brošňa"
-             data-src="anna_l_brosna.jpg"
-             data-caption="Korálková brošňa"
-             data-index="1">
-          <img src="anna_l_brosna.jpg" alt="Korálková brošňa" loading="lazy" decoding="async">
-          <div class="carousel-slide-overlay">
-            <span class="carousel-slide-label">Korálková brošňa</span>
-          </div>
-        </div>
-
-        <div class="carousel-slide"
-             tabindex="0" role="button"
-             aria-label="Paper maché"
-             data-src="anna_l_papermache.jpg"
-             data-caption="Paper maché"
-             data-index="2">
-          <img src="anna_l_papermache.jpg" alt="Paper maché" loading="lazy" decoding="async">
-          <div class="carousel-slide-overlay">
-            <span class="carousel-slide-label">Paper maché</span>
-          </div>
-        </div>
-
-        <div class="carousel-slide"
-             tabindex="0" role="button"
-             aria-label="Vyšívanie"
-             data-src="anna_l_vysivka.jpg"
-             data-caption="Vyšívanie"
-             data-index="3">
-          <img src="anna_l_vysivka.jpg" alt="Vyšívanie" loading="lazy" decoding="async">
-          <div class="carousel-slide-overlay">
-            <span class="carousel-slide-label">Vyšívanie</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-dots" id="carDots">
-        <button class="carousel-dot active" data-idx="0" aria-label="Snímka 1"></button>
-        <button class="carousel-dot" data-idx="1" aria-label="Snímka 2"></button>
-        <button class="carousel-dot" data-idx="2" aria-label="Snímka 3"></button>
-        <button class="carousel-dot" data-idx="3" aria-label="Snímka 4"></button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- O MNE -->
-<section class="omne-section">
-  <div class="omne-inner">
-
-    <span class="section-label reveal">Trochu o mne</span>
-    <h2 class="omne-title reveal">Kreatívna duša</h2>
-    <div class="gold-line omne-divider reveal"></div>
-
-    <div class="omne-prose">
-
-      <p class="reveal">Som kreatívna duša. Po štúdiu marketingu na vysokej škole som dva roky žila s manželom v Škótsku, v romantickej chalúpke na samote, kde sa nám narodila naša prvá dcéra <em>Amelia</em>. Keď mala tri mesiace, presťahovali sme sa na Slovensko — najprv do Liptova, potom do Bratislavy, chvíľu späť do Liptova, kde sa nám narodil <em>Teo</em>, až sme nakoniec pred dvanástimi rokmi zakotvili v Senci. Pred troma rokmi sa nám tu narodila druhá dcéra <em>Charlotte</em>.</p>
-
-      <p class="reveal">Okrem umeleckých koníčkov sa rada venujem záhrade, pečeniu a našim dvom psom. A keď mi zostane čas, milujem si vyčistiť hlavu behom.</p>
-
-    </div>
-  </div>
-</section>
-
-<!-- PRÍBEH — čistý plynulý layout -->
-<div class="content-wrap">
-  <div class="profile-layout">
-    <div class="photo-wrap reveal">
-      <div class="photo-frame">
-        <img src="anna_lockwoodova.jpg" alt="Anna Lockwoodová" class="profile-photo">
-      </div>
-      <p class="photo-caption">Anna Lockwoodová<br>Autorka projektu</p>
-    </div>
-    <div class="profile-text">
-
-<section class="pribeh-section">
-  <h2 class="reveal">Kde sa stretáva<br>minulosť s prítomnosťou.</h2>
-  <div class="gold-line reveal"></div>
-
-  <p class="reveal">K objavovaniu príbehu mojej prastarej tety Anny Šenšelovej ma priviedla zvedavosť a objav dvoch igelitiek starých výšiviek v pivnici po starých rodičoch. Keďže výšivaniu som sa dlho venovala (modernej výšivke, nie tradičným folklórnym vzorom), držať v rukách tieto precízne spracované kúsky histórie vo mne vzbudilo neskutočný obdiv k našim predkom a ženám, ktorých ruky dokázali niečo takéto vytvoriť.</p>
-
-  <p class="reveal">Nikdy som sa o folklór alebo ľudové odievanie veľmi nezaujímala, ale toto bol presne ten moment, kedy sa to zmenilo. Hneď som si spomenula na autobiografiu môjho starého otca – musím s hanbou priznať, nikdy predtým nedočítanú. Teraz to vnímam tak, že som na ňu musela jednoducho dozrieť. Príbeh o jeho živote sa mi teraz čítal úplne inak, hltala som ho viac než akýkoľvek bestseller.</p>
-
-  <p class="reveal">Na toľkých zážitkoch som sa zasmiala, úplne som si ho vedela predstaviť, ako vystrájal všetky možné beťárčiny – a to ako malý chlapec, ale aj ako dospelý a seriózny muž. Najviac ma zaujalo, že sa nehanbil v knihe pomenovať a opísať aj svoje chyby. Táto brutálna úprimnosť mi dodala akýsi pocit slobody – že sa nemusíme vždy tváriť, že sme dokonalí.</p>
-</section>
-
-    </div>
-  </div>
+<!-- 1. INTRO PRÍBEH — hneď po hero, aby návštevník vedel kto je Anna -->
+<div class="pribeh-intro reveal">
+  <h2>Kde sa stretáva<br>minulosť s prítomnosťou.</h2>
+  <div class="gold-line" aria-hidden="true"></div>
+  <p>K objavovaniu príbehu mojej prastarej tety Anny Šenšelovej ma priviedla zvedavosť a objav dvoch igelitiek starých výšiviek v pivnici po starých rodičoch. Keďže výšivaniu som sa dlho venovala (modernej výšivke, nie tradičným folklórnym vzorom), držať v rukách tieto precízne spracované kúsky histórie vo mne vzbudilo neskutočný obdiv k našim predkom a ženám, ktorých ruky dokázali niečo takéto vytvoriť.</p>
+  <p>Nikdy som sa o folklór alebo ľudové odievanie veľmi nezaujímala, ale toto bol presne ten moment, kedy sa to zmenilo. Hneď som si spomenula na autobiografiu môjho starého otca – musím s hanbou priznať, nikdy predtým nedočítanú. Teraz to vnímam tak, že som na ňu musela jednoducho dozrieť. Príbeh o jeho živote sa mi teraz čítal úplne inak, hltala som ho viac než akýkoľvek bestseller.</p>
+  <p>Na toľkých zážitkoch som sa zasmiala, úplne som si ho vedela predstaviť, ako vystrájal všetky možné beťárčiny – a to ako malý chlapec, ale aj ako dospelý a seriózny muž. Najviac ma zaujalo, že sa nehanbil v knihe pomenovať a opísať aj svoje chyby. Táto brutálna úprimnosť mi dodala akýsi pocit slobody – že sa nemusíme vždy tváriť, že sme dokonalí.</p>
 </div>
 
-<!-- KNIHY BLOK 1: foto napravo, text naľavo -->
+<!-- 2. O MNE — osobné info -->
+<section class="omne-section" aria-labelledby="omne-title">
+  <div class="omne-inner">
+    <span class="section-label reveal">Trochu o mne</span>
+    <h2 class="omne-title reveal" id="omne-title">Kreatívna duša</h2>
+    <div class="gold-line omne-divider reveal" aria-hidden="true"></div>
+    <div class="omne-prose">
+      <p class="reveal">Som kreatívna duša. Po štúdiu marketingu na vysokej škole som dva roky žila s manželom v Škótsku, v romantickej chalúpke na samote, kde sa nám narodila naša prvá dcéra <em>Amelia</em>. Keď mala tri mesiace, presťahovali sme sa na Slovensko — najprv do Liptova, potom do Bratislavy, chvíľu späť do Liptova, kde sa nám narodil <em>Teo</em>, až sme nakoniec pred dvanástimi rokmi zakotvili v Senci. Pred troma rokmi sa nám tu narodila druhá dcéra <em>Charlotte</em>.</p>
+      <p class="reveal">Okrem umeleckých koníčkov sa rada venujem záhrade, pečeniu a našim dvom psom. A keď mi zostane čas, milujem si vyčistiť hlavu behom.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. MOJA TVORBA — CAROUSEL -->
+<section class="tvorba-section" id="tvorba" aria-labelledby="tvorba-title">
+  <div class="tvorba-inner">
+    <div class="tvorba-header reveal">
+      <span class="section-label">Výtvarná tvorba</span>
+      <h2 id="tvorba-title">Moja tvorba</h2>
+      <p class="tvorba-sub">V tvorbe nikdy neostanem len pri jednej technike. Celý život sa u mňa striedajú obdobia extrémneho nadšenia pre nové nápady. Umenie bolo odjakživa mojou vášňou — a dnes už viem, že je to preto, lebo to mám v krvi.</p>
+      <div class="gold-line" style="margin:1rem auto 0;" aria-hidden="true"></div>
+    </div>
+
+    <div class="carousel-wrap reveal" aria-label="Galéria tvorby — 4 fotografie">
+      <button class="carousel-pause-btn" id="carPauseBtn" aria-label="Pozastaviť automatické posúvanie galérie">⏸ Pozastaviť</button>
+
+      <button class="carousel-arrow prev" id="carPrev" aria-label="Predchádzajúca fotografia">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-arrow next" id="carNext" aria-label="Nasledujúca fotografia">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+
+      <div class="carousel-track" id="carTrack" aria-live="polite" aria-atomic="false">
+        <div class="carousel-slide active" tabindex="0" role="button"
+             aria-label="Akvarel a maľba — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_akvarel.jpg" data-caption="Akvarel &amp; maľba" data-index="0">
+          <img src="anna_l_akvarel.jpg" alt="Akvarelová maľba od Anny Lockwoodovej" loading="eager" decoding="async" width="440" height="400">
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Akvarel &amp; maľba</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Korálková brošňa — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_brosna.jpg" data-caption="Korálková brošňa" data-index="1">
+          <img src="anna_l_brosna.jpg" alt="Korálková brošňa od Anny Lockwoodovej" loading="lazy" decoding="async" width="280" height="340">
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Korálková brošňa</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Paper maché — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_papermache.jpg" data-caption="Paper maché" data-index="2">
+          <img src="anna_l_papermache.jpg" alt="Paper maché výtvory od Anny Lockwoodovej" loading="lazy" decoding="async" width="280" height="340">
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Paper maché</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Vyšívanie — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_vysivka.jpg" data-caption="Vyšívanie" data-index="3">
+          <img src="anna_l_vysivka.jpg" alt="Výšivky od Anny Lockwoodovej" loading="lazy" decoding="async" width="280" height="340">
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Vyšívanie</span></div>
+        </div>
+      </div>
+
+      <div class="carousel-dots" role="tablist" aria-label="Výber fotografie" id="carDots">
+        <button class="carousel-dot active" role="tab" aria-selected="true" data-idx="0" aria-label="Akvarel a maľba"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="1" aria-label="Korálková brošňa"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="2" aria-label="Paper maché"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="3" aria-label="Vyšívanie"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PRÍBEH PÁTRANIA -->
+<section class="pribeh-section reveal">
+  <h2>Pátranie po predkoch</h2>
+  <div class="gold-line" aria-hidden="true"></div>
+</section>
+
+<!-- KNIHY BLOK 1: text naľavo, foto napravo -->
 <div class="knihy-wrap">
   <div class="knihy-block">
     <div class="knihy-text">
-      <section class="pribeh-section" style="padding-top:0; padding-left:0; padding-right:0; max-width:100%;">
+      <div class="pribeh-section" style="padding:0; max-width:100%;">
         <p class="reveal">Prostredníctvom autobiografie, životopisu seniora Ľudovíta Šenšela a publikácie „Šenšelovský rod" som sa preniesla sto a viac rokov dozadu a detailne spoznala svojich predkov. V hlave mi však stále ostávali výšivky. Chcela som vyriešiť záhadu, odkiaľ sa vlastne vzali v pivnici u starých rodičov a čo sú zač.</p>
-
         <div class="highlight reveal">
           S malou dušičkou som kontaktovala Tami Šimončíkovú Heribanovú, ktorá ma nasmerovala na pani Zuzanu Tajek Piešovú, odborníčku na kroje. Na môj obrovský údiv sa hneď podujala prísť za mnou domov, aby sa na výšivky mohla pozrieť zblízka.
         </div>
-      </section>
+      </div>
     </div>
     <div class="knihy-sticky">
       <figure class="knihy-foto" id="knihyFoto1">
-        <img src="anna_lockwoodova_knihy.jpeg"
-             alt="Autobiografia starého otca a knihy Šenšelovcov"
-             loading="lazy" decoding="async">
+        <img src="anna_lockwoodova_knihy.jpeg" alt="Autobiografia starého otca a knihy o rodine Šenšelovcov" loading="lazy" decoding="async" width="480" height="380">
         <figcaption>Príbehy, ktoré som musela dozrieť čítať</figcaption>
       </figure>
-      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--red); margin-top:1rem; line-height:1.7;">Na skúmanie starých príbehov som musela dozrieť.</p>
+      <p class="knihy-quote">Na skúmanie starých príbehov som musela dozrieť.</p>
     </div>
   </div>
 </div>
@@ -1304,49 +768,54 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
 <div class="knihy-wrap">
   <div class="knihy-block reverse">
     <div class="knihy-text">
-      <section class="pribeh-section" style="padding-top:0; padding-left:0; padding-right:0; max-width:100%;">
+      <div class="pribeh-section" style="padding:0; max-width:100%;">
         <p class="reveal">Odkázala ma aj na pána Stanka Talapku – a keď som sa s ním spojila, až som nemohla uveriť jeho ochote pomôcť. Pozval ma priamo do Martina, kde viedla stopa tety Anny. Sadla som teda na vlak a vyrazila. Pán Talapka mi porozprával detaily ku jednotlivým výšivkám, odhadol ich pôvod a využitie, povedal mi o spolku Lipa a dokonca priniesol ukázať košeľu z ich dielne. S ocinom sme si pozreli aj nádhernú výstavu Karola Plicku a stálu expozíciu krojov v SNM.</p>
-
         <p class="reveal">Tak ako sa nám niektoré veci v živote v prvom momente zdajú katastrofálne, s odstupom času vidím, že je to niekedy najlepšie, čo sa nám mohlo stať. Na jeseň 2025 mi zrušili pracovnú pozíciu v korporácii a ako matka troch detí som si ťažko hľadala prácu. S každým ďalším odmietnutím moja sebahodnota akosi klesala. Aj vďaka nezamestnanosti som však mala priestor venovať sa skúmaniu rodinnej histórie aj príbehu Lipy.</p>
-
         <p class="reveal">Nakoniec som si povedala, že musím vziať osud do vlastných rúk, a začala som sa venovať samostúdiu webdizajnu pomocou AI. Videla som v tom ideálnu príležitosť zhmotniť všetky informácie, ktoré som nadobudla počas môjho pátrania, a zároveň testovať moje nové zručnosti. Takto sa aspoň malým kúskom pričiním o to, aby sa na prácu našich predkov nezabudlo.</p>
-
         <p class="reveal">Keď som si dala za cieľ vytvoriť túto stránku, moja detektívna činnosť ešte nabrala na obrátkach. Vo svojich 38 rokoch som sa spoznala s mojím dvojstupňovým ujom – veľmi rozhľadeným a zanieteným človekom, pomocníkom od prvého stretnutia. Spojila som sa aj s pani Olgou Kapustovou, mojou sesternicou z tretieho kolena, a verím, že tu ešte nekončíme.</p>
-
         <p class="pribeh-signature reveal">Verím, že poznanie vlastnej minulosti je absolútne obohacujúci zážitok — je to ako chýbajúci dielik puzzle v našom vnútri, pretože každá generácia pred nami do nás všepila niečo, čo tá ďalšia zachovala. A tak sme prepojení jednou niťou, ani o tom na prvý pohľad nevieme.</p>
-      </section>
+      </div>
     </div>
     <div class="knihy-sticky">
       <figure class="knihy-foto" id="knihyFoto2">
-        <img src="anna_lockwoodova_knihy2.jpeg"
-             alt="Vlastný životopis Ľudovíta Šenšela, Pevný buď a Šenšelovský rod"
-             loading="lazy" decoding="async">
+        <img src="anna_lockwoodova_knihy2.jpeg" alt="Vlastný životopis Ľudovíta Šenšela, Pevný buď a Šenšelovský rod" loading="lazy" decoding="async" width="480" height="380">
         <figcaption>Vlastný životopis · Pevný buď · Šenšelovský rod</figcaption>
       </figure>
-      <div style="font-family:'Cormorant Garamond',serif; font-size:0.9rem; color:#555; margin-top:1rem; line-height:1.85;">
-        <p style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.5rem;">Knihy o rode Šenšelovcov</p>
-        <ul style="list-style:none; padding:0;">
-          <li style="padding:0.25rem 0; border-bottom:1px solid rgba(212,175,55,0.2);">Aj slnko, aj hrmavica — autobiografia Ivana Šenšela</li>
-          <li style="padding:0.25rem 0; border-bottom:1px solid rgba(212,175,55,0.2);">Vlastný životopis Ľudovíta Šenšela</li>
-          <li style="padding:0.25rem 0; border-bottom:1px solid rgba(212,175,55,0.2);">Šenšelovský rod</li>
-          <li style="padding:0.25rem 0;">Pevný buď — životopis Ľudovíta Šenšela · Ivan Šenšel</li>
-        </ul>
-      </div>
+      <p class="knihy-list-title">Knihy o rode Šenšelovcov</p>
+      <ul class="knihy-list" aria-label="Zoznam kníh o rodine Šenšelovcov">
+        <li>Aj slnko, aj hrmavica — autobiografia Ivana Šenšela</li>
+        <li>Vlastný životopis Ľudovíta Šenšela</li>
+        <li>Šenšelovský rod</li>
+        <li>Pevný buď — životopis Ľudovíta Šenšela · Ivan Šenšel</li>
+      </ul>
     </div>
   </div>
 </div>
 
-<!-- ZÁVEREČNÝ CITÁT -->
+<!-- 5. CTA — INTERAKTÍVNA MAPA -->
+<section class="cta-mapa" aria-labelledby="cta-title">
+  <div class="cta-mapa-inner">
+    <span class="section-label reveal">Objavte ďalej</span>
+    <h2 class="reveal" id="cta-title">Výšivky na mape Slovenska</h2>
+    <p class="reveal">Výšivky, ktoré Anna Šenšelová tvorila, nie sú izolované — sú súčasťou bohatej tradície slovenského ľudového umenia roztráseného po celej krajine. Preskúmajte interaktívnu mapu a objavte, odkiaľ pochádzajú jednotlivé vzory a techniky.</p>
+    <a href="interaktivna-mapa.html" class="cta-btn reveal" aria-label="Prejsť na interaktívnu mapu slovenských výšiviek">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+      Zobraziť mapu výšiviek
+    </a>
+  </div>
+</section>
+
+<!-- 6. ZÁVEREČNÝ CITÁT -->
 <div class="closing-quote">
   <blockquote>„Keď vieš, odkiaľ pochádzaš, zistíš, kam môžeš ísť."</blockquote>
   <cite>— Anna Lockwoodová</cite>
 </div>
 
 <!-- ARTICLE NAV -->
-<div class="article-nav">
+<nav class="article-nav" aria-label="Medzi článkami">
   <a href="anna-senselova.html">← Anna Šenšelová</a>
   <a href="lipa.html">Lipa →</a>
-</div>
+</nav>
 
 <!-- FOOTER -->
 <footer>
@@ -1363,7 +832,7 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
     </div>
     <div class="footer-col-center">
       <div class="footer-name">Anna Šenšelová</div>
-      <svg viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:180px; display:block; margin: 0 auto;">
+      <svg viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:160px;display:block;margin:0 auto;">
         <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
         <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
         <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
@@ -1383,323 +852,240 @@ footer { background: #111; color: var(--cream); padding: 3rem 2rem 2rem; }
       </ul>
     </div>
   </div>
-
   <div class="footer-divider"></div>
-
   <p class="footer-copy">© 2026 Vyšívané poklady Anny Šenšelovej · Anna Lockwoodová</p>
   <p class="footer-disclaimer">Zbierka výšiviek, bábik a pozostalosti po rodine Šenšelovcov nie je mojím osobným vlastníctvom — je dedičstvom celej rodiny. Výšivky, bábiky ani kroje nie sú na predaj.</p>
 </footer>
 
 <script>
-/* =============================================
-   CAROUSEL
-   ============================================= */
+/* ===== CAROUSEL ===== */
 (function() {
-  const track  = document.getElementById('carTrack');
-  const slides = Array.from(track ? track.querySelectorAll('.carousel-slide') : []);
-  const dots   = Array.from(document.querySelectorAll('.carousel-dot'));
-  const prev   = document.getElementById('carPrev');
-  const next   = document.getElementById('carNext');
-  if (!track || slides.length === 0) return;
+  var track    = document.getElementById('carTrack');
+  var slides   = track ? Array.from(track.querySelectorAll('.carousel-slide')) : [];
+  var dots     = Array.from(document.querySelectorAll('.carousel-dot'));
+  var prevBtn  = document.getElementById('carPrev');
+  var nextBtn  = document.getElementById('carNext');
+  var pauseBtn = document.getElementById('carPauseBtn');
+  if (!track || !slides.length) return;
 
-  let current = 0;
+  var current = 0, paused = false, timer = null;
 
   function goTo(idx) {
     slides[current].classList.remove('active');
-    dots[current] && dots[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    dots[current].setAttribute('aria-selected', 'false');
     current = (idx + slides.length) % slides.length;
     slides[current].classList.add('active');
-    dots[current] && dots[current].classList.add('active');
-    centerActive();
+    dots[current].classList.add('active');
+    dots[current].setAttribute('aria-selected', 'true');
+    center();
   }
 
-  function centerActive() {
-    const wrap = track.parentElement;
-    const activeSlide = slides[current];
-    const wrapW = wrap.offsetWidth;
-    const slideLeft = activeSlide.offsetLeft;
-    const slideW = activeSlide.offsetWidth;
-    const offset = slideLeft - (wrapW / 2) + (slideW / 2);
-    track.style.transform = `translateX(${-offset}px)`;
+  function center() {
+    var wrap = track.parentElement;
+    var a    = slides[current];
+    var off  = a.offsetLeft - (wrap.offsetWidth / 2) + (a.offsetWidth / 2);
+    track.style.transform = 'translateX(' + (-off) + 'px)';
   }
 
-  prev && prev.addEventListener('click', () => goTo(current - 1));
-  next && next.addEventListener('click', () => goTo(current + 1));
+  function startAuto() {
+    clearInterval(timer);
+    if (!paused) timer = setInterval(function() { goTo(current + 1); }, 4500);
+  }
+  function stopAuto() { clearInterval(timer); }
 
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => goTo(parseInt(dot.dataset.idx)));
+  function togglePause() {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶ Spustiť' : '⏸ Pozastaviť';
+    pauseBtn.setAttribute('aria-label', paused ? 'Spustiť automatické posúvanie galérie' : 'Pozastaviť automatické posúvanie galérie');
+    paused ? stopAuto() : startAuto();
+  }
+
+  pauseBtn && pauseBtn.addEventListener('click', togglePause);
+  prevBtn  && prevBtn.addEventListener('click', function() { goTo(current - 1); stopAuto(); startAuto(); });
+  nextBtn  && nextBtn.addEventListener('click', function() { goTo(current + 1); stopAuto(); startAuto(); });
+
+  dots.forEach(function(d) {
+    d.addEventListener('click', function() { goTo(parseInt(this.dataset.idx)); stopAuto(); startAuto(); });
   });
 
-  slides.forEach((slide, i) => {
-    slide.addEventListener('click', () => {
-      if (i !== current) { goTo(i); return; }
-      // Open lightbox for active slide
-      const lb = document.getElementById('lightbox');
-      const lbImg = document.getElementById('lightboxImg');
-      const lbCap = document.getElementById('lightboxCaption');
+  slides.forEach(function(slide, i) {
+    slide.addEventListener('click', function() {
+      if (i !== current) { goTo(i); stopAuto(); startAuto(); return; }
+      var lb    = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightboxImg');
+      var lbCap = document.getElementById('lightboxCaption');
       if (lb && lbImg) {
-        lbImg.src = slide.dataset.src;
-        lbImg.alt = slide.dataset.caption;
-        lbCap && (lbCap.innerHTML = slide.dataset.caption);
-        lb.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        lbImg.src = slide.dataset.src; lbImg.alt = slide.dataset.caption || '';
+        if (lbCap) lbCap.innerHTML = slide.dataset.caption || '';
+        lb.classList.add('open'); document.body.style.overflow = 'hidden';
+        document.getElementById('lightboxClose').focus();
       }
     });
-    slide.addEventListener('keydown', e => {
+    slide.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); slide.click(); }
     });
   });
 
-  // Drag / swipe
-  let startX = null, startTranslate = 0;
-  track.addEventListener('mousedown', e => { startX = e.clientX; track.style.transition = 'none'; });
-  window.addEventListener('mousemove', e => {
-    if (startX === null) return;
-    const dx = e.clientX - startX;
-    const cur = parseFloat(track.style.transform.replace('translateX(', '')) || 0;
-    track.style.transform = `translateX(${cur + dx - (e.movementX ? 0 : 0)}px)`;
-  });
-  window.addEventListener('mouseup', e => {
-    if (startX === null) return;
-    const dx = e.clientX - startX;
-    startX = null;
-    track.style.transition = '';
-    if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
-    else centerActive();
-  });
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', e => {
-    if (startX === null) return;
-    const dx = e.changedTouches[0].clientX - startX;
-    startX = null;
-    if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+  /* Touch swipe */
+  var tx = null;
+  track.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 44) { goTo(dx < 0 ? current + 1 : current - 1); stopAuto(); startAuto(); }
   }, { passive: true });
 
-  // Auto-advance
-  let autoTimer = setInterval(() => goTo(current + 1), 4000);
-  track.addEventListener('mouseenter', () => clearInterval(autoTimer));
-  track.addEventListener('mouseleave', () => { autoTimer = setInterval(() => goTo(current + 1), 4000); });
+  /* Mouse drag */
+  var mx = null;
+  track.addEventListener('mousedown', function(e) { mx = e.clientX; track.style.transition = 'none'; });
+  window.addEventListener('mouseup', function(e) {
+    if (mx === null) return;
+    var dx = e.clientX - mx; mx = null; track.style.transition = '';
+    if (Math.abs(dx) > 44) { goTo(dx < 0 ? current + 1 : current - 1); stopAuto(); startAuto(); }
+    else center();
+  });
 
-  window.addEventListener('resize', centerActive);
-  setTimeout(centerActive, 50);
+  /* Pause on hover / focus */
+  track.addEventListener('mouseenter', stopAuto);
+  track.addEventListener('mouseleave', startAuto);
+  track.addEventListener('focusin',  stopAuto);
+  track.addEventListener('focusout', startAuto);
+
+  window.addEventListener('resize', center);
+  setTimeout(center, 60);
+  startAuto();
 })();
 
-/* =============================================
-   HAMBURGER MENU + DESKTOP DROPDOWN (hover s delay)
-   ============================================= */
+/* ===== HAMBURGER + DROPDOWN ===== */
 (function() {
-  const hamburger = document.getElementById('hamburger');
-  const navMenu   = document.getElementById('nav-menu');
-  if (!hamburger || !navMenu) return;
+  var hbg  = document.getElementById('hamburger');
+  var menu = document.getElementById('nav-menu');
+  if (!hbg || !menu) return;
 
   function isMobile() { return document.documentElement.clientWidth <= 768; }
 
-  function closeMenu() {
-    navMenu.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
+  function closeAll() {
+    menu.classList.remove('open');
+    hbg.classList.remove('open');
+    hbg.setAttribute('aria-expanded', 'false');
   }
 
-  hamburger.addEventListener('click', function() {
-    const isOpen = navMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', String(isOpen));
+  hbg.addEventListener('click', function() {
+    var open = menu.classList.toggle('open');
+    hbg.classList.toggle('open', open);
+    hbg.setAttribute('aria-expanded', String(open));
   });
 
-  // Desktop: hover s delay aby dropdown nezmizol pri pohybe mysi
-  navMenu.querySelectorAll('li').forEach(function(li) {
-    const dropdown = li.querySelector('.dropdown');
-    if (!dropdown) return;
-    let closeTimer = null;
-    function openDropdown() { if (isMobile()) return; clearTimeout(closeTimer); dropdown.classList.add('dropdown-open'); }
-    function scheduleClose() { if (isMobile()) return; closeTimer = setTimeout(function() { dropdown.classList.remove('dropdown-open'); }, 120); }
-    li.addEventListener('mouseenter', openDropdown);
-    li.addEventListener('mouseleave', scheduleClose);
-    dropdown.addEventListener('mouseenter', function() { clearTimeout(closeTimer); });
-    dropdown.addEventListener('mouseleave', scheduleClose);
+  menu.querySelectorAll('li').forEach(function(li) {
+    var dd = li.querySelector('.dropdown');
+    if (!dd) return;
+    var t = null;
+    function open()  { if (isMobile()) return; clearTimeout(t); dd.classList.add('dropdown-open'); }
+    function close() { if (isMobile()) return; t = setTimeout(function() { dd.classList.remove('dropdown-open'); }, 130); }
+    li.addEventListener('mouseenter', open);
+    li.addEventListener('mouseleave', close);
+    dd.addEventListener('mouseenter', function() { clearTimeout(t); });
+    dd.addEventListener('mouseleave', close);
   });
 
-  // Mobile: klik na link s dropdownom
-  navMenu.querySelectorAll('li > a').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      const li = this.closest('li');
-      const dropdown = li.querySelector('.dropdown');
-      if (dropdown && isMobile()) {
+  menu.querySelectorAll('li > a').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var li = this.closest('li');
+      var dd = li.querySelector('.dropdown');
+      if (dd && isMobile()) {
         e.preventDefault();
-        navMenu.querySelectorAll('.dropdown.open').forEach(function(d) { if (d !== dropdown) d.classList.remove('open'); });
-        dropdown.classList.toggle('open');
-      } else if (!dropdown) { closeMenu(); }
+        menu.querySelectorAll('.dropdown.open').forEach(function(d) { if (d !== dd) d.classList.remove('open'); });
+        dd.classList.toggle('open');
+      } else if (!dd) { closeAll(); }
     });
   });
 
-  navMenu.querySelectorAll('.dropdown a').forEach(function(link) {
-    link.addEventListener('click', closeMenu);
-  });
-
-  window.addEventListener('resize', function() {
-    if (!isMobile()) { closeMenu(); navMenu.querySelectorAll('.dropdown').forEach(function(d) { d.classList.remove('open'); }); }
-  });
+  menu.querySelectorAll('.dropdown a').forEach(function(a) { a.addEventListener('click', closeAll); });
+  document.addEventListener('click', function(e) { if (!menu.contains(e.target) && !hbg.contains(e.target)) closeAll(); });
+  window.addEventListener('resize', function() { if (!isMobile()) { closeAll(); menu.querySelectorAll('.dropdown').forEach(function(d) { d.classList.remove('dropdown-open'); }); } });
 })();
 
-/* =============================================
-   SCROLL REVEAL
-   ============================================= */
+/* ===== SCROLL REVEAL ===== */
 (function() {
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  var ro = new IntersectionObserver(function(e) {
+    e.forEach(function(en) { if (en.isIntersecting) { en.target.classList.add('is-visible'); ro.unobserve(en.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
 
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  // Knihy foto — fade-in reveal
-  const knihyObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        knihyObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.knihy-foto').forEach(el => knihyObserver.observe(el));
+  var ko = new IntersectionObserver(function(e) {
+    e.forEach(function(en) { if (en.isIntersecting) { en.target.classList.add('is-visible'); ko.unobserve(en.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.knihy-foto').forEach(function(el) { ko.observe(el); });
 })();
 
-/* =============================================
-   LIGHTBOX — interaktívna galéria
-   ============================================= */
+/* ===== LIGHTBOX ===== */
 (function() {
-  const lightbox   = document.getElementById('lightbox');
-  const lbImg      = document.getElementById('lightboxImg');
-  const lbCaption  = document.getElementById('lightboxCaption');
-  const lbClose    = document.getElementById('lightboxClose');
-  const lbPrev     = document.getElementById('lbPrev');
-  const lbNext     = document.getElementById('lbNext');
-  const lbInner    = document.getElementById('lightboxInner');
+  var lb      = document.getElementById('lightbox');
+  var lbImg   = document.getElementById('lightboxImg');
+  var lbCap   = document.getElementById('lightboxCaption');
+  var lbClose = document.getElementById('lightboxClose');
+  var lbPrev  = document.getElementById('lbPrev');
+  var lbNext  = document.getElementById('lbNext');
+  var lbInner = document.getElementById('lightboxInner');
+  if (!lb) return;
 
-  const items = Array.from(document.querySelectorAll('.artwork-card[data-src]'));
-  let current = 0;
-  let lastFocused = null;
+  var slides = Array.from(document.querySelectorAll('.carousel-slide[data-src]'));
+  var cur = 0, last = null;
 
-  function openLightbox(idx) {
-    lastFocused = document.activeElement;
-    current = idx;
-    updateLightbox();
-    lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    lbClose.focus();
-  }
+  function open(idx) { last = document.activeElement; cur = idx; update(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lbClose.focus(); }
+  function close()   { lb.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); }
+  function update()  { var s = slides[cur]; lbImg.src = s.dataset.src; lbImg.alt = s.dataset.caption || ''; if (lbCap) lbCap.innerHTML = s.dataset.caption || ''; }
 
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-    if (lastFocused) lastFocused.focus();
-  }
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', function() { cur = (cur - 1 + slides.length) % slides.length; update(); });
+  lbNext.addEventListener('click', function() { cur = (cur + 1) % slides.length; update(); });
+  lb.addEventListener('click', function(e) { if (!lbInner.contains(e.target) && !lbPrev.contains(e.target) && !lbNext.contains(e.target)) close(); });
 
-  function updateLightbox() {
-    const item = items[current];
-    lbImg.src = item.dataset.src;
-    lbImg.alt = item.dataset.caption;
-    lbCaption.innerHTML = item.dataset.caption;
-  }
-
-  function goNext() {
-    current = (current + 1) % items.length;
-    updateLightbox();
-  }
-
-  function goPrev() {
-    current = (current - 1 + items.length) % items.length;
-    updateLightbox();
-  }
-
-  // Klik na položku galérie
-  items.forEach(function(item) {
-    item.addEventListener('click', function() {
-      openLightbox(parseInt(this.dataset.index));
-    });
-    item.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openLightbox(parseInt(this.dataset.index));
-      }
-    });
-  });
-
-  // Zavrieť
-  lbClose.addEventListener('click', closeLightbox);
-
-  // Klik na pozadie
-  lightbox.addEventListener('click', function(e) {
-    if (!lbInner.contains(e.target) && e.target !== lbPrev && e.target !== lbNext && !lbPrev.contains(e.target) && !lbNext.contains(e.target)) {
-      closeLightbox();
-    }
-  });
-
-  // Šípky
-  lbPrev.addEventListener('click', goPrev);
-  lbNext.addEventListener('click', goNext);
-
-  // Klávesnica
   document.addEventListener('keydown', function(e) {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') goNext();
-    if (e.key === 'ArrowLeft') goPrev();
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') { cur = (cur + 1) % slides.length; update(); }
+    if (e.key === 'ArrowLeft')  { cur = (cur - 1 + slides.length) % slides.length; update(); }
   });
 
-  // Swipe na mobile
-  let touchStartX = null;
-  lightbox.addEventListener('touchstart', function(e) {
-    touchStartX = e.touches[0].clientX;
-  }, { passive: true });
-  lightbox.addEventListener('touchend', function(e) {
-    if (touchStartX === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 50) dx < 0 ? goNext() : goPrev();
-    touchStartX = null;
+  var tx = null;
+  lb.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function(e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 44) { dx < 0 ? lbNext.click() : lbPrev.click(); }
   }, { passive: true });
 })();
 
-/* =============================================
-   PAGE TRANSITIONS
-   ============================================= */
+/* ===== PAGE TRANSITIONS ===== */
 (function() {
   document.body.style.opacity = '0';
   document.body.style.transition = 'none';
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      document.body.style.transition = 'opacity 0.4s ease';
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      document.body.style.transition = 'opacity 0.38s ease';
       document.body.style.opacity = '1';
     });
   });
-
   document.addEventListener('click', function(e) {
-    const link = e.target.closest('a[href]');
-    if (!link) return;
-    const href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || link.target === '_blank') return;
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var h = a.getAttribute('href');
+    if (!h || h.startsWith('#') || h.startsWith('http') || h.startsWith('mailto') || a.target === '_blank') return;
     e.preventDefault();
     document.body.classList.add('page-leaving');
-    setTimeout(() => { window.location.href = href; }, 360);
+    setTimeout(function() { window.location.href = h; }, 380);
   });
 })();
 
-/* =============================================
-   READING PROGRESS
-   ============================================= */
+/* ===== READING PROGRESS ===== */
 (function() {
-  const bar = document.getElementById('readingProgress');
+  var bar = document.getElementById('readingProgress');
   if (!bar) return;
-  function update() {
-    const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    bar.style.width = Math.min(pct, 100) + '%';
-  }
-  window.addEventListener('scroll', update, { passive: true });
-  update();
+  function upd() { bar.style.width = Math.min(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100, 100) + '%'; }
+  window.addEventListener('scroll', upd, { passive: true });
+  upd();
 })();
 </script>
 </body>
