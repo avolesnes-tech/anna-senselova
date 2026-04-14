@@ -2500,50 +2500,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
   window.addEventListener('scroll', updateProgress, { passive: true });
 
   /* =============================================
-     NAV — hamburger + dropdown
-     ============================================= */
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-
-  function isMobile() { return document.documentElement.clientWidth <= 768; }
-  function closeMenu() {
-    navMenu.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-  }
-
-  hamburger.addEventListener('click', function() {
-    const isOpen = navMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  navMenu.querySelectorAll('li').forEach(function(li) {
-    const dropdown = li.querySelector('.dropdown');
-    if (!dropdown) return;
-    let closeTimer = null;
-    li.addEventListener('mouseenter', () => { if (!isMobile()) { clearTimeout(closeTimer); dropdown.classList.add('dropdown-open'); } });
-    li.addEventListener('mouseleave', () => { if (!isMobile()) { closeTimer = setTimeout(() => dropdown.classList.remove('dropdown-open'), 120); } });
-    dropdown.addEventListener('mouseenter', () => clearTimeout(closeTimer));
-    dropdown.addEventListener('mouseleave', () => { if (!isMobile()) { closeTimer = setTimeout(() => dropdown.classList.remove('dropdown-open'), 120); } });
-  });
-
-  navMenu.querySelectorAll('li > a').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      const li = this.closest('li');
-      const dropdown = li.querySelector('.dropdown');
-      if (dropdown && isMobile()) {
-        e.preventDefault();
-        navMenu.querySelectorAll('.dropdown.open').forEach(d => { if (d !== dropdown) d.classList.remove('open'); });
-        dropdown.classList.toggle('open');
-      } else if (!dropdown) { closeMenu(); }
-    });
-  });
-
-  navMenu.querySelectorAll('.dropdown a').forEach(link => link.addEventListener('click', closeMenu));
-  window.addEventListener('resize', () => { if (!isMobile()) { closeMenu(); navMenu.querySelectorAll('.dropdown').forEach(d => d.classList.remove('dropdown-open')); } });
-
-  /* =============================================
      INTERSECTION OBSERVER — reveal
      ============================================= */
   const revealObs = new IntersectionObserver((entries) => {
