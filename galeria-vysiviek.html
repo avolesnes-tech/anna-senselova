@@ -2558,41 +2558,6 @@ footer {
 
 
   /* =============================================
-     AUTO-OPEN Z URL PARAMETRA (?open=INDEX)
-     Ak príde návštevník z homepage s ?open=N,
-     automaticky otvoríme detail panel výšivky s data-index="N"
-     ============================================= */
-  (function() {
-    const params = new URLSearchParams(window.location.search);
-    const openIndex = params.get('open');
-    if (openIndex === null) return;
-
-    // Počkáme kým sa stránka plne načíta a karty sú k dispozícii
-    function tryOpenPanel() {
-      const targetCard = document.querySelector('.emb-card[data-index="' + openIndex + '"]');
-      if (!targetCard) return;
-
-      // Scrollneme na kartu pre kontext, potom otvoríme panel
-      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      // Krátke oneskorenie, aby scroll prebehol a panel sa otvoril plynulo
-      setTimeout(() => {
-        openPanel(targetCard);
-        // Vyčistíme URL bez reloadu stránky
-        const cleanUrl = window.location.pathname;
-        history.replaceState(null, '', cleanUrl);
-      }, 400);
-    }
-
-    // Spustíme po plnom načítaní DOM
-    if (document.readyState === 'complete') {
-      tryOpenPanel();
-    } else {
-      window.addEventListener('load', tryOpenPanel);
-    }
-  })();
-
-  /* =============================================
      DETAIL PANEL
      ============================================= */
   const panel = document.getElementById('detailPanel');
