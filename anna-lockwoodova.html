@@ -14,54 +14,25 @@
 <meta name="twitter:title" content="Anna Lockwoodová — Autorka projektu Vyšívané poklady">
 <meta name="twitter:description" content="Praneter Anny Šenšelovej, výtvarníčka a tvorkyňa tohto projektu.">
 <meta name="twitter:image" content="https://avolesnes-tech.github.io/anna-senselova/anna_lockwoodova.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
 <style>
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+/* page-specific variables */
 :root {
-  --cream: #F9F7F2;
-  --ink: #1A1A1A;
-  --red: #C41E3A;
   --red-dark: #9B1530;
-  --gold: #D4AF37;
   /* --gold-dark opravený na WCAG AA kontrast na krémovom pozadí */
   --gold-dark: #6B5000;
-  --section-alt: #F2EDE4;
-  --nav-height: 64px;
   --transition-base: 0.3s ease;
   --transition-fast: 0.22s ease;
   --max-prose: 700px;
   --max-wide: 960px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-}
-
-html { scroll-behavior: smooth; }
 body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Cormorant Garamond', serif;
   font-size: clamp(17px, 2.4vw, 19px);
   line-height: 1.75;
-  overflow-x: hidden;
 }
-
-/* SKIP LINK */
-.skip-link {
-  position: absolute; top: -100%; left: 1rem;
-  background: var(--red); color: #fff;
-  padding: 0.6rem 1.2rem;
-  font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
-  text-decoration: none; z-index: 99999; transition: top 0.2s ease;
-}
-.skip-link:focus { top: 0; }
-
-body.page-leaving { opacity: 0; transition: opacity 0.36s ease; }
 
 /* READING PROGRESS */
 .reading-progress {
@@ -70,109 +41,6 @@ body.page-leaving { opacity: 0; transition: opacity 0.36s ease; }
   z-index: 9997; transition: width 0.1s linear; pointer-events: none;
 }
 
-/* ===== NAV ===== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 9998;
-  background: rgba(249,247,242,0.97);
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(212,175,55,0.4);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2.5rem; height: var(--nav-height);
-}
-
-nav .logo {
-  font-family: 'Pinyon Script', cursive; font-size: 2rem;
-  color: var(--red); text-decoration: none; flex-shrink: 0; line-height: 1;
-}
-
-nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
-nav ul li { position: relative; }
-
-nav ul li > a {
-  text-decoration: none;
-  font-family: 'Cormorant Garamond', serif; font-size: 0.88rem;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
-  transition: color var(--transition-base);
-  display: flex; align-items: center; gap: 0.3rem;
-  padding: 0.6rem 0; white-space: nowrap; min-height: 44px;
-}
-nav ul li > a:hover { color: var(--red); }
-nav ul li > a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 2px; }
-
-.dropdown {
-  position: absolute; top: calc(100% + 4px); left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  background: #fff;
-  border: 1px solid rgba(212,175,55,0.4); border-top: 2px solid var(--red);
-  min-width: 220px; box-shadow: 0 8px 32px rgba(0,0,0,0.10);
-  opacity: 0; pointer-events: none;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
-  z-index: 200;
-}
-.dropdown.dropdown-open {
-  opacity: 1; pointer-events: all;
-  transform: translateX(-50%) translateY(0);
-}
-.dropdown a {
-  display: flex; align-items: center; min-height: 44px;
-  padding: 0.6rem 1.2rem;
-  font-family: 'Cormorant Garamond', serif; font-size: 0.92rem;
-  color: var(--ink); text-decoration: none;
-  border-bottom: 1px solid rgba(212,175,55,0.15);
-  transition: background var(--transition-fast), color var(--transition-fast);
-  white-space: nowrap;
-}
-.dropdown a:last-child { border-bottom: none; }
-.dropdown a:hover { background: #fdf8f0; color: var(--red); }
-.dropdown a.active { color: var(--red); font-style: italic; }
-.dropdown .dropdown-label {
-  display: block; padding: 0.6rem 1.2rem 0.4rem;
-  font-family: 'Cinzel', serif; font-size: 0.68rem;
-  letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark);
-  border-bottom: 1px solid rgba(212,175,55,0.3);
-}
-
-/* Hamburger */
-.hamburger {
-  display: none; flex-direction: column; justify-content: center; align-items: center;
-  gap: 5px; background: none; border: none; cursor: pointer;
-  padding: 0.6rem; z-index: 10000; flex-shrink: 0;
-  min-width: 44px; min-height: 44px;
-}
-.hamburger span {
-  display: block; width: 24px; height: 2px; background: var(--ink);
-  border-radius: 2px; transition: transform var(--transition-base), opacity var(--transition-base);
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-@media (max-width: 768px) {
-  nav { padding: 0 1.2rem; }
-  nav .logo { font-size: 1.6rem; }
-  .hamburger { display: flex; }
-  nav ul {
-    display: none; flex-direction: column; gap: 0;
-    position: absolute; top: 100%; left: 0; right: 0; width: 100%;
-    max-height: calc(100dvh - var(--nav-height));
-    background: rgba(249,247,242,0.99); backdrop-filter: blur(10px);
-    padding: 0.5rem 1.5rem 3rem; align-items: flex-start;
-    z-index: 10000; overflow-y: auto; -webkit-overflow-scrolling: touch;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  }
-  nav ul.open { display: flex; }
-  nav ul li { width: 100%; border-bottom: 1px solid rgba(212,175,55,0.2); }
-  nav ul li > a { font-size: 1rem; padding: 0.9rem 0; width: 100%; justify-content: space-between; min-height: 48px; }
-  .dropdown {
-    position: static; transform: none !important; opacity: 1;
-    pointer-events: none; box-shadow: none; border: none;
-    border-top: 1px solid rgba(212,175,55,0.2);
-    background: rgba(242,237,228,0.6);
-    display: none; min-width: unset; width: 100%;
-  }
-  .dropdown.open { display: block !important; pointer-events: auto !important; }
-  .dropdown a { min-height: 48px; font-size: 0.95rem; }
-}
 
 /* ===== HERO ===== */
 #hero {
@@ -608,36 +476,6 @@ h1 {
 }
 .article-nav a:hover { color: var(--red); }
 
-/* ===== FOOTER ===== */
-footer { background: #111; color: var(--cream); padding: 3rem 1.5rem 2rem; }
-.footer-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  max-width: 900px; margin: 0 auto 2rem; gap: 2rem; flex-wrap: wrap;
-}
-.footer-col-title {
-  font-family: 'Cinzel', serif; font-size: 0.65rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold-dark); margin-bottom: 0.8rem;
-}
-.footer-links { list-style: none; }
-.footer-links li { margin-bottom: 0.3rem; }
-.footer-links a {
-  text-decoration: none; font-size: 0.85rem;
-  color: rgba(249,247,242,0.85); letter-spacing: 0.05em;
-  transition: color var(--transition-base);
-  display: inline-block; min-height: 36px; line-height: 36px;
-}
-.footer-links a:hover { color: var(--gold); }
-.footer-col-center { text-align: center; }
-.footer-name { font-family: 'Pinyon Script', cursive; font-size: 2rem; color: var(--gold); margin-bottom: 0.6rem; }
-.footer-tagline { font-size: 0.8rem; letter-spacing: 0.08em; color: rgba(249,247,242,0.65); margin-top: 0.8rem; font-style: italic; }
-.footer-divider { width: 100%; height: 1px; background: rgba(212,175,55,0.15); max-width: 900px; margin: 0 auto 1.5rem; }
-.footer-copy { text-align: center; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(249,247,242,0.85); margin-bottom: 0.6rem; }
-.footer-disclaimer { text-align: center; font-size: 0.85rem; color: rgba(249,247,242,0.8); font-style: italic; max-width: 600px; margin: 0 auto; line-height: 1.75; }
-
-@media (max-width: 600px) {
-  .footer-top { flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
-}
 
 /* ===== REVEAL ===== */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
@@ -687,162 +525,6 @@ footer { background: #111; color: var(--cream); padding: 3rem 1.5rem 2rem; }
 .lb-arrow.next { right: 0; }
 
 
-/* ── UNIFIED NAV CSS ── */
-nav {
-  position: fixed !important; top: 0; left: 0; right: 0;
-  z-index: 9998;
-  background: rgba(249,247,242,0.97) !important;
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  border-bottom: 1px solid #D4AF37 !important;
-  display: flex !important; align-items: center; justify-content: space-between;
-  padding: 0 2.5rem !important;
-  height: 64px !important;
-  flex-direction: row !important;
-}
-nav .logo {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 2rem; color: #C41E3A;
-  text-decoration: none; flex-shrink: 0; line-height: 1;
-}
-/* hide old breadcrumb/back/prev/next elements */
-nav > div, nav > a:not(.logo), .nav-back, .nav-breadcrumb, .nav-prev, .nav-next {
-  display: none !important;
-}
-nav ul {
-  list-style: none; display: flex;
-  gap: 1.8rem; align-items: center; margin: 0; padding: 0;
-}
-nav ul li { position: relative; }
-nav ul li > a {
-  text-decoration: none;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.88rem; letter-spacing: 0.12em;
-  text-transform: uppercase; color: #1A1A1A;
-  transition: color 0.3s;
-  display: flex; align-items: center; gap: 0.3rem;
-  padding: 0.5rem 0; white-space: nowrap;
-}
-nav ul li > a:hover, nav ul li > a.active { color: #C41E3A; }
-nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
-.dropdown {
-  position: absolute; top: 100%; left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  background: #fff;
-  border: 1px solid #D4AF37; border-top: 2px solid #C41E3A;
-  min-width: 260px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  z-index: 200; padding-top: 8px;
-}
-.dropdown::before {
-  content: ''; position: absolute; top: -8px; left: 0; right: 0;
-  height: 8px; background: transparent;
-}
-.dropdown.dropdown-open {
-  opacity: 1; pointer-events: all;
-  transform: translateX(-50%) translateY(0);
-}
-.dropdown a {
-  display: block; padding: 0.65rem 1.2rem;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.9rem; letter-spacing: 0.06em;
-  color: #1A1A1A; text-decoration: none;
-  border-bottom: 1px solid rgba(212,175,55,0.15);
-  transition: background 0.2s, color 0.2s; white-space: nowrap;
-}
-.dropdown a:last-child { border-bottom: none; }
-.dropdown a:hover { background: #fdf8f0; color: #C41E3A; }
-.dropdown a:focus-visible { outline: 2px solid #D4AF37; outline-offset: -2px; }
-.dropdown .dropdown-label {
-  display: block; padding: 0.5rem 1.2rem 0.3rem;
-  font-size: 0.68rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: #A07C10;
-  border-bottom: 1px solid rgba(212,175,55,0.3);
-  font-family: 'Cinzel', serif; margin-bottom: 0.2rem;
-}
-.hamburger {
-  display: none; flex-direction: column;
-  justify-content: center; gap: 5px;
-  background: none; border: none;
-  cursor: pointer; padding: 0.5rem;
-  z-index: 10001; flex-shrink: 0;
-}
-.hamburger:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
-.hamburger span {
-  display: block; width: 24px; height: 2px;
-  background: #1A1A1A; border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-@media (max-width: 768px) {
-  nav { padding: 0 1.2rem !important; }
-  nav .logo { font-size: 1.5rem; }
-  .hamburger { display: flex; }
-  nav ul {
-    display: none; flex-direction: column; gap: 0;
-    position: absolute; top: 100%; left: 0; right: 0; width: 100%;
-    max-height: calc(100vh - 64px);
-    overflow-y: auto; -webkit-overflow-scrolling: touch;
-    background: rgba(249,247,242,0.99);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    padding: 0.75rem 1.5rem 2.5rem;
-    align-items: flex-start; z-index: 10000;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    border-bottom: 2px solid #D4AF37;
-  }
-  nav ul.open { display: flex; }
-  nav ul li { width: 100%; border-bottom: 1px solid rgba(212,175,55,0.2); }
-  nav ul li:last-child { border-bottom: none; }
-  nav ul li > a {
-    font-size: 1.05rem; padding: 0.9rem 0;
-    width: 100%; justify-content: space-between;
-    white-space: normal; line-height: 1.4;
-  }
-  .dropdown {
-    position: static; transform: none;
-    opacity: 1; pointer-events: none;
-    box-shadow: none; border: none;
-    border-top: 1px solid rgba(212,175,55,0.2);
-    background: rgba(242,237,228,0.7);
-    display: none; min-width: unset; width: 100%; padding-top: 0;
-  }
-  .dropdown.open { display: block; pointer-events: auto; }
-  .dropdown a {
-    padding: 0.7rem 1rem 0.7rem 1.5rem;
-    font-size: 0.97rem; white-space: normal; line-height: 1.4;
-  }
-  .dropdown .dropdown-label { padding: 0.55rem 1rem 0.4rem 1.5rem; font-size: 0.65rem; }
-  nav ul li > a:hover .dropdown,
-  nav ul li:hover .dropdown { display: none !important; pointer-events: none !important; }
-  nav ul li .dropdown.open { display: block !important; pointer-events: auto !important; }
-}
-
-/* ── UNIFIED FOOTER CSS ── */
-footer {
-  background: #111; color: #F9F7F2;
-  text-align: center; padding: 4rem 2rem 2.5rem;
-}
-.footer-top {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 3rem; max-width: 860px; margin: 0 auto 3rem; text-align: left;
-}
-.footer-col-center { text-align: center; }
-.footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: #D4AF37; margin-bottom: 0.5rem; }
-.footer-tagline { font-size: 0.85rem; letter-spacing: 0.1em; opacity: 0.7; font-style: italic; margin-top: 0.5rem; }
-.footer-col-title { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #D4AF37; margin-bottom: 1rem; opacity: 0.9; }
-.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; padding: 0; }
-.footer-links a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #F9F7F2; opacity: 0.85; letter-spacing: 0.06em; transition: opacity 0.3s, color 0.3s; }
-.footer-links a:hover { opacity: 1; color: #D4AF37; }
-.footer-divider { width: 100%; height: 1px; background: rgba(212,175,55,0.15); margin: 0 auto 1.5rem; max-width: 860px; }
-.footer-copy { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
-.footer-disclaimer { margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.75; font-style: italic; text-transform: none; letter-spacing: 0.02em; }
-@media (max-width: 768px) {
-  .footer-top { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-  .footer-col-center { order: -1; }
-}
 
 /* ── scroll-margin-top pre zakotvené sekcie ── */
 section[id], div[id] { scroll-margin-top: 72px; }
@@ -1365,7 +1047,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <p>Táto stránka je nekomerčný informačný web vytvorený vo voľnom čase. Nevznikajú z nej žiadne obchodné záväzky.</p>
     <p><strong>Kontaktný formulár:</strong> Ak mi napíšete prostredníctvom kontaktného formulára, spracúvam tieto údaje: meno, e-mailová adresa a text správy. Slúžia výlučne na to, aby som vám mohla odpovedať. Údaje nie sú zdieľané s tretími stranami a po vybavení komunikácie ich vymažem.</p>
     <p><strong>Vaše práva:</strong> Máte právo požiadať o prístup k svojim údajom, ich opravu alebo vymazanie. Stačí napísať na vyššie uvedený e-mail.</p>
-    <p><strong>Cookies:</strong> Web nepoužíva sledovacie ani analytické cookies.</p>
+    <p><strong>Cookies a fonty:</strong> Web nepoužíva sledovacie ani analytické cookies. Písma (fonty) sú hostované priamo na tomto serveri — žiadne dáta sa neposielajú do Google ani iným tretím stranám.</p>
   </div>
 </div>
 <script>
