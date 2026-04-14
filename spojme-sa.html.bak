@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spojme sa – Vyšívané poklady Anny Šenšelovej</title>
-<meta name="description" content="Kontakt — Vyšívané poklady Anny Šenšelovej. Napíšte mi o Lipe, Anne Šenšelovej, alebo o vlastnom rodinnom príbehu.">
-<meta property="og:title" content="Kontakt — Anna Šenšelová">
-<meta property="og:description" content="Máte informácie o Lipe alebo vlastný príbeh objavovania rodinného dedičstva? Ozvite sa.">
+<meta name="description" content="Kontaktujte nás — zdieľajte rodinné príbehy, výšivky alebo spomienky späté s Annou Šenšelovou.">
+<meta property="og:title" content="Spojme sa – Vyšívané poklady Anny Šenšelovej">
+<meta property="og:description" content="Kontakt a spolupráca — zdieľajte rodinné príbehy a výšivky.">
 <meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -604,18 +604,18 @@ section[id], div[id] { scroll-margin-top: 72px; }
   <form id="contact-form" onsubmit="handleSubmit(event)">
     <div class="form-row">
       <div class="form-group">
-        <label for="contact-name">Vaše meno</label>
-        <input id="contact-name" type="text" placeholder="Meno a priezvisko" required>
+        <label>Vaše meno</label>
+        <input type="text" placeholder="Meno a priezvisko" required>
       </div>
       <div class="form-group">
-        <label for="contact-email">E-mail</label>
-        <input id="contact-email" type="email" placeholder="vas@email.sk" required>
+        <label>E-mail</label>
+        <input type="email" placeholder="vas@email.sk" required>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="contact-reason">Dôvod správy</label>
-      <select id="contact-reason">
+      <label>Dôvod správy</label>
+      <select>
         <option value="">— Vyberte —</option>
         <option>Mám informácie o Lipe</option>
         <option>Mám informácie o Anne Šenšelovej</option>
@@ -626,8 +626,8 @@ section[id], div[id] { scroll-margin-top: 72px; }
     </div>
 
     <div class="form-group">
-      <label for="contact-message">Váš príbeh alebo správa</label>
-      <textarea id="contact-message" placeholder="Napíšte mi — každý detail má hodnotu..."></textarea>
+      <label>Váš príbeh alebo správa</label>
+      <textarea placeholder="Napíšte mi — každý detail má hodnotu..."></textarea>
     </div>
 
     <button type="submit" class="btn-submit">Odoslať správu</button>

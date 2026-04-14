@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interaktívna mapa krojov – Anna Šenšelová</title>
-<meta name="description" content="Interaktívna mapa slovenských krojov a výšiviek. Pridajte svoj kroj na mapu a pomôžte zmapovať ľudové dedičstvo Slovenska.">
-<meta property="og:title" content="Mapa slovenských krojov a výšiviek">
-<meta property="og:description" content="Komunita krojov — interaktívna mapa kde každý môže pridať svoj kroj alebo výšivku.">
+<meta name="description" content="Interaktívna mapa krojov a výšiviek zo Slovenska — objavte regionálne tradície a pridajte vlastné nálezy.">
+<meta property="og:title" content="Interaktívna mapa krojov – Anna Šenšelová">
+<meta property="og:description" content="Mapa regionálnych tradícií slovenského výšivkárstva. Objavte a zdieľajte nálezy.">
 <meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stránka nenájdená – Vyšívané poklady Anny Šenšelovej</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --nav-height: 64px;
+  --cream: #F9F7F2; --ink: #1A1A1A; --red: #C41E3A;
+  --gold: #D4AF37; --gold-dark: #A07C10; --section-alt: #F2EDE4;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream); color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; line-height: 1.7;
+  overflow-x: hidden;
+  opacity: 1; transition: opacity 0.35s ease;
+}
+body.page-leaving { opacity: 0; }
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute; top: -100%; left: 1rem;
+  background: var(--red); color: #fff;
+  padding: 0.55rem 1.2rem;
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; z-index: 99999;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(249,247,242,0.96); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.6rem 2.5rem; height: 64px;
+}
+nav .logo {
+  font-family: 'Pinyon Script', cursive; font-size: 2rem;
+  color: var(--red); text-decoration: none; flex-shrink: 0;
+}
+.nav-back {
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold-dark); text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-back:hover { color: var(--red); }
+.nav-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ── MAIN ── */
+main {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 5rem;
+  position: relative; overflow: hidden;
+}
+
+/* Jemný gradient pozadie */
+main::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 25% 40%, rgba(196,30,58,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 60%, rgba(212,175,55,0.07) 0%, transparent 55%);
+  pointer-events: none;
+}
+main > * { position: relative; z-index: 1; }
+
+/* ── Vyšívací ornament – SVG ── */
+.ornament-wrap {
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeDown 1s 0.2s forwards;
+}
+
+/* ── 404 číslo ── */
+.error-number {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(6rem, 20vw, 14rem);
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+.gold-line {
+  width: 160px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1.5rem auto;
+  opacity: 0;
+  animation: fadeIn 1s 0.9s forwards;
+}
+
+.error-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: 0.8rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.8s forwards;
+}
+
+.error-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--ink); line-height: 1.75;
+  opacity: 0;
+  animation: fadeUp 1s 1s forwards;
+}
+
+.error-text {
+  font-size: 1.05rem; color: #555;
+  max-width: 520px; margin: 1.5rem auto 0;
+  font-style: italic; line-height: 1.85;
+  opacity: 0;
+  animation: fadeUp 1s 1.2s forwards;
+}
+
+/* ── CTA tlačidlá ── */
+.error-ctas {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 1s 1.4s forwards;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none;
+  background: var(--red); color: var(--cream);
+  border: 1px solid var(--red);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.btn-primary:hover { background: #a01830; box-shadow: 0 4px 18px rgba(196,30,58,0.3); }
+.btn-primary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  text-decoration: none;
+  color: var(--red); border: 1px solid var(--red);
+  background: transparent;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-secondary:hover { background: var(--red); color: var(--cream); }
+.btn-secondary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ── Rýchle linky ── */
+.quick-links {
+  margin-top: 3.5rem;
+  opacity: 0;
+  animation: fadeIn 1s 1.8s forwards;
+}
+.quick-links p {
+  font-family: 'Cinzel', serif; font-size: 0.7rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold-dark); margin-bottom: 1rem;
+}
+.quick-links ul {
+  list-style: none;
+  display: flex; flex-wrap: wrap;
+  gap: 0.6rem; justify-content: center;
+}
+.quick-links ul li a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem; color: #777;
+  text-decoration: none; letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(212,175,55,0.4);
+  padding-bottom: 1px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.quick-links ul li a:hover { color: var(--red); border-color: var(--red); }
+.quick-links ul li a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.quick-links ul li::after { content: '·'; color: var(--gold-dark); margin-left: 0.6rem; font-size: 0.8rem; }
+.quick-links ul li:last-child::after { content: ''; }
+
+/* ── FOOTER ── */
+footer {
+  background: #111; color: var(--cream);
+  text-align: center; padding: 2.5rem 2rem;
+}
+.footer-name {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 2rem; color: var(--gold);
+}
+footer p {
+  font-size: 0.75rem; letter-spacing: 0.12em;
+  text-transform: uppercase; opacity: 0.55; margin-top: 0.4rem;
+}
+
+/* ── prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* Pri reduced motion – okamžite zobraziť všetko */
+  .ornament-wrap, .error-number, .gold-line, .error-label,
+  .error-title, .error-text, .error-ctas, .quick-links {
+    opacity: 1 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 0.6rem 1.2rem; }
+  nav .logo { font-size: 1.5rem; }
+  .error-ctas { flex-direction: column; align-items: center; }
+}
+
+/* ── Animácie ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes stitch {
+  0%   { stroke-dashoffset: 400; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ── UNIFIED NAV CSS ── */
+nav {
+  position: fixed !important; top: 0; left: 0; right: 0;
+  z-index: 9998;
+  background: rgba(249,247,242,0.97) !important;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid #D4AF37 !important;
+  display: flex !important; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem !important;
+  height: 64px !important;
+  flex-direction: row !important;
+}
+nav .logo {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 2rem; color: #C41E3A;
+  text-decoration: none; flex-shrink: 0; line-height: 1;
+}
+/* hide old breadcrumb/back/prev/next elements */
+nav > div, nav > a:not(.logo), .nav-back, .nav-breadcrumb, .nav-prev, .nav-next {
+  display: none !important;
+}
+nav ul {
+  list-style: none; display: flex;
+  gap: 1.8rem; align-items: center; margin: 0; padding: 0;
+}
+nav ul li { position: relative; }
+nav ul li > a {
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #1A1A1A;
+  transition: color 0.3s;
+  display: flex; align-items: center; gap: 0.3rem;
+  padding: 0.5rem 0; white-space: nowrap;
+}
+nav ul li > a:hover, nav ul li > a.active { color: #C41E3A; }
+nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
+.dropdown {
+  position: absolute; top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: #fff;
+  border: 1px solid #D4AF37; border-top: 2px solid #C41E3A;
+  min-width: 260px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 200; padding-top: 8px;
+}
+.dropdown::before {
+  content: ''; position: absolute; top: -8px; left: 0; right: 0;
+  height: 8px; background: transparent;
+}
+.dropdown.dropdown-open {
+  opacity: 1; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown a {
+  display: block; padding: 0.65rem 1.2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem; letter-spacing: 0.06em;
+  color: #1A1A1A; text-decoration: none;
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+  transition: background 0.2s, color 0.2s; white-space: nowrap;
+}
+.dropdown a:last-child { border-bottom: none; }
+.dropdown a:hover { background: #fdf8f0; color: #C41E3A; }
+.dropdown a:focus-visible { outline: 2px solid #D4AF37; outline-offset: -2px; }
+.dropdown .dropdown-label {
+  display: block; padding: 0.5rem 1.2rem 0.3rem;
+  font-size: 0.68rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #A07C10;
+  border-bottom: 1px solid rgba(212,175,55,0.3);
+  font-family: 'Cinzel', serif; margin-bottom: 0.2rem;
+}
+.hamburger {
+  display: none; flex-direction: column;
+  justify-content: center; gap: 5px;
+  background: none; border: none;
+  cursor: pointer; padding: 0.5rem;
+  z-index: 10001; flex-shrink: 0;
+}
+.hamburger:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: #1A1A1A; border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 768px) {
+  nav { padding: 0 1.2rem !important; }
+  nav .logo { font-size: 1.5rem; }
+  .hamburger { display: flex; }
+  nav ul {
+    display: none; flex-direction: column; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0; width: 100%;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    background: rgba(249,247,242,0.99);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem 2.5rem;
+    align-items: flex-start; z-index: 10000;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    border-bottom: 2px solid #D4AF37;
+  }
+  nav ul.open { display: flex; }
+  nav ul li { width: 100%; border-bottom: 1px solid rgba(212,175,55,0.2); }
+  nav ul li:last-child { border-bottom: none; }
+  nav ul li > a {
+    font-size: 1.05rem; padding: 0.9rem 0;
+    width: 100%; justify-content: space-between;
+    white-space: normal; line-height: 1.4;
+  }
+  .dropdown {
+    position: static; transform: none;
+    opacity: 1; pointer-events: none;
+    box-shadow: none; border: none;
+    border-top: 1px solid rgba(212,175,55,0.2);
+    background: rgba(242,237,228,0.7);
+    display: none; min-width: unset; width: 100%; padding-top: 0;
+  }
+  .dropdown.open { display: block; pointer-events: auto; }
+  .dropdown a {
+    padding: 0.7rem 1rem 0.7rem 1.5rem;
+    font-size: 0.97rem; white-space: normal; line-height: 1.4;
+  }
+  .dropdown .dropdown-label { padding: 0.55rem 1rem 0.4rem 1.5rem; font-size: 0.65rem; }
+  nav ul li > a:hover .dropdown,
+  nav ul li:hover .dropdown { display: none !important; pointer-events: none !important; }
+  nav ul li .dropdown.open { display: block !important; pointer-events: auto !important; }
+}
+
+/* ── UNIFIED FOOTER CSS ── */
+footer {
+  background: #111; color: #F9F7F2;
+  text-align: center; padding: 4rem 2rem 2.5rem;
+}
+.footer-top {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem; max-width: 860px; margin: 0 auto 3rem; text-align: left;
+}
+.footer-col-center { text-align: center; }
+.footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: #D4AF37; margin-bottom: 0.5rem; }
+.footer-tagline { font-size: 0.85rem; letter-spacing: 0.1em; opacity: 0.7; font-style: italic; margin-top: 0.5rem; }
+.footer-col-title { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #D4AF37; margin-bottom: 1rem; opacity: 0.9; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; padding: 0; }
+.footer-links a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #F9F7F2; opacity: 0.85; letter-spacing: 0.06em; transition: opacity 0.3s, color 0.3s; }
+.footer-links a:hover { opacity: 1; color: #D4AF37; }
+.footer-divider { width: 100%; height: 1px; background: rgba(212,175,55,0.15); margin: 0 auto 1.5rem; max-width: 860px; }
+.footer-copy { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
+.footer-disclaimer { margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.75; font-style: italic; text-transform: none; letter-spacing: 0.02em; }
+@media (max-width: 768px) {
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+  .footer-col-center { order: -1; }
+}
+
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Preskočiť na obsah</a>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Anna Šenšelová</a>
+  <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li>
+      <a href="index.html#pribeh">Príbeh ▾</a>
+      <div class="dropdown">
+        <span class="dropdown-label">Príbeh</span>
+        <a href="anna-senselova.html">Anna Šenšelová</a>
+        <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
+        <a href="lipa.html">Lipa</a>
+        <a href="zivena.html">Živena</a>
+        <a href="o-nas.html">O nás</a>
+      </div>
+    </li>
+    <li>
+      <a href="index.html#galeria-vysiviek">Galéria ▾</a>
+      <div class="dropdown">
+        <span class="dropdown-label">Galéria</span>
+        <a href="galeria-vysiviek.html">Vzorkovník výšiviek Anny Šenšelovej</a>
+        <a href="galeria-ludove.html">Iné ľudové výšivky a odev</a>
+        <a href="galeria-babik.html">Krojované bábiky</a>
+      </div>
+    </li>
+    <li><a href="interaktivna-mapa.html">Slovenské výšivky</a></li>
+    <li><a href="spojme-sa.html">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<main id="main-content">
+
+  <!-- Vyšívací ornament -->
+  <div class="ornament-wrap" aria-hidden="true">
+    <svg width="220" height="60" viewBox="0 0 220 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Stredový diamant -->
+      <polygon points="110,12 124,30 110,48 96,30"
+        fill="none" stroke="#C41E3A" stroke-width="1.2" opacity="0.7"
+        stroke-dasharray="400" stroke-dashoffset="400"
+        style="animation: stitch 2s 0.5s ease forwards;"/>
+      <!-- Ľavá linka -->
+      <line x1="94" y1="30" x2="30" y2="30" stroke="#D4AF37" stroke-width="0.8"/>
+      <circle cx="70" cy="30" r="3" fill="none" stroke="#D4AF37" stroke-width="1"/>
+      <circle cx="70" cy="30" r="1" fill="#D4AF37"/>
+      <ellipse cx="34" cy="30" rx="6" ry="3" fill="none" stroke="#D4AF37" stroke-width="0.9" opacity="0.7"/>
+      <!-- Pravá linka -->
+      <line x1="126" y1="30" x2="190" y2="30" stroke="#D4AF37" stroke-width="0.8"/>
+      <circle cx="150" cy="30" r="3" fill="none" stroke="#D4AF37" stroke-width="1"/>
+      <circle cx="150" cy="30" r="1" fill="#D4AF37"/>
+      <ellipse cx="186" cy="30" rx="6" ry="3" fill="none" stroke="#D4AF37" stroke-width="0.9" opacity="0.7"/>
+      <!-- Malé červené body -->
+      <circle cx="50" cy="30" r="2" fill="#C41E3A" opacity="0.6"/>
+      <circle cx="170" cy="30" r="2" fill="#C41E3A" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <p class="error-label">Stránka nenájdená</p>
+  <div class="error-number" aria-label="Chyba 404">404</div>
+  <div class="gold-line"></div>
+
+  <h1 class="error-title">Táto stránka sa stratila<br>v pivnici.</h1>
+
+  <p class="error-text">
+    Ako výšivka zabudnutá medzi starou bielizňou — stránka, ktorú hľadáte,
+    tu nie je. Možno sme ju presunuli, možno ešte len čaká na objavenie.
+  </p>
+
+  <div class="error-ctas">
+    <a href="index.html" class="btn-primary">← Späť na hlavnú</a>
+    <a href="spojme-sa.html" class="btn-secondary">Napíšte mi</a>
+  </div>
+
+  <!-- Rýchle linky -->
+  <nav class="quick-links" aria-label="Rýchla navigácia">
+    <p>Alebo skúste niektorú z týchto stránok</p>
+    <ul>
+      <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
+      <li><a href="lipa.html">Lipa</a></li>
+      <li><a href="zivena.html">Živena</a></li>
+      <li><a href="interaktivna-mapa.html">Mapa krojov</a></li>
+      <li><a href="spojme-sa.html">Spojme sa</a></li>
+    </ul>
+  </nav>
+
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-col-title">Príbeh</p>
+      <ul class="footer-links">
+        <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
+        <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
+        <li><a href="lipa.html">Lipa</a></li>
+        <li><a href="zivena.html">Živena</a></li>
+        <li><a href="o-nas.html">O nás</a></li>
+      </ul>
+    </div>
+    <div class="footer-col-center">
+      <div class="footer-name">Anna Šenšelová</div>
+      <svg viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:180px;display:block;margin:0 auto 0.8rem;opacity:0.3;">
+        <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
+        <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+        <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+        <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+      </svg>
+      <p class="footer-tagline">Vytvorené s láskou a úctou k predošlým generáciám.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Galéria &amp; Mapa</p>
+      <ul class="footer-links">
+        <li><a href="galeria-vysiviek.html">Vzorkovník výšiviek</a></li>
+        <li><a href="galeria-ludove.html">Ľudové výšivky a odev</a></li>
+        <li><a href="galeria-babik.html">Krojované bábiky</a></li>
+        <li><a href="interaktivna-mapa.html">Slovenské výšivky — mapa</a></li>
+        <li><a href="spojme-sa.html">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2026 Vyšívané poklady Anny Šenšelovej · Anna Lockwoodová</p>
+  <p class="footer-disclaimer">Zbierka výšiviek, bábik a pozostalosti po rodine Šenšelovcov nie je mojím osobným vlastníctvom — je dedičstvom celej rodiny. Výšivky, bábiky ani kroje nie sú na predaj.</p>
+</footer>
+
+<script>
+
+  /* ── UNIFIED NAV JS ── */
+  (function() {
+    var hamburger = document.getElementById('hamburger');
+    var navMenu   = document.getElementById('nav-menu');
+    if (!hamburger || !navMenu) return;
+    function isMobile() { return window.innerWidth <= 768; }
+    function closeAll() {
+      navMenu.querySelectorAll('.dropdown').forEach(function(d) { d.classList.remove('open','dropdown-open'); });
+    }
+    function closeMenu() {
+      navMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded','false');
+      closeAll();
+    }
+    hamburger.addEventListener('click', function() {
+      var o = navMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', o);
+      hamburger.setAttribute('aria-expanded', String(o));
+    });
+    navMenu.querySelectorAll('li > a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var dd = this.closest('li').querySelector('.dropdown');
+        if (dd && isMobile()) {
+          e.preventDefault();
+          var was = dd.classList.contains('open');
+          closeAll();
+          if (!was) dd.classList.add('open');
+        } else if (!dd) { closeMenu(); }
+      });
+    });
+    navMenu.querySelectorAll('.dropdown a').forEach(function(a) {
+      a.addEventListener('click', function() { closeMenu(); });
+    });
+    navMenu.querySelectorAll('li').forEach(function(li) {
+      var dd = li.querySelector('.dropdown'); if (!dd) return;
+      var t;
+      function show() { if(isMobile())return; clearTimeout(t); dd.classList.add('dropdown-open'); }
+      function hide() { if(isMobile())return; t=setTimeout(function(){dd.classList.remove('dropdown-open');},150); }
+      li.addEventListener('mouseenter',show); li.addEventListener('mouseleave',hide);
+      dd.addEventListener('mouseenter',function(){clearTimeout(t);}); dd.addEventListener('mouseleave',hide);
+    });
+    document.addEventListener('click', function(e) {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
+    });
+    window.addEventListener('resize', function() { if(!isMobile()){closeMenu();closeAll();} });
+    document.addEventListener('keydown', function(e) { if(e.key==='Escape') closeMenu(); });
+    var page = window.location.pathname.split('/').pop()||'index.html';
+    navMenu.querySelectorAll('a[href]').forEach(function(a) {
+      var h = a.getAttribute('href').split('#')[0].split('/').pop();
+      if (h && h===page) a.classList.add('active');
+    });
+  })();
+  /* page transition */
+  document.addEventListener('click', function(e) {
+    var l = e.target.closest('a[href]'); if(!l) return;
+    var h = l.getAttribute('href');
+    if(!h||h.startsWith('#')||h.startsWith('http')||h.startsWith('mailto')||l.target==='_blank') return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function(){window.location.href=h;},340);
+  });
+  /* reading progress */
+  (function(){
+    var bar=document.getElementById('readingProgress'); if(!bar) return;
+    function upd(){var h=document.documentElement.scrollHeight-window.innerHeight; bar.style.width=(h>0?Math.min(window.scrollY/h*100,100):0)+'%';}
+    window.addEventListener('scroll',upd,{passive:true}); upd();
+  })();
+
+
+/* Page transition (fade in) */
+(function() {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'none';
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      document.body.style.transition = 'opacity 0.4s ease';
+      document.body.style.opacity = '1';
+    });
+  });
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function() { window.location.href = href; }, 360);
+  });
+})();
+</script>
+</body>
+</html>
