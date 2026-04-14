@@ -185,7 +185,7 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem
 .pin-region { font-size: 0.78rem; color: var(--red); font-style: italic; }
 .pin-desc-short { font-size: 0.8rem; color: #767676; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .no-pins { text-align: center; padding: 2rem 1rem; color: #bbb; font-style: italic; font-size: 0.9rem; }
-.delete-pin-btn { flex-shrink: 0; background: none; border: 1px solid rgba(196,30,58,0.2); color: var(--red); width: 24px; height: 24px; cursor: pointer; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; align-self: center; transition: background 0.2s; border-radius: 50%; }
+.delete-pin-btn { flex-shrink: 0; background: none; border: 1px solid rgba(196,30,58,0.2); color: var(--red); width: 36px; height: 36px; min-width: 44px; min-height: 44px; cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; align-self: center; transition: background 0.2s; border-radius: 50%; }
 .delete-pin-btn:hover { background: var(--red); color: #fff; }
 
 body.placing-pin, body.placing-pin * { cursor: crosshair !important; }
@@ -203,7 +203,7 @@ body.placing-pin .placing-banner { display: block; }
 .region-gallery-header { text-align: center; margin-bottom: 2.5rem; }
 .region-gallery-header h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2rem, 4vw, 3.2rem); color: var(--red); line-height: 1.75; }
 .region-gallery-header .region-count { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark); margin-top: 0.3rem; }
-.region-close-btn { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #767676; background: none; border: 1px solid rgba(0,0,0,0.12); padding: 0.4rem 1rem; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+.region-close-btn { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #767676; background: none; border: 1px solid rgba(0,0,0,0.12); padding: 0.65rem 1rem; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
 .region-close-btn:hover { color: var(--red); border-color: var(--red); }
 .region-photos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
 
@@ -234,7 +234,7 @@ body.placing-pin .placing-banner { display: block; }
 .comment-form input[type="text"] { flex: 1; padding: 0.38rem 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; border: 1px solid rgba(212,175,55,0.35); background: var(--section-alt); color: var(--ink); outline: none; transition: border-color 0.2s; min-width: 0; }
 .comment-form input[type="text"]:focus { border-color: var(--gold); }
 .comment-form .author-input { max-width: 110px; flex-shrink: 0; }
-.btn-comment { padding: 0.38rem 0.8rem; font-family: 'Cinzel', serif; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; background: transparent; color: var(--red); border: 1px solid var(--red); cursor: pointer; transition: background 0.25s, color 0.25s; white-space: nowrap; flex-shrink: 0; }
+.btn-comment { padding: 0.65rem 1rem; font-family: 'Cinzel', serif; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; background: transparent; color: var(--red); border: 1px solid var(--red); cursor: pointer; transition: background 0.25s, color 0.25s; white-space: nowrap; flex-shrink: 0; }
 .btn-comment:hover { background: var(--red); color: #fff; }
 
 .region-empty { text-align: center; padding: 3rem 2rem; color: #bbb; font-style: italic; grid-column: 1 / -1; font-size: 1rem; }
