@@ -1766,6 +1766,10 @@ footer {
     if (!link) return;
     var href = link.getAttribute('href');
     if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || link.target === '_blank') return;
+    // Skip same-page links (e.g. index.html#pribeh when already on index.html)
+    var hrefBase = href.split('#')[0];
+    var currentBase = window.location.pathname.split('/').pop() || 'index.html';
+    if (!hrefBase || hrefBase === currentBase) return;
     e.preventDefault();
     document.body.classList.add('page-leaving');
     setTimeout(function() { window.location.href = href; }, 340);
