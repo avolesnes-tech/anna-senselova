@@ -1786,47 +1786,6 @@ footer {
     upd();
   })();
 
-  /* =============================================
-     PAGE TRANSITION — fade in pri načítaní
-     ============================================= */
-  (function() {
-    // Fade in
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'none';
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        document.body.style.transition = 'opacity 0.4s ease';
-        document.body.style.opacity = '1';
-      });
-    });
-
-    // Fade out pri odchode — ignoruj anchor linky a externé
-    document.addEventListener('click', function(e) {
-      const link = e.target.closest('a[href]');
-      if (!link) return;
-      const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || link.target === '_blank') return;
-      e.preventDefault();
-      document.body.classList.add('page-leaving');
-      setTimeout(() => { window.location.href = href; }, 360);
-    });
-  })();
-
-  /* =============================================
-     READING PROGRESS BAR
-     ============================================= */
-  (function() {
-    const bar = document.getElementById('readingProgress');
-    if (!bar) return;
-    function updateProgress() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      bar.style.width = Math.min(pct, 100) + '%';
-    }
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    updateProgress();
-  })();
 
   /* =============================================
      HERO SLIDESHOW — s pauzou pri hoveri/focuse
@@ -1856,72 +1815,6 @@ footer {
     startSlideshow();
   }
 
-  /* =============================================
-     HAMBURGER MENU + DESKTOP DROPDOWN (hover s delay)
-     ============================================= */
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-
-  function isMobile() {
-    return document.documentElement.clientWidth <= 768;
-  }
-
-  function closeMenu() {
-    navMenu.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-  }
-
-  hamburger.addEventListener('click', function() {
-    const isOpen = navMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  // Desktop: hover s delay — dropdown zostane otvorený aj pri pohybe myši naň
-  navMenu.querySelectorAll('li').forEach(function(li) {
-    const dropdown = li.querySelector('.dropdown');
-    if (!dropdown) return;
-    let closeTimer = null;
-    function openDropdown() { if (isMobile()) return; clearTimeout(closeTimer); dropdown.classList.add('dropdown-open'); }
-    function scheduleClose() { if (isMobile()) return; closeTimer = setTimeout(function() { dropdown.classList.remove('dropdown-open'); }, 120); }
-    li.addEventListener('mouseenter', openDropdown);
-    li.addEventListener('mouseleave', scheduleClose);
-    dropdown.addEventListener('mouseenter', function() { clearTimeout(closeTimer); });
-    dropdown.addEventListener('mouseleave', scheduleClose);
-  });
-
-  // Mobile: klik na položku s dropdownom
-  navMenu.querySelectorAll('li > a').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      const li = this.closest('li');
-      const dropdown = li.querySelector('.dropdown');
-      if (dropdown && isMobile()) {
-        e.preventDefault();
-        navMenu.querySelectorAll('.dropdown.open').forEach(function(d) {
-          if (d !== dropdown) d.classList.remove('open');
-        });
-        dropdown.classList.toggle('open');
-      } else if (!dropdown) {
-        closeMenu();
-      }
-    });
-  });
-
-  navMenu.querySelectorAll('.dropdown a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      closeMenu();
-    });
-  });
-
-  window.addEventListener('resize', function() {
-    if (!isMobile()) {
-      closeMenu();
-      navMenu.querySelectorAll('.dropdown').forEach(function(d) {
-        d.classList.remove('dropdown-open');
-      });
-    }
-  });
 
   /* =============================================
      FIX 1: INTERSECTION OBSERVER — scroll animácie
