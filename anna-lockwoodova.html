@@ -176,10 +176,15 @@ nav ul li > a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px
 
 /* ===== HERO ===== */
 #hero {
-  min-height: 55vh; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; text-align: center;
-  padding: calc(var(--nav-height) + 3rem) 1.5rem 3.5rem;
-  background: var(--cream); position: relative; overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 6rem);
+  padding: calc(var(--nav-height) + 3rem) 7vw 5rem;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
 }
 #hero::before {
   content: ''; position: absolute; inset: 0;
@@ -188,15 +193,6 @@ nav ul li > a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px
   pointer-events: none;
 }
 #hero > * { position: relative; z-index: 1; }
-
-/* ── Hero: portrait split layout ── */
-#hero {
-  flex-direction: row;
-  text-align: left;
-  padding: calc(var(--nav-height) + 3rem) 7vw 5rem;
-  gap: clamp(2.5rem, 5vw, 6rem);
-  min-height: 80vh;
-}
 
 .hero-portrait-col {
   flex: 0 0 clamp(200px, 30vw, 340px);
