@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interaktívna mapa krojov – Anna Šenšelová</title>
+<meta name="description" content="Interaktívna mapa krojov a výšiviek zo Slovenska — objavte regionálne tradície a pridajte vlastné nálezy.">
+<meta property="og:title" content="Interaktívna mapa krojov – Anna Šenšelová">
+<meta property="og:description" content="Mapa regionálnych tradícií slovenského výšivkárstva. Objavte a zdieľajte nálezy.">
+<meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
 <script type="module">
@@ -477,7 +484,7 @@ footer {
 .footer-col-title {
   font-family: 'Cinzel', serif; font-size: 0.7rem;
   letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1rem; opacity: 0.9;
+  color: var(--gold-dark); margin-bottom: 1rem; opacity: 0.9;
 }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .footer-links a {
@@ -563,7 +570,7 @@ footer { background: #111; color: var(--cream); text-align: center; padding: 4re
 .footer-col-center { text-align: center; }
 .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 0.5rem; }
 .footer-tagline { font-size: 0.85rem; letter-spacing: 0.1em; opacity: 0.7; font-style: italic; margin-top: 0.5rem; text-transform: none; }
-.footer-col-title { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; opacity: 0.9; }
+.footer-col-title { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 1rem; opacity: 0.9; }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .footer-links a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--cream); opacity: 0.85; letter-spacing: 0.06em; transition: opacity 0.3s, color 0.3s; }
 .footer-links a:hover { opacity: 1; color: var(--gold); }
@@ -571,6 +578,9 @@ footer { background: #111; color: var(--cream); text-align: center; padding: 4re
 .footer-copy { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
 .footer-disclaimer { margin-top: 1rem; font-size: 0.85rem; opacity: 0.8; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.75; font-style: italic; text-transform: none; letter-spacing: 0.02em; }
 @media (max-width: 700px) { .footer-top { grid-template-columns: 1fr; gap: 2rem; text-align: center; } .footer-col-center { order: -1; } }
+/* ── iOS zoom fix — inputs must be ≥ 16px to prevent auto-zoom ── */
+.form-field input, .form-field textarea,
+.comment-form input[type="text"] { font-size: 16px; }
 </style>
 </head>
 <body>
@@ -974,7 +984,7 @@ function buildPinCard(pin) {
   <div class="region-photo-card" id="card-${pin.id}">
     <div class="card-img-wrap">
       ${pin.photo
-        ? `<img src="${pin.photo}" alt="${pin.name}">`
+        ? `<img src="${pin.photo}" alt="${pin.name}" loading="lazy">`
         : `<div class="card-no-photo">🪡</div>`}
     </div>
     <div class="card-body">
@@ -1187,7 +1197,7 @@ function renderPinsList() {
   document.getElementById('pinCountText').textContent = count + (count === 1 ? ' pin na mape' : count < 5 ? ' piny na mape' : ' pinov na mape');
   list.innerHTML = '<h4>Pridané piny (' + count + ')</h4>' + allPins.slice().reverse().map(pin => `
     <div class="pin-item">
-      ${pin.photo ? `<img src="${pin.photo}" alt="${pin.name}">` : '<div class="pin-placeholder">🗺️</div>'}
+      ${pin.photo ? `<img src="${pin.photo}" alt="${pin.name}" loading="lazy">` : '<div class="pin-placeholder">🗺️</div>'}
       <div class="pin-info">
         <div class="pin-name">${pin.name}</div>
         <div class="pin-region">${pin.region}</div>

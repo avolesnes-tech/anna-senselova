@@ -15,6 +15,8 @@
 <meta name="twitter:title" content="Lipa – ľudový priemysel, účastinárska spoločnosť">
 <meta name="twitter:description" content="Príbeh spoločnosti, ktorá po tri desaťročia bojovala za slovenské ľudové umenie a dôstojnú odmenu pre výšivačky.">
 <meta name="twitter:image" content="https://anna-senselova.sk/og-lipa.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -246,7 +248,7 @@ footer { background: #111; color: var(--cream); text-align: center; padding: 4re
 .footer-col-center { text-align: center; }
 .footer-name { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 0.5rem; }
 .footer-tagline { font-size: 0.85rem; letter-spacing: 0.1em; opacity: 0.7; font-style: italic; margin-top: 0.5rem; text-transform: none; }
-.footer-col-title { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; opacity: 0.9; }
+.footer-col-title { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 1rem; opacity: 0.9; }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .footer-links a { text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--cream); opacity: 0.85; letter-spacing: 0.06em; transition: opacity 0.3s, color 0.3s; }
 .footer-links a:hover { opacity: 1; color: var(--gold); }
@@ -819,17 +821,7 @@ footer { background: #111; color: var(--cream); text-align: center; padding: 4re
 .reveal-delay-3 { transition-delay: 0.24s; }
 
 /* FIX 6 — prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  .reveal { opacity: 1; transform: none; }
-  .tl-item { opacity: 1; transform: none; }
-  .parallax-bg-text span { transform: none !important; }
-}
+
 
 /* FIX 5 — náhradné CSS triedy za inline štýly */
 .section-cta { max-width: 700px; margin: 0 auto 0.5rem; }
@@ -1086,7 +1078,7 @@ footer {
 .footer-col-title {
   font-family: 'Cinzel', serif; font-size: 0.7rem;
   letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1rem; opacity: 0.9;
+  color: var(--gold-dark); margin-bottom: 1rem; opacity: 0.9;
 }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .footer-links a {
@@ -1155,16 +1147,34 @@ body.page-leaving { opacity: 0; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
 /* ── prefers-reduced-motion ── */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
+
 
 /* ── scroll-margin-top pre zakotvené sekcie ── */
 section[id], div[id] { scroll-margin-top: 72px; }
+
+/* FIX — prefers-reduced-motion: všetky animované elementy okamžite viditeľné */
+
+
+
+/* ── prefers-reduced-motion: všetky animované elementy okamžite viditeľné ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-title, .hero-label, .hero-subtitle, .hero-sub2, .hero-year,
+  .hero-divider, .hero-ctas, .hero-ornament-wrap, .hero-ornament-wrap *,
+  .ornament-wrap, .error-number, .error-label, .error-title,
+  .error-text, .error-ctas, .quick-links,
+  .reveal, .tl-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1853,11 +1863,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
     window.addEventListener('scroll', upd, { passive: true });
     upd();
   })();
-
-      dd.addEventListener('mouseleave', hide);
-  });
-
-
 
   // SCROLL REVEAL — timeline items
   const tlItems = document.querySelectorAll('.tl-item');

@@ -14,6 +14,8 @@
 <meta name="twitter:title" content="Anna Lockwoodová — Autorka projektu Vyšívané poklady">
 <meta name="twitter:description" content="Praneter Anny Šenšelovej, výtvarníčka a tvorkyňa tohto projektu.">
 <meta name="twitter:image" content="https://avolesnes-tech.github.io/anna-senselova/anna_lockwoodova.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Pinyon+Script&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
 
@@ -530,7 +532,7 @@ footer { background: #111; color: var(--cream); padding: 3rem 1.5rem 2rem; }
 .footer-col-title {
   font-family: 'Cinzel', serif; font-size: 0.65rem;
   letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.8rem;
+  color: var(--gold-dark); margin-bottom: 0.8rem;
 }
 .footer-links { list-style: none; }
 .footer-links li { margin-bottom: 0.3rem; }
@@ -756,6 +758,9 @@ footer {
   .footer-top { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
   .footer-col-center { order: -1; }
 }
+
+/* ── scroll-margin-top pre zakotvené sekcie ── */
+section[id], div[id] { scroll-margin-top: 72px; }
 
 </style>
 </head>
