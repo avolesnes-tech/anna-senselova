@@ -66,17 +66,17 @@ body.page-leaving { opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* ── UNIFIED NAV CSS ── */
+/* ── NAV CSS ── */
 nav {
-  position: fixed !important; top: 0; left: 0; right: 0;
+  position: fixed; top: 0; left: 0; right: 0;
   z-index: 9998;
-  background: rgba(249,247,242,0.97) !important;
+  background: rgba(249,247,242,0.97);
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  border-bottom: 1px solid #D4AF37 !important;
-  display: flex !important; align-items: center; justify-content: space-between;
-  padding: 0 2.5rem !important;
-  height: 64px !important;
-  flex-direction: row !important;
+  border-bottom: 1px solid #D4AF37;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 64px;
+  flex-direction: row;
 }
 nav .logo {
   font-family: 'Pinyon Script', cursive;
@@ -84,7 +84,7 @@ nav .logo {
   text-decoration: none; flex-shrink: 0; line-height: 1;
 }
 nav > div, nav > a:not(.logo), .nav-back, .nav-breadcrumb, .nav-prev, .nav-next {
-  display: none !important;
+  display: none;
 }
 nav ul {
   list-style: none; display: flex;
@@ -156,7 +156,7 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 @media (max-width: 768px) {
-  nav { padding: 0 1.2rem !important; }
+  nav { padding: 0 1.2rem; }
   nav .logo { font-size: 1.5rem; }
   .hamburger { display: flex; }
   nav ul {
@@ -193,9 +193,7 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
     font-size: 0.97rem; white-space: normal; line-height: 1.4;
   }
   .dropdown .dropdown-label { padding: 0.55rem 1rem 0.4rem 1.5rem; font-size: 0.65rem; }
-  nav ul li > a:hover .dropdown,
-  nav ul li:hover .dropdown { display: none !important; pointer-events: none !important; }
-  nav ul li .dropdown.open { display: block !important; pointer-events: auto !important; }
+  nav ul li .dropdown.open { display: block; pointer-events: auto; }
 }
 
 /* ── GDPR Modal ── */
@@ -316,4 +314,44 @@ footer {
 
 @media (max-width: 600px) {
   .gdpr-box { padding: 2.5rem 1.5rem 2rem; }
+}
+
+/* ── Dekoratívne akvarelové ilustrácie ── */
+.ilustracia {
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  filter: sepia(18%) saturate(0.82) brightness(1.04);
+  opacity: 0.9;
+  height: auto;
+}
+.ilustracia-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+/* Ilustrácia s gold čiarami po stranách — vizuálny oddeľovač sekcií */
+.ilustracia-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2.5rem 0;
+  overflow: hidden;
+}
+.ilustracia-divider::before,
+.ilustracia-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+@media (max-width: 600px) {
+  .ilustracia-wrap { padding: 1.5rem 0; }
+  .ilustracia-divider { padding: 2rem 0; gap: 1rem; }
+  .ilustracia-divider::before,
+  .ilustracia-divider::after { max-width: 60px; }
 }
