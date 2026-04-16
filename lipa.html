@@ -97,13 +97,13 @@ p.body:last-child { margin-bottom: 0; }
 .intro-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
 .intro-aside { position: sticky; top: 90px; }
 .intro-emblem {
-  width: 100%; aspect-ratio: 1;
+  width: 100%; aspect-ratio: 4/3;
   background: linear-gradient(145deg, #ede5d8, #d4c5aa);
   border: 1px solid var(--gold);
   display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
 }
-.intro-emblem svg { opacity: 0.55; }
 .intro-emblem-caption { margin-top: 0.8rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); text-align: center; font-style: italic; }
 .intro-text h2.script { text-align: left; }
 .intro-text .gold-line { margin-left: 0; }
@@ -873,30 +873,13 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <div class="intro-grid">
       <div class="intro-aside">
         <div class="intro-emblem">
-          <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="80" cy="80" r="70" stroke="#C41E3A" stroke-width="1.2"/>
-            <circle cx="80" cy="80" r="55" stroke="#D4AF37" stroke-width="0.8"/>
-            <circle cx="80" cy="80" r="38" stroke="#C41E3A" stroke-width="0.7"/>
-            <line x1="80" y1="10" x2="80" y2="150" stroke="#D4AF37" stroke-width="0.6"/>
-            <line x1="10" y1="80" x2="150" y2="80" stroke="#D4AF37" stroke-width="0.6"/>
-            <line x1="30" y1="30" x2="130" y2="130" stroke="#C41E3A" stroke-width="0.5"/>
-            <line x1="130" y1="30" x2="30" y2="130" stroke="#C41E3A" stroke-width="0.5"/>
-            <circle cx="80" cy="80" r="7" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
-            <circle cx="80" cy="25" r="4" fill="#C41E3A" opacity="0.7"/>
-            <circle cx="80" cy="135" r="4" fill="#C41E3A" opacity="0.7"/>
-            <circle cx="25" cy="80" r="4" fill="#C41E3A" opacity="0.7"/>
-            <circle cx="135" cy="80" r="4" fill="#C41E3A" opacity="0.7"/>
-            <circle cx="40" cy="40" r="3" fill="#D4AF37" opacity="0.6"/>
-            <circle cx="120" cy="40" r="3" fill="#D4AF37" opacity="0.6"/>
-            <circle cx="40" cy="120" r="3" fill="#D4AF37" opacity="0.6"/>
-            <circle cx="120" cy="120" r="3" fill="#D4AF37" opacity="0.6"/>
-          </svg>
+          <img src="lipa_obrazok.jpg" alt="Historická reklamná pohľadnica Lipy — Ľudový priemysel, účastinárska spoločnosť v Turčianskom Sv. Martine, cca 1910–1920" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; filter:sepia(12%) contrast(1.04);">
         </div>
-        <p class="intro-emblem-caption">Výšivkárska tradícia<br>1910 – 1951</p>
+        <p class="intro-emblem-caption">Reklamná pohľadnica Lipy<br>Turčiansky Sv. Martin · cca 1910</p>
       </div>
       <div class="intro-text reveal">
         <span class="section-label">Vznik a poslanie</span>
-        <h2 class="script">Príbeh, ktorý sa začal roku 1887.</h2>
+        <h2 class="script">Vznik spolku na ochranu a propagáciu ľudového umenia</h2>
         <div class="gold-line left"></div>
         <p class="lead">Rok 1910. V Turčianskom Svätom Martine vzniká spoločnosť s nezvyčajným nápadom: predávať slovenské výšivky nie ako kuriozitu z dediny, ale ako plnohodnotný tovar so zárukou kvality a s hrdým nápisom <em>vyrobené slovenskou ženou</em>. Volá sa Lipa.</p>
         <p class="body">Za jej vznikom stojí príbeh, ktorý sa začal o dvadsať rokov skôr. Na výstave slovenských výšiviek v Martine v roku <strong>1887</strong> bol záujem obrovský — predaj živý, nadšenie veľké. Pavol Socháň a ďalší sa hneď pokúšali o trvalú organizáciu, no pokus za pokusom stroskotal. Správna osoba prišla až o dve desaťročia neskôr: <strong>Elena Maróthy-Šoltésová</strong>, predsedníčka spolku Živena, ktorá v roku 1909 presadila rozhodnutie o založení Lipy. Spojila kultúrne presvedčenie s fungujúcim obchodným modelom — a to sa dovtedy nikomu nepodarilo.</p>
