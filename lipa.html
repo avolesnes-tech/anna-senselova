@@ -92,23 +92,79 @@ p.lead { font-size: 1.18rem; line-height: 1.9; color: #333; margin-bottom: 1.4re
 p.body { font-size: 1.08rem; line-height: 1.88; color: #444; margin-bottom: 1.2rem; }
 p.body:last-child { margin-bottom: 0; }
 
-/* INTRO — 2-COL */
+/* INTRO — editorial 2-col */
 #intro { background: var(--section-alt); }
-.intro-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
-.intro-aside { position: sticky; top: 90px; }
+#intro .section-inner { max-width: 1200px; margin: 0 auto; padding: 5rem 2.5rem; }
+.intro-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 4rem; align-items: start; }
+
+/* Ľavý stĺpec — foto */
+.intro-aside { position: sticky; top: 84px; }
 .intro-emblem {
-  width: 100%; aspect-ratio: 4/3;
-  background: linear-gradient(145deg, #ede5d8, #d4c5aa);
-  border: 1px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  aspect-ratio: 900 / 597;   /* prirodzený pomer pohľadnice — bez orezu */
+  background: #1a100a;
   position: relative; overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 32px rgba(0,0,0,0.18), 0 1px 6px rgba(0,0,0,0.10);
 }
-.intro-emblem-caption { margin-top: 0.8rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); text-align: center; font-style: italic; }
+/* Ken Burns — jemný, neprekračuje kraje */
+.intro-emblem img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: sepia(14%) contrast(1.05) brightness(0.97);
+  transform-origin: center;
+  animation: kenBurns 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.intro-emblem:hover img { animation-play-state: paused; }
+/* Vignette — jemná */
+.intro-emblem::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.28) 100%);
+  z-index: 1; pointer-events: none;
+}
+/* Filmové zrno */
+.intro-emblem::after {
+  content: '';
+  position: absolute; inset: -60%; width: 220%; height: 220%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.038;
+  animation: grain 0.45s steps(2) infinite;
+  pointer-events: none; z-index: 2;
+}
+/* Popisok pod fotkou */
+.intro-emblem-caption {
+  margin-top: 0.7rem;
+  font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--gold-dark); font-style: italic; text-align: center;
+}
+
+/* Pravý stĺpec — text */
 .intro-text h2.script { text-align: left; }
 .intro-text .gold-line { margin-left: 0; }
 .intro-text blockquote { border-left: 3px solid var(--gold); padding: 0.8rem 1.4rem; margin: 1.8rem 0; font-style: italic; font-size: 1.05rem; color: #555; background: rgba(212,175,55,0.05); }
-@media (max-width: 720px) { .intro-grid { grid-template-columns: 1fr; } .intro-aside { position: static; max-width: 200px; margin: 0 auto 2.5rem; } }
+
+/* Animácie */
+@keyframes kenBurns {
+  0%   { transform: scale(1.0)   translate(0,      0); }
+  35%  { transform: scale(1.035) translate(-0.8%, 0.5%); }
+  70%  { transform: scale(1.025) translate( 0.6%, -0.4%); }
+  100% { transform: scale(1.04)  translate(-0.3%, 0.6%); }
+}
+@keyframes grain {
+  0%   { transform: translate(0,    0); }
+  20%  { transform: translate(-3%,  4%); }
+  40%  { transform: translate(-5%, -2%); }
+  60%  { transform: translate( 4%, -3%); }
+  80%  { transform: translate( 2%,  5%); }
+  100% { transform: translate(-3%,  1%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-emblem img, .intro-emblem::after { animation: none !important; }
+}
+@media (max-width: 900px) {
+  .intro-grid { grid-template-columns: 1fr; }
+  .intro-aside { position: static; max-width: 480px; margin: 0 auto 2rem; }
+}
 
 /* SORTIMENT */
 #sortiment { background: var(--cream); }
@@ -873,9 +929,9 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <div class="intro-grid">
       <div class="intro-aside">
         <div class="intro-emblem">
-          <img src="lipa_obrazok.jpg" alt="Historická reklamná pohľadnica Lipy — Ľudový priemysel, účastinárska spoločnosť v Turčianskom Sv. Martine, cca 1910–1920" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; filter:sepia(12%) contrast(1.04);">
+          <img src="lipa_obrazok.jpg" alt="Historická reklamná pohľadnica Lipy — Ľudový priemysel, účastinárska spoločnosť v Turčianskom Sv. Martine, cca 1910–1920">
         </div>
-        <p class="intro-emblem-caption">Reklamná pohľadnica Lipy<br>Turčiansky Sv. Martin · cca 1910</p>
+        <p class="intro-emblem-caption">Reklamná pohľadnica Lipy · Turčiansky Sv. Martin · cca 1910</p>
       </div>
       <div class="intro-text reveal">
         <span class="section-label">Vznik a poslanie</span>
