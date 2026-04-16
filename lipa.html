@@ -53,26 +53,28 @@
   position: relative; overflow: hidden;
   background: #1a0a0e;
 }
+/* Historická fotka predajne — zoom-out pri načítaní */
+#hero .hero-bg {
+  position: absolute !important; inset: 0; z-index: 0 !important;
+  background: url('lipa_predajna.jpg') center 30% / cover no-repeat;
+  filter: brightness(0.28) sepia(25%) contrast(1.1);
+  transform: scale(1.08);
+  animation: heroZoomOut 9s ease-out forwards;
+  will-change: transform;
+}
+@keyframes heroZoomOut {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1.0); }
+}
 #hero::before {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.18) 0%, transparent 60%),
-    radial-gradient(ellipse at 75% 40%, rgba(212,175,55,0.10) 0%, transparent 55%);
-  pointer-events: none; z-index: 0;
+    radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse at 75% 40%, rgba(212,175,55,0.12) 0%, transparent 55%);
+  pointer-events: none; z-index: 1;
 }
-#hero::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(255,255,255,0.01) 3px,
-    rgba(255,255,255,0.01) 4px
-  );
-  pointer-events: none; z-index: 0;
-}
+@media (prefers-reduced-motion: reduce) { .hero-bg { animation: none; transform: scale(1); } }
 #hero > * { position: relative; z-index: 1; }
 .hero-label { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); opacity: 0; animation: fadeIn 1.4s 0.3s forwards; margin-bottom: 1rem; }
 .hero-title { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 9vw, 7.5rem); color: #fff; line-height: 1.15; opacity: 0; animation: fadeIn 1.6s 0.6s forwards; }
@@ -917,6 +919,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 </nav><!-- MOBILE MENU -->
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
   <p class="hero-label">Turčiansky Svätý Martin · 1910 – 1951</p>
   <h1 class="hero-title"><em>Lipa</em></h1>
   <div class="hero-divider"></div>
@@ -935,7 +938,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
       </div>
       <div class="intro-text reveal">
         <span class="section-label">Vznik a poslanie</span>
-        <h2 class="script">Vznik spolku na ochranu a propagáciu ľudového umenia</h2>
+        <h2 class="script">Spolok na ochranu a propagáciu ľudového umenia</h2>
         <div class="gold-line left"></div>
         <p class="lead">Rok 1910. V Turčianskom Svätom Martine vzniká spoločnosť s nezvyčajným nápadom: predávať slovenské výšivky nie ako kuriozitu z dediny, ale ako plnohodnotný tovar so zárukou kvality a s hrdým nápisom <em>vyrobené slovenskou ženou</em>. Volá sa Lipa.</p>
         <p class="body">Za jej vznikom stojí príbeh, ktorý sa začal o dvadsať rokov skôr. Na výstave slovenských výšiviek v Martine v roku <strong>1887</strong> bol záujem obrovský — predaj živý, nadšenie veľké. Pavol Socháň a ďalší sa hneď pokúšali o trvalú organizáciu, no pokus za pokusom stroskotal. Správna osoba prišla až o dve desaťročia neskôr: <strong>Elena Maróthy-Šoltésová</strong>, predsedníčka spolku Živena, ktorá v roku 1909 presadila rozhodnutie o založení Lipy. Spojila kultúrne presvedčenie s fungujúcim obchodným modelom — a to sa dovtedy nikomu nepodarilo.</p>
@@ -1073,7 +1076,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
             <span class="car-ph-year">1925</span>
             <span class="car-ph-label">Národopisná výstava<br>Banská Bystrica</span>
           </div>
-          <img src="vystava_zivena_1925.png" alt="Národopisná výstava Živeny v B. Bystrici 1925" loading="lazy">
+          <img src="vystava_zivena_1925.jpg" alt="Národopisná výstava Živeny v B. Bystrici 1925" loading="lazy">
           <div class="car-overlay"><div class="car-overlay-title">Národopisná výstava Živeny</div><div class="car-overlay-meta">Banská Bystrica · 1925</div></div>
         </div>
 
