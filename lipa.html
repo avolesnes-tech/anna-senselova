@@ -47,31 +47,36 @@
 
 /* HERO */
 #hero {
-  min-height: 60vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 9rem 2rem 5rem;
+  min-height: 70vh;
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  text-align: left; padding: 9rem 5rem 5rem;
   position: relative; overflow: hidden;
   background: #1a0a0e;
 }
 /* Historická fotka predajne — zoom-out pri načítaní */
 #hero .hero-bg {
   position: absolute !important; inset: 0; z-index: 0 !important;
-  background: url('lipa_predajna.jpg') center 30% / cover no-repeat;
-  filter: brightness(0.28) sepia(25%) contrast(1.1);
-  transform: scale(1.08);
-  animation: heroZoomOut 9s ease-out forwards;
+  background: url('lipa_predajna.jpg') center 55% / cover no-repeat;
+  filter: brightness(0.55) sepia(15%) contrast(1.05);
+  transform: scale(1.03);
+  animation: heroZoomOut 10s ease-out forwards;
   will-change: transform;
 }
 @keyframes heroZoomOut {
-  from { transform: scale(1.08); }
+  from { transform: scale(1.03); }
   to   { transform: scale(1.0); }
 }
+/* Gradient — ľavá strana tmavá (text), pravá svetlejšia (figúry) */
 #hero::before {
   content: '';
   position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.22) 0%, transparent 60%),
-    radial-gradient(ellipse at 75% 40%, rgba(212,175,55,0.12) 0%, transparent 55%);
+  background: linear-gradient(
+    to right,
+    rgba(15,5,8,0.88) 0%,
+    rgba(15,5,8,0.72) 35%,
+    rgba(15,5,8,0.30) 65%,
+    rgba(15,5,8,0.08) 100%
+  );
   pointer-events: none; z-index: 1;
 }
 @media (prefers-reduced-motion: reduce) { .hero-bg { animation: none; transform: scale(1); } }
@@ -79,8 +84,8 @@
 .hero-label { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); opacity: 0; animation: fadeIn 1.4s 0.3s forwards; margin-bottom: 1rem; }
 .hero-title { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 9vw, 7.5rem); color: #fff; line-height: 1.15; opacity: 0; animation: fadeIn 1.6s 0.6s forwards; }
 .hero-title em { color: var(--gold); font-style: normal; }
-.hero-divider { width: 200px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.4rem auto; opacity: 0; animation: fadeIn 1.4s 1.1s forwards; }
-.hero-subtitle { font-family: 'Cinzel', serif; font-size: clamp(0.72rem, 1.4vw, 0.88rem); font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; max-width: 600px; color: rgba(249,247,242,0.75); opacity: 0; animation: fadeIn 1.4s 1.4s forwards; line-height: 1.9; }
+.hero-divider { width: 200px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.4rem 0; opacity: 0; animation: fadeIn 1.4s 1.1s forwards; }
+.hero-subtitle { font-family: 'Cinzel', serif; font-size: clamp(0.72rem, 1.4vw, 0.88rem); font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; max-width: 520px; color: rgba(249,247,242,0.75); opacity: 0; animation: fadeIn 1.4s 1.4s forwards; line-height: 1.9; }
 .hero-year { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(212,175,55,0.7); margin-top: 1.2rem; opacity: 0; animation: fadeIn 1.4s 1.7s forwards; }
 
 /* SHARED */
@@ -88,7 +93,7 @@ section { padding: 5.5rem 2rem; }
 .section-inner { max-width: 900px; margin: 0 auto; }
 .section-inner.centered { text-align: center; }
 .section-label { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; display: block; }
-h2.script { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 5rem); color: var(--red); line-height: 1.4; margin-bottom: 0.5rem; }
+h2.script { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 5rem); color: var(--red); line-height: 1.4; margin-bottom: 0.5rem; text-align: center; }
 h2.cinzel { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 600; letter-spacing: 0.1em; color: var(--red); text-transform: uppercase; margin-bottom: 0.5rem; }
 p.lead { font-size: 1.18rem; line-height: 1.9; color: #333; margin-bottom: 1.4rem; }
 p.body { font-size: 1.08rem; line-height: 1.88; color: #444; margin-bottom: 1.2rem; }
@@ -196,11 +201,66 @@ p.body:last-child { margin-bottom: 0; }
 /* TIMELINE */
 #historia { background: var(--section-alt); }
 .timeline { position: relative; max-width: 780px; margin: 0 auto; text-align: left; }
-.timeline::before { content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--gold), var(--red), var(--gold)); }
+.timeline::before { content: ''; position: absolute; left: 33px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--gold), var(--red), var(--gold)); }
 .tl-item { display: flex; gap: 1.8rem; margin-bottom: 2.8rem; opacity: 0; transform: translateX(-8px); transition: opacity 0.8s cubic-bezier(0.25, 0, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0, 0.25, 1); }
 .tl-item.visible { opacity: 1; transform: translateX(0); }
-.tl-dot { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--cream); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 0.68rem; color: var(--gold-dark); font-weight: 600; letter-spacing: 0.04em; font-family: 'Cinzel', serif; }
-.tl-dot.red { border-color: var(--red); color: var(--red); }
+.tl-dot {
+  flex-shrink: 0; position: relative;
+  width: 68px; height: 68px; border-radius: 50%;
+  background: var(--cream);
+  border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; color: var(--gold-dark); font-weight: 700;
+  letter-spacing: 0.06em; font-family: 'Cinzel', serif;
+  cursor: default;
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
+  box-shadow: 0 2px 10px rgba(212,175,55,0.12);
+}
+/* Vonkajší pulzný kruh */
+.tl-dot::before {
+  content: '';
+  position: absolute; inset: -7px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,175,55,0.3);
+  opacity: 0;
+  transition: opacity 0.35s ease, inset 0.35s ease;
+}
+/* Hover efekt — fill gold */
+.tl-item:hover .tl-dot {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(212,175,55,0.35);
+}
+.tl-item:hover .tl-dot::before { opacity: 1; inset: -10px; }
+/* Červené — kľúčové roky */
+.tl-dot.red {
+  border-color: var(--red);
+  color: var(--red);
+  background: #fff8f8;
+  box-shadow: 0 2px 10px rgba(196,30,58,0.12);
+}
+/* Pulzovanie pre red dot */
+.tl-dot.red::after {
+  content: '';
+  position: absolute; inset: -8px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(196,30,58,0.35);
+  animation: tl-pulse 2.4s ease-out infinite;
+}
+.tl-item:hover .tl-dot.red {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+  box-shadow: 0 4px 20px rgba(196,30,58,0.35);
+}
+.tl-item:hover .tl-dot.red::before { opacity: 1; border-color: rgba(196,30,58,0.3); inset: -10px; }
+@keyframes tl-pulse {
+  0%   { transform: scale(1);    opacity: 0.8; }
+  70%  { transform: scale(1.25); opacity: 0; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .tl-dot.red::after { animation: none; } }
 .tl-content { padding-top: 0.5rem; }
 .tl-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; color: var(--red); margin-bottom: 0.3rem; }
 .tl-content p { font-size: 0.97rem; color: #444; line-height: 1.8; }
@@ -1209,7 +1269,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
   <div class="section-inner zeny-section-inner">
     <div class="centered reveal" style="margin-bottom:3rem;">
       <span class="section-label zeny-left-label">Sociálny rozmer</span>
-      <h2 class="script zeny-h2">Práca a dôstojná odmena.</h2>
+      <h2 class="script zeny-h2">Práca a dostojnosť ženám.</h2>
       <div class="gold-line"></div>
     </div>
 
