@@ -145,6 +145,7 @@ p.body:last-child { margin-bottom: 0; }
 .intro-text h2.script { text-align: left; }
 .intro-text .gold-line { margin-left: 0; }
 .intro-text blockquote { border-left: 3px solid var(--gold); padding: 0.8rem 1.4rem; margin: 1.8rem 0; font-style: italic; font-size: 1.05rem; color: #555; background: rgba(212,175,55,0.05); }
+.intro-text blockquote cite { display: block; margin-top: 0.55rem; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); font-style: normal; }
 
 /* Animácie */
 @keyframes kenBurns {
@@ -900,6 +901,8 @@ section[id], div[id] { scroll-margin-top: 72px; }
         <p class="body">Za jej vznikom stojí príbeh, ktorý sa začal o dvadsať rokov skôr. Na výstave slovenských výšiviek v Martine v roku <strong>1887</strong> bol záujem obrovský — predaj živý, nadšenie veľké. Pavol Socháň a ďalší sa hneď pokúšali o trvalú organizáciu, no pokus za pokusom stroskotal. Správna osoba prišla až o dve desaťročia neskôr: <strong>Elena Maróthy-Šoltésová</strong>, predsedníčka spolku Živena, ktorá v roku 1909 presadila rozhodnutie o založení Lipy. Spojila kultúrne presvedčenie s fungujúcim obchodným modelom — a to sa dovtedy nikomu nepodarilo.</p>
         <p class="body">Od prvého dňa mali v Lipe rozhodujúce slovo ženy — vo vedení, vo výbore aj medzi akcionármi. Lipa bola zámerný ženský projekt: chránila prácu žien, šírila ich tvorbu a budovala ich hospodársku nezávislosť v čase, keď to nebolo samozrejmé.</p>
         <blockquote>„Išlo im hlavne o to, aby sa vzdelaný svet dozvedel, aký zaujímavý národ žije tu pod Tatrami, akým vrodeným citom pre krásu je preniknutý a ako vkusne okrášľuje si ručnou prácou šatstvo a príbytky."<br><small style="font-size:0.82rem; letter-spacing:0.06em;">— akcionárka Lipy, 1912</small></blockquote>
+        <p class="body">Vznik Lipy nebol len obchodným projektom — bol aj politickým aktom. Spolok <strong>Izabella</strong>, maďarská organizácia pôsobiaca v tom istom čase, zbierala slovenské ľudové výšivky a predávala ich do sveta ako maďarské či uhorské diela. V slovensky orientovanom prostredí to vyvolávalo silné rozhorčenie: výtvor slovenských žien bol odcudzovaný bez mena, bez pôvodu. Lipa mala byť priamou odpoveďou — predaj pod slovenskou vlajkou, s hrdým priznaním autorov.</p>
+        <blockquote>„Celý svet musí vziať na znanosť, že sú to diela naše, naše a naše, slovenské a slovenské a nie cudzie, nie <em>hongrois</em>, nie <em>ungarisch</em> a najmenej nie <em>magyar</em>."<cite>— Národnie noviny, č. 44, 15. 5. 1913</cite></blockquote>
         <p class="body">Prvé výrobky sa predávali už v novembri 1910. Za každodenným chodom stála <a href="anna-senselova.html" style="color:var(--red); text-decoration:none; border-bottom:1px solid rgba(196,30,58,0.3);">Anna Šenšelová</a> (1882 Očová – 1976 Martin) — účtovníčka-tajomníčka, ktorej Živena zaplatila štúdium v Prahe a ktorej meno je s Lipou nerozlučne späté.</p>
       </div>
     </div>
@@ -1004,7 +1007,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
       <div class="sort-card sort-card--photo reveal reveal-delay-1" data-num="01">
         <div class="sort-photo-wrap">
-          <img src="kovova_cipka2.jpeg" alt="Paličkovaná kovová čipka zo zbierky Anny Šenšelovej" loading="lazy" class="sort-photo">
+          <img src="biely_golier.jpeg" alt="Paličkovaná čipka zo zbierky Anny Šenšelovej" loading="lazy" class="sort-photo">
           <div class="sort-photo-overlay"></div>
         </div>
         <div class="sort-card-body">
@@ -1026,7 +1029,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
       <div class="sort-card sort-card--photo reveal reveal-delay-3" data-num="03">
         <div class="sort-photo-wrap">
-          <img src="decka_detva2.jpeg" alt="Vyšívaná dečka z oblasti Detvy zo zbierky Anny Šenšelovej" loading="lazy" class="sort-photo">
+          <img src="detva_krivaihla1.jpeg" alt="Vyšívaná dečka z oblasti Detvy zo zbierky Anny Šenšelovej" loading="lazy" class="sort-photo">
           <div class="sort-photo-overlay"></div>
         </div>
         <div class="sort-card-body">
@@ -1447,60 +1450,9 @@ section[id], div[id] { scroll-margin-top: 72px; }
   }, { threshold: 0.12 });
   revealEls.forEach(el => revObserver.observe(el));
 
-  // ── CAROUSEL ────────────────────────────────────────────────────────
-  (function() {
-    const track = document.getElementById('carTrack');
-    if (!track) return;
-    const thumbs = Array.from(track.querySelectorAll('.car-thumb'));
-    const dotsContainer = document.getElementById('carDots');
-    const prevBtn = document.getElementById('carPrev');
-    const nextBtn = document.getElementById('carNext');
-
-    let visibleCount = () => window.innerWidth <= 640 ? 2 : window.innerWidth <= 900 ? 4 : 5;
-    let currentPage = 0;
-
-    function pageCount() { return Math.ceil(thumbs.length / visibleCount()); }
-
-    function buildDots() {
-      dotsContainer.innerHTML = '';
-      for (let i = 0; i < pageCount(); i++) {
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === currentPage ? ' active' : '');
-        dot.setAttribute('aria-label', 'Strana ' + (i + 1));
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    function goTo(page) {
-      const vc = visibleCount();
-      const pc = pageCount();
-      currentPage = Math.max(0, Math.min(page, pc - 1));
-      const thumbWidth = thumbs[0].offsetWidth + 14; // gap=14px
-      track.style.transform = `translateX(-${currentPage * vc * thumbWidth}px)`;
-      dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === currentPage);
-      });
-      prevBtn.disabled = currentPage === 0;
-      nextBtn.disabled = currentPage >= pc - 1;
-    }
-
-    prevBtn.addEventListener('click', () => goTo(currentPage - 1));
-    nextBtn.addEventListener('click', () => goTo(currentPage + 1));
-
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => { buildDots(); goTo(0); }, 200);
-    });
-
-    buildDots();
-    goTo(0);
-  })();
-
   // ── LIGHTBOX ────────────────────────────────────────────────────────
   (function() {
-    const thumbs = Array.from(document.querySelectorAll('.car-thumb'));
+    const thumbs = Array.from(document.querySelectorAll('.foto-item'));
     const backdrop = document.getElementById('lightbox');
     const inner = document.getElementById('lightboxInner');
     const imgEl = document.getElementById('lightboxImg');
