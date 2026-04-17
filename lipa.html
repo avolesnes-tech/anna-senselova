@@ -512,183 +512,78 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
   line-height: 1.8;
 }
 
-/* Carousel wrapper */
-.carousel-wrap {
+/* Foto-grid — 3 fotky v prirodzených pomeroch */
+.foto-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
   max-width: 1080px;
   margin: 0 auto;
-  position: relative;
+  align-items: start;
 }
 
-/* Track — horizontálne scrollovateľný */
-.carousel-track-outer {
-  overflow: hidden;
-  position: relative;
-}
-
-.carousel-track {
-  display: flex;
-  gap: 14px;
-  transition: transform 0.6s cubic-bezier(0.25, 0, 0.25, 1);
-  will-change: transform;
-}
-
-/* Thumbnail karta */
-.car-thumb {
-  flex: 0 0 calc(20% - 12px);
-  position: relative;
+.foto-item {
+  margin: 0;
   cursor: pointer;
-  background: #ede5d8;
-  border: 1px solid rgba(212,175,55,0.25);
-  aspect-ratio: 3/4;
+  position: relative;
+  border: 1px solid rgba(212,175,55,0.22);
   overflow: hidden;
-  transition: border-color 0.25s, box-shadow 0.25s;
+  transition: border-color 0.28s, box-shadow 0.28s;
 }
 
-.car-thumb:hover,
-.car-thumb:focus-visible {
-  border-color: var(--red);
-  box-shadow: 0 4px 20px rgba(196,30,58,0.15);
+.foto-item:hover,
+.foto-item:focus-visible {
+  border-color: rgba(196,30,58,0.45);
+  box-shadow: 0 6px 28px rgba(196,30,58,0.12);
   outline: none;
 }
 
-.car-thumb:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.foto-item:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
-/* Placeholder v thumbnaily */
-.car-ph {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 1rem;
-  background: linear-gradient(160deg, #ede5d8 0%, #ddd0bb 100%);
-  transition: opacity 0.4s;
-}
-
-.car-ph svg {
-  width: 36px;
-  height: 36px;
-  opacity: 0.35;
-  flex-shrink: 0;
-}
-
-.car-ph-year {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-}
-
-.car-ph-label {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.78rem;
-  font-style: italic;
-  color: #6b5840;
-  text-align: center;
-  line-height: 1.5;
-}
-
-/* Skutočná fotka */
-.car-thumb img {
-  position: absolute;
-  inset: 0;
+.foto-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.5s;
-  filter: sepia(0.15) contrast(1.05);
+  height: auto;          /* prirodzené pomery — bez orezania */
+  display: block;
+  filter: sepia(10%) contrast(1.04) brightness(0.97);
+  transition: transform 0.55s cubic-bezier(0.25, 0, 0.25, 1);
 }
 
-.car-thumb img.loaded { opacity: 1; }
-.car-thumb img.loaded ~ .car-ph { opacity: 0; pointer-events: none; }
+.foto-item:hover img { transform: scale(1.03); }
 
-/* Hover overlay */
-.car-overlay {
+/* Hover overlay s titulom */
+.foto-caption {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(26,8,8,0.82) 0%, transparent 55%);
+  background: linear-gradient(to top, rgba(15,5,5,0.80) 0%, transparent 55%);
   opacity: 0;
   transition: opacity 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0.9rem;
-  z-index: 2;
+  padding: 1rem;
 }
 
-.car-thumb:hover .car-overlay,
-.car-thumb:focus-visible .car-overlay { opacity: 1; }
+.foto-item:hover .foto-caption,
+.foto-item:focus-visible .foto-caption { opacity: 1; }
 
-.car-overlay-title {
+.foto-caption-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.88rem;
   font-weight: 600;
   color: #fff;
   line-height: 1.35;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.2rem;
 }
 
-.car-overlay-meta {
+.foto-caption-meta {
   font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.15em;
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: rgba(212,175,55,0.85);
 }
 
-/* Navigačné šípky */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 40px;
-  height: 40px;
-  background: var(--cream);
-  border: 1px solid rgba(212,175,55,0.5);
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-
-.carousel-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
-.carousel-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-.carousel-btn.prev { left: -52px; }
-.carousel-btn.next { right: -52px; }
-.carousel-btn:disabled { opacity: 0.25; pointer-events: none; }
-
-/* Dots */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-  margin-top: 1.8rem;
-}
-
-.carousel-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(212,175,55,0.3);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.carousel-dot.active {
-  background: var(--red);
-  transform: scale(1.04);
-}
-
-/* Dekoratívna linka pod */
+/* Dekoratívna linka pod galériou */
 .galeria-footer-line {
   max-width: 1080px;
   margin: 2rem auto 0;
@@ -712,15 +607,8 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
   white-space: nowrap;
 }
 
-@media (max-width: 900px) {
-  .car-thumb { flex: 0 0 calc(25% - 11px); }
-  .carousel-btn.prev { left: -40px; }
-  .carousel-btn.next { right: -40px; }
-}
-@media (max-width: 640px) {
-  .car-thumb { flex: 0 0 calc(50% - 7px); }
-  .carousel-btn.prev { left: -32px; width: 28px; height: 28px; }
-  .carousel-btn.next { right: -32px; width: 28px; height: 28px; }
+@media (max-width: 680px) {
+  .foto-grid { grid-template-columns: 1fr; gap: 1rem; }
 }
 
 /* ─── LIGHTBOX ───────────────────────────────────────────────────── */
