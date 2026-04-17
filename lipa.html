@@ -58,13 +58,12 @@
   position: absolute !important; inset: 0; z-index: 0 !important;
   background: url('lipa_predajna.jpg') center 40% / cover no-repeat;
   filter: brightness(0.5) sepia(18%) contrast(1.05);
-  transform: scale(1.03);
-  animation: heroZoomOut 10s ease-out forwards;
+  animation: heroKenBurns 28s ease-in-out infinite alternate;
   will-change: transform;
 }
-@keyframes heroZoomOut {
-  from { transform: scale(1.03); }
-  to   { transform: scale(1.0); }
+@keyframes heroKenBurns {
+  from { transform: scale(1.0) translate(0, 0); }
+  to   { transform: scale(1.06) translate(-1%, 0.5%); }
 }
 /* Vignette + spodný gradient pre čitateľnosť textu */
 #hero::before {
@@ -902,7 +901,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
         <p class="body">Od prvého dňa mali v Lipe rozhodujúce slovo ženy — vo vedení, vo výbore aj medzi akcionármi. Lipa bola zámerný ženský projekt: chránila prácu žien, šírila ich tvorbu a budovala ich hospodársku nezávislosť v čase, keď to nebolo samozrejmé.</p>
         <blockquote>„Išlo im hlavne o to, aby sa vzdelaný svet dozvedel, aký zaujímavý národ žije tu pod Tatrami, akým vrodeným citom pre krásu je preniknutý a ako vkusne okrášľuje si ručnou prácou šatstvo a príbytky."<br><small style="font-size:0.82rem; letter-spacing:0.06em;">— akcionárka Lipy, 1912</small></blockquote>
         <p class="body">Vznik Lipy nebol len obchodným projektom — bol aj politickým aktom. Spolok <strong>Izabella</strong>, maďarská organizácia pôsobiaca v tom istom čase, zbierala slovenské ľudové výšivky a predávala ich do sveta ako maďarské či uhorské diela. V slovensky orientovanom prostredí to vyvolávalo silné rozhorčenie: výtvor slovenských žien bol odcudzovaný bez mena, bez pôvodu. Lipa mala byť priamou odpoveďou — predaj pod slovenskou vlajkou, s hrdým priznaním autorov.</p>
-        <blockquote>„Celý svet musí vziať na znanosť, že sú to diela naše, naše a naše, slovenské a slovenské a nie cudzie, nie <em>hongrois</em>, nie <em>ungarisch</em> a najmenej nie <em>magyar</em>."<cite>— Národnie noviny, č. 44, 15. 5. 1913</cite></blockquote>
+        <blockquote>„Celý svet musí vziať na známosť, že sú to diela naše, naše a naše, slovenské a slovenské a nie cudzie, nie <em>hongrois</em>, nie <em>ungarisch</em> a najmenej nie <em>magyar</em>."<cite>— Národnie noviny, č. 44, 15. 5. 1913</cite></blockquote>
         <p class="body">Prvé výrobky sa predávali už v novembri 1910. Za každodenným chodom stála <a href="anna-senselova.html" style="color:var(--red); text-decoration:none; border-bottom:1px solid rgba(196,30,58,0.3);">Anna Šenšelová</a> (1882 Očová – 1976 Martin) — účtovníčka-tajomníčka, ktorej Živena zaplatila štúdium v Prahe a ktorej meno je s Lipou nerozlučne späté.</p>
       </div>
     </div>
@@ -1049,12 +1048,10 @@ section[id], div[id] { scroll-margin-top: 72px; }
         </div>
       </div>
 
-      <div class="sort-card sort-card--photo sort-card--placeholder reveal reveal-delay-2" data-num="05">
-        <div class="sort-photo-wrap sort-photo-wrap--empty">
-          <div class="sort-photo-ph">
-            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="64" height="44" stroke="#D4AF37" stroke-width="0.8"/><path d="M8 30 L28 18 L44 28 L58 16 L72 30" stroke="#C41E3A" stroke-width="0.7" fill="none"/><circle cx="28" cy="18" r="3" fill="#D4AF37" opacity="0.5"/><circle cx="58" cy="16" r="3" fill="#D4AF37" opacity="0.5"/></svg>
-            <span>fotografia bude doplnená</span>
-          </div>
+      <div class="sort-card sort-card--photo reveal reveal-delay-2" data-num="05">
+        <div class="sort-photo-wrap">
+          <img src="modna_rubrika.jpeg" alt="Módna rubrika Lipy v časopise Živena — návrhy odevov s uplatnením slovenských výšiviek, 1913" loading="lazy" class="sort-photo">
+          <div class="sort-photo-overlay"></div>
         </div>
         <div class="sort-card-body">
           <h3>Módna rubrika v Živene</h3>
@@ -1062,16 +1059,14 @@ section[id], div[id] { scroll-margin-top: 72px; }
         </div>
       </div>
 
-      <div class="sort-card sort-card--photo sort-card--placeholder reveal reveal-delay-3" data-num="06">
-        <div class="sort-photo-wrap sort-photo-wrap--empty">
-          <div class="sort-photo-ph">
-            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="64" height="44" stroke="#D4AF37" stroke-width="0.8"/><line x1="8" y1="20" x2="72" y2="20" stroke="#C41E3A" stroke-width="0.6"/><line x1="20" y1="32" x2="60" y2="32" stroke="#D4AF37" stroke-width="0.5"/><line x1="20" y1="39" x2="55" y2="39" stroke="#D4AF37" stroke-width="0.5"/><line x1="20" y1="46" x2="50" y2="46" stroke="#D4AF37" stroke-width="0.5"/></svg>
-            <span>fotografia bude doplnená</span>
-          </div>
+      <div class="sort-card sort-card--photo reveal reveal-delay-3" data-num="06">
+        <div class="sort-photo-wrap">
+          <img src="sebrane_spisy.jpeg" alt="Sobrané spisy Eleny Maróthy Šoltésovej, vydané nákladom kníhtlačiarskeho účast. spolku v Turčianskom Sv. Martine, 1924" loading="lazy" class="sort-photo">
+          <div class="sort-photo-overlay"></div>
         </div>
         <div class="sort-card-body">
           <h3>Publikačná činnosť</h3>
-          <p>Lipa rozšírila svoju pôsobnosť aj na vydávanie kníh — zobraných spisov slovenských spisovateliek Vansovej, Timravy, Podjavorinskej a Šoltésovej pre odberateľov Živeny ako prémiové diela za zníženú cenu.</p>
+          <p>Lipa rozšírila svoju pôsobnosť aj na vydávanie kníh — zobraných spisov slovenských spisovateľiek Vansovej, Timravy, Podjavorinskej a Šoltésovej pre odberateľov Živeny ako prémiové diela za zníženú cenu.</p>
         </div>
       </div>
 
@@ -1084,7 +1079,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
   <div class="section-inner zeny-section-inner">
     <div class="centered reveal" style="margin-bottom:3rem;">
       <span class="section-label zeny-left-label">Sociálny rozmer</span>
-      <h2 class="script zeny-h2">Práca a dostojnosť ženám.</h2>
+      <h2 class="script zeny-h2">Práca a dôstojnosť ženám.</h2>
       <div class="gold-line"></div>
     </div>
 
