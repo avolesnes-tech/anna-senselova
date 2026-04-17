@@ -512,103 +512,175 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
   line-height: 1.8;
 }
 
-/* Foto-grid — 3 fotky v prirodzených pomeroch */
-.foto-grid {
+/* ─── ARCHÍV — editorial museum layout ──────────────────────────── */
+.archiv-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.8rem;
-  max-width: 1080px;
+  grid-template-columns: 3fr 2fr;
+  gap: 2px;                     /* švy medzi bunkami */
+  max-width: 1160px;
   margin: 0 auto;
-  align-items: start;
+  align-items: stretch;
 }
 
-.foto-item {
+.archiv-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Každá karta = figure */
+.archiv-item {
   margin: 0;
   cursor: pointer;
   position: relative;
-  border: 1px solid rgba(212,175,55,0.22);
-  overflow: hidden;
-  transition: border-color 0.28s, box-shadow 0.28s;
-}
-
-.foto-item:hover,
-.foto-item:focus-visible {
-  border-color: rgba(196,30,58,0.45);
-  box-shadow: 0 6px 28px rgba(196,30,58,0.12);
-  outline: none;
-}
-
-.foto-item:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-
-.foto-item img {
-  width: 100%;
-  height: auto;          /* prirodzené pomery — bez orezania */
-  display: block;
-  filter: sepia(10%) contrast(1.04) brightness(0.97);
-  transition: transform 0.55s cubic-bezier(0.25, 0, 0.25, 1);
-}
-
-.foto-item:hover img { transform: scale(1.03); }
-
-/* Hover overlay s titulom */
-.foto-caption {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(15,5,5,0.80) 0%, transparent 55%);
-  opacity: 0;
-  transition: opacity 0.3s;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 1rem;
+  border: 1px solid rgba(212,175,55,0.18);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.28s ease, box-shadow 0.28s ease;
 }
 
-.foto-item:hover .foto-caption,
-.foto-item:focus-visible .foto-caption { opacity: 1; }
+.archiv-item:hover,
+.archiv-item:focus-visible {
+  border-color: rgba(196,30,58,0.4);
+  box-shadow: 0 8px 36px rgba(196,30,58,0.10);
+  z-index: 2;
+}
+.archiv-item:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
-.foto-caption-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.35;
-  margin-bottom: 0.2rem;
+/* FOTO — obal */
+.archiv-photo-wrap {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-.foto-caption-meta {
+.archiv-photo-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: sepia(10%) contrast(1.05) brightness(0.97);
+  transition: transform 0.65s cubic-bezier(0.25, 0, 0.25, 1);
+}
+
+.archiv-item:hover .archiv-photo-wrap img { transform: scale(1.035); }
+
+/* Tmavý overlay pri hoveri */
+.archiv-photo-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(8,4,2,0);
+  transition: background 0.35s;
+  pointer-events: none;
+}
+.archiv-item:hover .archiv-photo-wrap::after { background: rgba(8,4,2,0.22); }
+
+/* Zväčšiť hint */
+.archiv-zoom-hint {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+  color: #fff; pointer-events: none; z-index: 3;
+}
+.archiv-zoom-hint span {
+  font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; opacity: 0.85;
+}
+.archiv-item:hover .archiv-zoom-hint {
+  opacity: 1; transform: translate(-50%, -50%) scale(1);
+}
+
+/* CAPTION — vždy viditeľná */
+.archiv-caption {
+  padding: 1.4rem 1.6rem 1.7rem;
+  border-top: 2px solid rgba(212,175,55,0.28);
+  background: var(--cream);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.archiv-num {
   font-family: 'Cinzel', serif;
-  font-size: 0.56rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(212,175,55,0.85);
+  font-size: 0.57rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold-dark); margin-bottom: 0.55rem;
+}
+
+.archiv-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem; font-weight: 600; line-height: 1.3;
+  color: var(--red); margin: 0 0 0.7rem;
+}
+
+.archiv-rule {
+  width: 36px; height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-bottom: 0.85rem; flex-shrink: 0;
+}
+
+/* Metadáta — Miesto / Rok */
+.archiv-meta {
+  display: flex; flex-direction: column; gap: 0.28rem;
+  margin-bottom: 0.9rem;
+}
+.archiv-meta-row { display: flex; align-items: baseline; gap: 0; font-size: 0.85rem; }
+.archiv-meta-label {
+  font-family: 'Cinzel', serif; font-size: 0.575rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold-dark); flex-shrink: 0;
+  width: 5rem; padding-top: 0.12rem;
+}
+.archiv-meta-value { color: #555; line-height: 1.5; }
+
+/* Popis / opis foto */
+.archiv-desc {
+  font-size: 0.875rem; color: #666; line-height: 1.72; font-style: italic;
+  border-top: 1px solid rgba(212,175,55,0.18); padding-top: 0.85rem; margin-top: auto;
+}
+
+/* Zoznam osôb */
+.archiv-persons { margin-top: 0.65rem; }
+.archiv-persons-label {
+  font-family: 'Cinzel', serif; font-size: 0.565rem; letter-spacing: 0.17em;
+  text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.55rem;
+}
+.archiv-persons-list {
+  list-style: none; display: flex; flex-direction: column; gap: 0.22rem;
+}
+.archiv-persons-list li {
+  font-size: 0.82rem; color: #555; display: flex; align-items: baseline; gap: 0.45rem;
+  line-height: 1.5;
+}
+.archiv-persons-list li::before {
+  content: '–'; color: var(--gold-dark); flex-shrink: 0; font-size: 0.72rem;
 }
 
 /* Dekoratívna linka pod galériou */
 .galeria-footer-line {
-  max-width: 1080px;
+  max-width: 1160px;
   margin: 2rem auto 0;
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
+  display: flex; align-items: center; gap: 1.2rem;
 }
-
 .galeria-footer-line-bar {
-  flex: 1;
-  height: 1px;
+  flex: 1; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
 }
-
 .galeria-footer-note {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(160,124,16,0.55);
-  white-space: nowrap;
+  font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(160,124,16,0.55); white-space: nowrap;
 }
 
-@media (max-width: 680px) {
-  .foto-grid { grid-template-columns: 1fr; gap: 1rem; }
+/* Responzívnosť */
+@media (max-width: 860px) {
+  .archiv-grid { grid-template-columns: 1fr; gap: 0; }
+  .archiv-side { gap: 2px; }
+}
+@media (max-width: 540px) {
+  .archiv-caption { padding: 1.1rem 1.2rem 1.3rem; }
+  .archiv-title { font-size: 0.97rem; }
 }
 
 /* ─── LIGHTBOX ───────────────────────────────────────────────────── */
@@ -917,48 +989,134 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <p>Historické fotografie z činnosti Lipy, výstav a vyšívkárok — zbierka sa postupne dopĺňa.</p>
   </div>
 
-  <div class="foto-grid">
+  <div class="archiv-grid">
 
-    <div class="foto-item" tabindex="0" role="button"
-         data-title="Prvá predajňa Lipy v Martine"
-         data-meta="Dom Gustáva Šimku · Turčiansky Svätý Martin · 1911 – 1933"
-         data-idx="0">
-      <img src="lipa_predajna.jpg"
-           alt="Prvá predajňa Lipy (1911–1933) v dome Gustáva Šimku v Martine"
-           loading="lazy">
-      <div class="foto-caption">
-        <div class="foto-caption-title">Prvá predajňa Lipy</div>
-        <div class="foto-caption-meta">Martin · 1911 – 1933</div>
+    <!-- ① FEATURE — predajňa Lipy -->
+    <figure class="archiv-item" tabindex="0" role="button" aria-label="Otvoriť fotografiu: Prvá predajňa Lipy v Martine"
+            data-title="Prvá predajňa Lipy v Martine"
+            data-meta="Dom Gustáva Šimku · Turčiansky Svätý Martin · 1911 – 1933"
+            data-idx="0">
+      <div class="archiv-photo-wrap">
+        <img src="lipa_predajna.jpg"
+             alt="Prvá predajňa Lipy (1911–1933) v dome Gustáva Šimku v Turčianskom Svätom Martine"
+             loading="lazy">
+        <div class="archiv-zoom-hint" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+            <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+          </svg>
+          <span>Zväčšiť</span>
+        </div>
       </div>
-    </div>
+      <figcaption class="archiv-caption">
+        <div class="archiv-num">Archív Lipy · Arch. č. 001</div>
+        <h3 class="archiv-title">Prvá predajňa Lipy v Martine</h3>
+        <div class="archiv-rule"></div>
+        <div class="archiv-meta">
+          <div class="archiv-meta-row">
+            <span class="archiv-meta-label">Miesto</span>
+            <span class="archiv-meta-value">Dom Gustáva Šimku, Turčiansky Svätý Martin</span>
+          </div>
+          <div class="archiv-meta-row">
+            <span class="archiv-meta-label">Obdobie</span>
+            <span class="archiv-meta-value">1911 – 1933</span>
+          </div>
+        </div>
+        <p class="archiv-desc">Exteriér domu, kde sídlila prvá predajňa Lipy celé dve desaťročia. Práve tu sa slovenské ľudové výšivky po prvýkrát predávali pod vlastným menom — hrdým nápisom <em>vyrobené slovenskou ženou</em>. Predajňa bola nielen obchodným miestom, ale aj symbolom slovenského kultúrneho sebavedomia v čase národného útlaku.</p>
+      </figcaption>
+    </figure>
 
-    <div class="foto-item" tabindex="0" role="button"
-         data-title="Prípravný výbor výstavy – Viedeň 1913"
-         data-meta="Kornel Stodola, Pavol Blaho, Anna Šenšelová, Oľga Stodolová, gróf Karol Šeilern, R. Rehák, G. Rehák, Kristína Smieskolová, R. Reháková"
-         data-idx="1">
-      <img src="lipa_vybor_1913.jpg"
-           alt="Prípravný výbor výstavy slovenských výšiviek vo Viedni 1913: Kornel Stodola, Pavol Blaho, Anna Šenšelová, Oľga Stodolová, gróf Karol Šeilern, R. Rehák, G. Rehák, Kristína Smieskolová, R. Reháková"
-           loading="lazy">
-      <div class="foto-caption">
-        <div class="foto-caption-title">Prípravný výbor – Viedeň 1913</div>
-        <div class="foto-caption-meta">A. Šenšelová, K. Stodola, P. Blaho a ďalší</div>
-      </div>
-    </div>
+    <!-- Pravý stĺpec — dve fotky nad sebou -->
+    <div class="archiv-side">
 
-    <div class="foto-item" tabindex="0" role="button"
-         data-title="Národopisná výstava Živeny a Lipy"
-         data-meta="Banská Bystrica · 1925"
-         data-idx="2">
-      <img src="vystava_zivena_1925.jpg"
-           alt="Národopisná výstava Živeny a Lipy, Banská Bystrica 1925"
-           loading="lazy">
-      <div class="foto-caption">
-        <div class="foto-caption-title">Národopisná výstava Živeny</div>
-        <div class="foto-caption-meta">Banská Bystrica · 1925</div>
-      </div>
-    </div>
+      <!-- ② Prípravný výbor 1913 -->
+      <figure class="archiv-item" tabindex="0" role="button" aria-label="Otvoriť fotografiu: Prípravný výbor výstavy – Viedeň 1913"
+              data-title="Prípravný výbor výstavy slovenských výšiviek – Viedeň 1913"
+              data-meta="Viedeň · 1913 · Kornel Stodola, Pavol Blaho, Anna Šenšelová, Oľga Stodolová, gróf Karol Šeilern, R. Rehák, G. Rehák, Kristína Smieskolová, R. Reháková"
+              data-idx="1">
+        <div class="archiv-photo-wrap">
+          <img src="lipa_vybor_1913.jpg"
+               alt="Prípravný výbor výstavy slovenských výšiviek vo Viedni 1913 — na fotografii: Kornel Stodola, Pavol Blaho, Anna Šenšelová, Oľga Stodolová, gróf Karol Šeilern, R. Rehák, G. Rehák, Kristína Smieskolová, R. Reháková"
+               loading="lazy">
+          <div class="archiv-zoom-hint" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+              <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+            <span>Zväčšiť</span>
+          </div>
+        </div>
+        <figcaption class="archiv-caption">
+          <div class="archiv-num">Archív Lipy · Arch. č. 002</div>
+          <h3 class="archiv-title">Prípravný výbor výstavy slovenských výšiviek</h3>
+          <div class="archiv-rule"></div>
+          <div class="archiv-meta">
+            <div class="archiv-meta-row">
+              <span class="archiv-meta-label">Miesto</span>
+              <span class="archiv-meta-value">Viedeň</span>
+            </div>
+            <div class="archiv-meta-row">
+              <span class="archiv-meta-label">Rok</span>
+              <span class="archiv-meta-value">1913</span>
+            </div>
+          </div>
+          <div class="archiv-persons">
+            <div class="archiv-persons-label">Osoby na fotografii</div>
+            <ul class="archiv-persons-list">
+              <li>Kornel Stodola</li>
+              <li>Pavol Blaho</li>
+              <li>Anna Šenšelová</li>
+              <li>Oľga Stodolová</li>
+              <li>gróf Karol Šeilern</li>
+              <li>R. Rehák · G. Rehák</li>
+              <li>Kristína Smieskolová</li>
+              <li>R. Reháková</li>
+            </ul>
+          </div>
+        </figcaption>
+      </figure>
 
-  </div><!-- /foto-grid -->
+      <!-- ③ Národopisná výstava 1925 -->
+      <figure class="archiv-item" tabindex="0" role="button" aria-label="Otvoriť fotografiu: Národopisná výstava Živeny a Lipy, Banská Bystrica 1925"
+              data-title="Národopisná výstava Živeny a Lipy"
+              data-meta="Banská Bystrica · 1925 · Zdroj: Slovakiana.sk"
+              data-idx="2">
+        <div class="archiv-photo-wrap">
+          <img src="vystava_zivena_1925.jpg"
+               alt="Národopisná výstava Živeny a Lipy, Banská Bystrica 1925"
+               loading="lazy">
+          <div class="archiv-zoom-hint" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+              <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+            <span>Zväčšiť</span>
+          </div>
+        </div>
+        <figcaption class="archiv-caption">
+          <div class="archiv-num">Archív Živena · Arch. č. 003</div>
+          <h3 class="archiv-title">Národopisná výstava Živeny a Lipy</h3>
+          <div class="archiv-rule"></div>
+          <div class="archiv-meta">
+            <div class="archiv-meta-row">
+              <span class="archiv-meta-label">Miesto</span>
+              <span class="archiv-meta-value">Banská Bystrica</span>
+            </div>
+            <div class="archiv-meta-row">
+              <span class="archiv-meta-label">Rok</span>
+              <span class="archiv-meta-value">1925</span>
+            </div>
+            <div class="archiv-meta-row">
+              <span class="archiv-meta-label">Zdroj</span>
+              <span class="archiv-meta-value"><a href="https://slovakiana.sk/kulturne-objekty/cair-ko1l1di" target="_blank" rel="noopener" style="color:var(--gold-dark); text-decoration:none; border-bottom:1px solid rgba(160,124,16,0.35);">Slovakiana.sk</a></span>
+            </div>
+          </div>
+          <p class="archiv-desc">Výstava organizovaná spolkami Živena a Lipa predstavila verejnosti bohatstvo slovenského ľudového umenia a výšivkárstva z celého Slovenska. Podujatia tohto typu boli kľúčovým nástrojom propagácie a zberu nových výrobcov do siete Lipy.</p>
+        </figcaption>
+      </figure>
+
+    </div><!-- /archiv-side -->
+  </div><!-- /archiv-grid -->
 
   <div class="galeria-footer-line">
     <div class="galeria-footer-line-bar"></div>
@@ -1447,7 +1605,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
   // ── LIGHTBOX ────────────────────────────────────────────────────────
   (function() {
-    const thumbs = Array.from(document.querySelectorAll('.foto-item'));
+    const thumbs = Array.from(document.querySelectorAll('.archiv-item'));
     const backdrop = document.getElementById('lightbox');
     const inner = document.getElementById('lightboxInner');
     const imgEl = document.getElementById('lightboxImg');
