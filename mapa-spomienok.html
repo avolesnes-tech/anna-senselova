@@ -578,6 +578,16 @@
   border: none;
   border-top: 1px solid rgba(212,175,55,0.2);
 }
+.form-submit-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--ink);
+  opacity: 0.65;
+  text-align: center;
+  margin-top: 0.6rem;
+  line-height: 1.5;
+}
 .form-optional-label {
   font-family: 'Cinzel', serif;
   font-size: 0.65rem;
@@ -1018,7 +1028,6 @@
         <option value="medzivojnove">Medzivojnové (1918–1939)</option>
         <option value="vojnove">Vojnové roky (1939–1945)</option>
         <option value="povojnove">Povojnové (1945–1968)</option>
-        <option value="normalizacia">Normalizácia (1968–1989)</option>
       </select>
     </div>
     <span class="filter-result" id="filterResult" aria-live="polite"></span>
@@ -1082,10 +1091,16 @@
 
     <div class="form-panel">
       <form id="pribehForm" novalidate>
-        <div class="form-field">
-            <label for="fMeno">Meno a priezvisko predka <span class="req">*</span></label>
-            <input type="text" id="fMeno" name="predok_meno" placeholder="napr. Mária Kopecká" required autocomplete="off">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fMenoPredka">Meno predka <span class="req">*</span></label>
+            <input type="text" id="fMenoPredka" name="predok_meno" placeholder="napr. Mária" required autocomplete="off">
           </div>
+          <div class="form-field">
+            <label for="fPriezviskoPreda">Priezvisko predka <span class="req">*</span></label>
+            <input type="text" id="fPriezviskoPredka" name="predok_priezvisko" placeholder="napr. Kopecká" required autocomplete="off">
+          </div>
+        </div>
         <div class="form-row">
           <div class="form-field">
             <label for="fObec">Obec / mesto <span class="req">*</span></label>
@@ -1116,7 +1131,6 @@
             <option value="medzivojnove">Medzivojnové (1918 – 1939)</option>
             <option value="vojnove">Vojnové roky (1939 – 1945)</option>
             <option value="povojnove">Povojnové (1945 – 1968)</option>
-            <option value="normalizacia">Normalizácia (1968 – 1989)</option>
           </select>
         </div>
         <div class="form-field">
@@ -1146,7 +1160,12 @@
             <input type="text" id="fZdielalPriezvisko" name="zdielal_priezvisko" placeholder="napr. Kopecká" autocomplete="family-name">
           </div>
         </div>
+        <div class="form-field">
+          <label for="fEmail">E-mail <span style="font-style:italic;text-transform:none;font-size:0.85em">(nepovinné — budeme ťa informovať o schválení)</span></label>
+          <input type="email" id="fEmail" name="zdielal_email" placeholder="napr. jana@email.sk" autocomplete="email">
+        </div>
         <button type="submit" class="btn-submit" id="btnSubmit">Odovzdať príbeh do archívu</button>
+        <p class="form-submit-note">Príspevok sa zobrazí na mape po schválení administrátorom. Ak si uviedol/a e-mail, budeme ťa o tom informovať.</p>
         <p id="formError" style="color:var(--red);font-style:italic;font-size:0.9rem;margin-top:0.8rem;display:none;text-align:center;"></p>
       </form>
 
@@ -1725,16 +1744,15 @@
     btn.textContent = 'Ukladám…';
     hideFormError();
 
-    const menoFull    = document.getElementById('fMeno').value.trim();
-    const parts       = menoFull.split(/\s+/);
-    const meno        = parts.slice(0, -1).join(' ') || menoFull;
-    const priezvisko  = parts.length > 1 ? parts[parts.length - 1] : menoFull;
+    const meno        = document.getElementById('fMenoPredka').value.trim();
+    const priezvisko  = document.getElementById('fPriezviskoPredka').value.trim();
+    const menoFull    = (meno + ' ' + priezvisko).trim();
     const obec        = document.getElementById('fObec').value.trim();
     const kraj        = document.getElementById('fKraj').value;
     const obdobie     = document.getElementById('fObdobie').value;
     const pribeh      = document.getElementById('fPribeh').value.trim();
 
-    if (!menoFull || !obec || !kraj || !obdobie || !pribeh) {
+    if (!meno || !priezvisko || !obec || !kraj || !obdobie || !pribeh) {
       showFormError('Vyplň prosím všetky povinné polia (označené hviezdičkou).');
       btn.disabled = false; btn.textContent = 'Odovzdať príbeh do archívu';
       return;
@@ -1766,7 +1784,7 @@
 
     // Insert into Supabase
     const { error } = await sb.from('stories').insert({
-      predok_meno:         menoFull,
+      predok_meno:         meno,
       predok_priezvisko:   priezvisko,
       obec:                obec,
       kraj:                kraj,
@@ -1775,6 +1793,7 @@
       foto_url:            fotoUrl,
       zdielal_meno:        document.getElementById('fZdielalMeno').value.trim() || null,
       zdielal_priezvisko:  document.getElementById('fZdielalPriezvisko').value.trim() || null,
+      zdielal_email:       document.getElementById('fEmail').value.trim() || null,
       status:              'pending'
     });
 

@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS stories (
   foto_url            TEXT,           -- URL z Supabase Storage
   zdielal_meno        TEXT,           -- voliteľné — meno prispievateľa
   zdielal_priezvisko  TEXT,           -- voliteľné — priezvisko prispievateľa
+  zdielal_email       TEXT,           -- voliteľné — e-mail prispievateľa (pre notifikáciu o schválení)
   status              TEXT        NOT NULL DEFAULT 'pending'
                                   CHECK (status IN ('pending','approved','rejected')),
   created_at          TIMESTAMPTZ NOT NULL DEFAULT NOW()
