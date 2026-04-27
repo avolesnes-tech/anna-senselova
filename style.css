@@ -155,6 +155,13 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* Nav — medium screens: prevent item overflow */
+@media (min-width: 769px) and (max-width: 960px) {
+  nav { padding: 0 1.4rem; }
+  nav ul { gap: 1rem; }
+  nav ul li > a { font-size: 0.78rem; letter-spacing: 0.08em; }
+  nav .logo { font-size: 1.6rem; }
+}
 @media (max-width: 768px) {
   nav { padding: 0 1.2rem; }
   nav .logo { font-size: 1.5rem; }

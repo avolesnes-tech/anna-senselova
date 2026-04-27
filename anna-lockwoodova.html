@@ -198,7 +198,7 @@ body {
   .hero-tagline { font-size: 0.94rem; }
   .hero-sub { font-size: 0.6rem; letter-spacing: 0.14em; }
   .pribeh-intro { padding: 2.2rem 1.2rem 1.8rem; }
-  .pribeh-pullquote { font-size: clamp(1.3rem, 6vw, 1.7rem); }
+  .pribeh-pullquote { font-size: clamp(1.65rem, 7vw, 2.2rem); }
   .omne-section { padding: 2.5rem 1.2rem; }
   .omne-title { font-size: clamp(1.9rem, 8vw, 2.8rem); }
   .tvorba-section { padding: 2.5rem 0 1.8rem; }
@@ -217,6 +217,7 @@ body {
   font-family: 'Cinzel', serif; font-size: 0.72rem;
   letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--red); margin-bottom: 0.6rem; display: block;
+  text-align: center;
 }
 
 h1 {
@@ -318,7 +319,7 @@ h1 {
 .carousel-track:active { cursor: grabbing; }
 
 .carousel-slide {
-  flex: 0 0 280px; height: 340px;
+  flex: 0 0 280px; height: 280px;
   overflow: hidden; position: relative;
   border: 1px solid rgba(212,175,55,0.2);
   transition: flex-basis 0.6s cubic-bezier(0.4,0,0.2,1),
@@ -327,7 +328,7 @@ h1 {
   opacity: 0.5; cursor: pointer; flex-shrink: 0; border-radius: 2px;
 }
 .carousel-slide.active {
-  flex-basis: 440px; height: 400px; opacity: 1;
+  flex-basis: 380px; height: 380px; opacity: 1;
   box-shadow: 0 10px 40px rgba(0,0,0,0.18);
   border-color: rgba(212,175,55,0.5); z-index: 2;
 }
@@ -379,8 +380,8 @@ h1 {
 .carousel-arrow svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; }
 
 @media (max-width: 600px) {
-  .carousel-slide { flex: 0 0 74vw; height: 55vw; }
-  .carousel-slide.active { flex-basis: 84vw; height: 64vw; }
+  .carousel-slide { flex: 0 0 74vw; height: 74vw; }
+  .carousel-slide.active { flex-basis: 84vw; height: 84vw; }
   .carousel-arrow { width: 38px; height: 38px; }
   .carousel-arrow.prev { left: 0.2rem; }
   .carousel-arrow.next { right: 0.2rem; }
@@ -415,11 +416,13 @@ h1 {
 /* Pull-quote — zvýraznená veta v Pinyon Script */
 .pribeh-pullquote {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(1.55rem, 4vw, 2.3rem);
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
   color: var(--red);
-  line-height: 1.55;
-  margin: 2.2rem 0 0.5rem;
+  line-height: 1.45;
+  margin: 2.8rem auto 1rem;
   text-align: center;
+  max-width: 700px;
+  display: block;
 }
 
 /* ===== KNIHY — sticky side layout ===== */
@@ -701,7 +704,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
   <div class="knihy-block">
     <div class="knihy-text">
       <div class="pribeh-section" style="padding:0; max-width:100%;">
-        <p class="reveal">Prostredníctvom autobiografie starého otca, životopisu seniora Ľudovíta Šenšela a publikácie „Šenšelovský rod" som sa preniesla sto a viac rokov dozadu a detailne spoznala svojich predkov. V hlave mi však stále ostávali výšivky. Chcela som vyriešiť záhadu, odkiaľ sa vlastne vzali v pivnici u starých rodičov a čo sú zač.</p>
+        <p class="reveal">Prostredníctvom autobiografie starého otca – <em>Občas slnko, občas hrmavica</em>, životopisu môjho prastarého otca – seniora Ľudovíta Šenšela a publikácie „Šenšelovský rod" som sa preniesla sto a viac rokov dozadu a detailne spoznala svojich predkov. V hlave mi však stále ostávali výšivky. Chcela som vyriešiť záhadu, odkiaľ sa vlastne vzali v pivnici u starých rodičov a čo sú zač.</p>
         <div class="highlight reveal">
           S malou dušičkou som kontaktovala Tami Šimončíkovú Heribanovú, ktorá ma nasmerovala na pani Zuzanu Tajek Piešovú, odborníčku na kroje. Na môj obrovský údiv sa hneď podujala prísť za mnou domov, aby sa na výšivky mohla pozrieť zblízka.
         </div>
@@ -760,7 +763,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <section class="tvorba-section" id="tvorba" aria-labelledby="tvorba-title">
   <div class="tvorba-inner">
     <div class="tvorba-header reveal">
-      <span class="section-label">Výtvarná tvorba</span>
+      <span class="section-label">Ukážky práce</span>
       <h2 id="tvorba-title">Moja tvorba</h2>
       <p class="tvorba-sub">V tvorbe nikdy neostanem len pri jednej technike. Celý život sa u mňa striedajú obdobia extrémneho nadšenia pre nové nápady. Umenie bolo odjakživa mojou vášňou — a dnes už viem, že je to preto, lebo to mám v krvi.</p>
       <div class="gold-line" style="margin:1rem auto 0;" aria-hidden="true"></div>
@@ -778,158 +781,158 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
       <div class="carousel-track" id="carTrack" aria-live="polite" aria-atomic="false">
         <div class="carousel-slide active" tabindex="0" role="button"
-             aria-label="Citróny — akvarel — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_citrony.webp" data-caption="Citróny — akvarel" data-index="0">
+             aria-label="Výšivka — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_vysivka.webp" data-caption="Výšivka" data-index="0">
           <picture>
-            <source srcset="anna_l_citrony.webp" type="image/webp">
-            <img src="anna_l_citrony.jpeg" alt="Citróny — akvarel" loading="eager" decoding="async" width="440" height="400">
+            <source srcset="anna_l_vysivka.webp" type="image/webp">
+            <img src="anna_l_vysivka.jpeg" alt="Výšivka" loading="eager" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Citróny — akvarel</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Výšivka</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Zoe — akvarel — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_zoe.webp" data-caption="Zoe — akvarel" data-index="1">
+             aria-label="Paper maché — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_papermache.webp" data-caption="Paper maché" data-index="1">
           <picture>
-            <source srcset="anna_l_zoe.webp" type="image/webp">
-            <img src="anna_l_zoe.jpeg" alt="Zoe — akvarel" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_papermache.webp" type="image/webp">
+            <img src="anna_l_papermache.jpeg" alt="Paper maché" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Zoe — akvarel</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Paper maché</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Kvetinový akvarel — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_akvarel_kvet.webp" data-caption="Kvetinový akvarel" data-index="2">
+             aria-label="Korálková brošňa — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_brosna.webp" data-caption="Korálková brošňa" data-index="2">
           <picture>
-            <source srcset="anna_l_akvarel_kvet.webp" type="image/webp">
-            <img src="anna_l_akvarel_kvet.jpeg" alt="Kvetinový akvarel" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_brosna.webp" type="image/webp">
+            <img src="anna_l_brosna.jpeg" alt="Korálková brošňa" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Kvetinový akvarel</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Korálková brošňa</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Portrét — akvarel — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_akvarel_portret.webp" data-caption="Portrét — akvarel" data-index="3">
+             aria-label="Akvarel &amp; maľba — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_akvarel.webp" data-caption="Akvarel &amp; maľba" data-index="3">
           <picture>
-            <source srcset="anna_l_akvarel_portret.webp" type="image/webp">
-            <img src="anna_l_akvarel_portret.jpeg" alt="Portrét — akvarel" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_akvarel.webp" type="image/webp">
+            <img src="anna_l_akvarel.jpeg" alt="Akvarel a maľba" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Portrét — akvarel</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Akvarel &amp; maľba</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Frida — výšivka — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_frida.webp" data-caption="Frida — výšivka" data-index="4">
+             aria-label="Digitálna kresba — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_dekoracie.webp" data-caption="Digitálna kresba" data-index="4">
           <picture>
-            <source srcset="anna_l_frida.webp" type="image/webp">
-            <img src="anna_l_frida.jpeg" alt="Frida — výšivka" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_dekoracie.webp" type="image/webp">
+            <img src="anna_l_dekoracie.jpeg" alt="Digitálna kresba" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Frida — výšivka</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Digitálna kresba</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Zajac — brošňa — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_zajac.webp" data-caption="Zajac — brošňa" data-index="5">
+             aria-label="Srdce — paper maché — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_pm_srdce.webp" data-caption="Srdce — paper maché" data-index="5">
           <picture>
-            <source srcset="anna_l_zajac.webp" type="image/webp">
-            <img src="anna_l_zajac.jpeg" alt="Zajac — brošňa" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_pm_srdce.webp" type="image/webp">
+            <img src="anna_l_pm_srdce.jpeg" alt="Srdce — paper maché" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Zajac — brošňa</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Srdce — paper maché</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Huby — plsť — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_hriby_filc.webp" data-caption="Huby — plsť" data-index="6">
+             aria-label="Pomaranče — paper maché — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_pm_pomarance.webp" data-caption="Pomaranče — paper maché" data-index="6">
           <picture>
-            <source srcset="anna_l_hriby_filc.webp" type="image/webp">
-            <img src="anna_l_hriby_filc.jpeg" alt="Huby — plsť" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_pm_pomarance.webp" type="image/webp">
+            <img src="anna_l_pm_pomarance.jpeg" alt="Pomaranče — paper maché" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Huby — plsť</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Pomaranče — paper maché</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
              aria-label="Huby — paper maché — kliknite pre zväčšenie" aria-roledescription="snímka"
              data-src="anna_l_pm_hriby.webp" data-caption="Huby — paper maché" data-index="7">
           <picture>
             <source srcset="anna_l_pm_hriby.webp" type="image/webp">
-            <img src="anna_l_pm_hriby.jpeg" alt="Huby — paper maché" loading="lazy" decoding="async" width="440" height="400" style="object-position: center bottom;">
+            <img src="anna_l_pm_hriby.jpeg" alt="Huby — paper maché" loading="lazy" decoding="async" width="400" height="400" style="object-position: center bottom;">
           </picture>
           <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Huby — paper maché</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Pomaranče — paper maché — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_pm_pomarance.webp" data-caption="Pomaranče — paper maché" data-index="8">
+             aria-label="Huby — plsť — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_hriby_filc.webp" data-caption="Huby — plsť" data-index="8">
           <picture>
-            <source srcset="anna_l_pm_pomarance.webp" type="image/webp">
-            <img src="anna_l_pm_pomarance.jpeg" alt="Pomaranče — paper maché" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_hriby_filc.webp" type="image/webp">
+            <img src="anna_l_hriby_filc.jpeg" alt="Huby — plsť" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Pomaranče — paper maché</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Huby — plsť</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Srdce — paper maché — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_pm_srdce.webp" data-caption="Srdce — paper maché" data-index="9">
+             aria-label="Zajac — brošňa — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_zajac.webp" data-caption="Zajac — brošňa" data-index="9">
           <picture>
-            <source srcset="anna_l_pm_srdce.webp" type="image/webp">
-            <img src="anna_l_pm_srdce.jpeg" alt="Srdce — paper maché" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_zajac.webp" type="image/webp">
+            <img src="anna_l_zajac.jpeg" alt="Zajac — brošňa" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Srdce — paper maché</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Zajac — brošňa</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Digitálna kresba — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_dekoracie.webp" data-caption="Digitálna kresba" data-index="10">
+             aria-label="Frida — výšivka — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_frida.webp" data-caption="Frida — výšivka" data-index="10">
           <picture>
-            <source srcset="anna_l_dekoracie.webp" type="image/webp">
-            <img src="anna_l_dekoracie.jpeg" alt="Digitálna kresba" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_frida.webp" type="image/webp">
+            <img src="anna_l_frida.jpeg" alt="Frida — výšivka" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Digitálna kresba</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Frida — výšivka</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Akvarel &amp; maľba — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_akvarel.webp" data-caption="Akvarel &amp; maľba" data-index="11">
+             aria-label="Portrét — akvarel — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_akvarel_portret.webp" data-caption="Portrét — akvarel" data-index="11">
           <picture>
-            <source srcset="anna_l_akvarel.webp" type="image/webp">
-            <img src="anna_l_akvarel.jpeg" alt="Akvarel a maľba" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_akvarel_portret.webp" type="image/webp">
+            <img src="anna_l_akvarel_portret.jpeg" alt="Portrét — akvarel" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Akvarel &amp; maľba</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Portrét — akvarel</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Korálková brošňa — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_brosna.webp" data-caption="Korálková brošňa" data-index="12">
+             aria-label="Kvetinový akvarel — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_akvarel_kvet.webp" data-caption="Kvetinový akvarel" data-index="12">
           <picture>
-            <source srcset="anna_l_brosna.webp" type="image/webp">
-            <img src="anna_l_brosna.jpeg" alt="Korálková brošňa" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_akvarel_kvet.webp" type="image/webp">
+            <img src="anna_l_akvarel_kvet.jpeg" alt="Kvetinový akvarel" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Korálková brošňa</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Kvetinový akvarel</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Paper maché — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_papermache.webp" data-caption="Paper maché" data-index="13">
+             aria-label="Zoe — akvarel — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_zoe.webp" data-caption="Zoe — akvarel" data-index="13">
           <picture>
-            <source srcset="anna_l_papermache.webp" type="image/webp">
-            <img src="anna_l_papermache.jpeg" alt="Paper maché" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_zoe.webp" type="image/webp">
+            <img src="anna_l_zoe.jpeg" alt="Zoe — akvarel" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Paper maché</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Zoe — akvarel</span></div>
         </div>
         <div class="carousel-slide" tabindex="0" role="button"
-             aria-label="Výšivka — kliknite pre zväčšenie" aria-roledescription="snímka"
-             data-src="anna_l_vysivka.webp" data-caption="Výšivka" data-index="14">
+             aria-label="Citróny — akvarel — kliknite pre zväčšenie" aria-roledescription="snímka"
+             data-src="anna_l_citrony.webp" data-caption="Citróny — akvarel" data-index="14">
           <picture>
-            <source srcset="anna_l_vysivka.webp" type="image/webp">
-            <img src="anna_l_vysivka.jpeg" alt="Výšivka" loading="lazy" decoding="async" width="440" height="400">
+            <source srcset="anna_l_citrony.webp" type="image/webp">
+            <img src="anna_l_citrony.jpeg" alt="Citróny — akvarel" loading="lazy" decoding="async" width="400" height="400">
           </picture>
-          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Výšivka</span></div>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Citróny — akvarel</span></div>
         </div>
       </div>
 
       <div class="carousel-dots" role="tablist" aria-label="Výber fotografie" id="carDots">
-        <button class="carousel-dot active" role="tab" aria-selected="true" data-idx="0" aria-label="Citróny — akvarel"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="1" aria-label="Zoe — akvarel"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="2" aria-label="Kvetinový akvarel"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="3" aria-label="Portrét — akvarel"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="4" aria-label="Frida — výšivka"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="5" aria-label="Zajac — brošňa"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="6" aria-label="Huby — plsť"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="7" aria-label="Huby — paper maché"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="8" aria-label="Pomaranče — paper maché"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="9" aria-label="Srdce — paper maché"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="10" aria-label="Digitálna kresba"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="11" aria-label="Akvarel &amp; maľba"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="12" aria-label="Korálková brošňa"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="13" aria-label="Paper maché"></button>
-        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="14" aria-label="Výšivka"></button>
+        <button class="carousel-dot active" role="tab" aria-selected="true"  data-idx="0"  aria-label="Výšivka"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="1"  aria-label="Paper maché"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="2"  aria-label="Korálková brošňa"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="3"  aria-label="Akvarel &amp; maľba"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="4"  aria-label="Digitálna kresba"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="5"  aria-label="Srdce — paper maché"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="6"  aria-label="Pomaranče — paper maché"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="7"  aria-label="Huby — paper maché"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="8"  aria-label="Huby — plsť"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="9"  aria-label="Zajac — brošňa"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="10" aria-label="Frida — výšivka"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="11" aria-label="Portrét — akvarel"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="12" aria-label="Kvetinový akvarel"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="13" aria-label="Zoe — akvarel"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="14" aria-label="Citróny — akvarel"></button>
       </div>
     </div>
   </div>
