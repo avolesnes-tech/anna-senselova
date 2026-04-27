@@ -71,6 +71,94 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
 
 @media (max-width: 600px) { .fakty-grid { grid-template-columns: 1fr; } .milestone { grid-template-columns: 60px 1fr; } }
 
+/* ── Vintage passe-partout — portrét E.M.Šoltésovej ── */
+.portrait-passe {
+  float: right;
+  margin: 0.4rem 0 2.4rem 3rem;
+  max-width: 230px;
+  position: relative;
+}
+
+/* Vonkajší rámik — tmavé drevo */
+.portrait-frame {
+  background: #1e1209;
+  padding: 11px;
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,0.08),
+    0 6px 28px rgba(0,0,0,0.45),
+    0 2px 6px rgba(0,0,0,0.25);
+  position: relative;
+}
+.portrait-frame::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 0.5px solid rgba(180,140,60,0.35);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Krémová paspartú — mat */
+.portrait-mat {
+  background: #f2ede0;
+  padding: 18px 18px 32px 18px;
+  position: relative;
+}
+/* Tenká zlatá linka vo vnútri matu */
+.portrait-mat::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 0.5px solid rgba(160,120,50,0.28);
+  pointer-events: none;
+}
+
+.portrait-mat img {
+  display: block;
+  width: 100%;
+  filter: sepia(15%) contrast(1.06) brightness(0.97);
+}
+
+/* Podpis v matu — kurzívou pod obrázkom */
+.portrait-mat-sig {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 1.05rem;
+  color: #3a2a14;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  opacity: 0.85;
+}
+
+/* Popisok pod celým rámikom */
+.portrait-caption {
+  margin-top: 0.9rem;
+  text-align: center;
+}
+.portrait-caption-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  display: block;
+  line-height: 1.7;
+}
+.portrait-caption-attr {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: #888;
+  display: block;
+  margin-top: 0.3rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .portrait-passe { float: none; margin: 0 auto 2rem; max-width: 200px; }
+}
 
 </style>
 <style>
@@ -150,12 +238,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
 <!-- MÔJ VSTUP -->
 <div class="content-wrap">
-  <!-- FOTKA E.M. ŠOLTÉSOVEJ -->
-  <div style="float:right; margin: 0 0 2rem 3rem; max-width:220px;">
-    <div>
-      <img src="em_soltesova.jpg" alt="Elena Maróthy-Šoltésová" loading="lazy" style="display:block; width:220px; filter:grayscale(100%) contrast(1.05);">
+  <!-- PORTRÉT E.M. ŠOLTÉSOVEJ — vintage passe-partout -->
+  <div class="portrait-passe">
+    <div class="portrait-frame">
+      <div class="portrait-mat">
+        <picture>
+          <source srcset="elena_soltesova.webp" type="image/webp">
+          <img src="elena_soltesova.jpeg"
+               alt="Portrét Eleny Maróthy-Šoltésovej, maľoval Milan Mitrovský — príloha k Živene, roč. XIX."
+               loading="lazy" decoding="async">
+        </picture>
+        <p class="portrait-mat-sig">Elena maróthy Šoltésová</p>
+      </div>
     </div>
-    <p style="font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-dark); text-align:center; margin-top:1.2rem; font-style:italic;">Elena Maróthy-Šoltésová<br>1855 – 1939</p>
+    <div class="portrait-caption">
+      <span class="portrait-caption-name">Elena Maróthy-Šoltésová<br>1855 – 1939</span>
+      <span class="portrait-caption-attr">Maľoval: Milan Mitrovský<br>Príloha k Živene, roč. XIX., č. 1</span>
+    </div>
   </div>
 
   <p class="intro-quote">„My tiež máme túhu po vyššom a sme duchom obdarené od Boha; nedajmeže teda tomuto najvyššiemu daru zakrnieť, ale pestujme ho svedomite."<br><span style="font-size:0.82rem; font-style:normal; opacity:0.6; font-family:'Cinzel',serif; letter-spacing:0.1em;">— Elena Maróthy-Šoltésová</span></p>
