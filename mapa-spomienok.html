@@ -164,6 +164,109 @@
   letter-spacing: 0.04em;
 }
 
+/* ── AKO PRIDAŤ PRÍBEH ──────────────────────── */
+.ako-sekcia {
+  background: var(--section-alt);
+  padding: 4.5rem 2rem 4rem;
+  border-top: 1px solid rgba(212,175,55,0.2);
+  border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.ako-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.ako-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+.ako-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+  line-height: 1.25;
+}
+.ako-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.8;
+  color: var(--ink);
+  opacity: 0.8;
+  max-width: 620px;
+  margin: 0 auto 3rem;
+}
+.ako-kroky {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.2rem;
+}
+.ako-krok {
+  background: #fffdf8;
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 2px;
+  padding: 2rem 1.6rem 1.8rem;
+  text-align: left;
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.ako-krok:hover {
+  box-shadow: 0 6px 28px rgba(139,26,26,0.07);
+  transform: translateY(-2px);
+}
+.ako-krok-num {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 3.2rem;
+  color: var(--gold);
+  opacity: 0.55;
+  line-height: 1;
+  margin-bottom: 0.9rem;
+  display: block;
+}
+.ako-krok h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.9rem;
+  font-weight: 400;
+}
+.ako-krok p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  opacity: 0.82;
+  margin: 0;
+}
+.ako-ornament {
+  color: var(--gold);
+  font-size: 1.1rem;
+  letter-spacing: 0.5rem;
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 1.2rem;
+}
+.ako-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink);
+  opacity: 0.55;
+}
+@media (max-width: 680px) {
+  .ako-kroky { grid-template-columns: 1fr; gap: 1rem; }
+  .ako-sekcia { padding: 3rem 1.2rem 2.5rem; }
+}
+
 /* ── MAPA ───────────────────────────────────── */
 .mapa-sekcia {
   background: var(--cream);
@@ -999,7 +1102,42 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     3. MAPA + FILTRE
+     3. AKO PRIDAŤ PRÍBEH
+════════════════════════════════════════════ -->
+<section class="ako-sekcia" aria-label="Ako pridať príbeh do mapy">
+  <div class="ako-inner">
+    <span class="ako-label">Ako sa zapojiť</span>
+    <h2 class="ako-title">Iste aj vo vašej rodine sú príbehy,<br>ktoré stoja za zachovanie</h2>
+    <p class="ako-lead">
+      Nemusíte o svojich predkoch vedieť všetky detaily. Stačí aj malý fragment —
+      čomu sa venovali, kde žili, čím si ich ľudia pamätajú.
+    </p>
+
+    <div class="ako-kroky">
+      <div class="ako-krok">
+        <span class="ako-krok-num">1</span>
+        <h3>Čo zdieľať</h3>
+        <p>Remeslá, hospodárstvo, vzdelanie. Či strávili celý život na jednom mieste alebo cestovali. Čím si ich rodina pamätá. Stačí pár viet — ale kľudne aj viac.</p>
+      </div>
+      <div class="ako-krok">
+        <span class="ako-krok-num">2</span>
+        <h3>Fotografie</h3>
+        <p>Ak máte staré fotografie a chcete sa s nimi podeliť, nahrajte ich k príbehu — maximálne 3 fotky. Stará fotografia dodá príbehu tvár, ale nie je podmienkou.</p>
+      </div>
+      <div class="ako-krok">
+        <span class="ako-krok-num">3</span>
+        <h3>Mapa a vyhľadávanie</h3>
+        <p>V mape nájdete príbehy podľa kraja, obdobia alebo priezviska. Váš príspevok sa na stránke objaví po schválení administrátorom.</p>
+      </div>
+    </div>
+
+    <span class="ako-ornament">✦ ✦ ✦</span>
+    <p class="ako-note">Formulár pre zdieľanie príbehu nájdete pod mapou ↓</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     4. MAPA + FILTRE
 ════════════════════════════════════════════ -->
 <section class="mapa-sekcia" id="mapa" aria-label="Interaktívna mapa príbehov">
   <div class="filter-bar" role="search" aria-label="Filter príbehov">
