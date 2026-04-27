@@ -17,6 +17,9 @@
 <meta name="twitter:image" content="https://anna-senselova.sk/og-lipa.jpg">
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="lipa_predajna.webp" type="image/webp">
+<link rel="preload" as="font" href="fonts/cormorant-normal-latin.woff2" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/pinyon-script-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 :root {
   /* Spacing scale */
@@ -56,7 +59,7 @@
 /* Historická fotka predajne — zoom-out pri načítaní */
 #hero .hero-bg {
   position: absolute !important; inset: 0; z-index: 0 !important;
-  background: url('lipa_predajna.jpg') center 40% / cover no-repeat;
+  background: url('lipa_predajna.webp') center 40% / cover no-repeat;
   filter: brightness(0.5) sepia(18%) contrast(1.05);
   animation: heroKenBurns 28s ease-in-out infinite alternate;
   will-change: transform;
@@ -895,10 +898,15 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <div class="intro-grid">
       <div class="intro-aside">
         <div class="intro-emblem">
-          <img src="reklama_predajna_Lipa_Bratislava.jpeg" alt="Oznámenie o otvorení stálej výstavky a predajne Lipy v Bratislave, Námestie Republiky 38 — Živena, 1928">
+          <picture>
+            <source srcset="reklama_predajna_Lipa_Bratislava.webp" type="image/webp">
+            <img src="reklama_predajna_Lipa_Bratislava.jpeg" alt="Oznámenie o otvorení stálej výstavky a predajne Lipy v Bratislave, Námestie Republiky 38 — Živena, 1928" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="intro-emblem">
-          <img src="reklama_lipa.jpeg" alt="Reklama na Lipu — ľudový priemysel, účastinárska spoločnosť v Turčianskom Sv. Martine a expozitúra v Bratislave — Živena, 1928">
+          <picture>
+            <source srcset="reklama_lipa.webp" type="image/webp">
+            <img src="reklama_lipa.jpeg" alt="Reklama na Lipu — ľudový priemysel, účastinárska spoločnosť v Turčianskom Sv. Martine a expozitúra v Bratislave — Živena, 1928" loading="lazy" decoding="async">
         </div>
         <p class="intro-emblem-caption">Živena · ročník XVIII · 1928</p>
       </div>
@@ -936,39 +944,15 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <div class="lipa-carousel-track" id="lipaTrack">
 
         <div class="lipa-slide" data-title="Prvá predajňa Lipy v Martine" data-meta="Dom Gustáva Šimku · Turčiansky Sv. Martin · 1911–1933">
-          <img src="lipa_predajna.jpg" alt="Prvá predajňa Lipy v Martine" loading="lazy">
+          <picture><source srcset="lipa_predajna.webp" type="image/webp"><img src="lipa_predajna.jpg" alt="Prvá predajňa Lipy v Martine" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Prvá predajňa Lipy v Martine</p>
             <p class="lipa-caption-meta">Dom Gustáva Šimku · Turčiansky Sv. Martin · 1911–1933</p>
           </div>
         </div>
 
-        <div class="lipa-slide" data-title="Prípravný výbor výstavy slovenských výšiviek" data-meta="Viedeň · 1913">
-          <img src="lipa_vybor_1913.jpg" alt="Prípravný výbor výstavy slovenských výšiviek vo Viedni 1913" loading="lazy">
-          <div class="lipa-caption">
-            <p class="lipa-caption-title">Prípravný výbor výstavy slovenských výšiviek</p>
-            <p class="lipa-caption-meta">Viedeň · 1913</p>
-          </div>
-        </div>
-
-        <div class="lipa-slide" data-title="Inzerát Lipy v časopise Živena" data-meta="Časopis Živena · Turčiansky Svätý Martin">
-          <img src="lipa_reklama_zivena.jpg" alt="Inzerát Lipy v časopise Živena" loading="lazy">
-          <div class="lipa-caption">
-            <p class="lipa-caption-title">Inzerát Lipy v časopise Živena</p>
-            <p class="lipa-caption-meta">Časopis Živena · Turčiansky Svätý Martin</p>
-          </div>
-        </div>
-
-        <div class="lipa-slide" data-title="Národopisná výstava Živeny a Lipy" data-meta="Banská Bystrica · 1925">
-          <img src="vystava_zivena_1925.jpg" alt="Národopisná výstava Živeny a Lipy, Banská Bystrica 1925" loading="lazy">
-          <div class="lipa-caption">
-            <p class="lipa-caption-title">Národopisná výstava Živeny a Lipy</p>
-            <p class="lipa-caption-meta">Banská Bystrica · 1925</p>
-          </div>
-        </div>
-
         <div class="lipa-slide" data-title="Oznámenie o predajni Lipy v Bratislave" data-meta="Živena · 1928">
-          <img src="reklama_predajna_Lipa_Bratislava.jpeg" alt="Oznámenie o otvorení predajne Lipy v Bratislave, Živena 1928" loading="lazy">
+          <picture><source srcset="reklama_predajna_Lipa_Bratislava.webp" type="image/webp"><img src="reklama_predajna_Lipa_Bratislava.jpeg" alt="Oznámenie o otvorení predajne Lipy v Bratislave, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Oznámenie o predajni Lipy v Bratislave</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
@@ -976,7 +960,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
         </div>
 
         <div class="lipa-slide" data-title="Reklama Lipy" data-meta="Živena · 1928">
-          <img src="reklama_lipa.jpeg" alt="Reklama Lipy — ľudový priemysel, Živena 1928" loading="lazy">
+          <picture><source srcset="reklama_lipa.webp" type="image/webp"><img src="reklama_lipa.jpeg" alt="Reklama Lipy — ľudový priemysel, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Reklama Lipy</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
@@ -984,7 +968,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
         </div>
 
         <div class="lipa-slide" data-title="Batistová aplikácia" data-meta="Živena · 1928">
-          <img src="batist_aplikacia.jpeg" alt="Batistová aplikácia z produkcie Lipy, Živena 1928" loading="lazy">
+          <picture><source srcset="batist_aplikacia.webp" type="image/webp"><img src="batist_aplikacia.jpeg" alt="Batistová aplikácia z produkcie Lipy, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Batistová aplikácia</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
@@ -992,23 +976,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
         </div>
 
         <div class="lipa-slide" data-title="Detská garnitúra" data-meta="Živena · 1928">
-          <img src="detska_garnitura.jpeg" alt="Detská garnitúra z produkcie Lipy, Živena 1928" loading="lazy">
+          <picture><source srcset="detska_garnitura.webp" type="image/webp"><img src="detska_garnitura.jpeg" alt="Detská garnitúra z produkcie Lipy, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Detská garnitúra</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
           </div>
         </div>
 
-        <div class="lipa-slide" data-title="Kožený kabát" data-meta="Živena · 1928">
-          <img src="kozeny_kabat.jpeg" alt="Kožený kabát z produkcie Lipy, Živena 1928" loading="lazy">
+        <div class="lipa-slide" data-title="Jarný kabát, vyšívaný kožou" data-meta="Živena · 1928">
+          <picture><source srcset="kozeny_kabat.webp" type="image/webp"><img src="kozeny_kabat.jpeg" alt="Jarný kabát vyšívaný kožou z produkcie Lipy, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
-            <p class="lipa-caption-title">Kožený kabát</p>
+            <p class="lipa-caption-title">Jarný kabát, vyšívaný kožou</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
           </div>
         </div>
 
         <div class="lipa-slide" data-title="Módna rubrika — záclony" data-meta="Živena · 1928">
-          <img src="rubrika_moda_zaclony.jpeg" alt="Módna rubrika Lipy — záclony, Živena 1928" loading="lazy">
+          <picture><source srcset="rubrika_moda_zaclony.webp" type="image/webp"><img src="rubrika_moda_zaclony.jpeg" alt="Módna rubrika Lipy — záclony, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Módna rubrika — záclony</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
@@ -1016,7 +1000,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
         </div>
 
         <div class="lipa-slide" data-title="Stolová garnitúra" data-meta="Živena · 1928">
-          <img src="stolova_garnitura.jpeg" alt="Stolová garnitúra z produkcie Lipy, Živena 1928" loading="lazy">
+          <picture><source srcset="stolova_garnitura.webp" type="image/webp"><img src="stolova_garnitura.jpeg" alt="Stolová garnitúra z produkcie Lipy, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Stolová garnitúra</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
@@ -1024,7 +1008,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
         </div>
 
         <div class="lipa-slide" data-title="Vankúš na dvojitú posteľ" data-meta="Živena · 1928">
-          <img src="vankus_na_dvojitu_postel.jpeg" alt="Vankúš na dvojitú posteľ z produkcie Lipy, Živena 1928" loading="lazy">
+          <picture><source srcset="vankus_na_dvojitu_postel.webp" type="image/webp"><img src="vankus_na_dvojitu_postel.jpeg" alt="Vankúš na dvojitú posteľ z produkcie Lipy, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Vankúš na dvojitú posteľ</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
@@ -1032,7 +1016,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
         </div>
 
         <div class="lipa-slide" data-title="Vyšívané šaty Lipy" data-meta="Živena · 1928">
-          <img src="vysivane_saty_lipa.jpeg" alt="Vyšívané šaty z produkcie Lipy, Živena 1928" loading="lazy">
+          <picture><source srcset="vysivane_saty_lipa.webp" type="image/webp"><img src="vysivane_saty_lipa.jpeg" alt="Vyšívané šaty z produkcie Lipy, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Vyšívané šaty Lipy</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
@@ -1040,7 +1024,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
         </div>
 
         <div class="lipa-slide" data-title="Vyšívané vankúše" data-meta="Živena · 1928">
-          <img src="vysivane_vankuse.jpeg" alt="Vyšívané vankúše z produkcie Lipy, Živena 1928" loading="lazy">
+          <picture><source srcset="vysivane_vankuse.webp" type="image/webp"><img src="vysivane_vankuse.jpeg" alt="Vyšívané vankúše z produkcie Lipy, Živena 1928" loading="lazy" decoding="async"></picture>
           <div class="lipa-caption">
             <p class="lipa-caption-title">Vyšívané vankúše</p>
             <p class="lipa-caption-meta">Živena · 1928</p>
