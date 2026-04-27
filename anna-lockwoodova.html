@@ -43,15 +43,13 @@ body {
 }
 
 
-/* ===== HERO ===== */
+/* ===== HERO — stop-scroll dvojstĺpcový layout ===== */
 #hero {
-  min-height: 62vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: calc(var(--nav-height) + 3.5rem) 2rem 4.5rem;
+  min-height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  padding: 0;
   background: var(--cream);
   position: relative;
   overflow: hidden;
@@ -59,63 +57,131 @@ body {
 #hero::before {
   content: ''; position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 50% 80%, rgba(196,30,58,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse at 50% 10%, rgba(212,175,55,0.06) 0%, transparent 55%);
-  pointer-events: none;
+    radial-gradient(ellipse at 20% 85%, rgba(196,30,58,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 15%, rgba(212,175,55,0.05) 0%, transparent 50%);
+  pointer-events: none; z-index: 0;
 }
 #hero > * { position: relative; z-index: 1; }
 
-/* Kruhová fotka — priateľský, osobný pocit */
-.hero-portrait-wrap {
-  width: clamp(140px, 22vw, 186px);
-  height: clamp(140px, 22vw, 186px);
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  flex-shrink: 0;
-  border: 2px solid rgba(212,175,55,0.4);
+/* ─── ĽAVÁ KOLUMNA — foto stop-scroll ─── */
+.hero-portrait-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--nav-height) + 3.5rem) 2.5rem 4.5rem 4rem;
+  animation: heroPortraitIn 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Biela paspartúta s lesklým efektom */
+.hero-paspartout {
+  position: relative;
+  background: #fff;
+  padding: 22px;
+  width: 100%;
+  max-width: 440px;
   box-shadow:
-    0 0 0 8px rgba(212,175,55,0.07),
-    0 10px 38px rgba(26,26,26,0.13);
-  animation: heroPortraitIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    0 0 0 1px rgba(212,175,55,0.3),
+    0 14px 55px rgba(26,26,26,0.16),
+    0 3px 10px rgba(26,26,26,0.08);
+  overflow: hidden;
 }
-.hero-portrait-wrap picture { display: block; width: 100%; height: 100%; }
+
+/* Vnútorná zlatá hair-linka */
+.hero-paspartout::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 0.5px solid rgba(212,175,55,0.52);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Lesk — svetelný ťah pri hoveri */
+.hero-paspartout::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -80%;
+  width: 55%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255,255,255,0.52) 50%,
+    transparent 80%
+  );
+  transform: skewX(-12deg);
+  transition: left 0.72s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.hero-paspartout:hover::after {
+  left: 130%;
+  opacity: 1;
+}
+
 .hero-portrait-img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top center;
+  width: 100%;
   display: block;
-  filter: sepia(6%) contrast(1.04) brightness(0.98);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+  filter: sepia(7%) contrast(1.04) brightness(0.98);
+  position: relative; z-index: 1;
 }
 
+/* ─── PRAVÁ KOLUMNA — text ─── */
 .hero-text-content {
-  animation: heroTextIn 1.1s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: calc(var(--nav-height) + 3.5rem) 4rem 4.5rem 2.5rem;
+  text-align: left;
+  animation: heroTextIn 1.15s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+.hero-text-content .section-label { text-align: left; }
+.hero-text-content .gold-line { margin: 1.2rem 0; }
 
-/* Priateľský podtitulok v kurzíve */
+/* Podtitulok */
 .hero-tagline {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: clamp(0.96rem, 2vw, 1.06rem);
-  color: #666;
-  max-width: 400px;
-  margin: 0.7rem auto 0;
-  line-height: 1.7;
+  font-size: clamp(0.96rem, 1.8vw, 1.08rem);
+  color: #555;
+  max-width: 380px;
+  margin: 0.7rem 0 0;
+  line-height: 1.75;
 }
 
 @keyframes heroPortraitIn {
-  from { opacity: 0; transform: scale(0.9) translateY(14px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes heroTextIn {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ─── MOBILE: stĺpce → riadky ─── */
 @media (max-width: 768px) {
   #hero {
-    padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem;
+    grid-template-columns: 1fr;
     min-height: auto;
   }
+  .hero-portrait-col {
+    padding: calc(var(--nav-height) + 2rem) 2rem 1.8rem;
+    justify-content: center;
+  }
+  .hero-paspartout { max-width: 300px; padding: 16px; }
+  .hero-text-content {
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem 2rem 3.5rem;
+  }
+  .hero-text-content .section-label { text-align: center; }
+  .hero-text-content .gold-line { margin: 1rem auto; }
+  .hero-tagline { margin: 0.7rem auto 0; max-width: 340px; }
   .pribeh-intro { padding: 2.8rem 1.4rem 2rem; }
   .pribeh-section { padding: 2.8rem 1.4rem 1.5rem; }
   .omne-section { padding: 3rem 1.4rem; }
@@ -126,37 +192,24 @@ body {
 
 @media (max-width: 480px) {
   body { font-size: clamp(16px, 4.2vw, 18px); }
-
-  #hero {
-    padding: calc(var(--nav-height) + 1.5rem) 1.2rem 2.5rem;
-  }
-  .hero-portrait-wrap {
-    width: clamp(120px, 38vw, 160px);
-    height: clamp(120px, 38vw, 160px);
-    margin-bottom: 1.5rem;
-  }
-  .hero-tagline { font-size: 0.94rem; max-width: 300px; }
+  .hero-portrait-col { padding: calc(var(--nav-height) + 1.5rem) 1.5rem 1.5rem; }
+  .hero-paspartout { max-width: 260px; padding: 13px; }
+  .hero-text-content { padding: 0.5rem 1.4rem 2.5rem; }
+  .hero-tagline { font-size: 0.94rem; }
   .hero-sub { font-size: 0.6rem; letter-spacing: 0.14em; }
-
   .pribeh-intro { padding: 2.2rem 1.2rem 1.8rem; }
   .pribeh-pullquote { font-size: clamp(1.3rem, 6vw, 1.7rem); }
-
   .omne-section { padding: 2.5rem 1.2rem; }
   .omne-title { font-size: clamp(1.9rem, 8vw, 2.8rem); }
-
   .tvorba-section { padding: 2.5rem 0 1.8rem; }
   .tvorba-inner { padding: 0 1.2rem; }
-
   .cta-mapa { padding: 2.5rem 1.2rem; }
   .cta-mapa h2 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
   .cta-btn { font-size: 0.7rem; padding: 0.9rem 1.5rem; letter-spacing: 0.14em; }
-
   .closing-quote { padding: 2.5rem 1.2rem; }
   .closing-quote blockquote { font-size: clamp(1.5rem, 7vw, 2rem); }
-
   .article-nav { flex-wrap: wrap; justify-content: center; gap: 0.6rem; padding: 1.2rem 1rem; }
   .article-nav a { font-size: 0.66rem; }
-
   .gold-line { margin: 1rem auto; }
 }
 
@@ -610,16 +663,20 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <section id="hero" aria-labelledby="hero-title">
   <span id="main" style="position:absolute;top:0;"></span>
 
-  <div class="hero-portrait-wrap">
-    <picture>
-      <source srcset="anna_lockwoodova.webp" type="image/webp">
-      <img src="anna_lockwoodova.jpg"
-           alt="Anna Lockwoodová"
-           class="hero-portrait-img"
-           decoding="async">
-    </picture>
+  <!-- Ľavá kolumna — stop-scroll foto v bielej paspartúte -->
+  <div class="hero-portrait-col">
+    <div class="hero-paspartout">
+      <picture>
+        <source srcset="anna_lockwoodova.webp" type="image/webp">
+        <img src="anna_lockwoodova.jpg"
+             alt="Anna Lockwoodová pri práci"
+             class="hero-portrait-img"
+             decoding="async">
+      </picture>
+    </div>
   </div>
 
+  <!-- Pravá kolumna — text -->
   <div class="hero-text-content">
     <p class="section-label">Príbeh · O autorke</p>
     <h1 id="hero-title">Anna Lockwoodová</h1>
