@@ -78,6 +78,7 @@ body {
     0 10px 38px rgba(26,26,26,0.13);
   animation: heroPortraitIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+.hero-portrait-wrap picture { display: block; width: 100%; height: 100%; }
 .hero-portrait-img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: top center;
@@ -567,10 +568,13 @@ section[id], div[id] { scroll-margin-top: 72px; }
   <span id="main" style="position:absolute;top:0;"></span>
 
   <div class="hero-portrait-wrap">
-    <img src="anna_lockwoodova.jpg"
-         alt="Anna Lockwoodová"
-         class="hero-portrait-img"
-         decoding="async">
+    <picture>
+      <source srcset="anna_lockwoodova.webp" type="image/webp">
+      <img src="anna_lockwoodova.jpg"
+           alt="Anna Lockwoodová"
+           class="hero-portrait-img"
+           decoding="async">
+    </picture>
   </div>
 
   <div class="hero-text-content">
@@ -605,7 +609,10 @@ section[id], div[id] { scroll-margin-top: 72px; }
     </div>
     <div class="knihy-sticky">
       <figure class="knihy-foto" id="knihyFoto1">
-        <img src="anna_lockwoodova_knihy.jpeg" alt="Autobiografia starého otca a knihy o rodine Šenšelovcov" loading="lazy" decoding="async" width="480" height="380">
+        <picture>
+          <source srcset="anna_lockwoodova_knihy.webp" type="image/webp">
+          <img src="anna_lockwoodova_knihy.jpeg" alt="Autobiografia starého otca a knihy o rodine Šenšelovcov" loading="lazy" decoding="async" width="480" height="380">
+        </picture>
         <figcaption>Na skúmanie starých príbehov som musela dozrieť.</figcaption>
       </figure>
     </div>
@@ -626,7 +633,10 @@ section[id], div[id] { scroll-margin-top: 72px; }
     </div>
     <div class="knihy-sticky">
       <figure class="knihy-foto" id="knihyFoto2">
-        <img src="anna_lockwoodova_knihy2.jpeg" alt="Vlastný životopis Ľudovíta Šenšela, Pevný buď a Šenšelovský rod" loading="lazy" decoding="async" width="480" height="380">
+        <picture>
+          <source srcset="anna_lockwoodova_knihy2.webp" type="image/webp">
+          <img src="anna_lockwoodova_knihy2.jpeg" alt="Vlastný životopis Ľudovíta Šenšela, Pevný buď a Šenšelovský rod" loading="lazy" decoding="async" width="480" height="380">
+        </picture>
         <figcaption>Vlastný životopis · Pevný buď · Šenšelovský rod</figcaption>
       </figure>
     </div>
