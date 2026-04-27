@@ -734,6 +734,33 @@
   margin-bottom: 1.5rem;
   font-size: 1.05rem;
 }
+.delete-link-box {
+  margin-top: 1.8rem;
+  padding: 1rem 1.4rem;
+  background: #f8f4ef;
+  border: 1px dashed rgba(139,26,26,0.2);
+  border-radius: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.92rem;
+  color: var(--ink);
+  opacity: 0.7;
+  line-height: 1.6;
+}
+.delete-link-box strong {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.4rem;
+  opacity: 1;
+}
+.delete-link-box a {
+  color: var(--red);
+  word-break: break-all;
+  font-size: 0.82rem;
+}
 .share-success-btns {
   display: flex; gap: 0.8rem;
   justify-content: center; flex-wrap: wrap;
@@ -1312,6 +1339,12 @@
         <h3>Ďakujeme</h3>
         <p>Tvoj príbeh sme prijali a čoskoro sa objaví na mape.<br>Pomáhaš zachovať kúsok Slovenska pre budúce generácie.</p>
         <div class="share-success-btns" id="shareSuccessBtns"></div>
+        <div class="delete-link-box" id="deleteLinkBox" style="display:none">
+          <strong>Odkaz na vymazanie príbehu</strong>
+          Ak by si niekedy chcel/a príbeh odstrániť, použi tento odkaz.
+          Ulož si ho — zobrazuje sa len raz.<br>
+          <a id="deleteLinkAnchor" href="#"></a>
+        </div>
       </div>
     </div>
   </div>
@@ -1920,6 +1953,9 @@
       }
     }
 
+    // Generuj delete token na strane klienta
+    const deleteToken = crypto.randomUUID();
+
     // Insert into Supabase
     const { error } = await sb.from('stories').insert({
       predok_meno:         meno,
@@ -1932,6 +1968,7 @@
       zdielal_meno:        document.getElementById('fZdielalMeno').value.trim() || null,
       zdielal_priezvisko:  document.getElementById('fZdielalPriezvisko').value.trim() || null,
       zdielal_email:       document.getElementById('fEmail').value.trim() || null,
+      delete_token:        deleteToken,
       status:              'pending'
     });
 
@@ -1942,20 +1979,65 @@
     }
 
     // Success
-    showSuccess(menoFull, '', obec);
+    showSuccess(menoFull, obec, deleteToken);
   });
 
-  function showSuccess(menoFull, _unused, obec) {
+  function showSuccess(menoFull, obec, deleteToken) {
     document.getElementById('pribehForm').style.display = 'none';
     const successEl = document.getElementById('formSuccess');
     successEl.style.display = 'block';
-    const url  = window.location.href.split('#')[0] + '#pridaj-pribeh';
+    const pageUrl  = window.location.href.split('?')[0].split('#')[0];
+    const shareUrl = pageUrl + '#pridaj-pribeh';
     const text = menoFull + ' z ' + obec + ' — príbeh, ktorý nesmie zaniknúť. Pridaj aj ty spomienku na svojich predkov 👉 ';
     const btns = document.getElementById('shareSuccessBtns');
     btns.innerHTML =
-      '<a class="btn-share-success btn-share-success--fb" href="https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '" target="_blank" rel="noopener">Zdieľať na Facebooku</a>' +
-      '<a class="btn-share-success btn-share-success--wa" href="https://wa.me/?text=' + encodeURIComponent(text + url) + '" target="_blank" rel="noopener">Zdieľať cez WhatsApp</a>';
+      '<a class="btn-share-success btn-share-success--fb" href="https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) + '" target="_blank" rel="noopener">Zdieľať na Facebooku</a>' +
+      '<a class="btn-share-success btn-share-success--wa" href="https://wa.me/?text=' + encodeURIComponent(text + shareUrl) + '" target="_blank" rel="noopener">Zdieľať cez WhatsApp</a>';
+
+    // Zobraz delete link
+    if (deleteToken) {
+      const deleteUrl = pageUrl + '?delete_token=' + deleteToken;
+      const box = document.getElementById('deleteLinkBox');
+      const anchor = document.getElementById('deleteLinkAnchor');
+      anchor.href = deleteUrl;
+      anchor.textContent = deleteUrl;
+      box.style.display = 'block';
+    }
   }
+
+  /* ─── DELETE TOKEN HANDLER ───────────────────── */
+  (function handleDeleteToken() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('delete_token');
+    if (!token) return;
+
+    // Zobraz potvrdzovacie okno
+    const confirmed = window.confirm(
+      'Naozaj chcete vymazať tento príbeh z mapy?\n\nTáto akcia je nevratná.'
+    );
+    if (!confirmed) {
+      // Odstráň parameter z URL bez reload
+      history.replaceState(null, '', window.location.pathname + window.location.hash);
+      return;
+    }
+
+    // Zavolaj Edge Function
+    fetch('https://edloyrsptfwqdvgnzuhh.supabase.co/functions/v1/delete-story', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.deleted) {
+        alert('Príbeh bol úspešne vymazaný. Ďakujeme za oznámenie.');
+      } else {
+        alert('Príbeh sa nepodarilo nájsť alebo bol už vymazaný.');
+      }
+      history.replaceState(null, '', window.location.pathname);
+    })
+    .catch(() => alert('Nastala chyba. Prosím, napíšte na senselovaanna@gmail.com.'));
+  })();
 
   function showFormError(msg) {
     const el = document.getElementById('formError');

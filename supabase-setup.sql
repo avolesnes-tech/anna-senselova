@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS stories (
   zdielal_meno        TEXT,           -- voliteľné — meno prispievateľa
   zdielal_priezvisko  TEXT,           -- voliteľné — priezvisko prispievateľa
   zdielal_email       TEXT,           -- voliteľné — e-mail prispievateľa (pre notifikáciu o schválení)
+  delete_token        UUID        NOT NULL DEFAULT gen_random_uuid()
   status              TEXT        NOT NULL DEFAULT 'pending'
                                   CHECK (status IN ('pending','approved','rejected')),
   created_at          TIMESTAMPTZ NOT NULL DEFAULT NOW()
