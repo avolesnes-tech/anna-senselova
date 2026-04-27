@@ -32,6 +32,7 @@
 body {
   font-size: clamp(17px, 2.4vw, 19px);
   line-height: 1.75;
+  overflow-x: hidden;
 }
 
 /* READING PROGRESS */
@@ -115,6 +116,48 @@ body {
     padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem;
     min-height: auto;
   }
+  .pribeh-intro { padding: 2.8rem 1.4rem 2rem; }
+  .pribeh-section { padding: 2.8rem 1.4rem 1.5rem; }
+  .omne-section { padding: 3rem 1.4rem; }
+  .tvorba-section { padding: 3rem 0 2rem; }
+  .cta-mapa { padding: 3rem 1.4rem; }
+  .closing-quote { padding: 3rem 1.4rem; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: clamp(16px, 4.2vw, 18px); }
+
+  #hero {
+    padding: calc(var(--nav-height) + 1.5rem) 1.2rem 2.5rem;
+  }
+  .hero-portrait-wrap {
+    width: clamp(120px, 38vw, 160px);
+    height: clamp(120px, 38vw, 160px);
+    margin-bottom: 1.5rem;
+  }
+  .hero-tagline { font-size: 0.94rem; max-width: 300px; }
+  .hero-sub { font-size: 0.6rem; letter-spacing: 0.14em; }
+
+  .pribeh-intro { padding: 2.2rem 1.2rem 1.8rem; }
+  .pribeh-pullquote { font-size: clamp(1.3rem, 6vw, 1.7rem); }
+
+  .omne-section { padding: 2.5rem 1.2rem; }
+  .omne-title { font-size: clamp(1.9rem, 8vw, 2.8rem); }
+
+  .tvorba-section { padding: 2.5rem 0 1.8rem; }
+  .tvorba-inner { padding: 0 1.2rem; }
+
+  .cta-mapa { padding: 2.5rem 1.2rem; }
+  .cta-mapa h2 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+  .cta-btn { font-size: 0.7rem; padding: 0.9rem 1.5rem; letter-spacing: 0.14em; }
+
+  .closing-quote { padding: 2.5rem 1.2rem; }
+  .closing-quote blockquote { font-size: clamp(1.5rem, 7vw, 2rem); }
+
+  .article-nav { flex-wrap: wrap; justify-content: center; gap: 0.6rem; padding: 1.2rem 1rem; }
+  .article-nav a { font-size: 0.66rem; }
+
+  .gold-line { margin: 1rem auto; }
 }
 
 .section-label {
@@ -125,7 +168,7 @@ body {
 
 h1 {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(3rem, 9vw, 6.5rem);
+  font-size: clamp(2.4rem, 9vw, 6.5rem);
   color: var(--red); line-height: 1.1;
 }
 
