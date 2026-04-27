@@ -67,7 +67,7 @@ body.page-leaving { opacity: 0; }
 }
 
 /* ── NAV CSS ── */
-nav {
+nav:not([class]) {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 9998;
   background: rgba(249,247,242,0.97);
