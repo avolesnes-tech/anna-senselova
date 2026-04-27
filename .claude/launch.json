@@ -4,8 +4,8 @@
     {
       "name": "anna-senselova",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "8765", "."],
-      "port": 8765
+      "runtimeArgs": ["serve", "."],
+      "autoPort": true
     }
   ]
 }
