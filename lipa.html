@@ -477,7 +477,7 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
 
 /* ─── ARCHÍVNA GALÉRIA — CAROUSEL ───────────────────────────────── */
 #galeria-archivu {
-  background: var(--cream);
+  background: var(--ink);
   padding: 4.5rem 2rem;
   border-bottom: 1px solid rgba(212,175,55,0.2);
   overflow: hidden; /* zabraňuje horizontálnemu presahu carousel tlačidiel */
@@ -498,180 +498,124 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
   font-size: clamp(2.4rem, 5.5vw, 4rem);
   letter-spacing: 0.01em;
   line-height: 1.25;
+  color: var(--cream);
 }
 
 .galeria-header p {
   font-size: 0.97rem;
-  color: #666;
+  color: rgba(249,247,242,0.6);
   font-style: italic;
   max-width: 520px;
   margin: 0 auto;
   line-height: 1.8;
 }
 
-/* ─── ARCHÍV — editorial museum layout ──────────────────────────── */
-.archiv-grid {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 2px;
-  max-width: 1160px;
-  margin: 0 auto;
-  align-items: start;
-}
-
-/* Každá karta = figure */
-.archiv-item {
-  margin: 0;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(212,175,55,0.18);
-  background: var(--cream);
-  outline: none;
-  transition: border-color 0.28s ease, box-shadow 0.28s ease;
-}
-
-.archiv-item:hover,
-.archiv-item:focus-visible {
-  border-color: rgba(196,30,58,0.4);
-  box-shadow: 0 8px 36px rgba(196,30,58,0.10);
-  z-index: 2;
-}
-.archiv-item:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-
-/* FOTO — obal */
-.archiv-photo-wrap {
+/* ─── GALÉRIA LIPY — CAROUSEL ─────────────────────────────── */
+.lipa-carousel-wrap {
   position: relative;
   overflow: hidden;
-  flex-shrink: 0;
 }
-
-.archiv-photo-wrap img {
+.lipa-carousel-viewport {
+  overflow: hidden;
+  position: relative;
+  padding: 2.5rem 0 0;
+}
+.lipa-carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.lipa-slide {
+  flex: 0 0 62%;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.55s,
+              filter 0.55s;
+  transform: scale(0.78);
+  opacity: 0.3;
+  filter: brightness(0.55) saturate(0.7);
+  cursor: pointer;
+  user-select: none;
+}
+.lipa-slide.is-active {
+  transform: scale(1);
+  opacity: 1;
+  filter: brightness(1) saturate(1);
+  cursor: default;
+}
+.lipa-slide img {
   width: 100%;
   height: auto;
   display: block;
-  filter: sepia(10%) contrast(1.05) brightness(0.97);
-  transition: transform 0.65s cubic-bezier(0.25, 0, 0.25, 1);
+  filter: sepia(8%) contrast(1.04);
 }
-
-.archiv-item:hover .archiv-photo-wrap img { transform: scale(1.035); }
-
-/* Tmavý overlay pri hoveri */
-.archiv-photo-wrap::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(8,4,2,0);
-  transition: background 0.35s;
-  pointer-events: none;
+.lipa-caption {
+  padding: 1.4rem 1rem 0;
+  text-align: center;
+  min-height: 5rem;
 }
-.archiv-item:hover .archiv-photo-wrap::after { background: rgba(8,4,2,0.22); }
-
-/* Zväčšiť hint */
-.archiv-zoom-hint {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  opacity: 0;
-  transition: opacity 0.25s, transform 0.25s;
-  display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
-  color: #fff; pointer-events: none; z-index: 3;
-}
-.archiv-zoom-hint span {
-  font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em;
-  text-transform: uppercase; opacity: 0.85;
-}
-.archiv-item:hover .archiv-zoom-hint {
-  opacity: 1; transform: translate(-50%, -50%) scale(1);
-}
-
-/* CAPTION — vždy viditeľná */
-.archiv-caption {
-  padding: 1.4rem 1.6rem 1.7rem;
-  border-top: 2px solid rgba(212,175,55,0.28);
-  background: var(--cream);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.archiv-num {
-  font-family: 'Cinzel', serif;
-  font-size: 0.57rem; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--gold-dark); margin-bottom: 0.55rem;
-}
-
-.archiv-title {
+.lipa-caption-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.08rem; font-weight: 600; line-height: 1.3;
-  color: var(--red); margin: 0 0 0.7rem;
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  font-weight: 600;
+  color: var(--cream);
+  margin: 0 0 0.35rem;
+  line-height: 1.3;
 }
-
-.archiv-rule {
-  width: 36px; height: 1px;
-  background: linear-gradient(90deg, var(--gold), transparent);
-  margin-bottom: 0.85rem; flex-shrink: 0;
+.lipa-caption-meta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(212,175,55,0.65);
 }
-
-/* Metadáta — Miesto / Rok */
-.archiv-meta {
-  display: flex; flex-direction: column; gap: 0.28rem;
-  margin-bottom: 0.9rem;
+/* Nav buttons */
+.lipa-btn {
+  position: absolute;
+  top: calc(50% - 2rem);
+  transform: translateY(-50%);
+  background: rgba(44,36,22,0.6);
+  border: 1px solid rgba(212,175,55,0.35);
+  color: rgba(212,175,55,0.85);
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  z-index: 10;
+  flex-shrink: 0;
 }
-.archiv-meta-row { display: flex; align-items: baseline; gap: 0; font-size: 0.85rem; }
-.archiv-meta-label {
-  font-family: 'Cinzel', serif; font-size: 0.575rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--gold-dark); flex-shrink: 0;
-  width: 5rem; padding-top: 0.12rem;
+.lipa-btn:hover { background: rgba(212,175,55,0.18); border-color: rgba(212,175,55,0.7); color: var(--gold); }
+.lipa-btn--prev { left: 1rem; }
+.lipa-btn--next { right: 1rem; }
+/* Dots */
+.lipa-dots {
+  display: flex; gap: 0.55rem; justify-content: center;
+  margin-top: 1.8rem; padding-bottom: 0.5rem;
 }
-.archiv-meta-value { color: #555; line-height: 1.5; }
-
-/* Popis / opis foto */
-.archiv-desc {
-  font-size: 0.875rem; color: #666; line-height: 1.72; font-style: italic;
-  border-top: 1px solid rgba(212,175,55,0.18); padding-top: 0.85rem; margin-top: auto;
+.lipa-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(212,175,55,0.25);
+  border: none; padding: 0; cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
 }
-
-/* Zoznam osôb */
-.archiv-persons { margin-top: 0.65rem; }
-.archiv-persons-label {
-  font-family: 'Cinzel', serif; font-size: 0.565rem; letter-spacing: 0.17em;
-  text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.55rem;
+.lipa-dot.is-active { background: var(--gold); transform: scale(1.45); }
+/* Counter */
+.lipa-counter {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: rgba(212,175,55,0.45);
+  text-align: center;
+  margin-top: 0.9rem;
+  text-transform: uppercase;
 }
-.archiv-persons-list {
-  list-style: none; display: flex; flex-direction: column; gap: 0.22rem;
-}
-.archiv-persons-list li {
-  font-size: 0.82rem; color: #555; display: flex; align-items: baseline; gap: 0.45rem;
-  line-height: 1.5;
-}
-.archiv-persons-list li::before {
-  content: '–'; color: var(--gold-dark); flex-shrink: 0; font-size: 0.72rem;
-}
-
-/* Dekoratívna linka pod galériou */
-.galeria-footer-line {
-  max-width: 1160px;
-  margin: 2rem auto 0;
-  display: flex; align-items: center; gap: 1.2rem;
-}
-.galeria-footer-line-bar {
-  flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
-}
-.galeria-footer-note {
-  font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: rgba(160,124,16,0.55); white-space: nowrap;
-}
-
-/* Responzívnosť */
-@media (max-width: 860px) {
-  .archiv-grid { grid-template-columns: 1fr; gap: 0; }
-  .archiv-side { gap: 2px; }
-}
-@media (max-width: 540px) {
-  .archiv-caption { padding: 1.1rem 1.2rem 1.3rem; }
-  .archiv-title { font-size: 0.97rem; }
+@media (max-width: 680px) {
+  .lipa-slide { flex-basis: 82%; }
+  .lipa-btn--prev { left: 0.3rem; }
+  .lipa-btn--next { right: 0.3rem; }
 }
 
 /* ─── LIGHTBOX ───────────────────────────────────────────────────── */
@@ -977,180 +921,142 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <!-- ARCHÍVNA GALÉRIA — CAROUSEL -->
 <section id="galeria-archivu">
   <div class="galeria-header reveal">
-    <span class="section-label">Obrazový archív</span>
-    <h2 class="script">Obrazy Lipy.</h2>
+    <span class="section-label">Galéria Lipy</span>
+    <h2 class="script">Galéria Lipy.</h2>
     <div class="gold-line"></div>
-    <p>Historické fotografie z činnosti Lipy, výstav a vyšívkárok — zbierka sa postupne dopĺňa.</p>
+    <p>Historické fotografie, reklamné materiály a vzorky z činnosti Lipy — zbierka sa postupne dopĺňa.</p>
   </div>
 
-  <div class="archiv-grid">
+  <div class="lipa-carousel-wrap">
+    <button class="lipa-btn lipa-btn--prev" id="lipaPrev" aria-label="Predchádzajúca fotografia">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
 
-    <!-- ① Predajňa Lipy -->
-    <figure class="archiv-item" tabindex="0" role="button" aria-label="Otvoriť fotografiu: Prvá predajňa Lipy v Martine"
-            data-title="Prvá predajňa Lipy v Martine"
-            data-meta="Dom Gustáva Šimku · Turčiansky Svätý Martin · 1911 – 1933"
-            data-idx="0">
-      <div class="archiv-photo-wrap">
-        <img src="lipa_predajna.jpg"
-             alt="Prvá predajňa Lipy (1911–1933) v dome Gustáva Šimku v Turčianskom Svätom Martine"
-             loading="lazy">
-        <div class="archiv-zoom-hint" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
-            <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
-          </svg>
-          <span>Zväčšiť</span>
-        </div>
-      </div>
-      <figcaption class="archiv-caption">
-        <div class="archiv-num">Archív Lipy</div>
-        <h3 class="archiv-title">Prvá predajňa Lipy v Martine</h3>
-        <div class="archiv-rule"></div>
-        <div class="archiv-meta">
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Miesto</span>
-            <span class="archiv-meta-value">Dom Gustáva Šimku, Turčiansky Svätý Martin</span>
-          </div>
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Obdobie</span>
-            <span class="archiv-meta-value">1911 – 1933</span>
-          </div>
-        </div>
-        <p class="archiv-desc">Exteriér domu, kde sídlila prvá predajňa Lipy celé dve desaťročia. Práve tu sa slovenské ľudové výšivky po prvýkrát predávali pod vlastným menom — hrdým nápisom <em>vyrobené slovenskou ženou</em>.</p>
-      </figcaption>
-    </figure>
+    <div class="lipa-carousel-viewport" id="lipaViewport">
+      <div class="lipa-carousel-track" id="lipaTrack">
 
-    <!-- ② Prípravný výbor 1913 -->
-    <figure class="archiv-item" tabindex="0" role="button" aria-label="Otvoriť fotografiu: Prípravný výbor výstavy – Viedeň 1913"
-            data-title="Prípravný výbor výstavy slovenských výšiviek – Viedeň 1913"
-            data-meta="Viedeň · 1913 · Kornel Stodola, Pavol Blaho, Anna Šenšelová, Oľga Stodolová, gróf Karol Šeilern, R. Rehák, G. Rehák, Kristína Smieskolová, R. Reháková"
-            data-idx="1">
-      <div class="archiv-photo-wrap">
-        <img src="lipa_vybor_1913.jpg"
-             alt="Prípravný výbor výstavy slovenských výšiviek vo Viedni 1913 — Kornel Stodola, Pavol Blaho, Anna Šenšelová, Oľga Stodolová, gróf Karol Šeilern, R. Rehák, G. Rehák, Kristína Smieskolová, R. Reháková"
-             loading="lazy">
-        <div class="archiv-zoom-hint" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
-            <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
-          </svg>
-          <span>Zväčšiť</span>
-        </div>
-      </div>
-      <figcaption class="archiv-caption">
-        <div class="archiv-num">Archív Lipy</div>
-        <h3 class="archiv-title">Prípravný výbor výstavy slovenských výšiviek</h3>
-        <div class="archiv-rule"></div>
-        <div class="archiv-meta">
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Miesto</span>
-            <span class="archiv-meta-value">Viedeň</span>
-          </div>
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Rok</span>
-            <span class="archiv-meta-value">1913</span>
-          </div>
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Zdroj</span>
-            <span class="archiv-meta-value"><a href="https://dikda.sk" target="_blank" rel="noopener" style="color:var(--gold-dark); text-decoration:none; border-bottom:1px solid rgba(160,124,16,0.35);">Zborník SNM. História 52 · dikda.sk</a></span>
+        <div class="lipa-slide" data-title="Prvá predajňa Lipy v Martine" data-meta="Dom Gustáva Šimku · Turčiansky Sv. Martin · 1911–1933">
+          <img src="lipa_predajna.jpg" alt="Prvá predajňa Lipy v Martine" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Prvá predajňa Lipy v Martine</p>
+            <p class="lipa-caption-meta">Dom Gustáva Šimku · Turčiansky Sv. Martin · 1911–1933</p>
           </div>
         </div>
-        <div class="archiv-persons">
-          <div class="archiv-persons-label">Osoby na fotografii</div>
-          <ul class="archiv-persons-list">
-            <li>Kornel Stodola</li>
-            <li>Pavol Blaho</li>
-            <li>Anna Šenšelová</li>
-            <li>Oľga Stodolová</li>
-            <li>gróf Karol Šeilern</li>
-            <li>R. Rehák</li>
-            <li>G. Rehák</li>
-            <li>Kristína Smieskolová</li>
-            <li>R. Reháková</li>
-          </ul>
-        </div>
-      </figcaption>
-    </figure>
 
-    <!-- ③ Inzerát v Živene -->
-    <figure class="archiv-item" tabindex="0" role="button" aria-label="Otvoriť: Inzerát Lipy v časopise Živena"
-            data-title="Inzerát Lipy v časopise Živena"
-            data-meta="Časopis Živena · Turčiansky Svätý Martin"
-            data-idx="2">
-      <div class="archiv-photo-wrap">
-        <img src="lipa_reklama_zivena.jpg"
-             alt="Inzerát Lipy — Ľudový priemysel, účastinárska spoločnosť v Turčianskom Sv. Martine — z časopisu Živena"
-             loading="lazy">
-        <div class="archiv-zoom-hint" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
-            <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
-          </svg>
-          <span>Zväčšiť</span>
-        </div>
-      </div>
-      <figcaption class="archiv-caption">
-        <div class="archiv-num">Archív Živena</div>
-        <h3 class="archiv-title">Inzerát Lipy v časopise Živena</h3>
-        <div class="archiv-rule"></div>
-        <div class="archiv-meta">
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Vydavateľ</span>
-            <span class="archiv-meta-value">Časopis Živena, Turčiansky Svätý Martin</span>
-          </div>
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Istina</span>
-            <span class="archiv-meta-value">1 000 000 Kčs · zásoby 350 000 Kčs</span>
-          </div>
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Zdroj</span>
-            <span class="archiv-meta-value"><a href="https://dikda.sk" target="_blank" rel="noopener" style="color:var(--gold-dark); text-decoration:none; border-bottom:1px solid rgba(160,124,16,0.35);">dikda.sk</a></span>
+        <div class="lipa-slide" data-title="Prípravný výbor výstavy slovenských výšiviek" data-meta="Viedeň · 1913">
+          <img src="lipa_vybor_1913.jpg" alt="Prípravný výbor výstavy slovenských výšiviek vo Viedni 1913" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Prípravný výbor výstavy slovenských výšiviek</p>
+            <p class="lipa-caption-meta">Viedeň · 1913</p>
           </div>
         </div>
-        <p class="archiv-desc">Inzerát ponúka slovenské ľudové výšivky, čipky, dámske ošatenie, bytový textil aj keramiku. Uvádza filiálky v Trenčíne, Piešťanoch, Liptovskom Sv. Mikuláši, Luhačoviciach, Prahe, Juhoslávii a Amerike.</p>
-      </figcaption>
-    </figure>
 
-    <!-- ④ Národopisná výstava 1925 -->
-    <figure class="archiv-item" tabindex="0" role="button" aria-label="Otvoriť fotografiu: Národopisná výstava Živeny a Lipy, Banská Bystrica 1925"
-            data-title="Národopisná výstava Živeny a Lipy"
-            data-meta="Banská Bystrica · 1925 · Zdroj: Slovakiana.sk"
-            data-idx="3">
-      <div class="archiv-photo-wrap">
-        <img src="vystava_zivena_1925.jpg"
-             alt="Národopisná výstava Živeny a Lipy, Banská Bystrica 1925"
-             loading="lazy">
-        <div class="archiv-zoom-hint" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
-            <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
-          </svg>
-          <span>Zväčšiť</span>
-        </div>
-      </div>
-      <figcaption class="archiv-caption">
-        <div class="archiv-num">Archív Živena</div>
-        <h3 class="archiv-title">Národopisná výstava Živeny a Lipy</h3>
-        <div class="archiv-rule"></div>
-        <div class="archiv-meta">
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Miesto</span>
-            <span class="archiv-meta-value">Banská Bystrica</span>
-          </div>
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Rok</span>
-            <span class="archiv-meta-value">1925</span>
-          </div>
-          <div class="archiv-meta-row">
-            <span class="archiv-meta-label">Zdroj</span>
-            <span class="archiv-meta-value"><a href="https://slovakiana.sk/kulturne-objekty/cair-ko1l1di" target="_blank" rel="noopener" style="color:var(--gold-dark); text-decoration:none; border-bottom:1px solid rgba(160,124,16,0.35);">Slovakiana.sk</a></span>
+        <div class="lipa-slide" data-title="Inzerát Lipy v časopise Živena" data-meta="Časopis Živena · Turčiansky Svätý Martin">
+          <img src="lipa_reklama_zivena.jpg" alt="Inzerát Lipy v časopise Živena" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Inzerát Lipy v časopise Živena</p>
+            <p class="lipa-caption-meta">Časopis Živena · Turčiansky Svätý Martin</p>
           </div>
         </div>
-        <p class="archiv-desc">Výstava organizovaná spolkami Živena a Lipa predstavila verejnosti bohatstvo slovenského ľudového umenia a výšivkárstva z celého Slovenska. Na snímke vidno stánok s krojmi, výšivkami z Detvy a Osady, keramikou a ďalšími ľudovými výrobkami.</p>
-      </figcaption>
-    </figure>
 
-  </div><!-- /archiv-grid -->
+        <div class="lipa-slide" data-title="Národopisná výstava Živeny a Lipy" data-meta="Banská Bystrica · 1925">
+          <img src="vystava_zivena_1925.jpg" alt="Národopisná výstava Živeny a Lipy, Banská Bystrica 1925" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Národopisná výstava Živeny a Lipy</p>
+            <p class="lipa-caption-meta">Banská Bystrica · 1925</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Oznámenie o predajni Lipy v Bratislave" data-meta="Živena · 1928">
+          <img src="reklama_predajna_Lipa_Bratislava.jpeg" alt="Oznámenie o otvorení predajne Lipy v Bratislave, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Oznámenie o predajni Lipy v Bratislave</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Reklama Lipy" data-meta="Živena · 1928">
+          <img src="reklama_lipa.jpeg" alt="Reklama Lipy — ľudový priemysel, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Reklama Lipy</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Batistová aplikácia" data-meta="Živena · 1928">
+          <img src="batist_aplikacia.jpeg" alt="Batistová aplikácia z produkcie Lipy, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Batistová aplikácia</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Detská garnitúra" data-meta="Živena · 1928">
+          <img src="detska_garnitura.jpeg" alt="Detská garnitúra z produkcie Lipy, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Detská garnitúra</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Kožený kabát" data-meta="Živena · 1928">
+          <img src="kozeny_kabat.jpeg" alt="Kožený kabát z produkcie Lipy, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Kožený kabát</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Módna rubrika — záclony" data-meta="Živena · 1928">
+          <img src="rubrika_moda_zaclony.jpeg" alt="Módna rubrika Lipy — záclony, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Módna rubrika — záclony</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Stolová garnitúra" data-meta="Živena · 1928">
+          <img src="stolova_garnitura.jpeg" alt="Stolová garnitúra z produkcie Lipy, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Stolová garnitúra</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Vankúš na dvojitú posteľ" data-meta="Živena · 1928">
+          <img src="vankus_na_dvojitu_postel.jpeg" alt="Vankúš na dvojitú posteľ z produkcie Lipy, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Vankúš na dvojitú posteľ</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Vyšívané šaty Lipy" data-meta="Živena · 1928">
+          <img src="vysivane_saty_lipa.jpeg" alt="Vyšívané šaty z produkcie Lipy, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Vyšívané šaty Lipy</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+        <div class="lipa-slide" data-title="Vyšívané vankúše" data-meta="Živena · 1928">
+          <img src="vysivane_vankuse.jpeg" alt="Vyšívané vankúše z produkcie Lipy, Živena 1928" loading="lazy">
+          <div class="lipa-caption">
+            <p class="lipa-caption-title">Vyšívané vankúše</p>
+            <p class="lipa-caption-meta">Živena · 1928</p>
+          </div>
+        </div>
+
+      </div><!-- /track -->
+    </div><!-- /viewport -->
+
+    <button class="lipa-btn lipa-btn--next" id="lipaNext" aria-label="Nasledujúca fotografia">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div><!-- /carousel-wrap -->
+
+  <div class="lipa-dots" id="lipaDots"></div>
+  <p class="lipa-counter" id="lipaCounter"></p>
 
 </section>
 
@@ -1703,6 +1609,84 @@ section[id], div[id] { scroll-margin-top: 72px; }
         else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
       }
     });
+  })();
+
+  /* ─── GALÉRIA LIPY — CAROUSEL ─────────────────────── */
+  (function() {
+    const track    = document.getElementById('lipaTrack');
+    const viewport = document.getElementById('lipaViewport');
+    const dotsEl   = document.getElementById('lipaDots');
+    const counter  = document.getElementById('lipaCounter');
+    const btnPrev  = document.getElementById('lipaPrev');
+    const btnNext  = document.getElementById('lipaNext');
+    if (!track) return;
+
+    const slides = Array.from(track.querySelectorAll('.lipa-slide'));
+    const total  = slides.length;
+    let current  = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'lipa-dot' + (i === 0 ? ' is-active' : '');
+      d.setAttribute('aria-label', 'Fotografia ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    });
+
+    function getSlideWidth() {
+      return slides[0] ? slides[0].offsetWidth : 0;
+    }
+    function getGap() { return 28; } // 1.8rem ≈ 28px
+
+    function goTo(idx) {
+      if (idx < 0) idx = total - 1;
+      if (idx >= total) idx = 0;
+      current = idx;
+
+      // Translate track so active slide is centered
+      const sw    = getSlideWidth();
+      const gap   = getGap();
+      const vw    = viewport.offsetWidth;
+      const offset = -(current * (sw + gap)) + (vw / 2 - sw / 2);
+      track.style.transform = 'translateX(' + offset + 'px)';
+
+      // Update classes
+      slides.forEach((s, i) => {
+        s.classList.toggle('is-active', i === current);
+      });
+      Array.from(dotsEl.querySelectorAll('.lipa-dot')).forEach((d, i) => {
+        d.classList.toggle('is-active', i === current);
+      });
+      counter.textContent = (current + 1) + ' / ' + total;
+    }
+
+    btnPrev.addEventListener('click', () => goTo(current - 1));
+    btnNext.addEventListener('click', () => goTo(current + 1));
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('galeria-archivu')) return;
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    viewport.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    viewport.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    // Click on non-active slide → go to it
+    slides.forEach((s, i) => {
+      s.addEventListener('click', () => { if (i !== current) goTo(i); });
+    });
+
+    // Init + resize
+    goTo(0);
+    window.addEventListener('resize', () => goTo(current));
   })();
 </script>
 <!-- GDPR Modal -->
