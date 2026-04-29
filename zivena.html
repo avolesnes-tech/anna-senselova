@@ -192,6 +192,164 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
 
 /* ── scroll-margin-top pre zakotvené sekcie ── */
 section[id], div[id] { scroll-margin-top: 72px; }
+
+/* ─── ARCHÍVNA GALÉRIA — CAROUSEL ───────────────────────────────── */
+#galeria-zivena {
+  background: var(--section-alt);
+  padding: 4.5rem 2rem;
+  border-top: 1px solid rgba(212,175,55,0.2);
+  border-bottom: 1px solid rgba(212,175,55,0.2);
+  overflow: hidden;
+}
+.galeria-header {
+  max-width: 900px;
+  margin: 0 auto 2.8rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+.galeria-header h2.script {
+  font-size: clamp(2.8rem, 6.5vw, 5rem);
+  color: var(--red);
+}
+.galeria-header p {
+  font-size: 0.97rem;
+  color: #555;
+  font-style: italic;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.zivena-carousel-wrap { position: relative; overflow: hidden; }
+.zivena-carousel-viewport { overflow: hidden; position: relative; padding: 2.5rem 0 0; }
+.zivena-carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.zivena-slide {
+  flex: 0 0 42%;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.55s, filter 0.55s;
+  transform: scale(0.78);
+  opacity: 0.3;
+  filter: brightness(0.55) saturate(0.7);
+  cursor: pointer;
+  user-select: none;
+}
+.zivena-slide.is-active {
+  transform: scale(1);
+  opacity: 1;
+  filter: brightness(1) saturate(1);
+  cursor: zoom-in;
+}
+.zivena-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: sepia(8%) contrast(1.04);
+}
+.zivena-caption {
+  padding: 1.4rem 1rem 0;
+  text-align: center;
+  min-height: 5rem;
+}
+.zivena-caption-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  font-weight: 500;
+  color: rgba(72, 50, 8, 0.85);
+  margin: 0 0 0.35rem;
+  line-height: 1.3;
+}
+.zivena-caption-meta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(107,80,0,0.75);
+}
+.zivena-btn {
+  position: absolute;
+  top: calc(50% - 2rem);
+  transform: translateY(-50%);
+  background: rgba(249,247,242,0.9);
+  border: 1px solid rgba(212,175,55,0.45);
+  color: var(--ink);
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  z-index: 10;
+}
+.zivena-btn:hover { background: #fff; border-color: rgba(212,175,55,0.8); color: var(--red); }
+.zivena-btn--prev { left: 1rem; }
+.zivena-btn--next { right: 1rem; }
+.zivena-dots { display: flex; gap: 0.55rem; justify-content: center; margin-top: 1.8rem; padding-bottom: 0.5rem; }
+.zivena-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(107,80,0,0.2);
+  border: none; padding: 0; cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.zivena-dot.is-active { background: var(--gold-dark); transform: scale(1.45); }
+.zivena-counter {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: rgba(107,80,0,0.55);
+  text-align: center;
+  margin-top: 0.9rem;
+  text-transform: uppercase;
+}
+@media (max-width: 680px) {
+  .zivena-slide { flex-basis: 72%; }
+  .zivena-btn--prev { left: 0.3rem; }
+  .zivena-btn--next { right: 0.3rem; }
+}
+
+/* ─── LIGHTBOX ─── */
+.zivena-lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(8, 4, 2, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.zivena-lightbox.open { opacity: 1; pointer-events: all; }
+.zivena-lightbox img {
+  max-width: min(900px, 92vw);
+  max-height: 88vh;
+  object-fit: contain;
+  filter: sepia(0.1) contrast(1.04);
+  border: 1px solid rgba(212,175,55,0.2);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.zivena-lightbox-close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  width: 44px; height: 44px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: transparent;
+  color: #fff;
+  cursor: pointer; font-size: 1.3rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+.zivena-lightbox-close:hover { border-color: var(--gold); background: rgba(212,175,55,0.15); }
+.zivena-lightbox-cap {
+  position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(212,175,55,0.85);
+}
 </style>
 </head>
 <body>
@@ -331,6 +489,114 @@ section[id], div[id] { scroll-margin-top: 72px; }
   </div>
 </div>
 
+
+<!-- ARCHÍVNA GALÉRIA — CAROUSEL -->
+<section id="galeria-zivena">
+  <div class="galeria-header">
+    <span class="section-label">Archívna galéria</span>
+    <h2 class="script">Ukážky článkov z časopisu Živena.</h2>
+    <div class="gold-line"></div>
+    <p>Vybrané strany a rubriky z dobových čísel časopisu Živena — zbierka sa postupne dopĺňa.</p>
+  </div>
+
+  <div class="zivena-carousel-wrap">
+    <button class="zivena-btn zivena-btn--prev" id="zivenaPrev" aria-label="Predchádzajúca fotografia">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <div class="zivena-carousel-viewport" id="zivenaViewport">
+      <div class="zivena-carousel-track" id="zivenaTrack">
+
+        <div class="zivena-slide" data-title="O krojoch (I.)" data-meta="Živena · 1924">
+          <img src="Zivena%20Fotky/Zivena_1924_o_krojoch1.jpg" alt="Článok O krojoch, Živena 1924, časť I." loading="lazy" decoding="async">
+          <div class="zivena-caption">
+            <p class="zivena-caption-title">O krojoch (I.)</p>
+            <p class="zivena-caption-meta">Živena · 1924</p>
+          </div>
+        </div>
+
+        <div class="zivena-slide" data-title="O krojoch (II.)" data-meta="Živena · 1924">
+          <img src="Zivena%20Fotky/Zivena_1924_o_krojoch2.jpg" alt="Článok O krojoch, Živena 1924, časť II." loading="lazy" decoding="async">
+          <div class="zivena-caption">
+            <p class="zivena-caption-title">O krojoch (II.)</p>
+            <p class="zivena-caption-meta">Živena · 1924</p>
+          </div>
+        </div>
+
+        <div class="zivena-slide" data-title="O krojoch (III.)" data-meta="Živena · 1924">
+          <img src="Zivena%20Fotky/Zivena_1924_o_krojoch3.jpg" alt="Článok O krojoch, Živena 1924, časť III." loading="lazy" decoding="async">
+          <div class="zivena-caption">
+            <p class="zivena-caption-title">O krojoch (III.)</p>
+            <p class="zivena-caption-meta">Živena · 1924</p>
+          </div>
+        </div>
+
+        <div class="zivena-slide" data-title="Všeličo" data-meta="Živena · 1924">
+          <img src="Zivena%20Fotky/Zivena_1924_Vselico.jpg" alt="Rubrika Všeličo, Živena 1924" loading="lazy" decoding="async">
+          <div class="zivena-caption">
+            <p class="zivena-caption-title">Všeličo</p>
+            <p class="zivena-caption-meta">Živena · 1924</p>
+          </div>
+        </div>
+
+        <div class="zivena-slide" data-title="Vyšívačka" data-meta="Živena · 1925">
+          <img src="Zivena%20Fotky/Zivena_1925_Vysivacka.jpg" alt="Článok Vyšívačka, Živena 1925" loading="lazy" decoding="async">
+          <div class="zivena-caption">
+            <p class="zivena-caption-title">Vyšívačka</p>
+            <p class="zivena-caption-meta">Živena · 1925</p>
+          </div>
+        </div>
+
+        <div class="zivena-slide" data-title="Cvičenie" data-meta="Živena · 1937">
+          <img src="Zivena%20Fotky/Cvicenie_Zivena_1938.jpg" alt="Článok Cvičenie, Živena 1937" loading="lazy" decoding="async">
+          <div class="zivena-caption">
+            <p class="zivena-caption-title">Cvičenie</p>
+            <p class="zivena-caption-meta">Živena · 1937</p>
+          </div>
+        </div>
+
+        <div class="zivena-slide" data-title="Rubrika o móde" data-meta="Živena · 1937">
+          <img src="Zivena%20Fotky/Rubrika_o_mode_Zivena_1938.jpg" alt="Rubrika o móde, Živena 1937" loading="lazy" decoding="async">
+          <div class="zivena-caption">
+            <p class="zivena-caption-title">Rubrika o móde</p>
+            <p class="zivena-caption-meta">Živena · 1937</p>
+          </div>
+        </div>
+
+        <div class="zivena-slide" data-title="Úloha žien v brannosti (I.)" data-meta="Živena · 1938">
+          <img src="Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19391.jpg" alt="Článok Úloha žien v brannosti, Živena 1938, časť I." loading="lazy" decoding="async">
+          <div class="zivena-caption">
+            <p class="zivena-caption-title">Úloha žien v brannosti (I.)</p>
+            <p class="zivena-caption-meta">Živena · 1938</p>
+          </div>
+        </div>
+
+        <div class="zivena-slide" data-title="Úloha žien v brannosti (II.)" data-meta="Živena · 1938">
+          <img src="Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19392.jpg" alt="Článok Úloha žien v brannosti, Živena 1938, časť II." loading="lazy" decoding="async">
+          <div class="zivena-caption">
+            <p class="zivena-caption-title">Úloha žien v brannosti (II.)</p>
+            <p class="zivena-caption-meta">Živena · 1938</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <button class="zivena-btn zivena-btn--next" id="zivenaNext" aria-label="Nasledujúca fotografia">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <div class="zivena-dots" id="zivenaDots"></div>
+  <p class="zivena-counter" id="zivenaCounter"></p>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="zivena-lightbox" id="zivenaLightbox" role="dialog" aria-modal="true" aria-label="Archívna fotografia">
+  <button class="zivena-lightbox-close" id="zivenaLightboxClose" aria-label="Zatvoriť">✕</button>
+  <img id="zivenaLightboxImg" src="" alt="">
+  <div class="zivena-lightbox-cap" id="zivenaLightboxCap"></div>
+</div>
 
 <div class="article-nav">
   <a href="lipa.html">← Lipa</a>
@@ -509,6 +775,100 @@ section[id], div[id] { scroll-margin-top: 72px; }
     }
     window.addEventListener('scroll', upd, { passive: true });
     upd();
+  })();
+
+  /* ─── ARCHÍVNA GALÉRIA — CAROUSEL + LIGHTBOX ─── */
+  (function() {
+    const track    = document.getElementById('zivenaTrack');
+    const viewport = document.getElementById('zivenaViewport');
+    const dotsEl   = document.getElementById('zivenaDots');
+    const counter  = document.getElementById('zivenaCounter');
+    const btnPrev  = document.getElementById('zivenaPrev');
+    const btnNext  = document.getElementById('zivenaNext');
+    if (!track) return;
+
+    const slides = Array.from(track.querySelectorAll('.zivena-slide'));
+    const total  = slides.length;
+    let current  = 0;
+
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'zivena-dot' + (i === 0 ? ' is-active' : '');
+      d.setAttribute('aria-label', 'Fotografia ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    });
+
+    function goTo(idx) {
+      if (idx < 0) idx = total - 1;
+      if (idx >= total) idx = 0;
+      current = idx;
+      const sw = slides[0] ? slides[0].offsetWidth : 0;
+      const gap = 28;
+      const vw = viewport.offsetWidth;
+      const offset = -(current * (sw + gap)) + (vw / 2 - sw / 2);
+      track.style.transform = 'translateX(' + offset + 'px)';
+      slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
+      Array.from(dotsEl.querySelectorAll('.zivena-dot')).forEach((d, i) => d.classList.toggle('is-active', i === current));
+      counter.textContent = (current + 1) + ' / ' + total;
+    }
+
+    btnPrev.addEventListener('click', () => goTo(current - 1));
+    btnNext.addEventListener('click', () => goTo(current + 1));
+
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('galeria-zivena')) return;
+      if (lb.classList.contains('open')) return;
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    let touchStartX = 0;
+    viewport.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    viewport.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    // Click: non-active → goTo, active → open lightbox
+    slides.forEach((s, i) => {
+      s.addEventListener('click', () => {
+        if (i !== current) { goTo(i); }
+        else { openLightbox(i); }
+      });
+    });
+
+    // Lightbox
+    const lb = document.getElementById('zivenaLightbox');
+    const lbImg = document.getElementById('zivenaLightboxImg');
+    const lbCap = document.getElementById('zivenaLightboxCap');
+    const lbClose = document.getElementById('zivenaLightboxClose');
+
+    function openLightbox(i) {
+      const s = slides[i];
+      const img = s.querySelector('img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCap.textContent = (s.dataset.title || '') + ' · ' + (s.dataset.meta || '');
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (lb.classList.contains('open')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft')  { goTo(current - 1); openLightbox(current); }
+        if (e.key === 'ArrowRight') { goTo(current + 1); openLightbox(current); }
+      }
+    });
+
+    goTo(0);
+    window.addEventListener('resize', () => goTo(current));
   })();
 
 </script>
