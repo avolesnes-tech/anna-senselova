@@ -567,7 +567,7 @@ h2 {
 }
 
 /* =============================================
-   MOTÍV — JEMNÝ PODMAZ, FIXOVANÝ NA VIEWPORT
+   MOTÍV — JEMNÝ PODMAZ V POZADÍ
    ============================================= */
 .bg-motiv-wrap {
   position: relative;
@@ -578,13 +578,25 @@ h2 {
   position: absolute;
   inset: 0;
   background-image: url('assets/motiv-ludovy.svg');
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 480px auto;
   opacity: 0.06;
   pointer-events: none;
   z-index: 0;
+}
+@media (min-width: 768px) {
+  .bg-motiv-wrap::before {
+    background-size: 900px auto;
+    opacity: 0.038;
+  }
+}
+@media (min-width: 1200px) {
+  .bg-motiv-wrap::before {
+    background-size: 1100px auto;
+    opacity: 0.032;
+  }
 }
 .bg-motiv-wrap > * {
   position: relative;
@@ -792,7 +804,7 @@ h2 {
 </section>
 
 <!-- PRÍBEH / LIPA -->
-<section id="pribeh" aria-label="Príbeh">
+<section id="pribeh" aria-label="Príbeh" class="bg-motiv-wrap">
   <span id="main" style="position:absolute; margin-top:-80px;"></span>
   <!-- FIX 5: Inline štýly nahradené CSS triedami -->
   <div class="pribeh-header reveal">
