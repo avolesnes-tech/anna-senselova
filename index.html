@@ -567,6 +567,31 @@ h2 {
 }
 
 /* =============================================
+   MOTÍV — JEMNÝ PODMAZ, FIXOVANÝ NA VIEWPORT
+   ============================================= */
+.bg-motiv-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.bg-motiv-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/motiv-ludovy.svg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 480px auto;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-motiv-wrap > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================
    TLAČOVÉ ŠTÝLY
    ============================================= */
 @media print {
@@ -805,7 +830,7 @@ h2 {
 </section>
 
 <!-- GALÉRIA VÝŠIVIEK -->
-<section id="galeria-vysiviek">
+<section id="galeria-vysiviek" class="bg-motiv-wrap">
   <div class="section-inner reveal">
     <p class="section-label">Zbierka</p>
     <h2>Poklady zo vzorkovníkov.</h2>
@@ -981,7 +1006,7 @@ h2 {
     <div class="reveal" style="background:var(--cream);border:1px solid rgba(212,175,55,0.22);padding:2rem 2rem 1.5rem;text-align:left;margin-bottom:2rem;position:relative;overflow:hidden;">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--gold));"></div>
       <p style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:0.6rem;">Rodinná história · Apríl 2026</p>
-      <h3 style="font-family:'Pinyon Script',cursive;font-size:clamp(1.8rem,3vw,2.5rem);color:var(--red);line-height:1.3;margin-bottom:0.75rem;">Pozor: pátranie po minulosti vás vcucne.</h3>
+      <h3 style="font-family:'Pinyon Script',cursive;font-size:clamp(1.8rem,3vw,2.5rem);color:var(--red);line-height:1.3;margin-bottom:0.75rem;">Pozor: pátranie po minulosti vás vcucne!</h3>
       <p style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:#555;line-height:1.75;margin-bottom:0;">Záujem o rodinnú históriu vniesol do môjho života úplne nový rozmer. Upozorňujem na hlavné riziko: pátranie vás vcucne do víru, ktorý sa len ťažko zastaví…</p>
     </div>
     <a href="blog.html" class="reveal" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 2.2rem;background:var(--red);color:#fff;font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;border:1px solid var(--red);transition:background 0.3s,color 0.3s;" onmouseover="this.style.background='transparent';this.style.color='var(--red)'" onmouseout="this.style.background='var(--red)';this.style.color='#fff'">Čítať blog →</a>

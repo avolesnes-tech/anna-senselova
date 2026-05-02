@@ -376,6 +376,29 @@ h1.page-title {
 .reveal-delay-5 { transition-delay: 0.40s; }
 
 /* =============================================
+   ORNAMENTÁLNA LIŠTA — hero sekcia
+   ============================================= */
+.ornament-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.6rem auto;
+  gap: 0;
+}
+.ornament-band .orn {
+  width: 56px;
+  height: auto;
+  filter: sepia(1) saturate(2.8) hue-rotate(5deg) brightness(0.68);
+  display: block;
+  flex-shrink: 0;
+}
+/* stred: dvojica smeruje k sebe →← , krajné smerujú von ←→ */
+.ornament-band .orn-fade-left   { transform: scaleX(-1); opacity: 0.22; margin-right: -4px; }
+.ornament-band .orn-left        { transform: scaleX(1);  opacity: 0.88; margin-right:  2px; }
+.ornament-band .orn-right       { transform: scaleX(-1); opacity: 0.88; margin-left:   2px; }
+.ornament-band .orn-fade-right  { transform: scaleX(1);  opacity: 0.22; margin-left:  -4px; }
+
+/* =============================================
    DETAIL PANEL — slides in from right
    ============================================= */
 .panel-backdrop {
@@ -963,7 +986,12 @@ section[id], div[id] { scroll-margin-top: 72px; }
     </p>
     <p class="section-label">Zbierka · Výšivky</p>
     <h1 class="page-title">Vzorkovník výšiviek.</h1>
-    <div class="gold-line"></div>
+    <div class="ornament-band" aria-hidden="true">
+      <img class="orn orn-fade-left"  src="assets/motiv-ludovy.svg" alt="">
+      <img class="orn orn-left"       src="assets/motiv-ludovy.svg" alt="">
+      <img class="orn orn-right"      src="assets/motiv-ludovy.svg" alt="">
+      <img class="orn orn-fade-right" src="assets/motiv-ludovy.svg" alt="">
+    </div>
     <p class="page-hero-desc">Tieto vyšívané fragmenty pochádzajú z pozostalosti Anny Šenšelovej. S bližším určovaním mi nezištne pomohli <em>Tamara Šimončíková Heribanová</em>, <em>Stanislav Talapka</em> a <em>Zuzana Tajek Piešová</em> — som im za to nesmierne vďačná.</p>
   </div>
 </header>
