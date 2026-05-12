@@ -682,6 +682,96 @@
   border: none;
   border-top: 1px solid rgba(212,175,55,0.2);
 }
+
+/* ── Druhý predok ── */
+.predok-section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(160,124,16,0.75);
+  margin-bottom: 0.6rem;
+  display: none;
+}
+.predok-section-label.is-visible { display: block; }
+.btn-add-predok {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.63rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(160,124,16,0.85);
+  background: none;
+  border: 1px dashed rgba(212,175,55,0.38);
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: color 0.25s, border-color 0.25s;
+  margin-bottom: 1.2rem;
+}
+.btn-add-predok:hover { color: var(--gold-dark); border-color: rgba(212,175,55,0.7); }
+.predok2-block {
+  display: none;
+  border: 1px dashed rgba(212,175,55,0.3);
+  border-radius: 3px;
+  padding: 1rem 1rem 0.2rem;
+  margin-bottom: 1.1rem;
+  background: rgba(212,175,55,0.025);
+}
+.predok2-block.is-open { display: block; }
+.predok2-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+.predok2-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(160,124,16,0.75);
+}
+.btn-remove-predok2 {
+  background: none;
+  border: none;
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(120,120,120,0.7);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+.btn-remove-predok2:hover { color: var(--red); }
+
+/* ── GDPR — súhlas so sociálnymi sieťami ── */
+.form-field-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: 1.1rem;
+}
+.form-field-check input[type="checkbox"] {
+  margin-top: 3px;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  accent-color: var(--gold-dark);
+  cursor: pointer;
+}
+.form-field-check label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink);
+  opacity: 0.75;
+  cursor: pointer;
+  letter-spacing: 0;
+  text-transform: none;
+}
 .form-submit-note {
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.88rem;
@@ -1260,6 +1350,9 @@
 
     <div class="form-panel">
       <form id="pribehForm" novalidate>
+
+        <!-- PRVÝ PREDOK -->
+        <p class="predok-section-label" id="predok1Label">Prvý predok</p>
         <div class="form-row">
           <div class="form-field">
             <label for="fMenoPredka">Meno predka <span class="req">*</span></label>
@@ -1268,6 +1361,29 @@
           <div class="form-field">
             <label for="fPriezviskoPreda">Priezvisko predka <span class="req">*</span></label>
             <input type="text" id="fPriezviskoPredka" name="predok_priezvisko" placeholder="napr. Kopecká" required autocomplete="off">
+          </div>
+        </div>
+
+        <!-- TOGGLE: druhý predok -->
+        <button type="button" class="btn-add-predok" id="btnAddPredok2">
+          + Pridať druhého predka (manžel / manželka, pár)
+        </button>
+
+        <!-- DRUHÝ PREDOK (skrytý) -->
+        <div class="predok2-block" id="predok2Block">
+          <div class="predok2-header">
+            <span class="predok2-label">Druhý predok</span>
+            <button type="button" class="btn-remove-predok2" id="btnRemovePredok2">× Odobrať</button>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fMenoPredka2">Meno</label>
+              <input type="text" id="fMenoPredka2" name="predok2_meno" placeholder="napr. Ján" autocomplete="off">
+            </div>
+            <div class="form-field">
+              <label for="fPriezviskoPredka2">Priezvisko</label>
+              <input type="text" id="fPriezviskoPredka2" name="predok2_priezvisko" placeholder="napr. Kopecký" autocomplete="off">
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -1333,6 +1449,14 @@
           <label for="fEmail">E-mail <span style="font-style:italic;text-transform:none;font-size:0.85em">(nepovinné — budeme ťa informovať o schválení)</span></label>
           <input type="email" id="fEmail" name="zdielal_email" placeholder="napr. jana@email.sk" autocomplete="email">
         </div>
+        <!-- GDPR — súhlas so zdieľaním na sociálnych sieťach -->
+        <div class="form-field-check">
+          <input type="checkbox" id="fSocialSuhlas" name="social_suhlas">
+          <label for="fSocialSuhlas">
+            Súhlasím s tým, že môj príbeh (a prípadne priložená fotografia) môže byť zdieľaný/á na sociálnych sieťach Mapy spomienok (Facebook, Instagram). Tento súhlas je dobrovoľný a môžem ho kedykoľvek odvolať na <a href="mailto:senselovaanna@gmail.com" style="color:var(--gold-dark);">senselovaanna@gmail.com</a>.
+          </label>
+        </div>
+
         <button type="submit" class="btn-submit" id="btnSubmit">Odovzdať príbeh do archívu</button>
         <p class="form-submit-note">Príspevok sa zobrazí na mape po schválení administrátorom. Ak si uviedol/a e-mail, budeme ťa o tom informovať.</p>
         <p id="formError" style="color:var(--red);font-style:italic;font-size:0.9rem;margin-top:0.8rem;display:none;text-align:center;"></p>
@@ -1944,6 +2068,34 @@
     reader.readAsDataURL(file);
   }
 
+  /* ── Toggle: druhý predok ── */
+  (function () {
+    const btnAdd    = document.getElementById('btnAddPredok2');
+    const btnRemove = document.getElementById('btnRemovePredok2');
+    const block2    = document.getElementById('predok2Block');
+    const label1    = document.getElementById('predok1Label');
+
+    function openPredok2() {
+      block2.classList.add('is-open');
+      label1.classList.add('is-visible');
+      btnAdd.style.display = 'none';
+      document.getElementById('fMenoPredka2').focus();
+    }
+    function closePredok2() {
+      block2.classList.remove('is-open');
+      label1.classList.remove('is-visible');
+      btnAdd.style.display = '';
+      document.getElementById('fMenoPredka2').value = '';
+      document.getElementById('fPriezviskoPredka2').value = '';
+    }
+
+    btnAdd.addEventListener('click', openPredok2);
+    btnRemove.addEventListener('click', closePredok2);
+  })();
+
+  /* ── Odoslanie formulára ── */
+  // POZNÁMKA pre správcu DB: tabuľka `stories` musí mať stĺpec:
+  //   social_suhlas  boolean  default false
   document.getElementById('pribehForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('btnSubmit');
@@ -1958,6 +2110,12 @@
     const kraj        = document.getElementById('fKraj').value;
     const obdobie     = document.getElementById('fObdobie').value;
     const pribeh      = document.getElementById('fPribeh').value.trim();
+    const socialSuhlas = document.getElementById('fSocialSuhlas').checked;
+
+    // Druhý predok (nepovinný)
+    const meno2       = document.getElementById('fMenoPredka2').value.trim();
+    const priezvisko2 = document.getElementById('fPriezviskoPredka2').value.trim();
+    const masPredok2  = meno2 || priezvisko2;
 
     if (!meno || !priezvisko || !obec || !kraj || !obdobie || !pribeh) {
       showFormError('Vyplň prosím všetky povinné polia (označené hviezdičkou).');
@@ -1970,7 +2128,7 @@
       return;
     }
 
-    // Upload photo if present
+    // Upload foto (raz, zdieľa sa pre oboch predkov)
     let fotoUrl = null;
     const file = fileInput.files[0];
     if (file) {
@@ -1985,33 +2143,40 @@
         fotoUrl = urlData.publicUrl;
       } catch (err) {
         console.warn('Upload error:', err.message);
-        // Continue without photo — non-fatal
       }
     }
 
-    // Generuj delete token na strane klienta
-    const deleteToken = crypto.randomUUID();
+    // Spoločné polia pre oba záznamy
+    const zdielal_meno       = document.getElementById('fZdielalMeno').value.trim() || null;
+    const zdielal_priezvisko  = document.getElementById('fZdielalPriezvisko').value.trim() || null;
+    const zdielal_email       = document.getElementById('fEmail').value.trim() || null;
 
-    // Insert into Supabase
+    const sharedFields = { obec, kraj, obdobie, pribeh, foto_url: fotoUrl,
+      zdielal_meno, zdielal_priezvisko, zdielal_email,
+      social_suhlas: socialSuhlas, status: 'pending' };
+
+    // Insert — prvý predok
+    const deleteToken = crypto.randomUUID();
     const { error } = await sb.from('stories').insert({
-      predok_meno:         meno,
-      predok_priezvisko:   priezvisko,
-      obec:                obec,
-      kraj:                kraj,
-      obdobie:             obdobie,
-      pribeh:              pribeh,
-      foto_url:            fotoUrl,
-      zdielal_meno:        document.getElementById('fZdielalMeno').value.trim() || null,
-      zdielal_priezvisko:  document.getElementById('fZdielalPriezvisko').value.trim() || null,
-      zdielal_email:       document.getElementById('fEmail').value.trim() || null,
-      delete_token:        deleteToken,
-      status:              'pending'
+      predok_meno: meno, predok_priezvisko: priezvisko,
+      delete_token: deleteToken, ...sharedFields
     });
 
     if (error) {
       showFormError('Nastala chyba pri odosielaní. Skús to prosím znova alebo napíš na senselovaanna@gmail.com.');
       btn.disabled = false; btn.textContent = 'Odovzdať príbeh do archívu';
       return;
+    }
+
+    // Insert — druhý predok (ak bol vyplnený)
+    if (masPredok2) {
+      const deleteToken2 = crypto.randomUUID();
+      await sb.from('stories').insert({
+        predok_meno: meno2 || meno,
+        predok_priezvisko: priezvisko2 || priezvisko,
+        delete_token: deleteToken2, ...sharedFields
+      });
+      // Chybu druhého insertu neriešime blokujúco — primárny záznam bol úspešný
     }
 
     // Success
