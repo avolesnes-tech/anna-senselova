@@ -559,6 +559,7 @@ h2 {
   text-align: center;
   position: relative;
   overflow: hidden;
+  isolation: isolate;           /* vlastný stacking context, filter neovplyvňuje okolie */
 }
 #citat::after {
   content: '';
@@ -589,43 +590,47 @@ h2 {
    ============================================= */
 .side-ornament {
   position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 200px;
-  height: 200px;
+  top: 0;
+  bottom: 0;
+  width: 220px;
   background-image: url('assets/motiv-ludovy.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  background-repeat: repeat-y;
+  background-size: 220px auto;   /* šírka = šírka divu, výška = auto (zachová pomer) */
+  background-position: center top;
   opacity: 0;
   pointer-events: none;
   z-index: 0;
   transition: opacity 0.8s ease;
+  will-change: opacity;          /* compositor layer — plynulý fade */
   /* skryté na mobile */
   display: none;
 }
-.side-ornament--left  { left:  -100px; }
-.side-ornament--right { right: -100px; transform: translateY(-50%) scaleX(-1); }
-/* tablet — tenký sliver */
-@media (min-width: 768px) {
-  .side-ornament { display: block; width: 180px; height: 180px; }
-  .side-ornament--left  { left:  -90px; }
-  .side-ornament--right { right: -90px; }
+.side-ornament--left  { left:  -110px; }  /* polovica šírky mimo obrazovky */
+.side-ornament--right {
+  right: -110px;
+  transform: scaleX(-1);         /* zrkadlenie — bez translateY */
+  background-position: center top;
 }
-/* desktop — plná polovica */
+/* tablet */
+@media (min-width: 768px) {
+  .side-ornament { display: block; width: 200px; background-size: 200px auto; }
+  .side-ornament--left  { left:  -100px; }
+  .side-ornament--right { right: -100px; }
+}
+/* desktop */
 @media (min-width: 1100px) {
-  .side-ornament { width: 260px; height: 260px; }
+  .side-ornament { width: 260px; background-size: 260px auto; }
   .side-ornament--left  { left:  -130px; }
   .side-ornament--right { right: -130px; }
 }
-/* wide — väčší výrez */
+/* wide */
 @media (min-width: 1400px) {
-  .side-ornament { width: 300px; height: 300px; }
-  .side-ornament--left  { left:  -150px; }
-  .side-ornament--right { right: -150px; }
+  .side-ornament { width: 320px; background-size: 320px auto; }
+  .side-ornament--left  { left:  -160px; }
+  .side-ornament--right { right: -160px; }
 }
 /* viditeľný stav — pridáva JS */
-.side-ornament.is-visible { opacity: 0.14; }
+.side-ornament.is-visible { opacity: 0.13; }
 
 /* =============================================
    TLAČOVÉ ŠTÝLY
