@@ -362,3 +362,76 @@ footer {
   .ilustracia-divider::before,
   .ilustracia-divider::after { max-width: 60px; }
 }
+
+/* =============================================
+   MOTÍV — BOČNÉ ORNAMENTY (zdieľané naprieč stranami)
+   ============================================= */
+.side-ornament {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 220px;
+  background-image: url('assets/motiv-ludovy.svg');
+  background-repeat: repeat-y;
+  background-size: 220px auto;
+  background-position: center top;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.8s ease;
+  will-change: opacity;
+  display: none;
+}
+.side-ornament--left  { left: -110px; }
+.side-ornament--right { right: -110px; transform: scaleX(-1); }
+@media (min-width: 768px) {
+  .side-ornament { display: block; width: 200px; background-size: 200px auto; }
+  .side-ornament--left  { left:  -100px; }
+  .side-ornament--right { right: -100px; }
+}
+@media (min-width: 1100px) {
+  .side-ornament { width: 260px; background-size: 260px auto; }
+  .side-ornament--left  { left:  -130px; }
+  .side-ornament--right { right: -130px; }
+}
+@media (min-width: 1400px) {
+  .side-ornament { width: 320px; background-size: 320px auto; }
+  .side-ornament--left  { left:  -160px; }
+  .side-ornament--right { right: -160px; }
+}
+/* Homepage: JS pridáva .is-visible cez IntersectionObserver */
+.side-ornament.is-visible { opacity: 0.13; }
+/* Podstránky: vždy viditeľné, bez JS */
+body.ornaments-always .side-ornament { opacity: 0.13; }
+
+/* =============================================
+   FOOTER — SOCIÁLNE SIETE
+   ============================================= */
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 1rem 0 0;
+}
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 50%;
+  color: rgba(249,247,242,0.65);
+  text-decoration: none;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  flex-shrink: 0;
+}
+.footer-social a:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.footer-social a svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
