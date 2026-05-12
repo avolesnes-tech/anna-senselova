@@ -580,7 +580,7 @@ h2 {
   background-image: url('assets/motiv-ludovy.svg');
   background-attachment: scroll;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center calc(50% + var(--parallax-y, 0px));
   background-size: 480px auto;
   opacity: 0.06;
   pointer-events: none;
@@ -1363,6 +1363,33 @@ h2 {
       clearInterval(interval);
     });
   });
+
+  /* ── Parallax pre motív na pozadí ── */
+  (function () {
+    const SPEED = 0.28; // 0 = bez pohybu, 1 = rovnaká rýchlosť ako scroll
+    const sections = document.querySelectorAll('.bg-motiv-wrap');
+    if (!sections.length) return;
+
+    // Vypnúť na mobile — tam to nepotrebujeme a šetrí to výkon
+    const mq = window.matchMedia('(min-width: 768px)');
+
+    function update() {
+      if (!mq.matches) {
+        sections.forEach(s => s.style.removeProperty('--parallax-y'));
+        return;
+      }
+      const vh = window.innerHeight;
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const center = rect.top + rect.height / 2 - vh / 2;
+        section.style.setProperty('--parallax-y', (center * SPEED).toFixed(1) + 'px');
+      });
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  })();
 </script>
 <!-- GDPR Modal -->
 <div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
