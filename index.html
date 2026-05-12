@@ -750,6 +750,10 @@ h2 {
 <a href="#main" class="skip-link">Preskočiť na obsah</a>
 <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
 
+<!-- Bočné ornamenty — zobrazujú sa len nad krémovými sekciami -->
+<div class="side-ornament side-ornament--left"  id="sideOrnLeft"  aria-hidden="true"></div>
+<div class="side-ornament side-ornament--right" id="sideOrnRight" aria-hidden="true"></div>
+
 <!-- FIX 2: Lightbox -->
 <div class="lightbox-backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Detail výšivky">
   <button class="lightbox-close" id="lightbox-close" aria-label="Zatvoriť">×</button>
@@ -822,7 +826,7 @@ h2 {
 </section>
 
 <!-- PRÍBEH / LIPA -->
-<section id="pribeh" aria-label="Príbeh" class="bg-motiv-wrap">
+<section id="pribeh" aria-label="Príbeh" class="cream-section">
   <span id="main" style="position:absolute; margin-top:-80px;"></span>
   <!-- FIX 5: Inline štýly nahradené CSS triedami -->
   <div class="pribeh-header reveal">
@@ -860,7 +864,7 @@ h2 {
 </section>
 
 <!-- GALÉRIA VÝŠIVIEK -->
-<section id="galeria-vysiviek" class="bg-motiv-wrap">
+<section id="galeria-vysiviek" class="cream-section">
   <div class="section-inner reveal">
     <p class="section-label">Zbierka</p>
     <h2>Poklady zo vzorkovníkov.</h2>
@@ -1382,40 +1386,26 @@ h2 {
     });
   });
 
-  /* ── Parallax pre motív na pozadí — optimalizované cez rAF ── */
+  /* ── Bočné ornamenty — zobrazia sa len nad krémovými sekciami ── */
   (function () {
-    const SPEED   = 0.28;
-    const sections = document.querySelectorAll('.bg-motiv-wrap');
-    if (!sections.length) return;
+    const left  = document.getElementById('sideOrnLeft');
+    const right = document.getElementById('sideOrnRight');
+    if (!left || !right) return;
 
-    const mq      = window.matchMedia('(min-width: 768px)');
-    let   ticking = false;
+    const creamSections = document.querySelectorAll('.cream-section');
+    let visibleCount = 0;
 
-    function update() {
-      if (!mq.matches) {
-        sections.forEach(s => s.style.removeProperty('--parallax-y'));
-        ticking = false;
-        return;
-      }
-      const vh = window.innerHeight;
-      sections.forEach(section => {
-        const rect   = section.getBoundingClientRect();
-        const offset = (rect.top + rect.height / 2 - vh / 2) * SPEED;
-        section.style.setProperty('--parallax-y', offset.toFixed(1) + 'px');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        visibleCount += e.isIntersecting ? 1 : -1;
       });
-      ticking = false;
-    }
+      visibleCount = Math.max(0, visibleCount);
+      const show = visibleCount > 0;
+      left.classList.toggle('is-visible', show);
+      right.classList.toggle('is-visible', show);
+    }, { threshold: 0.05 });
 
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(update); // max 1× za frame, nie pri každom scroll evente
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update,   { passive: true });
-    update();
+    creamSections.forEach(s => observer.observe(s));
   })();
 </script>
 <!-- GDPR Modal -->
