@@ -408,30 +408,23 @@ body.ornaments-always .side-ornament { opacity: 0.13; }
    FOOTER — SOCIÁLNE SIETE
    ============================================= */
 .footer-social {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  margin: 1rem 0 0;
-}
-.footer-social a {
+  margin: 0.9rem 0 0;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid rgba(212,175,55,0.3);
-  border-radius: 50%;
-  color: rgba(249,247,242,0.65);
+  gap: 0.5rem;
+}
+.footer-social a {
+  color: rgba(249,247,242,0.5);
   text-decoration: none;
-  transition: color 0.3s ease, border-color 0.3s ease;
-  flex-shrink: 0;
+  transition: color 0.3s ease;
 }
-.footer-social a:hover {
-  color: var(--gold);
-  border-color: var(--gold);
-}
-.footer-social a svg {
-  width: 15px;
-  height: 15px;
-  display: block;
+.footer-social a:hover { color: var(--gold); }
+.footer-social-sep {
+  color: rgba(212,175,55,0.35);
+  font-size: 0.55rem;
 }
