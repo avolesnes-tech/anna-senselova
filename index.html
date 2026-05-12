@@ -16,6 +16,7 @@
 <meta name="twitter:description" content="Príbeh pratety Anny Šenšelovej, výšivky a odkaz spolku Lipa.">
 <meta name="twitter:image" content="https://avolesnes-tech.github.io/anna-senselova/anna_senselova_hero_vysivka.png">
 
+<link rel="preload" href="assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
 <style>
@@ -584,41 +585,41 @@ h2 {
 }
 
 /* =============================================
-   MOTÍV — JEMNÝ PODMAZ V POZADÍ
+   MOTÍV — BOČNÉ ORNAMENTY (SIDE ORNAMENTS)
    ============================================= */
-.bg-motiv-wrap {
-  position: relative;
-  overflow: hidden;
-}
-.bg-motiv-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+.side-ornament {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  height: 200px;
   background-image: url('assets/motiv-ludovy.svg');
-  background-attachment: scroll;
   background-repeat: no-repeat;
-  background-position: center calc(50% + var(--parallax-y, 0px));
-  background-size: 480px auto;
-  opacity: 0.06;
+  background-size: contain;
+  background-position: center;
+  opacity: 0;
   pointer-events: none;
   z-index: 0;
+  transition: opacity 0.8s ease;
+  /* skryté na mobile */
+  display: none;
 }
+.side-ornament--left  { left:  -100px; }
+.side-ornament--right { right: -100px; transform: translateY(-50%) scaleX(-1); }
+/* tablet — tenký sliver */
 @media (min-width: 768px) {
-  .bg-motiv-wrap::before {
-    background-size: 900px auto;
-    opacity: 0.038;
-  }
+  .side-ornament { display: block; width: 160px; height: 160px; }
+  .side-ornament--left  { left:  -100px; }
+  .side-ornament--right { right: -100px; }
 }
-@media (min-width: 1200px) {
-  .bg-motiv-wrap::before {
-    background-size: 1100px auto;
-    opacity: 0.032;
-  }
+/* desktop — plná polovica */
+@media (min-width: 1100px) {
+  .side-ornament { width: 220px; height: 220px; }
+  .side-ornament--left  { left:  -110px; }
+  .side-ornament--right { right: -110px; }
 }
-.bg-motiv-wrap > * {
-  position: relative;
-  z-index: 1;
-}
+/* viditeľný stav — pridáva JS */
+.side-ornament.is-visible { opacity: 0.09; }
 
 /* =============================================
    TLAČOVÉ ŠTÝLY
@@ -1381,30 +1382,39 @@ h2 {
     });
   });
 
-  /* ── Parallax pre motív na pozadí ── */
+  /* ── Parallax pre motív na pozadí — optimalizované cez rAF ── */
   (function () {
-    const SPEED = 0.28; // 0 = bez pohybu, 1 = rovnaká rýchlosť ako scroll
+    const SPEED   = 0.28;
     const sections = document.querySelectorAll('.bg-motiv-wrap');
     if (!sections.length) return;
 
-    // Vypnúť na mobile — tam to nepotrebujeme a šetrí to výkon
-    const mq = window.matchMedia('(min-width: 768px)');
+    const mq      = window.matchMedia('(min-width: 768px)');
+    let   ticking = false;
 
     function update() {
       if (!mq.matches) {
         sections.forEach(s => s.style.removeProperty('--parallax-y'));
+        ticking = false;
         return;
       }
       const vh = window.innerHeight;
       sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const center = rect.top + rect.height / 2 - vh / 2;
-        section.style.setProperty('--parallax-y', (center * SPEED).toFixed(1) + 'px');
+        const rect   = section.getBoundingClientRect();
+        const offset = (rect.top + rect.height / 2 - vh / 2) * SPEED;
+        section.style.setProperty('--parallax-y', offset.toFixed(1) + 'px');
       });
+      ticking = false;
     }
 
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update, { passive: true });
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(update); // max 1× za frame, nie pri každom scroll evente
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update,   { passive: true });
     update();
   })();
 </script>
