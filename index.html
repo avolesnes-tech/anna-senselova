@@ -608,18 +608,24 @@ h2 {
 .side-ornament--right { right: -100px; transform: translateY(-50%) scaleX(-1); }
 /* tablet — tenký sliver */
 @media (min-width: 768px) {
-  .side-ornament { display: block; width: 160px; height: 160px; }
-  .side-ornament--left  { left:  -100px; }
-  .side-ornament--right { right: -100px; }
+  .side-ornament { display: block; width: 180px; height: 180px; }
+  .side-ornament--left  { left:  -90px; }
+  .side-ornament--right { right: -90px; }
 }
 /* desktop — plná polovica */
 @media (min-width: 1100px) {
-  .side-ornament { width: 220px; height: 220px; }
-  .side-ornament--left  { left:  -110px; }
-  .side-ornament--right { right: -110px; }
+  .side-ornament { width: 260px; height: 260px; }
+  .side-ornament--left  { left:  -130px; }
+  .side-ornament--right { right: -130px; }
+}
+/* wide — väčší výrez */
+@media (min-width: 1400px) {
+  .side-ornament { width: 300px; height: 300px; }
+  .side-ornament--left  { left:  -150px; }
+  .side-ornament--right { right: -150px; }
 }
 /* viditeľný stav — pridáva JS */
-.side-ornament.is-visible { opacity: 0.09; }
+.side-ornament.is-visible { opacity: 0.14; }
 
 /* =============================================
    TLAČOVÉ ŠTÝLY
@@ -982,7 +988,7 @@ h2 {
 </section>
 
 <!-- GALÉRIA BÁBIK -->
-<section id="galeria-babik">
+<section id="galeria-babik" class="cream-section">
   <div class="section-inner reveal">
     <p class="section-label">Krojované bábiky</p>
     <h2>Z pivnice do výkladu.</h2>
@@ -1033,7 +1039,7 @@ h2 {
 </section>
 
 <!-- BLOG CTA -->
-<section id="blog-preview" style="padding:5rem 2rem; background:var(--section-alt); border-top:1px solid rgba(212,175,55,0.18);">
+<section id="blog-preview" class="cream-section" style="padding:5rem 2rem; background:var(--section-alt); border-top:1px solid rgba(212,175,55,0.18);">
   <div style="max-width:700px; margin:0 auto; text-align:center;">
     <p class="section-label reveal" style="font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;">Blog · Zápisky z pátrania</p>
     <p class="reveal" style="font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:#555;font-style:italic;line-height:1.85;margin-bottom:2.5rem;">Miesto, kde s vami budem zdieľať moju cestu pátraním po vlastnej rodinnej histórii, po výšivkách, po Lipe a Živene — a možno aj ďalších pokladoch, ktoré mi pri tom cvrnknú do nosa.</p>
