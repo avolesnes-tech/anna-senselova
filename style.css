@@ -79,9 +79,16 @@ nav:not([class]) {
   flex-direction: row;
 }
 nav .logo {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 2rem; color: #C41E3A;
-  text-decoration: none; flex-shrink: 0; line-height: 1;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  line-height: 1;
+}
+nav .logo img {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 nav > div, nav > a:not(.logo), .nav-back, .nav-breadcrumb, .nav-prev, .nav-next {
   display: none;
@@ -160,11 +167,11 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
   nav { padding: 0 1.4rem; }
   nav ul { gap: 1rem; }
   nav ul li > a { font-size: 0.78rem; letter-spacing: 0.08em; }
-  nav .logo { font-size: 1.6rem; }
+  nav .logo img { height: 36px; }
 }
 @media (max-width: 768px) {
   nav { padding: 0 1.2rem; }
-  nav .logo { font-size: 1.5rem; }
+  nav .logo img { height: 32px; }
   .hamburger { display: flex; }
   nav ul {
     display: none; flex-direction: column; gap: 0;
