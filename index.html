@@ -722,8 +722,8 @@ h2 {
 <!-- FIX 2: Lightbox -->
 <div class="lightbox-backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Detail výšivky">
   <button class="lightbox-close" id="lightbox-close" aria-label="Zatvoriť">×</button>
-  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Predchádzajúca">‹</button>
-  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Nasledujúca">›</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Predchádzajúci obrázok"><span aria-hidden="true">‹</span></button>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Nasledujúci obrázok"><span aria-hidden="true">›</span></button>
   <div class="lightbox-inner">
     <img class="lightbox-img" id="lightbox-img" src="" alt="">
     <div class="lightbox-meta">
@@ -814,10 +814,7 @@ h2 {
     <div class="pribeh-text reveal reveal-delay-2">
       <p class="pribeh-text-label">Príbeh žien, ktoré premenili výšivku na symbol národnej hrdosti</p>
       <div class="gold-line" style="margin-left:0;"></div>
-      <p>Lipa nebola len obchodom s folklórom, ale predovšetkým odvážnym ženským podnikom. Keď v roku 1910 vznikla, v hospodárstve rozhodovali takmer výhradne muži. Napriek tomu to boli práve ženy zo spolku Živena, ktoré zobrali iniciatívu do vlastných rúk a vybudovali modernú firmu. Dokázali niečo vtedy nevídané: prepojili poctivú prácu dedinských žien s požiadavkami veľkých miest ako Praha či Viedeň. Týmto ženám na vidieku priniesli nielen spravodlivú mzdu, ale aj na tú dobu prevratnú ekonomickú nezávislosť a sebaúctu.</p>
-      <p>Ženy na čele Lipy fungovali ako manažérky a prísne kontrolórky, ktoré dbali na to, aby mal slovenský ornament špičkovú kvalitu. Vďaka nim získali tisícky vyšívačiek uznanie za prácu, ktorú dovtedy svet vnímal len ako voľnočasovú domácu činnosť. Lipa premenila ich talent na sebavedomú, svetovo rešpektovanú značku.</p>
-      <p>Kľúčovou postavou tohto sveta bola Anna Šenšelová, moja prateta, ktorej prácu mapuje tento web. Anna bola nesmierne skromná žena so silným národným cítením a jasnou víziou: zachovať čistotu slovenskej ornamentiky, no zároveň ju preniesť do potrieb modernej domácnosti. Chápala, že ak má výšivka prežiť, musí sa prispôsobiť novej dobe. S obrovským citom usmerňovala vzory a techniky tak, aby si zachovali svoju dušu, no zároveň boli funkčné a atraktívne pre vtedajší mestský trh.</p>
-      <p class="pribeh-signature">Tento web je poctou Anne Šenšelovej a všetkým silným ženám, ktoré stáli za úspechom Lipy. Ukazuje, že naše dedičstvo nie je len statickou spomienkou na minulosť, ale výsledkom cieľavedomej ženskej práce, ktorá má trvalú umeleckú aj spoločenskú hodnotu.</p>
+      <p>Lipa nebola len obchodom s folklórom, ale odvážnym ženským podnikom — keď v roku 1910 vznikla, v hospodárstve rozhodovali takmer výhradne muži. Ženy zo spolku Živena to zmenili: prepojili poctivú prácu dedinských vyšívačiek s požiadavkami veľkých miest ako Praha či Viedeň a premenili ich talent na sebavedomú, svetovo rešpektovanú značku. Kľúčovou postavou tohto sveta bola moja prateta Anna Šenšelová — skromná žena s jasnou víziou zachovať dušu slovenskej ornamentiky pre budúce generácie.</p>
       <div class="pribeh-links">
         <a href="lipa.html" class="btn-gallery-link">Celý príbeh Lipy <span class="btn-arrow">→</span></a>
         <a href="anna-senselova.html" class="btn-gallery-link">Kto bola Anna Šenšelová <span class="btn-arrow">→</span></a>
@@ -1002,64 +999,67 @@ h2 {
   <blockquote class="reveal">„V každom stehu je ukryté posolstvo — trpezlivosť, láska a hrdosť na to, kto sme."</blockquote>
 </section>
 
-<!-- BLOG CTA -->
-<section id="blog-preview" class="cream-section" style="padding:5rem 2rem; background:var(--section-alt); border-top:1px solid rgba(212,175,55,0.18);">
-  <div style="max-width:700px; margin:0 auto; text-align:center;">
-    <p class="section-label reveal" style="font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;">Blog · Zápisky z pátrania</p>
-    <p class="reveal" style="font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:#555;font-style:italic;line-height:1.85;margin-bottom:2.5rem;">Miesto, kde s vami budem zdieľať moju cestu pátraním po vlastnej rodinnej histórii, po výšivkách, po Lipe a Živene — a možno aj ďalších pokladoch, ktoré mi pri tom cvrnknú do nosa.</p>
-    <div class="reveal" style="background:var(--cream);border:1px solid rgba(212,175,55,0.22);padding:2rem 2rem 1.5rem;text-align:left;margin-bottom:2rem;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--gold));"></div>
-      <p style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:0.6rem;">Rodinná história · Apríl 2026</p>
-      <h3 style="font-family:'Pinyon Script',cursive;font-size:clamp(1.8rem,3vw,2.5rem);color:var(--red);line-height:1.3;margin-bottom:0.75rem;">Pozor: pátranie po minulosti vás vcucne!</h3>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:#555;line-height:1.75;margin-bottom:0;">Záujem o rodinnú históriu vniesol do môjho života úplne nový rozmer. Upozorňujem na hlavné riziko: pátranie vás vcucne do víru, ktorý sa len ťažko zastaví…</p>
-    </div>
-    <a href="blog.html" class="reveal btn-cta-red">Čítať blog <span class="btn-arrow">→</span></a>
+<!-- MAPA SPOMIENOK TEASER -->
+<section id="mapa-teaser" aria-label="Mapa spomienok">
+  <div class="mapa-teaser-inner reveal">
+    <p class="section-label">Váš príbeh patrí na mapu</p>
+    <h2 class="mapa-teaser-title">Mapa spomienok</h2>
+    <div class="gold-line"></div>
+    <p class="mapa-teaser-text">Interaktívna mapa Slovenska, kde každý bod predstavuje skutočný príbeh predka. Zdieľajte spomienku na svojho starého otca, prastarej matky alebo vzdialeného príbuzného — a pomôžte zachovať živú pamäť Slovenska pre budúce generácie. Príbehy je možné vyhľadávať podľa priezviska alebo regiónu.</p>
+    <a href="mapa-spomienok.html" class="btn-cta-red">Pridať príbeh predka <span class="btn-arrow">→</span></a>
   </div>
 </section>
 
-<!-- FOOTER — rozšírený s navigáciou -->
+<!-- BLOG CTA -->
+<section id="blog-preview" aria-label="Blog" class="cream-section blog-preview-section">
+  <div class="blog-preview-inner">
+    <p class="section-label reveal">Blog · Zápisky z pátrania</p>
+    <p class="blog-preview-perex reveal">Miesto, kde s vami budem zdieľať moju cestu pátraním po vlastnej rodinnej histórii, po výšivkách, po Lipe a Živene.</p>
+    <div class="blog-preview-grid">
+      <a href="blog-zdroje.html" class="blog-preview-card reveal reveal-delay-1">
+        <div class="blog-preview-card-top">
+          <span class="blog-preview-tag">Rodinná história · Máj 2026</span>
+          <h3 class="blog-preview-title">Kde som hľadala a čo som našla</h3>
+          <p class="blog-preview-excerpt">Aké zdroje mi pomohli odhaliť históriu mojej rodiny? Od rodinných publikácií a digitálnych archívov až po vzdialených príbuzných.</p>
+        </div>
+        <span class="blog-preview-read">Čítať <span class="btn-arrow">→</span></span>
+      </a>
+      <a href="blog-patranie.html" class="blog-preview-card reveal reveal-delay-2">
+        <div class="blog-preview-card-top">
+          <span class="blog-preview-tag">Rodinná história · Apríl 2026</span>
+          <h3 class="blog-preview-title">Pozor: pátranie po minulosti vás vcucne!</h3>
+          <p class="blog-preview-excerpt">Záujem o rodinnú históriu vniesol do môjho života úplne nový rozmer. Upozorňujem na hlavné riziko: pátranie vás vcucne do víru…</p>
+        </div>
+        <span class="blog-preview-read">Čítať <span class="btn-arrow">→</span></span>
+      </a>
+    </div>
+    <div class="section-cta reveal">
+      <a href="blog.html" class="btn-cta-red">Všetky články <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div>
-      <p class="footer-col-title">Príbeh</p>
-      <ul class="footer-links">
-        <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
-        <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
-        <li><a href="lipa.html">Lipa</a></li>
-        <li><a href="zivena.html">Živena</a></li>
-      </ul>
-    </div>
-    <div class="footer-col-center">
-      <div class="footer-name">Anna Šenšelová</div>
-      <svg viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:180px; display:block; margin:0 auto 0.8rem; opacity:0.3;">
-        <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
-        <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
-        <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
-        <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
-        <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
-        <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
-      </svg>
-      <p class="footer-tagline">Vytvorené s láskou a úctou k predošlým generáciám.</p>
-      <div class="footer-social">
-        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Facebooku">Facebook</a>
-        <span class="footer-social-sep">·</span>
-        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Instagrame">Instagram</a>
-      </div>
-    </div>
-    <div>
-      <p class="footer-col-title">Galéria & Mapa</p>
-      <ul class="footer-links">
-        <li><a href="galeria-vysiviek.html">Vzorkovník výšiviek</a></li>
-        <li><a href="galeria-ludove.html">Ľudové výšivky a odev</a></li>
-        <li><a href="galeria-babik.html">Krojované bábiky</a></li>
-        <li><a href="mapa-spomienok.html">Mapa spomienok</a></li>
-        <li><a href="spojme-sa.html">Spojme sa</a></li>
-      </ul>
+  <div class="footer-simple">
+    <div class="footer-name">Anna Šenšelová</div>
+    <svg viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:140px; display:block; margin:0.6rem auto; opacity:0.25;">
+      <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
+      <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+      <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+      <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+      <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+      <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+    </svg>
+    <p class="footer-tagline">Vytvorené s láskou a úctou k predošlým generáciám.</p>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Facebooku">Facebook</a>
+      <span class="footer-social-sep">·</span>
+      <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Instagrame">Instagram</a>
     </div>
   </div>
   <div class="footer-divider"></div>
-  <p class="footer-copy">© 2026 Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:inherit;opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">senselovaanna@gmail.com</a></p>
-  <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Ochrana osobných údajov</button></p>
+  <p class="footer-copy">© 2026 Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:inherit;opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">senselovaanna@gmail.com</a> · <button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Ochrana osobných údajov</button></p>
   <p class="footer-disclaimer">Zbierka výšiviek, bábik a pozostalosti po rodine Šenšelovcov nie je mojím osobným vlastníctvom — je dedičstvom celej rodiny. Výšivky, bábiky ani kroje nie sú na predaj.</p>
 </footer>
 
