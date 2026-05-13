@@ -36,7 +36,11 @@ body.page-leaving { opacity: 0; }
   text-decoration: none; z-index: 99999;
   transition: top 0.2s ease;
 }
-.skip-link:focus { top: 0; }
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
 
 /* ── Section label ── */
 .section-label {
@@ -434,4 +438,41 @@ body.ornaments-always .side-ornament { opacity: 0.13; }
 .footer-social-sep {
   color: rgba(212,175,55,0.35);
   font-size: 0.55rem;
+}
+
+/* ── Hero primary CTA — solid fill ── */
+.btn--solid {
+  background: #fff !important;
+  color: var(--red) !important;
+  border-color: #fff !important;
+  font-weight: 700;
+  text-shadow: none !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+.btn--solid:hover {
+  background: rgba(255,255,255,0.88) !important;
+  border-color: #fff !important;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.3);
+}
+
+/* ── Konzistentný červený CTA tlačidlo (blog, sekcie) ── */
+.btn-cta-red {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.2rem;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--red);
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.btn-cta-red:hover {
+  background: transparent;
+  color: var(--red);
+  border-color: var(--red);
 }
