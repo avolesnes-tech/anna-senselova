@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kde som hľadala a čo som našla: moje zdroje pri pátraní po predkoch — Blog — Anna Šenšelová</title>
+<meta name="description" content="Aké zdroje mi pomohli odhaliť históriu mojej rodiny? Od rodinných publikácií cez digitálne archívy až po vzdialených príbuzných — návod pre každého, kto chce pátrať.">
+<meta property="og:title" content="Kde som hľadala a čo som našla: moje zdroje pri pátraní po predkoch">
+<meta property="og:description" content="Moje zdroje pri pátraní po predkoch — od rodinných publikácií cez dikda.sk až po matriky online.">
+<meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
+<meta property="og:type" content="article">
+<link rel="preload" href="assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+<style>
+
+:root {
+  --max-prose: 680px;
+  --transition-base: 0.3s ease;
+}
+
+body { font-size: clamp(17px, 2.4vw, 19px); line-height: 1.8; overflow-x: hidden; }
+
+/* READING PROGRESS */
+.reading-progress {
+  position: fixed; top: var(--nav-height); left: 0; width: 0%; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 9997; transition: width 0.1s linear; pointer-events: none;
+}
+
+/* HERO */
+.article-hero {
+  padding: calc(var(--nav-height) + 5rem) 2rem 4rem;
+  background: var(--section-alt);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.article-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(196,30,58,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 20%, rgba(212,175,55,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.article-hero-inner {
+  position: relative; z-index: 1;
+  max-width: var(--max-prose);
+  margin: 0 auto;
+}
+.blog-back {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  transition: color var(--transition-base);
+  opacity: 0.75;
+}
+.blog-back:hover { color: var(--red); opacity: 1; }
+.article-category {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.article-hero h1 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  color: var(--red);
+  line-height: 1.35;
+  margin-bottom: 1.5rem;
+}
+.article-meta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(107,80,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.article-meta-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: rgba(107,80,0,0.25);
+  display: inline-block;
+}
+
+/* ARTICLE BODY */
+.article-body {
+  max-width: var(--max-prose);
+  margin: 0 auto;
+  padding: 4rem 2rem 5rem;
+}
+
+.article-body p {
+  color: #2e2e2e;
+  margin-bottom: 1.6rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  line-height: 1.9;
+}
+
+.article-body p:first-child::first-letter {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 4.2rem;
+  color: var(--red);
+  float: left;
+  line-height: 0.75;
+  margin: 0.1em 0.08em 0 0;
+}
+
+.article-body em {
+  font-style: italic;
+  color: rgba(107,80,0,0.85);
+}
+
+.article-body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.article-body a {
+  color: var(--red);
+  text-decoration: underline;
+  text-decoration-color: rgba(196,30,58,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--transition-base);
+}
+.article-body a:hover {
+  text-decoration-color: var(--red);
+}
+
+.article-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2.5rem 0;
+  opacity: 0.35;
+}
+.article-divider::before,
+.article-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.article-divider::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.article-pull-quote {
+  border-left: 3px solid var(--red);
+  padding: 1rem 1.5rem;
+  margin: 2.5rem 0;
+  background: rgba(196,30,58,0.04);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.18rem;
+  font-style: italic;
+  color: #444;
+  line-height: 1.75;
+}
+
+/* RESOURCE LIST */
+.resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.6rem 0 2rem;
+}
+.resource-list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #2e2e2e;
+  padding: 0.75rem 0 0.75rem 1.5rem;
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+  position: relative;
+}
+.resource-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dark);
+  font-size: 0.85rem;
+}
+.resource-list li:last-child { border-bottom: none; }
+.resource-list li strong { color: var(--ink); }
+.resource-list li em { color: #666; font-size: 0.95em; }
+
+/* SHARE / NAV */
+.article-footer-nav {
+  max-width: var(--max-prose);
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(212,175,55,0.2);
+  padding-top: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.article-footer-nav a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: color var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.article-footer-nav a:hover { color: var(--red); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+section[id], div[id] { scroll-margin-top: 72px; }
+
+</style>
+</head>
+<body class="ornaments-always">
+<div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
+<div class="side-ornament side-ornament--right" aria-hidden="true"></div>
+
+<a href="#main-content" class="skip-link">Preskočiť na obsah</a>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+<nav>
+  <a href="index.html" class="logo" aria-label="Mapa Spomienok – domov">
+    <picture>
+      <source srcset="assets/logo-nav-v2.webp" type="image/webp">
+      <img src="assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
+    </picture>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li>
+      <a href="index.html#pribeh" id="nav-pribeh">Príbeh ▾</a>
+      <div class="dropdown" id="dd-pribeh">
+        <span class="dropdown-label">Príbeh</span>
+        <a href="anna-senselova.html">Anna Šenšelová</a>
+        <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
+        <a href="lipa.html">Lipa</a>
+        <a href="zivena.html">Živena</a>
+      </div>
+    </li>
+    <li>
+      <a href="index.html#galeria-vysiviek" id="nav-galeria">Galéria ▾</a>
+      <div class="dropdown" id="dd-galeria">
+        <span class="dropdown-label">Galéria</span>
+        <a href="galeria-vysiviek.html">Vzorkovník výšiviek Anny Šenšelovej</a>
+        <a href="galeria-ludove.html">Iné ľudové výšivky a odev</a>
+        <a href="galeria-babik.html">Krojované bábiky</a>
+      </div>
+    </li>
+    <li><a href="mapa-spomienok.html" id="nav-mapa">Mapa spomienok</a></li>
+    <li><a href="blog.html" id="nav-blog">Blog</a></li>
+    <li><a href="spojme-sa.html" id="nav-spojme">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="article-hero" id="main-content">
+  <div class="article-hero-inner">
+    <a href="blog.html" class="blog-back">← Späť na blog</a>
+    <span class="article-category">Blog · Rodinná história</span>
+    <h1>Kde som hľadala a čo som našla</h1>
+    <div class="article-meta">
+      <span>Anna Lockwoodová</span>
+      <span class="article-meta-dot"></span>
+      <span>Máj 2026</span>
+      <span class="article-meta-dot"></span>
+      <span>8 min čítania</span>
+    </div>
+  </div>
+</header>
+
+<!-- ARTICLE BODY -->
+<article class="article-body">
+
+  <p>Keď som začala pátrať po minulosti mojej rodiny, veľmi rýchlo som si uvedomila, že som na tom — v porovnaní s väčšinou ľudí — výnimočne dobre. Nie preto, že by som bola niečo špeciálna, ale preto, že môj starý otec Ivan Šenšel bol z dlhej línie evanjelických národovcov, pre ktorých bola úcta k predkom — a zachovávanie ich príbehov — samozrejmou súčasťou rodinnej identity. Každá generácia si tieto rozprávania starostlivo pestovala ďalej, a vďaka tomu som ako začínajúca pátrateľka dostala do rúk niečo naozaj vzácne: zdokumentovanú históriu, nie iba útržky spomienok. Som za to nesmierne vďačná.</p>
+
+  <p>Prvým a zrejme najcennejším zdrojom bola <strong>autobiografia môjho starého otca</strong>, ktorú skompletizoval a vydal v nízkom náklade v roku 2010. Opisuje v nej nielen spomienky na detstvo strávené na evanjelickej fare, ale aj neskoršie vojnové roky a hrôzy zo zajatia v nemeckom lagri. Zároveň v nej mapuje životy širšej rodiny — a práve vďaka tomu som sa mohla dozvedieť viac aj o mojej pratete Anne Šenšelovej. Spoznala som ju v nej z trochu inej strany, než som čakala — nie len ako verejnú osobnosť spojenú s výšivkárstvom a Lipou, ale aj ako láskyplnú a skromnú <em>tetinku</em>, akú si každý praje mať.</p>
+
+  <p>Okrem autobiografie môj starý otec v 90. rokoch spracoval aj <strong>rodinnú históriu s názvom <em>Šenšelovský rod</em></strong>. Tá obsahuje rodokmeň po meči (teda otcovskej línii) aj po praslici (línii materskej), historické rodinné fotografie a kópiu pôvodného rodostromu Michala Miloslava Hodžu, vypracovaného Maticou slovenskou — ktorého posledné výhonky siahajú až k nám. Siahnuť po tejto publikácii a postupne sa v nej orientovať bolo pre mňa ako otváranie jedných dverí za druhými.</p>
+
+  <p>Život môjho prastarého otca Ľudovíta Šenšela je zase dôkladne spracovaný v knihe <strong><em>Pevný buď</em></strong> <em>(Ivan Šenšel, Tranoscius, 1998)</em>, a to na základe jeho vlastného životopisu. Po prečítaní týchto troch publikácií sa môj záujem o poznanie ďalších predkov ešte viac prehĺbil — ale domáce zdroje som vycerpala. Začala som teda pátrať na webe.</p>
+
+  <div class="article-divider"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1 L7.5 4.5 L11 6 L7.5 7.5 L6 11 L4.5 7.5 L1 6 L4.5 4.5 Z" stroke="#D4AF37" stroke-width="0.7" fill="none"/></svg></div>
+
+  <p>O Anne Šenšelovej som na internete narazila na spracovanú nahrávku relácie <em>Robinsonka</em> na <strong>Radio_FM</strong>, ktorú pripravila Monika Kaprálíková. Práve ona ma nasmerovala na <strong>Digitálnu knižnicu a digitálny archív SNK</strong> — <a href="https://dikda.sk" target="_blank" rel="noopener noreferrer">dikda.sk</a>. Táto stránka mi otvorila úplne nové obzory. Našla som tu vzácne dobové publikácie, ku ktorým by som sa za normálnych okolností len ťažko dostala. Väčšina starších diel je po prihlásení verejne dostupná — a tak je naozaj veľmi jednoduché dostať sa k informáciám, ktoré by inak zapadali prachom. Vyhľadávanie je intuitívne, obsah bohatý. Ak sa vám zobrazí kniha ako verejne nedostupná, ani to nemusí byť koniec — stačí podať dopyt na <strong>medziknižničnú výpožičnú službu</strong> prostredníctvom vašej lokálnej knižnice a o konkrétnu publikáciu jednoducho požiadať.</p>
+
+  <p>Pre mňa osobne bolo veľkým obohatením aj čítanie <strong>dobových časopisov</strong> — v mojom prípade Živeny. Práve tu som dostala lepší prehľad o tom, akými témami naši predkovia v skutočnosti vo svojej dobe žili: ako riešili problémy, aké hodnoty mali, s čím a za čo bojovali, aké nástrahy ich v živote stretávali. Od serióznych tém sa ľahko prešlo aj k jednoduchším — návodom na cvičenie, pranie alebo domáce práce, receptom či módnym tipom. Čítala som to cez optiku vlastnej rodiny a jednotlivé príspevky zrazu nadobudli úplne iný rozmer.</p>
+
+  <div class="article-pull-quote">
+    „Dobové časopisy mi dali kontext, ktorý knihy nedokážu — pocit, že tí ľudia naozaj existovali, dýchali a riešili každodenné starosti podobne ako my."
+  </div>
+
+  <p>Ďalším významným krokom v mojom pátraní bolo <strong>oslovovanie vzdialenejších príbuzných</strong>, s ktorými som sa doteraz nepoznala, ale vedela som, že ešte mohli v detstve zažiť prítomnosť staršej generácie. Prostredníctvom ich rozprávania som sa dozvedala ďalšie a ďalšie príbehy — a môj obraz o širšej rodine sa stále zväčšoval. Nie som prirodzene extrovertný človek, ale keď som mala pred sebou konkrétny cieľ, oslovovanie mi išlo prekvapivo samo. A stretla som sa výhradne s ochotou a radosťou podeliť sa.</p>
+
+  <div class="article-divider"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1 L7.5 4.5 L11 6 L7.5 7.5 L6 11 L4.5 7.5 L1 6 L4.5 4.5 Z" stroke="#D4AF37" stroke-width="0.7" fill="none"/></svg></div>
+
+  <p>Na internete sú pomerne zaujímavým zdrojom aj <strong>záznamy cirkevných matrík</strong> — krstitebné knihy, sobášne záznamy, záznamy úmrtí — v ktorých sa dajú dohľadať údaje spred niekoľkých storočí. Na Slovensku siahajú digitalizované záznamy pre mnohé obce až do 17. a 18. storočia. Niekoľko stránok, ktoré stoja za pozornosť:</p>
+
+  <ul class="resource-list">
+    <li>
+      <strong><a href="https://www.familysearch.org" target="_blank" rel="noopener noreferrer">FamilySearch.org</a></strong> — <em>zadarmo.</em> Obrovská databáza spravovaná Cirkvou Ježiša Krista Svätých neskorších dní, obsahuje milióny naskenovaných slovenských cirkevných záznamov vrátane evanjelických matrík. Dobrý štartovací bod pre každého.
+    </li>
+    <li>
+      <strong><a href="https://www.matricula-online.eu" target="_blank" rel="noopener noreferrer">Matricula-online.eu</a></strong> — <em>zadarmo.</em> Digitalizované cirkevné matriky zo strednej Európy vrátane slovenských oblastí, pôvodne súčasť Rakúsko-Uhorska. Prehľadné rozhranie, priame zobrazenie skenov originálov.
+    </li>
+    <li>
+      <strong><a href="https://www.myheritage.com" target="_blank" rel="noopener noreferrer">MyHeritage.com</a></strong> — <em>freemium</em> (základné funkcie zadarmo, rozšírené záznamy platené). Populárna v Európe, umožňuje aj DNA analýzu na hľadanie príbuzných. Užitočná najmä vtedy, keď chcete nájsť vzdialených príbuzných, ktorí o vás ani netušia.
+    </li>
+    <li>
+      <strong><a href="https://www.ancestry.com" target="_blank" rel="noopener noreferrer">Ancestry.com</a></strong> — <em>platená</em> (predplatné). Najväčšia genealogická databáza na svete. Oplatí sa pri hľadaní predkov, ktorí emigrovali do zahraničia — najmä do USA — keď sú dostupné záznamy lodných pasažierov, imigračné dokumenty či sčítania obyvateľstva.
+    </li>
+    <li>
+      <strong><a href="https://archivap.culture.gov.sk" target="_blank" rel="noopener noreferrer">Archívny portál SR</a></strong> — <em>zadarmo.</em> Slovenský štátny archív online. Umožňuje vyhľadávanie v archívnych fondoch a prístup k časti digitalizovaných dokumentov zo štátnych archívov.
+    </li>
+  </ul>
+
+  <p>Prostredníctvom týchto záznamov môžete nájsť aj vzdialených príbuzných — a pokiaľ nazberiete odvahu a oslovíte ich, myslím, že vo väčšine prípadov budú ochotní podeliť sa s vami o svoje poznatky. Spája vás predsa to najvzácnejšie — rodina.</p>
+
+  <p>Keďže sa moje pátranie akosi prirodzene rozšírilo aj na výšivky a Lipu, oslávila som <strong>folklórnych nadšencov, múzeá a organizácie</strong> — a od väčšiny z nich som dostala pozitívne a nápomocné reakcie, vďaka ktorým som sa posunula ďalej. Ľudia, ktorí sa tejto oblasti venujú s vášňou, sú spravidla rovnako nadšení z toho, že niekto prejavuje záujem — a radi sa podelia. Stačí sa opýtať.</p>
+
+  <p>Ak teda stojíte na začiatku a neviete, kde začať — začnite doma. Staré fotografie, listy, knižky s venovaním, zápisníky. Potom rodičia, starí rodičia, vzdialení príbuzní. A potom internet — s vedomím, že čím viac nájdete, tým viac budete chcieť hľadať. Varovala som vás.</p>
+
+  <p>Dúfam, že tento zoznam vám aspoň trochu uľahčí začiatok — alebo vám ukáže nejaký zdroj, na ktorý ste doteraz nenarazili. A dúfam tiež, že svojím malým kúskom prispievam k vášmu pátraniu aj prostredníctvom tejto stránky. V <a href="mapa-spomienok.html">Mape spomienok</a> môžete prehľadávať pridané príbehy podľa priezviska alebo regiónu — a som skutočne zvedavá, či sa niektoré nitky príbehov takto spoja a či niekto nájde cez mapu svojich vzdialených príbuzných. Ak by sa niečo také stalo, budem nesmierne rada, ak mi o tom dáte vedieť. Vedela by som, že toto celé malo aj tento zmysel.</p>
+
+</article>
+
+<nav class="article-footer-nav" aria-label="Navigácia článku">
+  <a href="blog.html">← Všetky články</a>
+  <a href="blog-patranie.html">Ďalší článok →</a>
+</nav>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-col-title">Príbeh</p>
+      <ul class="footer-links">
+        <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
+        <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
+        <li><a href="lipa.html">Lipa</a></li>
+        <li><a href="zivena.html">Živena</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Galéria</p>
+      <ul class="footer-links">
+        <li><a href="galeria-vysiviek.html">Výšivky Anny Šenšelovej</a></li>
+        <li><a href="galeria-ludove.html">Ľudové výšivky a odev</a></li>
+        <li><a href="galeria-babik.html">Krojované bábiky</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Projekt</p>
+      <ul class="footer-links">
+        <li><a href="mapa-spomienok.html">Mapa spomienok</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="spojme-sa.html">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Anna Lockwoodová · Všetky práva vyhradené</p>
+    <p class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Facebooku">Facebook</a>
+      <span class="footer-social-sep">·</span>
+      <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Instagrame">Instagram</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+// Reading progress
+const bar = document.getElementById('readingProgress');
+if (bar) {
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+}
+
+// Hamburger
+const ham = document.getElementById('hamburger');
+const menu = document.getElementById('nav-menu');
+if (ham && menu) {
+  ham.addEventListener('click', () => {
+    const open = ham.getAttribute('aria-expanded') === 'true';
+    ham.setAttribute('aria-expanded', String(!open));
+    menu.classList.toggle('is-open', !open);
+  });
+}
+</script>
+</body>
+</html>
