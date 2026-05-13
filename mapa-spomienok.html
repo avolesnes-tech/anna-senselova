@@ -1123,8 +1123,8 @@
 </style>
 </head>
 <body class="ornaments-always">
-<div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
-<div class="side-ornament side-ornament--right" aria-hidden="true"></div>
+<div class="side-ornament side-ornament--left"  id="sideOrnLeft"  aria-hidden="true"></div>
+<div class="side-ornament side-ornament--right" id="sideOrnRight" aria-hidden="true"></div>
 
 <a href="#main" class="skip-link">Preskočiť na obsah</a>
 
@@ -2353,6 +2353,24 @@
   /* ─── INIT ───────────────────────────────────── */
   loadStories().then(handleDeepLink);
   initReveal();
+
+  /* ─── ORNAMENT: skryť pri mape ───────────────── */
+  (function() {
+    var mapSection = document.getElementById('mapa');
+    var ornLeft    = document.getElementById('sideOrnLeft');
+    var ornRight   = document.getElementById('sideOrnRight');
+    if (!mapSection || (!ornLeft && !ornRight)) return;
+
+    var observer = new IntersectionObserver(function(entries) {
+      var inView = entries[0].isIntersecting;
+      [ornLeft, ornRight].forEach(function(el) {
+        if (!el) return;
+        el.style.opacity = inView ? '0' : '';
+      });
+    }, { threshold: 0.05 });
+
+    observer.observe(mapSection);
+  })();
 
 })();
 </script>
