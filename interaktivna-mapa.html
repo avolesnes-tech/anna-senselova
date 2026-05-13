@@ -18,6 +18,7 @@
 <meta property="og:description" content="Mapa spomienok — každý príbeh je jedinečný. Prispejte kúskom svojej rodinnej minulosti.">`
 <meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
 <meta property="og:type" content="website">
+<link rel="preload" href="assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
 
@@ -276,7 +277,9 @@ section[id], div[id] { scroll-margin-top: 72px; }
 .comment-form input[type="text"] { font-size: 16px; }
 </style>
 </head>
-<body>
+<body class="ornaments-always">
+<div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
+<div class="side-ornament side-ornament--right" aria-hidden="true"></div>
 <a href="#main-content" class="skip-link">Preskočiť na obsah</a>
 <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
 
@@ -937,6 +940,11 @@ async function deletePin(pinId) {
         <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
       </svg>
       <p class="footer-tagline">Vytvorené s láskou a úctou k predošlým generáciám.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Facebooku">Facebook</a>
+        <span class="footer-social-sep">·</span>
+        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Instagrame">Instagram</a>
+      </div>
     </div>
     <div>
       <p class="footer-col-title">Galéria & Mapa</p>
