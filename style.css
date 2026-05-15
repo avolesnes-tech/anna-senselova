@@ -4,20 +4,6 @@
    remain in each file's inline <style> block.
    ============================================= */
 
-/* ── Page transition overlay ─────────────────
-   Štartuje opacity:1 (zakrýva obsah).
-   GSAP ho odhalí po načítaní stránky (0.55s).
-   Na odchode ho GSAP opäť zakryje (0.3s).
-──────────────────────────────────────────── */
-#pg-transition {
-  position: fixed;
-  inset: 0;
-  background: #F9F7F2; /* --cream */
-  z-index: 99998;      /* pod skip-link (99999), nad všetkým ostatným */
-  pointer-events: all;
-  visibility: visible;
-  opacity: 1;
-}
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

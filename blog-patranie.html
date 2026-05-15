@@ -198,7 +198,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
 </style>
 </head>
 <body class="ornaments-always">
-<div id="pg-transition" aria-hidden="true"></div>
 <div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
 <div class="side-ornament side-ornament--right" aria-hidden="true"></div>
 
@@ -393,7 +392,5 @@ section[id], div[id] { scroll-margin-top: 72px; }
   document.getElementById('gdpr-modal').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') document.getElementById('gdpr-modal').classList.remove('open'); });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="transitions.js"></script>
 </body>
 </html>
