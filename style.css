@@ -167,6 +167,28 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* ── Language switcher ── */
+.lang-switch {
+  display: flex; align-items: center; gap: 0.35rem;
+  font-family: 'Cinzel', serif; font-size: 0.65rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  flex-shrink: 0; margin-left: 1.4rem;
+}
+.lang-current { color: var(--red); font-weight: 700; }
+.lang-sep { color: rgba(0,0,0,0.25); font-weight: 300; }
+.lang-link {
+  color: #888; text-decoration: none;
+  transition: color 0.25s ease;
+}
+.lang-link:hover { color: var(--red); }
+@media (max-width: 768px) {
+  .lang-switch {
+    position: absolute; top: 50%; right: 4rem;
+    transform: translateY(-50%);
+    margin-left: 0;
+  }
+}
+
 /* Nav — medium screens: prevent item overflow */
 @media (min-width: 769px) and (max-width: 960px) {
   nav { padding: 0 1.4rem; }
