@@ -163,6 +163,26 @@ body { font-size: clamp(17px, 2.4vw, 19px); line-height: 1.8; overflow-x: hidden
   line-height: 1.75;
 }
 
+/* ARTICLE FIGURE */
+.article-figure {
+  margin: 2.8rem 0;
+}
+.article-figure picture img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-top: 3px solid var(--red);
+}
+.article-figure figcaption {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  color: #888;
+  line-height: 1.55;
+  margin-top: 0.6rem;
+  padding-left: 0.2rem;
+  font-style: italic;
+}
+
 /* SHARE / NAV */
 .article-footer-nav {
   max-width: var(--max-prose);
@@ -282,6 +302,14 @@ section[id], div[id] { scroll-margin-top: 72px; }
   <p>Tým, že sa mi pod ruku priplietli aj letopisy Živeny, ich obsah som čítala úplne inak, ako by som ho vnímala pred pár rokmi. Prechádzala som nimi cez optiku svojich predkov — a jednotlivé príspevky v Živene dodali celému obrazu o nich a o období, v ktorom žili, kontext, ktorý som predtým nemala.</p>
 
   <div class="article-divider"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1 L7.5 4.5 L11 6 L7.5 7.5 L6 11 L4.5 7.5 L1 6 L4.5 4.5 Z" stroke="#D4AF37" stroke-width="0.7" fill="none"/></svg></div>
+
+  <figure class="article-figure">
+    <picture>
+      <source srcset="snm_martin.webp" type="image/webp">
+      <img src="snm_martin.jpeg" alt="Slovenské národné múzeum — Etnografický ústav v Martine" loading="lazy" decoding="async">
+    </picture>
+    <figcaption>Slovenské národné múzeum — Etnografický ústav v Martine. Na budove výstava Karol Plicka: Obrazy zeme (od 7. 2. 2025).</figcaption>
+  </figure>
 
   <p>Myšlienky na minulosť spred 100 rokov ma teraz sprevádzajú denne. Už roky mám doma niekoľko starých kúskov keramiky, vyšívané dečky a obrusy, staré vydania kníh či starožitný šijací stroj. Tieto predmety mali pre mňa doteraz viac-menej estetický význam — ale zrazu sa zamýšľam nad tým, kto asi vyšil dečku, ktorú mávam na konferenčnom stolíku, ktorá zo žien môjho rodu ušila šaty na tomto šijacom stroji, koľko šenšelovských návštev pilo kávu z nádherných šáločiek, ktoré mám tak rada aj ja, čie prsty listovali v tej istej starej knihe, ktorú dnes držím v rukách aj ja.</p>
 
