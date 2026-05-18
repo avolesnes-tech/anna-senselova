@@ -181,12 +181,22 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
   transition: color 0.25s ease;
 }
 .lang-link:hover { color: var(--red); }
+
+/* Mobile lang item inside hamburger menu */
+.nav-lang-item { display: none; }
+.nav-lang-link {
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  color: var(--red) !important;
+  opacity: 0.85;
+}
+.nav-lang-link:hover { opacity: 1; color: var(--red) !important; }
+
 @media (max-width: 768px) {
-  .lang-switch {
-    position: absolute; top: 50%; right: 4rem;
-    transform: translateY(-50%);
-    margin-left: 0;
-  }
+  .lang-switch { display: none; }
+  .nav-lang-item { display: block; border-top: 1px solid rgba(212,175,55,0.35) !important; margin-top: 0.5rem; }
 }
 
 /* Nav — medium screens: prevent item overflow */
