@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Anna Šenšelová</title>
+<meta name="description" content="Anna Lockwoodová's blog about family history, embroideries, folk costumes, and stories we don't want to let fall into oblivion.">
+<meta property="og:title" content="Blog — The Embroidered Treasures of Anna Šenšelová">
+<meta property="og:description" content="Stories about family history, embroideries, and the women who came before us.">
+<meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
+<meta property="og:type" content="website">
+<link rel="preload" href="="../assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="="../fonts.css">
+<link rel="stylesheet" href="="../style.css">
+<style>
+
+:root {
+  --max-wide: 1100px;
+  --transition-base: 0.3s ease;
+}
+
+body { font-size: clamp(16px, 2.2vw, 18px); overflow-x: hidden; }
+
+.reading-progress {
+  position: fixed; top: var(--nav-height); left: 0; width: 0%; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 9997; transition: width 0.1s linear; pointer-events: none;
+}
+
+/* HERO */
+.page-hero {
+  padding: calc(var(--nav-height) + 4rem) 2rem 4rem;
+  text-align: center;
+  background: var(--section-alt);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(196,30,58,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 20%, rgba(212,175,55,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(212,175,55,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+}
+.page-hero-inner {
+  position: relative; z-index: 1;
+  max-width: 640px; margin: 0 auto;
+}
+.breadcrumb {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold-dark); margin-bottom: 1.5rem; opacity: 0.75;
+}
+.breadcrumb a { text-decoration: none; color: inherit; transition: color var(--transition-base); }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { margin: 0 0.5rem; }
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 0.5rem;
+}
+h1.page-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  color: var(--red); line-height: 1.4; margin-bottom: 0.75rem;
+}
+.page-hero-desc {
+  font-size: 0.97rem; color: #555; font-style: italic; line-height: 1.85;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* BLOG GRID */
+#blog-content {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.blog-card {
+  background: var(--cream);
+  border: 1px solid rgba(212,175,55,0.18);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); border-color: rgba(212,175,55,0.4); }
+.blog-card:hover::before { transform: scaleX(1); }
+
+.blog-card-body { padding: 2rem 2rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+
+.blog-card-category {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 0.75rem; display: block;
+}
+.blog-card-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--red); line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+.blog-card-excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem; color: #555; line-height: 1.75;
+  flex: 1; margin-bottom: 1.5rem;
+}
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-top: 1px solid rgba(212,175,55,0.15);
+  background: rgba(212,175,55,0.03);
+}
+.blog-card-meta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(107,80,0,0.6);
+}
+.blog-card-read {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold-dark);
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  transition: color var(--transition-base);
+}
+.blog-card:hover .blog-card-read { color: var(--red); }
+
+/* Reveal */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+
+section[id], div[id] { scroll-margin-top: 72px; }
+
+@media (max-width: 600px) {
+  .blog-grid { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="alternate" hreflang="sk" href="https://avolesnes-tech.github.io/anna-senselova/blog.html">
+<link rel="alternate" hreflang="en" href="https://avolesnes-tech.github.io/anna-senselova/en/blog.html">
+<link rel="alternate" hreflang="x-default" href="https://avolesnes-tech.github.io/anna-senselova/blog.html">
+</head>
+<body class="ornaments-always">
+<div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
+<div class="side-ornament side-ornament--right" aria-hidden="true"></div>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+<nav>
+  <a href="index.html" class="logo" aria-label="Map of Memories – home">
+    <picture>
+      <source srcset="../assets/logo-nav-v2.webp" type="image/webp">
+      <img src="../assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
+    </picture>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li>
+      <a href="index.html#pribeh" id="nav-pribeh">Story ▾</a>
+      <div class="dropdown" id="dd-pribeh">
+        <span class="dropdown-label">Story</span>
+        <a href="anna-senselova.html">Anna Šenšelová</a>
+        <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
+        <a href="lipa.html">Lipa</a>
+        <a href="zivena.html">Živena</a>
+      </div>
+    </li>
+    <li>
+      <a href="index.html#galeria-vysiviek" id="nav-galeria">Gallery ▾</a>
+      <div class="dropdown" id="dd-galeria">
+        <span class="dropdown-label">Gallery</span>
+        <a href="galeria-vysiviek.html">Sample Book of Anna Šenšelová's Embroideries</a>
+        <a href="galeria-ludove.html">Other Folk Embroideries and Dress</a>
+        <a href="galeria-babik.html">Folk Costume Dolls</a>
+      </div>
+    </li>
+    <li><a href="mapa-spomienok.html" id="nav-mapa">Map of Memories</a></li>
+    <li><a href="blog.html" id="nav-blog">Blog</a></li>
+    <li><a href="spojme-sa.html" id="nav-spojme">Contact</a></li>
+  </ul>
+  <div class="lang-switch" aria-label="Language version">
+    <a href="../blog.html" class="lang-link" lang="sk" hreflang="sk">SK</a>
+    <span class="lang-sep" aria-hidden="true">|</span>
+    <span class="lang-current" aria-current="true">EN</span>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<header class="page-hero" id="main-content">
+  <div class="page-hero-inner">
+    <p class="breadcrumb"><a href="index.html">Home</a><span>·</span>Blog</p>
+    <p class="section-label">Notes · Stories · Reflections</p>
+    <h1 class="page-title">Blog.</h1>
+    <div class="gold-line"></div>
+    <p class="page-hero-desc">A place where I will share with you my journey searching through my own family history — embroideries, Lipa, Živena — and perhaps other treasures that catch my eye along the way.</p>
+  </div>
+</header>
+
+<!-- BLOG GRID -->
+<main id="blog-content">
+  <div class="blog-grid">
+
+    <!-- Článok 2 — najnovší -->
+    <a href="blog-zdroje.html" class="blog-card reveal reveal-delay-1">
+      <div class="blog-card-body">
+        <span class="blog-card-category">Family history</span>
+        <h2 class="blog-card-title">Where I searched and what I found</h2>
+        <p class="blog-card-excerpt">What sources helped me uncover my family's history? From family publications and digital archives to distant relatives and folklore enthusiasts.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span class="blog-card-meta">May 2026 · 8 min read</span>
+        <span class="blog-card-read">Read →</span>
+      </div>
+    </a>
+
+    <!-- Článok 1 -->
+    <a href="blog-patranie.html" class="blog-card reveal reveal-delay-2">
+      <div class="blog-card-body">
+        <span class="blog-card-category">Family history</span>
+        <h2 class="blog-card-title">Warning: searching for the past will pull you in!</h2>
+        <p class="blog-card-excerpt">An interest in family history brought a whole new dimension to my life. I warn you: the search will pull you into a whirlpool that is very hard to stop.</p>
+      </div>
+      <div class="blog-card-footer">
+        <span class="blog-card-meta">April 2026 · 6 min read</span>
+        <span class="blog-card-read">Read →</span>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-col-title">Story</p>
+      <ul class="footer-links">
+        <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
+        <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
+        <li><a href="lipa.html">Lipa</a></li>
+        <li><a href="zivena.html">Živena</a></li>
+      </ul>
+    </div>
+    <div class="footer-col-center">
+      <div class="footer-name">Anna Šenšelová</div>
+      <svg viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:180px; display:block; margin:0 auto 0.8rem; opacity:0.3;">
+        <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
+        <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+        <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+        <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+      </svg>
+      <p class="footer-tagline">Created with love and respect for past generations.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories na Facebooku">Facebook</a>
+        <span class="footer-social-sep">·</span>
+        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories na Instagrame">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Gallery & Map</p>
+      <ul class="footer-links">
+        <li><a href="galeria-vysiviek.html">Embroidery Sample Book</a></li>
+        <li><a href="galeria-ludove.html">Folk Embroideries and Dress</a></li>
+        <li><a href="galeria-babik.html">Folk Costume Dolls</a></li>
+        <li><a href="mapa-spomienok.html">Map of Memories</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="spojme-sa.html">Get in touch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2026 Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:inherit;opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">senselovaanna@gmail.com</a></p>
+  <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Privacy policy</button></p>
+  <p class="footer-disclaimer">The collection of embroideries, dolls, and personal effects of the Šenšel family is not my personal property — it is the heritage of the whole family. The embroideries, dolls, and folk costumes are not for sale.</p>
+</footer>
+
+<script>
+  (function() {
+    var hamburger = document.getElementById('hamburger');
+    var navMenu = document.getElementById('nav-menu');
+    if (!hamburger || !navMenu) return;
+    function isMobile() { return window.innerWidth <= 768; }
+    function closeAllDropdowns() { navMenu.querySelectorAll('.dropdown').forEach(function(d) { d.classList.remove('open','dropdown-open'); }); }
+    function closeMenu() { navMenu.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); closeAllDropdowns(); }
+    hamburger.addEventListener('click', function() { var isOpen = navMenu.classList.toggle('open'); hamburger.classList.toggle('open', isOpen); hamburger.setAttribute('aria-expanded', String(isOpen)); });
+    navMenu.querySelectorAll('li > a').forEach(function(link) {
+      link.addEventListener('click', function(e) { var li = this.closest('li'); var dd = li.querySelector('.dropdown'); if (dd && isMobile()) { e.preventDefault(); dd.classList.toggle('open'); navMenu.querySelectorAll('.dropdown.open').forEach(function(d) { if (d !== dd) d.classList.remove('open'); }); } else if (!dd) { closeMenu(); } });
+    });
+    navMenu.querySelectorAll('.dropdown a').forEach(function(a) { a.addEventListener('click', function() { closeMenu(); }); });
+    navMenu.querySelectorAll('li').forEach(function(li) { var dd = li.querySelector('.dropdown'); if (!dd) return; var timer; li.addEventListener('mouseenter', function() { if (isMobile()) return; clearTimeout(timer); dd.classList.add('dropdown-open'); }); li.addEventListener('mouseleave', function() { if (isMobile()) return; timer = setTimeout(function() { dd.classList.remove('dropdown-open'); }, 140); }); dd.addEventListener('mouseenter', function() { clearTimeout(timer); }); dd.addEventListener('mouseleave', function() { if (isMobile()) return; timer = setTimeout(function() { dd.classList.remove('dropdown-open'); }, 140); }); });
+    document.addEventListener('click', function(e) { if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeMenu(); });
+    window.addEventListener('resize', function() { if (!isMobile()) { closeMenu(); closeAllDropdowns(); } });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+    var path = window.location.pathname.split('/').pop() || 'index.html';
+    navMenu.querySelectorAll('a[href]').forEach(function(a) { var href = a.getAttribute('href').split('#')[0].split('/').pop(); if (href === path) a.classList.add('active'); });
+  })();
+
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || link.target === '_blank') return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function() { window.location.href = href; }, 340);
+  });
+
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+</script>
+
+<!-- GDPR Modal -->
+<div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
+  <div class="gdpr-box">
+    <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Close">✕</button>
+    <h2 id="gdpr-title">Privacy policy</h2>
+    <p><strong>Website operator:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
+    <p>This website is a non-commercial informational site created in my free time. No commercial obligations arise from it.</p>
+    <p><strong>Contact form:</strong> If you write to me via the contact form, I process the following data: name, email address, and the message text. These are used solely to reply to you. Data are not shared with third parties and will be deleted once the communication is resolved.</p>
+    <p><strong>Your rights:</strong> You have the right to request access to your data, its correction, or deletion. Simply write to the email address above.</p>
+    <p><strong>Cookies and fonts:</strong> This site does not use tracking or analytical cookies. Fonts are hosted directly on this server — no data is sent to Google or any other third parties.</p>
+  </div>
+</div>
+<script>
+  document.getElementById('gdpr-modal').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') document.getElementById('gdpr-modal').classList.remove('open'); });
+</script>
+</body>
+</html>
