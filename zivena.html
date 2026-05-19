@@ -41,16 +41,204 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
 .fakt-card h4 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
 .fakt-card p { font-size: 0.95rem; color: #555; line-height: 1.7; margin: 0; }
 
-.timeline-section { padding: 5rem 2rem; }
+/* ─── INTERAKTÍVNA ČASOVÁ OS ─────────────────────────── */
+.timeline-section { padding: 5rem 2rem 6rem; position: relative; }
 .timeline-section .inner { max-width: 820px; margin: 0 auto; }
 .timeline-section h2 { text-align: center; }
-.timeline-section .gold-line { margin: 0.8rem auto 2.5rem; }
+.timeline-section .gold-line { margin: 0.8rem auto 0.6rem; }
+.zt-intro {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 4rem;
+}
 
-.milestones { display: flex; flex-direction: column; gap: 0; }
-.milestone { display: grid; grid-template-columns: 70px 1fr; gap: 1.2rem; align-items: start; padding-bottom: 1.2rem; margin-bottom: 1.2rem; border-bottom: 1px solid rgba(212,175,55,0.2); }
-.milestone:last-child { border-bottom: none; }
-.milestone-year { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.08em; color: var(--gold-dark); font-weight: 600; padding-top: 0.15rem; }
-.milestone-text { font-size: 0.98rem; color: #444; line-height: 1.75; }
+/* Container + vertical spine */
+.zt-timeline {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0.5rem 0 2rem;
+}
+.zt-spine {
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(212,175,55,0.45) 4%,
+    rgba(196,30,58,0.55) 38%,
+    rgba(26,10,14,0.65) 70%,
+    rgba(196,30,58,0.5) 86%,
+    rgba(212,175,55,0.45) 95%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Each timeline item — 3-col grid */
+.zt-item {
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  margin-bottom: 2.6rem;
+  position: relative;
+  align-items: start;
+}
+
+/* Dot column */
+.zt-dot-wrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.55rem;
+  z-index: 2;
+  position: relative;
+}
+.zt-dot {
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  border: 2.5px solid var(--red);
+  background: var(--cream);
+  flex-shrink: 0;
+  transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+.zt-dot.dot-gold  { border-color: var(--gold-dark); }
+.zt-dot.dot-dark  { border-color: #1a0a0e; }
+.zt-dot.dot-now   { border-color: var(--gold-dark); animation: ztPulse 2s ease-in-out infinite; }
+
+.zt-item.is-visible .zt-dot           { transform: scale(1.35); background: var(--red); }
+.zt-item.is-visible .dot-gold         { background: var(--gold-dark); }
+.zt-item.is-visible .dot-dark         { background: #1a0a0e; }
+.zt-item.is-visible .dot-now          { background: var(--gold-dark); }
+
+@keyframes ztPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.55); }
+  50%     { box-shadow: 0 0 0 9px rgba(212,175,55,0); }
+}
+
+/* Card */
+.zt-card {
+  background: #fff;
+  border-top: 2.5px solid var(--red);
+  padding: 1.3rem 1.5rem 1.4rem;
+  position: relative;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.055);
+  cursor: default;
+}
+.zt-card.card-gold { border-top-color: var(--gold-dark); }
+.zt-card.card-dark { border-top-color: #1a0a0e; background: #f5f2ed; }
+
+/* Connector line: card edge → dot */
+.zt-left .zt-card::after,
+.zt-right .zt-card::before {
+  content: '';
+  position: absolute;
+  top: calc(1.55rem + 4px);
+  width: 24px;
+  height: 1px;
+  opacity: 0.25;
+}
+.zt-left .zt-card::after  { right: -24px; background: var(--red); }
+.zt-left .zt-card.card-gold::after  { background: var(--gold-dark); }
+.zt-left .zt-card.card-dark::after  { background: #1a0a0e; }
+.zt-right .zt-card::before { left: -24px; background: var(--red); }
+.zt-right .zt-card.card-gold::before { background: var(--gold-dark); }
+.zt-right .zt-card.card-dark::before { background: #1a0a0e; }
+
+/* Card hover lift */
+.zt-item.is-visible .zt-card {
+  transition: opacity 0.65s ease, transform 0.65s ease, box-shadow 0.32s ease;
+}
+.zt-item.is-visible .zt-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.13);
+  transform: translateY(-4px) !important;
+}
+
+/* Column placement */
+.zt-left  .zt-card    { grid-column: 1; grid-row: 1; }
+.zt-left  .zt-dot-wrap { grid-column: 2; grid-row: 1; }
+.zt-right .zt-dot-wrap { grid-column: 2; grid-row: 1; }
+.zt-right .zt-card    { grid-column: 3; grid-row: 1; }
+
+/* Card typography */
+.zt-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 0.57rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--red);
+  opacity: 0.7;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.card-gold .zt-tag { color: var(--gold-dark); }
+.card-dark .zt-tag { color: #555; }
+
+.zt-year {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 3rem;
+  color: var(--red);
+  line-height: 1.1;
+  display: block;
+  margin-bottom: 0.45rem;
+}
+.card-gold .zt-year { color: var(--gold-dark); }
+.card-dark .zt-year { color: #1a0a0e; opacity: 0.82; }
+
+.zt-divider {
+  width: 36px; height: 1px;
+  background: rgba(212,175,55,0.4);
+  margin-bottom: 0.65rem;
+}
+
+.zt-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.02rem;
+  color: #444;
+  line-height: 1.82;
+  margin: 0;
+}
+.card-dark .zt-text { color: #333; }
+
+/* Reveal — slide in from side */
+.zt-card {
+  opacity: 0;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.zt-left  .zt-card { transform: translateX(-32px); }
+.zt-right .zt-card { transform: translateX(32px); }
+.zt-item.is-visible .zt-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Dot reveal */
+.zt-dot { opacity: 0; transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s, background 0.4s ease, box-shadow 0.4s ease; }
+.zt-item.is-visible .zt-dot { opacity: 1; }
+
+/* Mobile: single column, spine left */
+@media (max-width: 680px) {
+  .zt-spine { left: 21px; transform: none; }
+  .zt-item {
+    grid-template-columns: 42px 1fr;
+    margin-bottom: 1.8rem;
+  }
+  .zt-left  .zt-card,
+  .zt-right .zt-card    { grid-column: 2; grid-row: 1; }
+  .zt-left  .zt-dot-wrap,
+  .zt-right .zt-dot-wrap { grid-column: 1; grid-row: 1; }
+  .zt-left  .zt-card::after,
+  .zt-right .zt-card::before { display: none; }
+  .zt-left  .zt-card,
+  .zt-right .zt-card { transform: translateX(18px); }
+  .zt-item.is-visible .zt-card { transform: translateX(0); }
+  .zt-year { font-size: 2.4rem; }
+  .zt-card { padding: 1rem 1.1rem 1.1rem; }
+}
 
 .igelitky { background: var(--red); color: var(--cream); padding: 5rem 2rem; }
 .igelitky .inner { max-width: 820px; margin: 0 auto; }
@@ -70,7 +258,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
 
 
 
-@media (max-width: 600px) { .fakty-grid { grid-template-columns: 1fr; } .milestone { grid-template-columns: 60px 1fr; } }
+@media (max-width: 600px) { .fakty-grid { grid-template-columns: 1fr; } }
 
 /* ── Vintage passe-partout — portrét E.M.Šoltésovej ── */
 .portrait-passe {
@@ -484,24 +672,127 @@ section[id], div[id] { scroll-margin-top: 72px; }
 </div>
 
 <!-- ČASOVÁ OS -->
-<div class="timeline-section">
+<div class="timeline-section" id="historia">
   <div class="inner">
-    <p class="section-label" style="text-align:center;">História</p>
-    <h2>Stručná časová os.</h2>
+    <p class="section-label" style="text-align:center;">Kronika</p>
+    <h2>Viac ako 150 rokov.</h2>
     <div class="gold-line"></div>
+    <p class="zt-intro">Desať momentov, ktoré formovali najstarší ženský spolok na Slovensku.</p>
+  </div>
 
-    <div class="milestones">
-      <div class="milestone"><div class="milestone-year">1869</div><div class="milestone-text">Živena vzniká v Martine. Prvou predsedníčkou sa stáva Anna Pivková. Na ustanovujúcom zhromaždení sa hneď prihlási 73 členiek.</div></div>
-      <div class="milestone"><div class="milestone-year">1875</div><div class="milestone-text">Po zatvorení Matice slovenskej zostáva Živena jediným fungujúcim slovenským spolkom — strážkyňou národnej identity.</div></div>
-      <div class="milestone"><div class="milestone-year">1887</div><div class="milestone-text">Prelomová výstava slovenských výšiviek v Martine — jeden z prvých veľkých verejných aktov záchrany ľudového umenia.</div></div>
-      <div class="milestone"><div class="milestone-year">1894</div><div class="milestone-text">Predsedníčkou sa stáva Elena Maróthy-Šoltésová, ktorá bude spolok viesť až do roku 1927. Pod jej vedením Živena zažíva najplodnejšie obdobie.</div></div>
-      <div class="milestone"><div class="milestone-year">1910</div><div class="milestone-text">Začína vychádzať časopis Živena. V tom istom roku na podnet Šoltésovej vzniká Lipa — a ich osudy sa od tej chvíle úzko prepletajú.</div></div>
-      <div class="milestone"><div class="milestone-year">1919–22</div><div class="milestone-text">Živena zakladá prvú vlastnú školu a prvé jasle na území Slovenska. V období 1. ČSR má spolok 90 miestnych odborov a viac ako 6 000 členiek.</div></div>
-      <div class="milestone"><div class="milestone-year">1925</div><div class="milestone-text">Národopisná výstava Živeny v Banskej Bystrici — jedna z najväčších prezentácií slovenského ľudového umenia a odevnej kultúry svojej doby. Spoločná akcia so spolkom Lipa.</div></div>
-      <div class="milestone"><div class="milestone-year">1955</div><div class="milestone-text">Živena je násilne rozpustená komunistickým režimom.</div></div>
-      <div class="milestone"><div class="milestone-year">1990</div><div class="milestone-text">Živena je obnovená vďaka skupine odhodlaných žien na čele so spisovateľkou Hanou Zelinovou.</div></div>
-      <div class="milestone"><div class="milestone-year">Dnes</div><div class="milestone-text">Živena združuje viac ako 1 000 členiek v 12 miestnych odboroch po celom Slovensku. Od roku 2022 je predsedníčkou <strong>Alena Heribanová</strong>.</div></div>
+  <div class="zt-timeline" aria-label="Časová os spolku Živena">
+    <div class="zt-spine" aria-hidden="true"></div>
+
+    <!-- 1869 -->
+    <div class="zt-item zt-left">
+      <div class="zt-card">
+        <span class="zt-tag">Vznik</span>
+        <span class="zt-year">1869</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Živena vzniká v Martine. Prvou predsedníčkou sa stáva Anna Pivková. Na ustanovujúcom zhromaždení sa hneď prihlási 73 členiek.</p>
+      </div>
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot"></div></div>
     </div>
+
+    <!-- 1875 -->
+    <div class="zt-item zt-right">
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-gold"></div></div>
+      <div class="zt-card card-gold">
+        <span class="zt-tag">Odolnosť</span>
+        <span class="zt-year">1875</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Po zatvorení Matice slovenskej zostáva Živena jediným fungujúcim slovenským spolkom — strážkyňou národnej identity.</p>
+      </div>
+    </div>
+
+    <!-- 1887 -->
+    <div class="zt-item zt-left">
+      <div class="zt-card">
+        <span class="zt-tag">Kultúra</span>
+        <span class="zt-year">1887</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Prelomová výstava slovenských výšiviek v Martine — jeden z prvých veľkých verejných aktov záchrany ľudového umenia.</p>
+      </div>
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot"></div></div>
+    </div>
+
+    <!-- 1894 -->
+    <div class="zt-item zt-right">
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-gold"></div></div>
+      <div class="zt-card card-gold">
+        <span class="zt-tag">Vedenie</span>
+        <span class="zt-year">1894</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Predsedníčkou sa stáva Elena Maróthy-Šoltésová, ktorá bude spolok viesť až do roku 1927. Pod jej vedením Živena zažíva najplodnejšie obdobie.</p>
+      </div>
+    </div>
+
+    <!-- 1910 -->
+    <div class="zt-item zt-left">
+      <div class="zt-card">
+        <span class="zt-tag">Prepojenie</span>
+        <span class="zt-year">1910</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Začína vychádzať časopis Živena. V tom istom roku na podnet Šoltésovej vzniká Lipa — a ich osudy sa od tej chvíle úzko prepletajú.</p>
+      </div>
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot"></div></div>
+    </div>
+
+    <!-- 1919–22 -->
+    <div class="zt-item zt-right">
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-gold"></div></div>
+      <div class="zt-card card-gold">
+        <span class="zt-tag">Rozkvet</span>
+        <span class="zt-year">1919–22</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Živena zakladá prvú vlastnú školu a prvé jasle na území Slovenska. V období 1. ČSR má spolok 90 miestnych odborov a viac ako 6 000 členiek.</p>
+      </div>
+    </div>
+
+    <!-- 1925 -->
+    <div class="zt-item zt-left">
+      <div class="zt-card card-gold">
+        <span class="zt-tag">Výstava</span>
+        <span class="zt-year">1925</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Národopisná výstava Živeny v Banskej Bystrici — jedna z najväčších prezentácií slovenského ľudového umenia a odevnej kultúry svojej doby. Spoločná akcia so spolkom Lipa.</p>
+      </div>
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-gold"></div></div>
+    </div>
+
+    <!-- 1955 -->
+    <div class="zt-item zt-right">
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-dark"></div></div>
+      <div class="zt-card card-dark">
+        <span class="zt-tag">Zánik</span>
+        <span class="zt-year">1955</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Živena je násilne rozpustená komunistickým režimom.</p>
+      </div>
+    </div>
+
+    <!-- 1990 -->
+    <div class="zt-item zt-left">
+      <div class="zt-card">
+        <span class="zt-tag">Obnova</span>
+        <span class="zt-year">1990</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Živena je obnovená vďaka skupine odhodlaných žien na čele so spisovateľkou Hanou Zelinovou.</p>
+      </div>
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot"></div></div>
+    </div>
+
+    <!-- Dnes -->
+    <div class="zt-item zt-right">
+      <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-now"></div></div>
+      <div class="zt-card card-gold">
+        <span class="zt-tag">Súčasnosť</span>
+        <span class="zt-year">Dnes</span>
+        <div class="zt-divider"></div>
+        <p class="zt-text">Živena združuje viac ako 1 000 členiek v 12 miestnych odboroch po celom Slovensku. Od roku 2022 je predsedníčkou <strong>Alena Heribanová</strong>.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -796,6 +1087,24 @@ section[id], div[id] { scroll-margin-top: 72px; }
     }
     window.addEventListener('scroll', upd, { passive: true });
     upd();
+  })();
+
+  /* ─── INTERAKTÍVNA ČASOVÁ OS — reveal ─── */
+  (function() {
+    var items = document.querySelectorAll('.zt-item');
+    if (!items.length || !('IntersectionObserver' in window)) {
+      items.forEach(function(el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function(el) { obs.observe(el); });
   })();
 
   /* ─── ARCHÍVNA GALÉRIA — CAROUSEL + LIGHTBOX ─── */
