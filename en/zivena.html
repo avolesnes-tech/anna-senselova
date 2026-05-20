@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Živena – Vyšívané poklady Anny Šenšelovej</title>
-<meta name="description" content="Živena — najstarší ženský spolok na Slovensku (1869). Príbeh spolku, ktorý zachránil slovenské ľudové umenie a dal ženám ekonomickú slobodu.">
-<meta property="og:title" content="Živena — spolok slovenských žien">
-<meta property="og:description" content="Najstarší ženský spolok na Slovensku a jeho úzke prepojenie s Lipou a Annou Šenšelovou.">
+<title>Živena – The Embroidered Treasures of Anna Šenšelová</title>
+<meta name="description" content="Živena — the oldest women's association in Slovakia (1869). The story of an organisation that saved Slovak folk art and gave women economic independence.">
+<meta property="og:title" content="Živena — Slovak Women's Association">
+<meta property="og:description" content="The oldest women's association in Slovakia and its close ties to Lipa and Anna Šenšelová.">
 <meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
 <meta property="og:type" content="article">
-<link rel="preload" href="assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
-<link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="style.css">
+<meta property="og:locale" content="en_GB">
+<link rel="preload" href="../assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../style.css">
 <style>
 body { font-size: 19px; }
 
@@ -41,7 +42,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
 .fakt-card h4 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
 .fakt-card p { font-size: 0.95rem; color: #555; line-height: 1.7; margin: 0; }
 
-/* ─── INTERAKTÍVNA ČASOVÁ OS ─────────────────────────── */
+/* ─── INTERACTIVE TIMELINE ─────────────────────────── */
 .timeline-section { padding: 5rem 2rem 6rem; position: relative; }
 .timeline-section .inner { max-width: 820px; margin: 0 auto; }
 .timeline-section h2 { text-align: center; }
@@ -260,7 +261,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
 
 @media (max-width: 600px) { .fakty-grid { grid-template-columns: 1fr; } }
 
-/* ── Vintage passe-partout — portrét E.M.Šoltésovej ── */
+/* ── Vintage passe-partout — portrait of E.M. Šoltésová ── */
 .portrait-passe {
   float: right;
   margin: 0.4rem 0 2.4rem 3rem;
@@ -268,7 +269,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
   position: relative;
 }
 
-/* Vonkajší rámik — tmavé drevo */
+/* Outer frame — dark wood */
 .portrait-frame {
   background: #1e1209;
   padding: 11px;
@@ -287,13 +288,13 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
   z-index: 2;
 }
 
-/* Krémová paspartú — mat */
+/* Cream passe-partout — mat */
 .portrait-mat {
   background: #f2ede0;
   padding: 18px 18px 32px 18px;
   position: relative;
 }
-/* Tenká zlatá linka vo vnútri matu */
+/* Thin gold line inside the mat */
 .portrait-mat::before {
   content: '';
   position: absolute;
@@ -308,7 +309,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
   filter: sepia(15%) contrast(1.06) brightness(0.97);
 }
 
-/* Podpis v matu — kurzívou pod obrázkom */
+/* Signature in the mat — script below the image */
 .portrait-mat-sig {
   font-family: 'Pinyon Script', cursive;
   font-size: 1.05rem;
@@ -320,7 +321,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
   opacity: 0.85;
 }
 
-/* Popisok pod celým rámikom */
+/* Caption below the whole frame */
 .portrait-caption {
   margin-top: 0.9rem;
   text-align: center;
@@ -360,7 +361,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
   transition: width 0.1s linear;
 }
 
-/* ── Reveal animácie ── */
+/* ── Reveal animations ── */
 .reveal {
   opacity: 0; transform: translateY(24px);
   transition: opacity 0.7s ease, transform 0.7s ease;
@@ -379,10 +380,10 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
   }
 }
 
-/* ── scroll-margin-top pre zakotvené sekcie ── */
+/* ── scroll-margin-top for anchored sections ── */
 section[id], div[id] { scroll-margin-top: 72px; }
 
-/* ─── ARCHÍVNA GALÉRIA — CAROUSEL ───────────────────────────────── */
+/* ─── ARCHIVE GALLERY — CAROUSEL ───────────────────────────────── */
 #galeria-zivena {
   background: var(--section-alt);
   padding: 4.5rem 2rem;
@@ -544,26 +545,26 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <body class="ornaments-always">
 <div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
 <div class="side-ornament side-ornament--right" aria-hidden="true"></div>
-<a href="#main-content" class="skip-link">Preskočiť na obsah</a>
+<a href="#main-content" class="skip-link">Skip to content</a>
 <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
 
 
 <span id="main-content" style="position:absolute;margin-top:-80px;"></span>
 <nav>
-  <a href="index.html" class="logo" aria-label="Mapa Spomienok – domov">
+  <a href="../index.html" class="logo" aria-label="Map of Memories – home">
     <picture>
-      <source srcset="assets/logo-nav-v2.webp" type="image/webp">
-      <img src="assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
+      <source srcset="../assets/logo-nav-v2.webp" type="image/webp">
+      <img src="../assets/logo-nav-v2.png" alt="Map of Memories" width="216" height="44" loading="eager" decoding="async">
     </picture>
   </a>
-  <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
   <ul id="nav-menu">
     <li>
-      <a href="index.html#pribeh" id="nav-pribeh">Príbeh ▾</a>
+      <a href="../index.html#pribeh" id="nav-pribeh">Story ▾</a>
       <div class="dropdown" id="dd-pribeh">
-        <span class="dropdown-label">Príbeh</span>
+        <span class="dropdown-label">Story</span>
         <a href="anna-senselova.html">Anna Šenšelová</a>
         <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
         <a href="lipa.html">Lipa</a>
@@ -571,43 +572,43 @@ section[id], div[id] { scroll-margin-top: 72px; }
       </div>
     </li>
     <li>
-      <a href="index.html#galeria-vysiviek" id="nav-galeria">Galéria ▾</a>
+      <a href="../index.html#galeria-vysiviek" id="nav-galeria">Gallery ▾</a>
       <div class="dropdown" id="dd-galeria">
-        <span class="dropdown-label">Galéria</span>
-        <a href="galeria-vysiviek.html">Vzorkovník výšiviek Anny Šenšelovej</a>
-        <a href="galeria-ludove.html">Iné ľudové výšivky a odev</a>
-        <a href="galeria-babik.html">Krojované bábiky</a>
+        <span class="dropdown-label">Gallery</span>
+        <a href="galeria-vysiviek.html">Anna Šenšelová's Embroidery Sample Book</a>
+        <a href="galeria-ludove.html">Other Folk Embroideries and Dress</a>
+        <a href="galeria-babik.html">Folk-Costume Dolls</a>
       </div>
     </li>
-    <li><a href="mapa-spomienok.html" id="nav-mapa">Mapa spomienok</a></li>
-    <li><a href="blog.html" id="nav-blog">Blog</a></li>
-    <li><a href="spojme-sa.html" id="nav-spojme">Kontakt</a></li>
-    <li class="nav-lang-item"><a href="en/zivena.html" lang="en" hreflang="en" class="nav-lang-link">EN — English version</a></li>
+    <li><a href="../mapa-spomienok.html" id="nav-mapa">Map of Memories</a></li>
+    <li><a href="../blog.html" id="nav-blog">Blog</a></li>
+    <li><a href="../spojme-sa.html" id="nav-spojme">Contact</a></li>
+    <li class="nav-lang-item"><a href="../zivena.html" lang="sk" hreflang="sk" class="nav-lang-link">SK — Slovenská verzia</a></li>
   </ul>
-  <div class="lang-switch" aria-label="Jazyková verzia">
-    <span class="lang-current" aria-current="true">SK</span>
+  <div class="lang-switch" aria-label="Language version">
+    <a href="../zivena.html" class="lang-link" lang="sk" hreflang="sk">SK</a>
     <span class="lang-sep" aria-hidden="true">|</span>
-    <a href="en/zivena.html" class="lang-link" lang="en" hreflang="en">EN</a>
+    <span class="lang-current" aria-current="true">EN</span>
   </div>
 </nav>
 <section id="hero">
-  <img src="https://zivena.net/wp-content/uploads/2022/07/zivena-logo-his-01Asset-1.svg" alt="Logo Živena" loading="lazy" style="width:200px; margin-bottom:1rem; opacity:0.85;">
-  <p class="section-label">Príbeh · Živena</p>
+  <img src="https://zivena.net/wp-content/uploads/2022/07/zivena-logo-his-01Asset-1.svg" alt="Živena logo" loading="lazy" style="width:200px; margin-bottom:1rem; opacity:0.85;">
+  <p class="section-label">Story · Živena</p>
   <h1>Živena</h1>
-  <p class="hero-sub">Spolok slovenských žien · 1869 – dodnes</p>
+  <p class="hero-sub">Slovak Women's Association · 1869 – present</p>
   <div class="gold-line"></div>
 </section>
 
-<!-- MÔJ VSTUP -->
+<!-- MY ENTRY POINT -->
 <div class="content-wrap">
-  <!-- PORTRÉT E.M. ŠOLTÉSOVEJ — vintage passe-partout -->
+  <!-- PORTRAIT OF E.M. ŠOLTÉSOVÁ — vintage passe-partout -->
   <div class="portrait-passe">
     <div class="portrait-frame">
       <div class="portrait-mat">
         <picture>
-          <source srcset="elena_soltesova.webp" type="image/webp">
-          <img src="elena_soltesova.jpeg"
-               alt="Portrét Eleny Maróthy-Šoltésovej, maľoval Milan Mitrovský — príloha k Živene, roč. XIX."
+          <source srcset="../elena_soltesova.webp" type="image/webp">
+          <img src="../elena_soltesova.jpeg"
+               alt="Portrait of Elena Maróthy-Šoltésová, painted by Milan Mitrovský — supplement to Živena, vol. XIX."
                loading="lazy" decoding="async">
         </picture>
         <p class="portrait-mat-sig">Elena Maróthy Šoltésová</p>
@@ -615,147 +616,147 @@ section[id], div[id] { scroll-margin-top: 72px; }
     </div>
     <div class="portrait-caption">
       <span class="portrait-caption-name">Elena Maróthy-Šoltésová<br>1855 – 1939</span>
-      <span class="portrait-caption-attr">Maľoval: Milan Mitrovský<br>Príloha k Živene, roč. XIX., č. 1</span>
+      <span class="portrait-caption-attr">Painted by: Milan Mitrovský<br>Supplement to Živena, vol. XIX., no. 1</span>
     </div>
   </div>
 
-  <p class="intro-quote">„My tiež máme túhu po vyššom a sme duchom obdarené od Boha; nedajmeže teda tomuto najvyššiemu daru zakrnieť, ale pestujme ho svedomite."<br><span style="font-size:0.82rem; font-style:normal; opacity:0.6; font-family:'Cinzel',serif; letter-spacing:0.1em;">— Elena Maróthy-Šoltésová</span></p>
+  <p class="intro-quote">"We too feel the longing for something higher and have been endowed with spirit by God; let us not allow this greatest gift to wither, but cultivate it conscientiously."<br><span style="font-size:0.82rem; font-style:normal; opacity:0.6; font-family:'Cinzel',serif; letter-spacing:0.1em;">— Elena Maróthy-Šoltésová</span></p>
 
-  <h2>Ako sa Živena dostala do môjho príbehu.</h2>
+  <h2>How Živena entered my story.</h2>
   <div class="gold-line" style="margin-left:0;"></div>
 
-  <p>Medzi výšivkami a krojovanými bábikmi, ktoré som objavila v pivnici po starých rodičoch, som našla aj dva zväzky starého časopisu Živena — ročníky 36–37 a 38. Boli tam starostlivo uložené, akoby ich niekto vedome odložil pre budúcnosť.</p>
+  <p>Among the embroideries and folk-costume dolls I found in my grandparents' cellar, I also came across two volumes of the old Živena journal — issues covering years 36–37 and 38. They had been carefully stored there, as though someone had deliberately set them aside for the future.</p>
 
-  <!-- FOTKA LETOPISOV -->
+  <!-- PHOTOGRAPH OF THE ANNALS -->
   <div style="float:left; margin: 0 2.5rem 1.5rem 0; max-width:200px;">
-    <img src="zivena_letopisy.jpeg" alt="Dva zväzky časopisu Živena z roku 1938 a 1936–37" loading="lazy" style="display:block; width:200px; filter:sepia(10%) contrast(1.04);" decoding="async">
-    <p style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-dark); text-align:center; margin-top:0.9rem; font-style:italic; line-height:1.6;">Dva zväzky časopisu Živena z roku 1938 a 1936–37</p>
+    <img src="../zivena_letopisy.jpeg" alt="Two volumes of the Živena journal from 1938 and 1936–37" loading="lazy" style="display:block; width:200px; filter:sepia(10%) contrast(1.04);" decoding="async">
+    <p style="font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-dark); text-align:center; margin-top:0.9rem; font-style:italic; line-height:1.6;">Two volumes of the Živena journal from 1938 and 1936–37</p>
   </div>
 
-  <p>Aj vďaka týmto dvom letopisom Živeny, som sa preniesla v čase a mala som pocit, že s každým článkom spoznávam svet mojich predkov ešte viac.</p>
+  <p>Thanks in part to these two Živena annals, I was transported back in time, and with each article I felt I was coming to know my ancestors' world a little more.</p>
 
-  <p>Keď som ich začala listovať, nemohla som sa od nich odtrhnúť. Živena bolo periodikum vydávané rovnomenným ženským spolkom. Pri čítaní článkov na témy výchovy, manželstva, receptov, či módy, som mala pocit, že tento časopis by mohol byť vydaný dnes a pre dnešné ženy by mal rovnakú hodnotu ako pred sto rokmi, pretože napriek tomu, že doba pokročila, naše vlastnosti, túžby a povinnosti sa zmenili len veľmi málo. V zborníkoch ma fascinovali návody na starostlivosť o dojčatá, rady vo výchove detí, polemiky o úlohe žien v spoločnosti, recepty, cvičebné rubriky aj módne stránky. A práve v módnych rubrikách som narazila na meno <strong>Aranky Šenšelovej Hubkovej</strong> — švagrinej Anny Šenšelovej. Ďalšia nitka, ktorá spája moju rodinu s týmto svetom.</p>
+  <p>Once I began leafing through them, I could not put them down. Živena was a periodical published by the women's association of the same name. Reading articles on topics such as child-rearing, marriage, recipes and fashion, I had the sense that this journal could have been published today and would carry the same value for contemporary women as it did a hundred years ago — because, despite all that time has changed, our qualities, longings and responsibilities have altered very little. What fascinated me in those volumes were the guides to infant care, advice on raising children, debates about women's role in society, recipes, exercise columns and fashion pages. And it was in those fashion columns that I encountered the name <strong>Aranka Šenšelová Hubková</strong> — the sister-in-law of Anna Šenšelová. Another thread connecting my family to this world.</p>
 
-  <p>Narazila som hneď aj na článok o výšivkách. Bol o ženách, ktoré chodili po slovenských dedinách zbierať staré výšivky a kroje. Mená v článku nie sú uvedené, ale s veľkou pravdepodobnosťou išlo o ženy z Lipy, možno aj o samotnú Annu Šenšelovú. Stretávali sa pritom s výsmechom — ľudia im hovorili, že také veci doma nemajú, že kroje dávno odovzdali handrárom alebo spálili. Vraj kto by to dnes nosil. Tak ako to je aj dnes, nové trendy rýchlo nahradia tie staré a často krát s príchodom toho nového, „lepšieho" začneme haniť staré, aj napriek tomu, že nám to kedysi bolo blízke. Takto sa moderné vplyvy zo Západu v tom čase predierali do slovenských domácností a tradičná výšivka pomaly strácala miesto.</p>
+  <p>I also immediately found an article about embroideries. It was about women who travelled through Slovak villages collecting old embroideries and folk costumes. No names were given in the article, but in all likelihood these were women from Lipa — perhaps Anna Šenšelová herself among them. They were met with mockery: people told them there was nothing like that in their homes, that the costumes had long since been given to rag-collectors or burned. Who would wear such things today? As is the way with new trends, people were quick to dismiss the old, even when it had once been dear to them. This is how Western influences were making their way into Slovak households at the time, and traditional embroidery was slowly losing its place.</p>
 </div>
 
-<!-- FAKTY O ŽIVENE -->
+<!-- FACTS ABOUT ŽIVENA -->
 <div class="fakty">
   <div class="inner">
-    <p class="section-label" style="text-align:center;">Čo bola Živena</p>
-    <h2>Najstarší ženský spolok na Slovensku.</h2>
+    <p class="section-label" style="text-align:center;">What was Živena</p>
+    <h2>The oldest women's association in Slovakia.</h2>
     <div class="gold-line"></div>
 
-    <p>Živena vznikla 4. augusta 1869 v Turčianskom Svätom Martine. V dobe, keď slovenské ženy nemali právo na vzdelanie v rodnom jazyku, sa skupina národovcov a odvážnych žien rozhodla konať. Cieľom spolku bolo vzdelávať slovenské ženy — vo financiách, varení, výchove detí a kultúre. Na dobové pomery revolučný čin.</p>
+    <p>Živena was founded on 4 August 1869 in Turčiansky Svätý Martin. At a time when Slovak women had no right to education in their mother tongue, a group of patriots and courageous women decided to act. The association's purpose was to educate Slovak women — in finance, cookery, child-rearing and culture. By the standards of the day, it was a revolutionary act.</p>
 
-    <p>Na prvý pohľad sa môže zdať, že feminizmus a výšivka nemajú veľa spoločného. Opak je pravdou. Pre Živenu bola výšivka nástrojom boja — tichým, ale účinným. Spolok zberal vzory, organizoval výstavy a vzdelával vyšívačky. Nie z nostalgie, ale z presvedčenia, že zachovanie tradície je aktom národného odporu. A zároveň príležitosťou pre ženy zarobiť si vlastné peniaze.</p>
+    <p>At first glance, feminism and embroidery might seem to have little in common. The opposite is true. For Živena, embroidery was a tool of resistance — quiet, but effective. The association collected patterns, organised exhibitions and trained embroiderers. Not out of nostalgia, but out of a conviction that preserving tradition was an act of national defiance. And at the same time, an opportunity for women to earn their own income.</p>
 
     <div class="fakty-grid">
       <div class="fakt-card">
-        <h4>Vzdelávanie žien</h4>
-        <p>Živena zakladala dievčenské školy a kurzy o varení, hygiene, výchove detí a vedení domácnosti. V roku 1919 otvorila vlastnú školu a v roku 1922 prvé jasle na Slovensku.</p>
+        <h4>Education of women</h4>
+        <p>Živena founded girls' schools and courses in cookery, hygiene, child-rearing and household management. In 1919 it opened its own school, and in 1922 the first nursery in Slovakia.</p>
       </div>
       <div class="fakt-card">
-        <h4>Záchrana ľudového umenia</h4>
-        <p>Už od roku 1887 organizovala výstavy slovenských výšiviek. Od roku 1895 systematicky zbierala kroje v spolupráci s Muzeálnou slovenskou spoločnosťou.</p>
+        <h4>Preservation of folk art</h4>
+        <p>From as early as 1887 it organised exhibitions of Slovak embroideries. From 1895 it systematically collected folk costumes in collaboration with the Slovak Museum Society.</p>
       </div>
       <div class="fakt-card">
-        <h4>Vydavateľská činnosť</h4>
-        <p>Almanach Živeny (1872), časopis Dennica (1898) a literárny spolkový časopis Živena (1910) — prvé ženské médiá na Slovensku, kde ženy písali pre ženy.</p>
+        <h4>Publishing</h4>
+        <p>The Živena Almanac (1872), the journal Dennica (1898) and the association's literary journal Živena (1910) — the first women's media in Slovakia, where women wrote for women.</p>
       </div>
       <div class="fakt-card">
-        <h4>Ekonomická sloboda</h4>
-        <p>Živena úzko spolupracovala s Lipou a dala ženám možnosť premeniť tradičnú zručnosť na reálny príjem. Výšivka sa stala nielen kultúrnym, ale aj ekonomickým nástrojom.</p>
+        <h4>Economic independence</h4>
+        <p>Živena worked closely with Lipa and gave women the chance to turn a traditional skill into real income. Embroidery became not only a cultural but also an economic tool.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ARCHÍVNA GALÉRIA — CAROUSEL -->
+<!-- ARCHIVE GALLERY — CAROUSEL -->
 <section id="galeria-zivena">
   <div class="galeria-header">
-    <span class="section-label">Archívna galéria</span>
-    <h2 class="script">Ukážky článkov z časopisu Živena.</h2>
+    <span class="section-label">Archive Gallery</span>
+    <h2 class="script">Pages from the Živena journal.</h2>
     <div class="gold-line"></div>
-    <p>Vybrané strany a rubriky z dobových čísel časopisu Živena — zbierka sa postupne dopĺňa.</p>
+    <p>Selected pages and columns from historical issues of the Živena journal — the collection is gradually growing.</p>
   </div>
 
   <div class="zivena-carousel-wrap">
-    <button class="zivena-btn zivena-btn--prev" id="zivenaPrev" aria-label="Predchádzajúca fotografia">
+    <button class="zivena-btn zivena-btn--prev" id="zivenaPrev" aria-label="Previous photograph">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
 
     <div class="zivena-carousel-viewport" id="zivenaViewport">
       <div class="zivena-carousel-track" id="zivenaTrack">
 
-        <div class="zivena-slide" data-title="O krojoch (I.)" data-meta="Živena · 1924">
-          <picture><source srcset="Zivena%20Fotky/Zivena_1924_o_krojoch1.webp" type="image/webp"><img src="Zivena%20Fotky/Zivena_1924_o_krojoch1.jpg" alt="Článok O krojoch, Živena 1924, časť I." loading="lazy" decoding="async"></picture>
+        <div class="zivena-slide" data-title="On Folk Costumes (I.)" data-meta="Živena · 1924">
+          <picture><source srcset="../Zivena%20Fotky/Zivena_1924_o_krojoch1.webp" type="image/webp"><img src="../Zivena%20Fotky/Zivena_1924_o_krojoch1.jpg" alt="Article On Folk Costumes, Živena 1924, part I." loading="lazy" decoding="async"></picture>
           <div class="zivena-caption">
-            <p class="zivena-caption-title">O krojoch (I.)</p>
+            <p class="zivena-caption-title">On Folk Costumes (I.)</p>
             <p class="zivena-caption-meta">Živena · 1924</p>
           </div>
         </div>
 
-        <div class="zivena-slide" data-title="O krojoch (II.)" data-meta="Živena · 1924">
-          <picture><source srcset="Zivena%20Fotky/Zivena_1924_o_krojoch2.webp" type="image/webp"><img src="Zivena%20Fotky/Zivena_1924_o_krojoch2.jpg" alt="Článok O krojoch, Živena 1924, časť II." loading="lazy" decoding="async"></picture>
+        <div class="zivena-slide" data-title="On Folk Costumes (II.)" data-meta="Živena · 1924">
+          <picture><source srcset="../Zivena%20Fotky/Zivena_1924_o_krojoch2.webp" type="image/webp"><img src="../Zivena%20Fotky/Zivena_1924_o_krojoch2.jpg" alt="Article On Folk Costumes, Živena 1924, part II." loading="lazy" decoding="async"></picture>
           <div class="zivena-caption">
-            <p class="zivena-caption-title">O krojoch (II.)</p>
+            <p class="zivena-caption-title">On Folk Costumes (II.)</p>
             <p class="zivena-caption-meta">Živena · 1924</p>
           </div>
         </div>
 
-        <div class="zivena-slide" data-title="O krojoch (III.)" data-meta="Živena · 1924">
-          <picture><source srcset="Zivena%20Fotky/Zivena_1924_o_krojoch3.webp" type="image/webp"><img src="Zivena%20Fotky/Zivena_1924_o_krojoch3.jpg" alt="Článok O krojoch, Živena 1924, časť III." loading="lazy" decoding="async"></picture>
+        <div class="zivena-slide" data-title="On Folk Costumes (III.)" data-meta="Živena · 1924">
+          <picture><source srcset="../Zivena%20Fotky/Zivena_1924_o_krojoch3.webp" type="image/webp"><img src="../Zivena%20Fotky/Zivena_1924_o_krojoch3.jpg" alt="Article On Folk Costumes, Živena 1924, part III." loading="lazy" decoding="async"></picture>
           <div class="zivena-caption">
-            <p class="zivena-caption-title">O krojoch (III.)</p>
+            <p class="zivena-caption-title">On Folk Costumes (III.)</p>
             <p class="zivena-caption-meta">Živena · 1924</p>
           </div>
         </div>
 
-        <div class="zivena-slide" data-title="Všeličo" data-meta="Živena · 1924">
-          <picture><source srcset="Zivena%20Fotky/Zivena_1924_Vselico.webp" type="image/webp"><img src="Zivena%20Fotky/Zivena_1924_Vselico.jpg" alt="Rubrika Všeličo, Živena 1924" loading="lazy" decoding="async"></picture>
+        <div class="zivena-slide" data-title="Miscellany" data-meta="Živena · 1924">
+          <picture><source srcset="../Zivena%20Fotky/Zivena_1924_Vselico.webp" type="image/webp"><img src="../Zivena%20Fotky/Zivena_1924_Vselico.jpg" alt="Miscellany column, Živena 1924" loading="lazy" decoding="async"></picture>
           <div class="zivena-caption">
-            <p class="zivena-caption-title">Všeličo</p>
+            <p class="zivena-caption-title">Miscellany</p>
             <p class="zivena-caption-meta">Živena · 1924</p>
           </div>
         </div>
 
-        <div class="zivena-slide" data-title="Vyšívačka" data-meta="Živena · 1925">
-          <picture><source srcset="Zivena%20Fotky/Zivena_1925_Vysivacka.webp" type="image/webp"><img src="Zivena%20Fotky/Zivena_1925_Vysivacka.jpg" alt="Článok Vyšívačka, Živena 1925" loading="lazy" decoding="async"></picture>
+        <div class="zivena-slide" data-title="The Embroideress" data-meta="Živena · 1925">
+          <picture><source srcset="../Zivena%20Fotky/Zivena_1925_Vysivacka.webp" type="image/webp"><img src="../Zivena%20Fotky/Zivena_1925_Vysivacka.jpg" alt="Article The Embroideress, Živena 1925" loading="lazy" decoding="async"></picture>
           <div class="zivena-caption">
-            <p class="zivena-caption-title">Vyšívačka</p>
+            <p class="zivena-caption-title">The Embroideress</p>
             <p class="zivena-caption-meta">Živena · 1925</p>
           </div>
         </div>
 
-        <div class="zivena-slide" data-title="Cvičenie" data-meta="Živena · 1937">
-          <picture><source srcset="Zivena%20Fotky/Cvicenie_Zivena_1938.webp" type="image/webp"><img src="Zivena%20Fotky/Cvicenie_Zivena_1938.jpg" alt="Článok Cvičenie, Živena 1937" loading="lazy" decoding="async"></picture>
+        <div class="zivena-slide" data-title="Exercise" data-meta="Živena · 1937">
+          <picture><source srcset="../Zivena%20Fotky/Cvicenie_Zivena_1938.webp" type="image/webp"><img src="../Zivena%20Fotky/Cvicenie_Zivena_1938.jpg" alt="Article Exercise, Živena 1937" loading="lazy" decoding="async"></picture>
           <div class="zivena-caption">
-            <p class="zivena-caption-title">Cvičenie</p>
+            <p class="zivena-caption-title">Exercise</p>
             <p class="zivena-caption-meta">Živena · 1937</p>
           </div>
         </div>
 
-        <div class="zivena-slide" data-title="Rubrika o móde" data-meta="Živena · 1937">
-          <picture><source srcset="Zivena%20Fotky/Rubrika_o_mode_Zivena_1938.webp" type="image/webp"><img src="Zivena%20Fotky/Rubrika_o_mode_Zivena_1938.jpg" alt="Rubrika o móde, Živena 1937" loading="lazy" decoding="async"></picture>
+        <div class="zivena-slide" data-title="Fashion Column" data-meta="Živena · 1937">
+          <picture><source srcset="../Zivena%20Fotky/Rubrika_o_mode_Zivena_1938.webp" type="image/webp"><img src="../Zivena%20Fotky/Rubrika_o_mode_Zivena_1938.jpg" alt="Fashion column, Živena 1937" loading="lazy" decoding="async"></picture>
           <div class="zivena-caption">
-            <p class="zivena-caption-title">Rubrika o móde</p>
+            <p class="zivena-caption-title">Fashion Column</p>
             <p class="zivena-caption-meta">Živena · 1937</p>
           </div>
         </div>
 
-        <div class="zivena-slide" data-title="Úloha žien v brannosti (I.)" data-meta="Živena · 1938">
-          <picture><source srcset="Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19391.webp" type="image/webp"><img src="Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19391.jpg" alt="Článok Úloha žien v brannosti, Živena 1938, časť I." loading="lazy" decoding="async"></picture>
+        <div class="zivena-slide" data-title="Women's Role in National Defence (I.)" data-meta="Živena · 1938">
+          <picture><source srcset="../Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19391.webp" type="image/webp"><img src="../Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19391.jpg" alt="Article Women's Role in National Defence, Živena 1938, part I." loading="lazy" decoding="async"></picture>
           <div class="zivena-caption">
-            <p class="zivena-caption-title">Úloha žien v brannosti (I.)</p>
+            <p class="zivena-caption-title">Women's Role in National Defence (I.)</p>
             <p class="zivena-caption-meta">Živena · 1938</p>
           </div>
         </div>
 
-        <div class="zivena-slide" data-title="Úloha žien v brannosti (II.)" data-meta="Živena · 1938">
-          <picture><source srcset="Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19392.webp" type="image/webp"><img src="Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19392.jpg" alt="Článok Úloha žien v brannosti, Živena 1938, časť II." loading="lazy" decoding="async"></picture>
+        <div class="zivena-slide" data-title="Women's Role in National Defence (II.)" data-meta="Živena · 1938">
+          <picture><source srcset="../Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19392.webp" type="image/webp"><img src="../Zivena%20Fotky/Uloha_zenskych_v_brannosti_Zivena_19392.jpg" alt="Article Women's Role in National Defence, Živena 1938, part II." loading="lazy" decoding="async"></picture>
           <div class="zivena-caption">
-            <p class="zivena-caption-title">Úloha žien v brannosti (II.)</p>
+            <p class="zivena-caption-title">Women's Role in National Defence (II.)</p>
             <p class="zivena-caption-meta">Živena · 1938</p>
           </div>
         </div>
@@ -763,7 +764,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
       </div>
     </div>
 
-    <button class="zivena-btn zivena-btn--next" id="zivenaNext" aria-label="Nasledujúca fotografia">
+    <button class="zivena-btn zivena-btn--next" id="zivenaNext" aria-label="Next photograph">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
     </button>
   </div>
@@ -773,25 +774,25 @@ section[id], div[id] { scroll-margin-top: 72px; }
 </section>
 
 
-<!-- ČASOVÁ OS -->
+<!-- TIMELINE -->
 <div class="timeline-section" id="historia">
   <div class="inner">
-    <p class="section-label" style="text-align:center;">Kronika</p>
-    <h2>Viac ako 150 rokov.</h2>
+    <p class="section-label" style="text-align:center;">Chronicle</p>
+    <h2>More than 150 years.</h2>
     <div class="gold-line"></div>
-    <p class="zt-intro">Desať momentov, ktoré formovali najstarší ženský spolok na Slovensku.</p>
+    <p class="zt-intro">Ten moments that shaped the oldest women's association in Slovakia.</p>
   </div>
 
-  <div class="zt-timeline" aria-label="Časová os spolku Živena">
+  <div class="zt-timeline" aria-label="Timeline of the Živena association">
     <div class="zt-spine" aria-hidden="true"></div>
 
     <!-- 1869 -->
     <div class="zt-item zt-left">
       <div class="zt-card">
-        <span class="zt-tag">Vznik</span>
+        <span class="zt-tag">Founded</span>
         <span class="zt-year">1869</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Živena vzniká v Martine. Prvou predsedníčkou sa stáva Anna Pivková. Na ustanovujúcom zhromaždení sa hneď prihlási 73 členiek.</p>
+        <p class="zt-text">Živena is established in Martin. Anna Pivková becomes its first chairwoman. At the founding assembly, 73 members sign up immediately.</p>
       </div>
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot"></div></div>
     </div>
@@ -800,20 +801,20 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <div class="zt-item zt-right">
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-gold"></div></div>
       <div class="zt-card card-gold">
-        <span class="zt-tag">Odolnosť</span>
+        <span class="zt-tag">Resilience</span>
         <span class="zt-year">1875</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Po zatvorení Matice slovenskej zostáva Živena jediným fungujúcim slovenským spolkom — strážkyňou národnej identity.</p>
+        <p class="zt-text">After the closure of Matica slovenská, Živena remains the only functioning Slovak association — the guardian of national identity.</p>
       </div>
     </div>
 
     <!-- 1887 -->
     <div class="zt-item zt-left">
       <div class="zt-card">
-        <span class="zt-tag">Kultúra</span>
+        <span class="zt-tag">Culture</span>
         <span class="zt-year">1887</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Prelomová výstava slovenských výšiviek v Martine — jeden z prvých veľkých verejných aktov záchrany ľudového umenia.</p>
+        <p class="zt-text">A landmark exhibition of Slovak embroideries in Martin — one of the first major public acts of preserving folk art.</p>
       </div>
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot"></div></div>
     </div>
@@ -822,20 +823,20 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <div class="zt-item zt-right">
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-gold"></div></div>
       <div class="zt-card card-gold">
-        <span class="zt-tag">Vedenie</span>
+        <span class="zt-tag">Leadership</span>
         <span class="zt-year">1894</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Predsedníčkou sa stáva Elena Maróthy-Šoltésová, ktorá bude spolok viesť až do roku 1927. Pod jej vedením Živena zažíva najplodnejšie obdobie.</p>
+        <p class="zt-text">Elena Maróthy-Šoltésová becomes chairwoman, a role she will hold until 1927. Under her leadership, Živena enters its most fruitful period.</p>
       </div>
     </div>
 
     <!-- 1910 -->
     <div class="zt-item zt-left">
       <div class="zt-card">
-        <span class="zt-tag">Prepojenie</span>
+        <span class="zt-tag">Connection</span>
         <span class="zt-year">1910</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Začína vychádzať časopis Živena. V tom istom roku na podnet Šoltésovej vzniká Lipa — a ich osudy sa od tej chvíle úzko prepletajú.</p>
+        <p class="zt-text">The Živena journal begins publication. That same year, at Šoltésová's initiative, Lipa is founded — and from that moment their fates are closely intertwined.</p>
       </div>
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot"></div></div>
     </div>
@@ -844,20 +845,20 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <div class="zt-item zt-right">
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-gold"></div></div>
       <div class="zt-card card-gold">
-        <span class="zt-tag">Rozkvet</span>
+        <span class="zt-tag">Flourishing</span>
         <span class="zt-year">1919–22</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Živena zakladá prvú vlastnú školu a prvé jasle na území Slovenska. V období 1. ČSR má spolok 90 miestnych odborov a viac ako 6 000 členiek.</p>
+        <p class="zt-text">Živena opens its own first school and the first nursery on Slovak territory. During the First Czechoslovak Republic the association has 90 local branches and more than 6,000 members.</p>
       </div>
     </div>
 
     <!-- 1925 -->
     <div class="zt-item zt-left">
       <div class="zt-card card-gold">
-        <span class="zt-tag">Výstava</span>
+        <span class="zt-tag">Exhibition</span>
         <span class="zt-year">1925</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Národopisná výstava Živeny v Banskej Bystrici — jedna z najväčších prezentácií slovenského ľudového umenia a odevnej kultúry svojej doby. Spoločná akcia so spolkom Lipa.</p>
+        <p class="zt-text">Živena's ethnographic exhibition in Banská Bystrica — one of the largest presentations of Slovak folk art and traditional dress of its era. A joint event with the Lipa association.</p>
       </div>
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-gold"></div></div>
     </div>
@@ -866,32 +867,32 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <div class="zt-item zt-right">
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-dark"></div></div>
       <div class="zt-card card-dark">
-        <span class="zt-tag">Zánik</span>
+        <span class="zt-tag">Dissolution</span>
         <span class="zt-year">1955</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Živena je násilne rozpustená komunistickým režimom.</p>
+        <p class="zt-text">Živena is forcibly dissolved by the communist regime.</p>
       </div>
     </div>
 
     <!-- 1990 -->
     <div class="zt-item zt-left">
       <div class="zt-card">
-        <span class="zt-tag">Obnova</span>
+        <span class="zt-tag">Revival</span>
         <span class="zt-year">1990</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Živena je obnovená vďaka skupine odhodlaných žien na čele so spisovateľkou Hanou Zelinovou.</p>
+        <p class="zt-text">Živena is re-established thanks to a group of determined women led by the writer Hana Zelinová.</p>
       </div>
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot"></div></div>
     </div>
 
-    <!-- Dnes -->
+    <!-- Today -->
     <div class="zt-item zt-right">
       <div class="zt-dot-wrap" aria-hidden="true"><div class="zt-dot dot-now"></div></div>
       <div class="zt-card card-gold">
-        <span class="zt-tag">Súčasnosť</span>
-        <span class="zt-year">Dnes</span>
+        <span class="zt-tag">Present day</span>
+        <span class="zt-year">Today</span>
         <div class="zt-divider"></div>
-        <p class="zt-text">Živena združuje viac ako 1 000 členiek v 12 miestnych odboroch po celom Slovensku. Od roku 2022 je predsedníčkou <strong>Alena Heribanová</strong>.</p>
+        <p class="zt-text">Živena brings together more than 1,000 members across 12 local branches throughout Slovakia. Since 2022 its chairwoman has been <strong>Alena Heribanová</strong>.</p>
       </div>
     </div>
 
@@ -899,22 +900,22 @@ section[id], div[id] { scroll-margin-top: 72px; }
 </div>
 
 <!-- LIGHTBOX -->
-<div class="zivena-lightbox" id="zivenaLightbox" role="dialog" aria-modal="true" aria-label="Archívna fotografia">
-  <button class="zivena-lightbox-close" id="zivenaLightboxClose" aria-label="Zatvoriť">✕</button>
+<div class="zivena-lightbox" id="zivenaLightbox" role="dialog" aria-modal="true" aria-label="Archive photograph">
+  <button class="zivena-lightbox-close" id="zivenaLightboxClose" aria-label="Close">✕</button>
   <img id="zivenaLightboxImg" src="" alt="">
   <div class="zivena-lightbox-cap" id="zivenaLightboxCap"></div>
 </div>
 
 <div class="article-nav">
   <a href="lipa.html">← Lipa</a>
-  <a href="index.html">Späť na hlavnú</a>
-  <a href="anna-lockwoodova.html">Príbeh autorky →</a>
+  <a href="../index.html">Back to home</a>
+  <a href="anna-lockwoodova.html">The author's story →</a>
 </div>
 
 <footer>
   <div class="footer-top">
     <div>
-      <p class="footer-col-title">Príbeh</p>
+      <p class="footer-col-title">Story</p>
       <ul class="footer-links">
         <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
         <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
@@ -932,28 +933,28 @@ section[id], div[id] { scroll-margin-top: 72px; }
         <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
         <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
       </svg>
-      <p class="footer-tagline">Vytvorené s láskou a úctou k predošlým generáciám.</p>
+      <p class="footer-tagline">Created with love and respect for past generations.</p>
       <div class="footer-social">
-        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Facebooku">Facebook</a>
+        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Facebook">Facebook</a>
         <span class="footer-social-sep">·</span>
-        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Instagrame">Instagram</a>
+        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Instagram">Instagram</a>
       </div>
     </div>
     <div>
-      <p class="footer-col-title">Galéria & Mapa</p>
+      <p class="footer-col-title">Gallery &amp; Map</p>
       <ul class="footer-links">
-        <li><a href="galeria-vysiviek.html">Vzorkovník výšiviek</a></li>
-        <li><a href="galeria-ludove.html">Ľudové výšivky a odev</a></li>
-        <li><a href="galeria-babik.html">Krojované bábiky</a></li>
-        <li><a href="mapa-spomienok.html">Mapa spomienok</a></li>
-        <li><a href="spojme-sa.html">Spojme sa</a></li>
+        <li><a href="galeria-vysiviek.html">Embroidery Sample Book</a></li>
+        <li><a href="galeria-ludove.html">Folk Embroideries and Dress</a></li>
+        <li><a href="galeria-babik.html">Folk-Costume Dolls</a></li>
+        <li><a href="../mapa-spomienok.html">Map of Memories</a></li>
+        <li><a href="../spojme-sa.html">Get in touch</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-divider"></div>
   <p class="footer-copy">© 2026 Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:inherit;opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">senselovaanna@gmail.com</a></p>
-  <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Ochrana osobných údajov</button></p>
-  <p class="footer-disclaimer">Zbierka výšiviek, bábik a pozostalosti po rodine Šenšelovcov nie je mojím osobným vlastníctvom — je dedičstvom celej rodiny. Výšivky, bábiky ani kroje nie sú na predaj.</p>
+  <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Privacy policy</button></p>
+  <p class="footer-disclaimer">The collection of embroideries, dolls and the Šenšelová family estate is not my personal property — it is the heritage of the whole family. The embroideries, dolls and folk costumes are not for sale.</p>
 </footer>
 
 
@@ -1089,7 +1090,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
     upd();
   })();
 
-  /* ─── INTERAKTÍVNA ČASOVÁ OS — reveal ─── */
+  /* ─── INTERACTIVE TIMELINE — reveal ─── */
   (function() {
     var items = document.querySelectorAll('.zt-item');
     if (!items.length || !('IntersectionObserver' in window)) {
@@ -1107,7 +1108,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
     items.forEach(function(el) { obs.observe(el); });
   })();
 
-  /* ─── ARCHÍVNA GALÉRIA — CAROUSEL + LIGHTBOX ─── */
+  /* ─── ARCHIVE GALLERY — CAROUSEL + LIGHTBOX ─── */
   (function() {
     const track    = document.getElementById('zivenaTrack');
     const viewport = document.getElementById('zivenaViewport');
@@ -1124,7 +1125,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
     slides.forEach((_, i) => {
       const d = document.createElement('button');
       d.className = 'zivena-dot' + (i === 0 ? ' is-active' : '');
-      d.setAttribute('aria-label', 'Fotografia ' + (i + 1));
+      d.setAttribute('aria-label', 'Image ' + (i + 1));
       d.addEventListener('click', () => goTo(i));
       dotsEl.appendChild(d);
     });
@@ -1205,13 +1206,13 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <!-- GDPR Modal -->
 <div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
   <div class="gdpr-box">
-    <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Zavrieť">✕</button>
-    <h2 id="gdpr-title">Ochrana osobných údajov</h2>
-    <p><strong>Prevádzkovateľ webu:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
-    <p>Táto stránka je nekomerčný informačný web vytvorený vo voľnom čase. Nevznikajú z nej žiadne obchodné záväzky.</p>
-    <p><strong>Kontaktný formulár:</strong> Ak mi napíšete prostredníctvom kontaktného formulára, spracúvam tieto údaje: meno, e-mailová adresa a text správy. Slúžia výlučne na to, aby som vám mohla odpovedať. Údaje nie sú zdieľané s tretími stranami a po vybavení komunikácie ich vymažem.</p>
-    <p><strong>Vaše práva:</strong> Máte právo požiadať o prístup k svojim údajom, ich opravu alebo vymazanie. Stačí napísať na vyššie uvedený e-mail.</p>
-    <p><strong>Cookies a fonty:</strong> Web nepoužíva sledovacie ani analytické cookies. Písma (fonty) sú hostované priamo na tomto serveri — žiadne dáta sa neposielajú do Google ani iným tretím stranám.</p>
+    <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Close">✕</button>
+    <h2 id="gdpr-title">Privacy Policy</h2>
+    <p><strong>Website operator:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
+    <p>This website is a non-commercial information site created in my spare time. It does not give rise to any commercial obligations.</p>
+    <p><strong>Contact form:</strong> If you write to me via the contact form, I process the following data: your name, email address and the text of your message. These are used solely to reply to you. The data are not shared with third parties and will be deleted once our correspondence is concluded.</p>
+    <p><strong>Your rights:</strong> You have the right to request access to your data, its correction or deletion. Simply write to the email address above.</p>
+    <p><strong>Cookies and fonts:</strong> This website does not use tracking or analytical cookies. Fonts are hosted directly on this server — no data is sent to Google or any other third party.</p>
   </div>
 </div>
 <script>

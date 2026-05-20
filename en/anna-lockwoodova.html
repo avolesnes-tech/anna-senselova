@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anna Lockwoodová – The Embroidered Treasures of Anna Šenšelová</title>
+<meta name="description" content="Anna Lockwoodová — great-grandniece of Anna Šenšelová, visual artist and creator of this project. Her story and journey to discovering the family's heritage.">
+<meta name="author" content="Anna Lockwoodová">
+<meta property="og:title" content="Anna Lockwoodová — Creator of the Embroidered Treasures project">
+<meta property="og:description" content="Great-grandniece of Anna Šenšelová, visual artist and creator of this project.">
+<meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/anna_lockwoodova.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anna Lockwoodová — Creator of the Embroidered Treasures project">
+<meta name="twitter:description" content="Great-grandniece of Anna Šenšelová, visual artist and creator of this project.">
+<meta name="twitter:image" content="https://avolesnes-tech.github.io/anna-senselova/anna_lockwoodova.jpg">
+<link rel="alternate" hreflang="sk" href="https://avolesnes-tech.github.io/anna-senselova/anna-lockwoodova.html">
+<link rel="alternate" hreflang="en" href="https://avolesnes-tech.github.io/anna-senselova/en/anna-lockwoodova.html">
+<link rel="preload" href="../assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../style.css">
+<style>
+
+/* page-specific variables */
+:root {
+  --red-dark: #9B1530;
+  /* --gold-dark opravený na WCAG AA kontrast na krémovom pozadí */
+  --gold-dark: #6B5000;
+  --transition-base: 0.3s ease;
+  --transition-fast: 0.22s ease;
+  --max-prose: 700px;
+  --max-wide: 960px;
+}
+
+body {
+  font-size: clamp(17px, 2.4vw, 19px);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* READING PROGRESS */
+.reading-progress {
+  position: fixed; top: var(--nav-height); left: 0; width: 0%; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 9997; transition: width 0.1s linear; pointer-events: none;
+}
+
+
+/* ===== HERO — stop-scroll dvojstĺpcový layout ===== */
+#hero {
+  min-height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  padding: 0;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+#hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 85%, rgba(196,30,58,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 15%, rgba(212,175,55,0.05) 0%, transparent 50%);
+  pointer-events: none; z-index: 0;
+}
+#hero > * { position: relative; z-index: 1; }
+
+/* ─── LEFT COLUMN — photo stop-scroll ─── */
+.hero-portrait-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--nav-height) + 3.5rem) 2.5rem 4.5rem 4rem;
+  animation: heroPortraitIn 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* White passe-partout with gloss effect */
+.hero-paspartout {
+  position: relative;
+  background: #fff;
+  padding: 22px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow:
+    0 0 0 1px rgba(212,175,55,0.3),
+    0 14px 55px rgba(26,26,26,0.16),
+    0 3px 10px rgba(26,26,26,0.08);
+  overflow: hidden;
+}
+
+/* Inner gold hairline */
+.hero-paspartout::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 0.5px solid rgba(212,175,55,0.52);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Gloss light sweep on hover */
+.hero-paspartout::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -80%;
+  width: 55%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255,255,255,0.52) 50%,
+    transparent 80%
+  );
+  transform: skewX(-12deg);
+  transition: left 0.72s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.hero-paspartout:hover::after {
+  left: 130%;
+  opacity: 1;
+}
+
+.hero-portrait-img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top center;
+  filter: sepia(7%) contrast(1.04) brightness(0.98);
+  position: relative; z-index: 1;
+}
+
+/* ─── RIGHT COLUMN — text ─── */
+.hero-text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: calc(var(--nav-height) + 3.5rem) 4rem 4.5rem 2.5rem;
+  text-align: left;
+  animation: heroTextIn 1.15s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-text-content .section-label { text-align: left; }
+.hero-text-content .gold-line { margin: 1.2rem 0; }
+
+/* Tagline */
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(0.96rem, 1.8vw, 1.08rem);
+  color: #555;
+  max-width: 380px;
+  margin: 0.7rem 0 0;
+  line-height: 1.75;
+}
+
+@keyframes heroPortraitIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes heroTextIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── MOBILE: columns → rows ─── */
+@media (max-width: 768px) {
+  #hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero-portrait-col {
+    padding: calc(var(--nav-height) + 2rem) 2rem 1.8rem;
+    justify-content: center;
+  }
+  .hero-paspartout { max-width: 300px; padding: 16px; }
+  .hero-text-content {
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem 2rem 3.5rem;
+  }
+  .hero-text-content .section-label { text-align: center; }
+  .hero-text-content .gold-line { margin: 1rem auto; }
+  .hero-tagline { margin: 0.7rem auto 0; max-width: 340px; }
+  .pribeh-intro { padding: 2.8rem 1.4rem 2rem; }
+  .pribeh-section { padding: 2.8rem 1.4rem 1.5rem; }
+  .omne-section { padding: 3rem 1.4rem; }
+  .tvorba-section { padding: 3rem 0 2rem; }
+  .cta-mapa { padding: 3rem 1.4rem; }
+  .closing-quote { padding: 3rem 1.4rem; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: clamp(16px, 4.2vw, 18px); }
+  .hero-portrait-col { padding: calc(var(--nav-height) + 1.5rem) 1.5rem 1.5rem; }
+  .hero-paspartout { max-width: 260px; padding: 13px; }
+  .hero-text-content { padding: 0.5rem 1.4rem 2.5rem; }
+  .hero-tagline { font-size: 0.94rem; }
+  .hero-sub { font-size: 0.6rem; letter-spacing: 0.14em; }
+  .pribeh-intro { padding: 2.2rem 1.2rem 1.8rem; }
+  .pribeh-pullquote { font-size: clamp(1.65rem, 7vw, 2.2rem); }
+  .omne-section { padding: 2.5rem 1.2rem; }
+  .omne-title { font-size: clamp(1.9rem, 8vw, 2.8rem); }
+  .tvorba-section { padding: 2.5rem 0 1.8rem; }
+  .tvorba-inner { padding: 0 1.2rem; }
+  .cta-mapa { padding: 2.5rem 1.2rem; }
+  .cta-mapa h2 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+  .cta-btn { font-size: 0.7rem; padding: 0.9rem 1.5rem; letter-spacing: 0.14em; }
+  .closing-quote { padding: 2.5rem 1.2rem; }
+  .closing-quote blockquote { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .article-nav { flex-wrap: wrap; justify-content: center; gap: 0.6rem; padding: 1.2rem 1rem; }
+  .article-nav a { font-size: 0.66rem; }
+  .gold-line { margin: 1rem auto; }
+}
+
+.section-label {
+  font-family: 'Cinzel', serif; font-size: 0.72rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 0.6rem; display: block;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.4rem, 9vw, 6.5rem);
+  color: var(--red); line-height: 1.1;
+}
+
+.hero-sub {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.62rem, 1.8vw, 0.78rem);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-dark); margin-top: 0.8rem;
+}
+
+.gold-line {
+  width: 100px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.65), transparent);
+  margin: 1.2rem auto;
+}
+
+/* ===== INTRO STORY (before portfolio) ===== */
+.pribeh-intro {
+  max-width: var(--max-prose); margin: 0 auto;
+  padding: 4rem 1.5rem 3rem;
+}
+.pribeh-intro h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  color: var(--red); line-height: 1.2; margin-bottom: 0.4rem;
+}
+.pribeh-intro .gold-line { margin: 0.8rem 0 2rem; }
+.pribeh-intro p {
+  font-size: clamp(1rem, 2.5vw, 1.08rem);
+  color: #2e2e2e; line-height: 1.95; margin-bottom: 1.4rem;
+}
+
+/* ===== ABOUT ME ===== */
+.omne-section {
+  background: var(--section-alt); padding: 4rem 1.5rem;
+  border-top: 1px solid rgba(212,175,55,0.25);
+  border-bottom: 1px solid rgba(212,175,55,0.25);
+}
+.omne-inner { max-width: var(--max-prose); margin: 0 auto; }
+.omne-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: var(--red); line-height: 1.1; text-align: center; margin-bottom: 0.5rem;
+}
+.omne-divider { margin: 1rem auto 2.4rem; }
+.omne-prose p {
+  font-size: clamp(1rem, 2.5vw, 1.05rem);
+  color: #2e2e2e; line-height: 1.95; margin-bottom: 1.3rem;
+}
+.omne-prose p:last-child { margin-bottom: 0; }
+.omne-prose em { font-style: italic; color: var(--ink); }
+
+/* ===== PORTFOLIO GALLERY ===== */
+.tvorba-section {
+  background: var(--cream); padding: 4rem 0 3rem;
+  border-top: 1px solid rgba(212,175,55,0.25);
+}
+.tvorba-inner { max-width: var(--max-wide); margin: 0 auto; padding: 0 1.5rem; }
+.tvorba-header { text-align: center; margin-bottom: 2.5rem; }
+.tvorba-header h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: var(--red); line-height: 1.1; margin-bottom: 0.6rem;
+}
+.tvorba-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.95rem, 2vw, 1rem);
+  font-style: italic; color: #444;
+  max-width: 520px; margin: 0 auto; line-height: 1.8;
+}
+
+/* CAROUSEL */
+.carousel-wrap {
+  position: relative; overflow: hidden; width: 100%;
+  padding: 1rem 0 0.5rem; touch-action: pan-y;
+}
+.carousel-pause-btn {
+  display: block; margin: 0 auto 1.2rem;
+  background: none; border: 1px solid rgba(107,80,0,0.4);
+  color: var(--gold-dark);
+  font-family: 'Cinzel', serif; font-size: 0.64rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.45rem 1rem; cursor: pointer; border-radius: 2px;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+  min-height: 36px;
+}
+.carousel-pause-btn:hover { border-color: var(--red); color: var(--red); }
+
+.carousel-track {
+  display: flex; align-items: center; gap: 1.2rem;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform; cursor: grab; user-select: none;
+}
+.carousel-track:active { cursor: grabbing; }
+
+.carousel-slide {
+  flex: 0 0 280px; height: 280px;
+  overflow: hidden; position: relative;
+  border: 1px solid rgba(212,175,55,0.2);
+  transition: flex-basis 0.6s cubic-bezier(0.4,0,0.2,1),
+              height 0.6s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.6s ease, opacity 0.6s ease;
+  opacity: 0.5; cursor: pointer; flex-shrink: 0; border-radius: 2px;
+}
+.carousel-slide.active {
+  flex-basis: 380px; height: 380px; opacity: 1;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+  border-color: rgba(212,175,55,0.5); z-index: 2;
+}
+.carousel-slide img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+  pointer-events: none;
+}
+.carousel-slide.active:hover img { transform: scale(1.03); }
+
+.carousel-slide-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 2rem 1.2rem 1rem;
+  background: linear-gradient(to top, rgba(15,8,10,0.72) 0%, transparent 100%);
+  z-index: 2; opacity: 0; transition: opacity 0.3s ease;
+}
+.carousel-slide.active .carousel-slide-overlay { opacity: 1; }
+.carousel-slide-label {
+  font-family: 'Cinzel', serif; font-size: 0.64rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(249,240,210,0.95);
+}
+
+.carousel-dots {
+  display: flex; justify-content: center; gap: 0.6rem; margin-top: 1.4rem;
+}
+.carousel-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(107,80,0,0.2); border: none; cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  padding: 0; position: relative;
+}
+.carousel-dot::after { content: ''; position: absolute; inset: -8px; }
+.carousel-dot.active { background: var(--gold-dark); transform: scale(1.35); }
+
+.carousel-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(249,247,242,0.92);
+  border: 1px solid rgba(212,175,55,0.4); border-radius: 50%;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10; color: var(--ink);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  touch-action: manipulation;
+}
+.carousel-arrow:hover { background: #fff; color: var(--red); }
+.carousel-arrow.prev { left: 0.6rem; }
+.carousel-arrow.next { right: 0.6rem; }
+.carousel-arrow svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+@media (max-width: 600px) {
+  .carousel-slide { flex: 0 0 74vw; height: 74vw; }
+  .carousel-slide.active { flex-basis: 84vw; height: 84vw; }
+  .carousel-arrow { width: 38px; height: 38px; }
+  .carousel-arrow.prev { left: 0.2rem; }
+  .carousel-arrow.next { right: 0.2rem; }
+}
+
+/* ===== STORY SECTION ===== */
+.pribeh-section {
+  max-width: var(--max-prose); margin: 0 auto;
+  padding: 4rem 1.5rem 2rem;
+}
+.pribeh-section h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  color: var(--red); line-height: 1.2; margin-bottom: 0.3rem;
+}
+.pribeh-section .gold-line { margin: 0.8rem 0 2rem; }
+.pribeh-section p {
+  font-size: clamp(1rem, 2.5vw, 1.08rem);
+  color: #2e2e2e; line-height: 1.95; margin-bottom: 1.4rem;
+}
+.pribeh-section .highlight {
+  font-style: italic; font-size: clamp(1rem, 2.5vw, 1.08rem);
+  color: var(--ink); border-left: 3px solid var(--red);
+  padding-left: 1.3rem; margin: 2rem 0; line-height: 1.85;
+}
+.pribeh-section .pribeh-signature {
+  font-style: italic; font-size: clamp(0.95rem, 2.2vw, 1rem);
+  color: #444; border-left: 3px solid rgba(212,175,55,0.7);
+  padding-left: 1.3rem; margin-top: 2rem; line-height: 1.85;
+}
+
+/* Pull-quote — highlighted phrase in Pinyon Script */
+.pribeh-intro p.pribeh-pullquote,
+.pribeh-section p.pribeh-pullquote,
+.pribeh-pullquote {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  color: var(--red);
+  line-height: 1.45;
+  margin: 2.8rem auto 1rem;
+  text-align: center;
+  max-width: 700px;
+  display: block;
+}
+
+/* ===== BOOKS — sticky side layout ===== */
+.knihy-wrap { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+.knihy-block {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3.5rem; align-items: start; margin: 2.5rem 0 4rem;
+}
+.knihy-block.reverse { direction: rtl; }
+.knihy-block.reverse > * { direction: ltr; }
+
+.knihy-sticky {
+  position: sticky; top: calc(var(--nav-height) + 1.5rem);
+}
+
+.knihy-foto {
+  width: 100%; margin: 0; position: relative; overflow: hidden;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.knihy-foto.is-visible { opacity: 1; transform: translateY(0); }
+
+.knihy-foto img {
+  width: 100%; height: 380px;
+  object-fit: cover; object-position: center 35%; display: block;
+  filter: sepia(0.07) contrast(1.03) brightness(0.98);
+  border: 1px solid rgba(212,175,55,0.22); border-radius: 2px;
+}
+
+.knihy-foto figcaption {
+  font-family: 'Cinzel', serif; font-size: 0.63rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-dark); margin-top: 0.7rem;
+}
+
+.knihy-quote {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+  color: var(--red-dark); margin-top: 1rem; line-height: 1.7;
+}
+
+.knihy-list-title {
+  font-family: 'Cinzel', serif; font-size: 0.65rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold-dark); margin: 1rem 0 0.5rem;
+}
+
+.knihy-list {
+  list-style: none; padding: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.9rem, 2.2vw, 0.95rem);
+  color: #333; line-height: 1.85;
+}
+.knihy-list li {
+  padding: 0.25rem 0; border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.knihy-list li:last-child { border-bottom: none; }
+.knihy-text { padding: 0.5rem 0; }
+
+@media (max-width: 720px) {
+  .knihy-block {
+    grid-template-columns: 1fr; gap: 1.8rem;
+    direction: ltr !important; margin: 2rem 0 3rem;
+  }
+  .knihy-sticky { position: static; }
+  .knihy-foto img { height: 52vw; min-height: 200px; }
+  /* photo above text on mobile */
+  .knihy-block .knihy-sticky { order: -1; }
+  .knihy-block.reverse .knihy-sticky { order: -1; }
+}
+
+/* ===== CTA — INTERACTIVE MAP ===== */
+.cta-mapa {
+  background: var(--section-alt); padding: 4.5rem 1.5rem;
+  border-top: 1px solid rgba(212,175,55,0.3);
+  border-bottom: 1px solid rgba(212,175,55,0.3);
+  text-align: center;
+}
+.cta-mapa-inner { max-width: 580px; margin: 0 auto; }
+.cta-mapa .section-label { margin-bottom: 0.8rem; }
+.cta-mapa h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  color: var(--red); line-height: 1.15; margin-bottom: 1rem;
+}
+.cta-mapa p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.05rem);
+  color: #2e2e2e; line-height: 1.85; margin-bottom: 2rem;
+}
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: var(--red); color: #fff;
+  font-family: 'Cinzel', serif; font-size: 0.74rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; padding: 1rem 2rem; border-radius: 2px;
+  transition: background var(--transition-base), transform var(--transition-fast);
+  min-height: 48px; touch-action: manipulation;
+}
+.cta-btn:hover { background: var(--red-dark); transform: translateY(-1px); }
+.cta-btn:active { transform: translateY(0); }
+.cta-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; flex-shrink: 0; }
+
+/* ===== CLOSING QUOTE ===== */
+.closing-quote {
+  background: var(--red); color: var(--cream);
+  padding: 4.5rem 1.5rem; text-align: center;
+}
+.closing-quote blockquote {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.75; max-width: 700px; margin: 0 auto;
+}
+.closing-quote cite {
+  display: block; margin-top: 1.2rem;
+  font-family: 'Cinzel', serif; font-style: normal;
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(249,247,242,0.7);
+}
+
+/* ===== ARTICLE NAV ===== */
+.article-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.6rem 1.5rem;
+  border-top: 1px solid rgba(212,175,55,0.25);
+  max-width: var(--max-wide); margin: 0 auto; gap: 1rem;
+}
+.article-nav a {
+  font-family: 'Cinzel', serif; font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold-dark); text-decoration: none;
+  transition: color var(--transition-base);
+  min-height: 44px; display: flex; align-items: center;
+}
+.article-nav a:hover { color: var(--red); }
+
+
+/* ===== REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ===== LIGHTBOX ===== */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(12,8,10,0.93);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  padding: 1.5rem; cursor: zoom-out;
+}
+.lightbox-overlay.open { opacity: 1; pointer-events: all; }
+.lightbox-inner {
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  max-width: 90vw; max-height: 90vh; cursor: default;
+}
+.lightbox-img {
+  max-width: 100%; max-height: 78vh; object-fit: contain;
+  box-shadow: 0 12px 80px rgba(0,0,0,0.6);
+  border: 1px solid rgba(212,175,55,0.2); display: block;
+  transform: scale(0.96); transition: transform 0.35s ease;
+}
+.lightbox-overlay.open .lightbox-img { transform: scale(1); }
+.lightbox-caption-wrap { margin-top: 1rem; text-align: center; }
+.lightbox-caption { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(212,175,55,0.85); }
+.lightbox-close {
+  position: absolute; top: -0.8rem; right: -0.8rem;
+  background: rgba(196,30,58,0.9); border: none; cursor: pointer; color: #fff;
+  width: 40px; height: 40px; border-radius: 50%; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition-base); touch-action: manipulation;
+}
+.lightbox-close:hover { background: var(--red); }
+.lb-arrow {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.06); border: none;
+  color: rgba(255,255,255,0.5); cursor: pointer;
+  min-width: 48px; min-height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  transition: color var(--transition-base), background var(--transition-base); z-index: 10;
+}
+.lb-arrow:hover { color: var(--gold); background: rgba(255,255,255,0.1); }
+.lb-arrow svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.2; }
+.lb-arrow.prev { left: 0; }
+.lb-arrow.next { right: 0; }
+
+
+
+/* scroll-margin-top for anchored sections */
+section[id], div[id] { scroll-margin-top: 72px; }
+
+</style>
+</head>
+<body class="ornaments-always">
+<div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
+<div class="side-ornament side-ornament--right" aria-hidden="true"></div>
+
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image view">
+  <button class="lb-arrow prev" id="lbPrev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <div class="lightbox-inner" id="lightboxInner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    <div class="lightbox-caption-wrap"><p class="lightbox-caption" id="lightboxCaption"></p></div>
+  </div>
+  <button class="lb-arrow next" id="lbNext" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo" aria-label="Map of Memories – home">
+    <picture>
+      <source srcset="../assets/logo-nav-v2.webp" type="image/webp">
+      <img src="../assets/logo-nav-v2.png" alt="Map of Memories" width="216" height="44" loading="eager" decoding="async">
+    </picture>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li>
+      <a href="index.html#pribeh">Story ▾</a>
+      <div class="dropdown">
+        <span class="dropdown-label">Story</span>
+        <a href="anna-senselova.html">Anna Šenšelová</a>
+        <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
+        <a href="lipa.html">Lipa</a>
+        <a href="zivena.html">Živena</a>
+      </div>
+    </li>
+    <li>
+      <a href="index.html#galeria-vysiviek">Gallery ▾</a>
+      <div class="dropdown">
+        <span class="dropdown-label">Gallery</span>
+        <a href="galeria-vysiviek.html">Anna Šenšelová's Embroidery Collection</a>
+        <a href="galeria-ludove.html">Other folk embroideries and garments</a>
+        <a href="galeria-babik.html">Folk costume dolls</a>
+      </div>
+    </li>
+    <li><a href="mapa-spomienok.html">Map of Memories</a></li>
+    <li><a href="spojme-sa.html">Contact</a></li>
+    <li class="nav-lang-item"><a href="../anna-lockwoodova.html" lang="sk" hreflang="sk" class="nav-lang-link">SK — Slovenská verzia</a></li>
+  </ul>
+  <div class="lang-switch" aria-label="Language version">
+    <span class="lang-current" aria-current="true">EN</span>
+    <span class="lang-sep" aria-hidden="true">|</span>
+    <a href="../anna-lockwoodova.html" class="lang-link" lang="sk" hreflang="sk">SK</a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section id="hero" aria-labelledby="hero-title">
+  <span id="main" style="position:absolute;top:0;"></span>
+
+  <!-- Left column — stop-scroll photo in white passe-partout -->
+  <div class="hero-portrait-col">
+    <div class="hero-paspartout">
+      <picture>
+        <source srcset="../anna_lockwoodova.webp" type="image/webp">
+        <img src="../anna_lockwoodova.jpg"
+             alt="Anna Lockwoodová at work"
+             class="hero-portrait-img"
+             decoding="async">
+      </picture>
+    </div>
+  </div>
+
+  <!-- Right column — text -->
+  <div class="hero-text-content">
+    <p class="section-label">Story · About the author</p>
+    <h1 id="hero-title">Anna Lockwoodová</h1>
+    <p class="hero-sub">born Šenšelová · Anna's great-grandniece · creator of this website</p>
+    <div class="gold-line" aria-hidden="true"></div>
+    <p class="hero-tagline">Artist, mother of three and discoverer of a family heritage.</p>
+  </div>
+</section>
+
+<!-- 1. THE FULL STORY — one continuous block -->
+<div class="pribeh-intro reveal">
+  <h2>Where the past<br>meets the present.</h2>
+  <div class="gold-line" aria-hidden="true"></div>
+  <p>My curiosity led me to the story of my great-aunt Anna Šenšelová, and so did a find in my grandparents' cellar: two carrier bags full of old embroideries. I had spent years doing embroidery myself (modern embroidery, not traditional folk patterns), so holding these precisely worked pieces of history in my hands filled me with an extraordinary admiration for our ancestors and for the women whose hands could create something like this.</p>
+  <p>I had never paid much attention to folk culture or traditional dress, but this was the exact moment that changed. I immediately remembered my grandfather's autobiography. I have to admit, with some embarrassment, that I had never actually finished reading it before. Now I understand I simply had to be ready for it. I read his life story in a completely different way this time, devouring it like no bestseller I had ever picked up.</p>
+  <p>So many of his stories made me laugh. I could picture him perfectly, causing every kind of mischief as a little boy and then as a grown, serious man. What struck me most was that he was not ashamed to name and describe his own mistakes in the book. That raw honesty gave me a kind of freedom, a sense that we do not always have to pretend to be perfect.</p>
+  <p class="pribeh-pullquote">That raw honesty gave me a kind of freedom: a sense that we do not always have to pretend to be perfect.</p>
+</div>
+
+<!-- BOOKS BLOCK 1: text left, photo right -->
+<div class="knihy-wrap">
+  <div class="knihy-block">
+    <div class="knihy-text">
+      <div class="pribeh-section" style="padding:0; max-width:100%;">
+        <p class="reveal">Through my grandfather's autobiography, <em>Občas slnko, občas hrmavica</em> (Sometimes Sun, Sometimes Thunder), the memoir of my great-grandfather Ľudovít Šenšel and the publication Šenšelovský rod (The Šenšel Line), I stepped back a hundred years and came to know my ancestors in real detail. But the embroideries stayed in my mind. I wanted to solve the mystery of how they had ended up in my grandparents' cellar and what they actually were.</p>
+        <div class="highlight reveal">
+          With more than a little nerves, I contacted Tami Šimončíková Heribanova, who pointed me towards Zuzana Tajek Piešová, a specialist in folk costumes. To my great surprise, she immediately offered to come to my home to look at the embroideries in person.
+        </div>
+      </div>
+    </div>
+    <div class="knihy-sticky">
+      <figure class="knihy-foto" id="knihyFoto1">
+        <picture>
+          <source srcset="../anna_lockwoodova_knihy.webp" type="image/webp">
+          <img src="../anna_lockwoodova_knihy.jpeg" alt="My grandfather's autobiography and books about the Šenšel family" loading="lazy" decoding="async" width="480" height="380">
+        </picture>
+        <figcaption>I had to grow into being ready to explore old stories.</figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKS BLOCK 2: photo left, text right -->
+<div class="knihy-wrap">
+  <div class="knihy-block reverse">
+    <div class="knihy-text">
+      <div class="pribeh-section" style="padding:0; max-width:100%;">
+        <p class="reveal">Zuzka also pointed me towards Stanko Talapka, and when I contacted him I could not believe how willing he was to help. He invited me straight to Martin, where the trail of Aunt Anna led. So I got on the train and went. He told me about the individual embroideries, estimated their origin and use, told me about the Lipa cooperative and even brought along a shirt from their workshop to show me. My father and I also took in a beautiful Karol Plicka exhibition and the permanent folk costume display at the Slovak National Museum.</p>
+        <p class="reveal">Just as some things in life seem catastrophic at first, with distance I can see they are sometimes the best that could have happened. In autumn 2025 I was made redundant from a corporate job, and as a mother of three I found it hard to find new work. With each fresh rejection my confidence took another knock. But the period of unemployment gave me the space to explore the family history and the story of Lipa.</p>
+        <p class="reveal">In the end I told myself I had to take matters into my own hands. I started teaching myself web design using AI tools. I saw it as the ideal opportunity to turn everything I had gathered during my research into something concrete, and to test new skills at the same time. This way, at least in a small way, I can help make sure the work of our ancestors is not forgotten.</p>
+        <p class="reveal">Once I set myself the goal of building this site, my detective work went up another gear. At 38, I got to know my second-cousin-once-removed <em>Ján Jurás</em>, a widely read and deeply enthusiastic man who has been a help from the very first meeting. I also connected with Oľga Kapustová, my third cousin, and I hope this is far from the end.</p>
+        <p class="pribeh-signature reveal">I believe that knowing your own past is a truly enriching experience. It is like finding the missing piece of a puzzle inside yourself, because every generation before us planted something in us that the next one preserved. And so we are connected by a single thread, even without realising it at first glance.</p>
+      </div>
+    </div>
+    <div class="knihy-sticky">
+      <figure class="knihy-foto" id="knihyFoto2">
+        <picture>
+          <source srcset="../anna_lockwoodova_knihy2.webp" type="image/webp">
+          <img src="../anna_lockwoodova_knihy2.jpeg" alt="Vlastný životopis · Pevný buď · Šenšelovský rod" loading="lazy" decoding="async" width="480" height="380">
+        </picture>
+        <figcaption>Vlastný životopis · Pevný buď · Šenšelovský rod</figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+<!-- 2. ABOUT ME -->
+<section class="omne-section" aria-labelledby="omne-title">
+  <div class="omne-inner">
+    <span class="section-label reveal">A little about me</span>
+    <h2 class="omne-title reveal" id="omne-title">A creative soul</h2>
+    <div class="gold-line omne-divider reveal" aria-hidden="true"></div>
+    <div class="omne-prose">
+      <p class="reveal">I am a creative soul. After studying marketing at university I spent two years living with my husband in Scotland, in a romantic cottage in the countryside, where our first daughter <em>Amelia</em> was born. When she was three months old we moved back to Slovakia: first to Liptov, then to Bratislava, briefly back to Liptov (where our son <em>Teo</em> was born) and finally, twelve years ago, we settled in Senec. Three years ago our second daughter <em>Charlotte</em> was born there.</p>
+      <p class="reveal">Alongside my artistic pursuits I love the garden, baking and our two dogs. When I have any time left I clear my head with a run.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. MY WORK — CAROUSEL -->
+<section class="tvorba-section" id="tvorba" aria-labelledby="tvorba-title">
+  <div class="tvorba-inner">
+    <div class="tvorba-header reveal">
+      <span class="section-label">Portfolio</span>
+      <h2 id="tvorba-title">My work</h2>
+      <p class="tvorba-sub">I never stick to just one technique. My whole life has been a cycle of periods of intense enthusiasm for new ideas. Art has always been my passion, and now I know why: it is in my blood.</p>
+      <div class="gold-line" style="margin:1rem auto 0;" aria-hidden="true"></div>
+    </div>
+
+    <div class="carousel-wrap reveal" aria-label="Portfolio gallery — 15 photographs">
+      <button class="carousel-pause-btn" id="carPauseBtn" aria-label="Pause automatic gallery scrolling">⏸ Pause</button>
+
+      <button class="carousel-arrow prev" id="carPrev" aria-label="Previous photograph">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-arrow next" id="carNext" aria-label="Next photograph">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+
+      <div class="carousel-track" id="carTrack" aria-live="polite" aria-atomic="false">
+        <div class="carousel-slide active" tabindex="0" role="button"
+             aria-label="Embroidery — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_vysivka.webp" data-caption="Embroidery" data-index="0">
+          <picture>
+            <source srcset="../anna_l_vysivka.webp" type="image/webp">
+            <img src="../anna_l_vysivka.jpeg" alt="Embroidery" loading="eager" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Embroidery</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Papier mâché — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_papermache.webp" data-caption="Papier mâché" data-index="1">
+          <picture>
+            <source srcset="../anna_l_papermache.webp" type="image/webp">
+            <img src="../anna_l_papermache.jpeg" alt="Papier mâché" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Papier mâché</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Bead brooch — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_brosna.webp" data-caption="Bead brooch" data-index="2">
+          <picture>
+            <source srcset="../anna_l_brosna.webp" type="image/webp">
+            <img src="../anna_l_brosna.jpeg" alt="Bead brooch" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Bead brooch</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Watercolour &amp; painting — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_akvarel.webp" data-caption="Watercolour &amp; painting" data-index="3">
+          <picture>
+            <source srcset="../anna_l_akvarel.webp" type="image/webp">
+            <img src="../anna_l_akvarel.jpeg" alt="Watercolour and painting" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Watercolour &amp; painting</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Digital drawing — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_dekoracie.webp" data-caption="Digital drawing" data-index="4">
+          <picture>
+            <source srcset="../anna_l_dekoracie.webp" type="image/webp">
+            <img src="../anna_l_dekoracie.jpeg" alt="Digital drawing" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Digital drawing</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Heart — papier mâché — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_pm_srdce.webp" data-caption="Heart — papier mâché" data-index="5">
+          <picture>
+            <source srcset="../anna_l_pm_srdce.webp" type="image/webp">
+            <img src="../anna_l_pm_srdce.jpeg" alt="Heart — papier mâché" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Heart — papier mâché</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Oranges — papier mâché — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_pm_pomarance.webp" data-caption="Oranges — papier mâché" data-index="6">
+          <picture>
+            <source srcset="../anna_l_pm_pomarance.webp" type="image/webp">
+            <img src="../anna_l_pm_pomarance.jpeg" alt="Oranges — papier mâché" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Oranges — papier mâché</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Mushrooms — papier mâché — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_pm_hriby.webp" data-caption="Mushrooms — papier mâché" data-index="7">
+          <picture>
+            <source srcset="../anna_l_pm_hriby.webp" type="image/webp">
+            <img src="../anna_l_pm_hriby.jpeg" alt="Mushrooms — papier mâché" loading="lazy" decoding="async" width="400" height="400" style="object-position: center bottom;">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Mushrooms — papier mâché</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Mushrooms — felt — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_hriby_filc.webp" data-caption="Mushrooms — felt" data-index="8">
+          <picture>
+            <source srcset="../anna_l_hriby_filc.webp" type="image/webp">
+            <img src="../anna_l_hriby_filc.jpeg" alt="Mushrooms — felt" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Mushrooms — felt</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Rabbit brooch — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_zajac.webp" data-caption="Rabbit brooch" data-index="9">
+          <picture>
+            <source srcset="../anna_l_zajac.webp" type="image/webp">
+            <img src="../anna_l_zajac.jpeg" alt="Rabbit brooch" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Rabbit brooch</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Frida — embroidery — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_frida.webp" data-caption="Frida — embroidery" data-index="10">
+          <picture>
+            <source srcset="../anna_l_frida.webp" type="image/webp">
+            <img src="../anna_l_frida.jpeg" alt="Frida — embroidery" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Frida — embroidery</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Portrait — watercolour — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_akvarel_portret.webp" data-caption="Portrait — watercolour" data-index="11">
+          <picture>
+            <source srcset="../anna_l_akvarel_portret.webp" type="image/webp">
+            <img src="../anna_l_akvarel_portret.jpeg" alt="Portrait — watercolour" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Portrait — watercolour</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Floral watercolour — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_akvarel_kvet.webp" data-caption="Floral watercolour" data-index="12">
+          <picture>
+            <source srcset="../anna_l_akvarel_kvet.webp" type="image/webp">
+            <img src="../anna_l_akvarel_kvet.jpeg" alt="Floral watercolour" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Floral watercolour</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Zoe — watercolour — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_zoe.webp" data-caption="Zoe — watercolour" data-index="13">
+          <picture>
+            <source srcset="../anna_l_zoe.webp" type="image/webp">
+            <img src="../anna_l_zoe.jpeg" alt="Zoe — watercolour" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Zoe — watercolour</span></div>
+        </div>
+        <div class="carousel-slide" tabindex="0" role="button"
+             aria-label="Lemons — watercolour — click to enlarge" aria-roledescription="slide"
+             data-src="../anna_l_citrony.webp" data-caption="Lemons — watercolour" data-index="14">
+          <picture>
+            <source srcset="../anna_l_citrony.webp" type="image/webp">
+            <img src="../anna_l_citrony.jpeg" alt="Lemons — watercolour" loading="lazy" decoding="async" width="400" height="400">
+          </picture>
+          <div class="carousel-slide-overlay" aria-hidden="true"><span class="carousel-slide-label">Lemons — watercolour</span></div>
+        </div>
+      </div>
+
+      <div class="carousel-dots" role="tablist" aria-label="Select photograph" id="carDots">
+        <button class="carousel-dot active" role="tab" aria-selected="true"  data-idx="0"  aria-label="Embroidery"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="1"  aria-label="Papier mâché"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="2"  aria-label="Bead brooch"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="3"  aria-label="Watercolour &amp; painting"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="4"  aria-label="Digital drawing"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="5"  aria-label="Heart — papier mâché"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="6"  aria-label="Oranges — papier mâché"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="7"  aria-label="Mushrooms — papier mâché"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="8"  aria-label="Mushrooms — felt"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="9"  aria-label="Rabbit brooch"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="10" aria-label="Frida — embroidery"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="11" aria-label="Portrait — watercolour"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="12" aria-label="Floral watercolour"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="13" aria-label="Zoe — watercolour"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" data-idx="14" aria-label="Lemons — watercolour"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CTA — MAP OF MEMORIES -->
+<section class="cta-mapa" aria-labelledby="cta-title">
+  <div class="cta-mapa-inner">
+    <span class="section-label reveal">Share your story</span>
+    <h2 class="reveal" id="cta-title">Map of Memories</h2>
+    <p class="reveal">Since I started getting interested in my own ancestors, people (friends and strangers alike) have been confiding in me about their own remarkable stories of grandparents, great-grandparents and even great-great-grandparents. Every single one is completely unique.</p>
+    <p class="reveal">I believe these stories should not be forgotten. That is why I decided to create a map of memories on this website. I would love for you to contribute a piece of your own family past: we can enrich each other with the real lives of the people who shaped who we are today.</p>
+    <a href="mapa-spomienok.html" class="cta-btn reveal" aria-label="Go to the Map of Memories">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+      View the Map of Memories
+    </a>
+  </div>
+</section>
+
+<!-- 6. CLOSING QUOTE -->
+<div class="closing-quote">
+  <blockquote>"When you know where you come from, you discover where you can go."</blockquote>
+  <cite>— Anna Lockwoodová</cite>
+</div>
+
+<!-- ARTICLE NAV -->
+<nav class="article-nav" aria-label="Between articles">
+  <a href="anna-senselova.html">← Anna Šenšelová</a>
+  <a href="lipa.html">Lipa →</a>
+</nav>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-col-title">Story</p>
+      <ul class="footer-links">
+        <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
+        <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
+        <li><a href="lipa.html">Lipa</a></li>
+        <li><a href="zivena.html">Živena</a></li>
+      </ul>
+    </div>
+    <div class="footer-col-center">
+      <div class="footer-name">Anna Šenšelová</div>
+      <svg viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:180px;display:block;margin:0 auto 0.8rem;opacity:0.3;">
+        <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
+        <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+        <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+        <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+      </svg>
+      <p class="footer-tagline">Created with love and respect for past generations.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Facebook">Facebook</a>
+        <span class="footer-social-sep">·</span>
+        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Instagram">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Gallery &amp; Map</p>
+      <ul class="footer-links">
+        <li><a href="galeria-vysiviek.html">Anna Šenšelová's Embroidery Collection</a></li>
+        <li><a href="galeria-ludove.html">Other folk embroideries and garments</a></li>
+        <li><a href="galeria-babik.html">Folk costume dolls</a></li>
+        <li><a href="mapa-spomienok.html">Map of Memories</a></li>
+        <li><a href="spojme-sa.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2026 Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:inherit;opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">senselovaanna@gmail.com</a></p>
+  <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Privacy policy</button></p>
+  <p class="footer-disclaimer">The collection of embroideries, dolls and the estate of the Šenšel family is not my personal property — it is the heritage of the entire family. Embroideries, dolls and folk costumes are not for sale.</p>
+</footer>
+
+<script>
+
+  /* UNIFIED NAV JS */
+  (function() {
+    var hamburger = document.getElementById('hamburger');
+    var navMenu   = document.getElementById('nav-menu');
+    if (!hamburger || !navMenu) return;
+    function isMobile() { return window.innerWidth <= 768; }
+    function closeAll() {
+      navMenu.querySelectorAll('.dropdown').forEach(function(d) { d.classList.remove('open','dropdown-open'); });
+    }
+    function closeMenu() {
+      navMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded','false');
+      closeAll();
+    }
+    hamburger.addEventListener('click', function() {
+      var o = navMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', o);
+      hamburger.setAttribute('aria-expanded', String(o));
+    });
+    navMenu.querySelectorAll('li > a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var dd = this.closest('li').querySelector('.dropdown');
+        if (dd && isMobile()) {
+          e.preventDefault();
+          var was = dd.classList.contains('open');
+          closeAll();
+          if (!was) dd.classList.add('open');
+        } else if (!dd) { closeMenu(); }
+      });
+    });
+    navMenu.querySelectorAll('.dropdown a').forEach(function(a) {
+      a.addEventListener('click', function() { closeMenu(); });
+    });
+    navMenu.querySelectorAll('li').forEach(function(li) {
+      var dd = li.querySelector('.dropdown'); if (!dd) return;
+      var t;
+      function show() { if(isMobile())return; clearTimeout(t); dd.classList.add('dropdown-open'); }
+      function hide() { if(isMobile())return; t=setTimeout(function(){dd.classList.remove('dropdown-open');},150); }
+      li.addEventListener('mouseenter',show); li.addEventListener('mouseleave',hide);
+      dd.addEventListener('mouseenter',function(){clearTimeout(t);}); dd.addEventListener('mouseleave',hide);
+    });
+    document.addEventListener('click', function(e) {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
+    });
+    window.addEventListener('resize', function() { if(!isMobile()){closeMenu();closeAll();} });
+    document.addEventListener('keydown', function(e) { if(e.key==='Escape') closeMenu(); });
+    var page = window.location.pathname.split('/').pop()||'index.html';
+    navMenu.querySelectorAll('a[href]').forEach(function(a) {
+      var h = a.getAttribute('href').split('#')[0].split('/').pop();
+      if (h && h===page) a.classList.add('active');
+    });
+  })();
+  /* page transition */
+  document.addEventListener('click', function(e) {
+    var l = e.target.closest('a[href]'); if(!l) return;
+    var h = l.getAttribute('href');
+    if(!h||h.startsWith('#')||h.startsWith('http')||h.startsWith('mailto')||l.target==='_blank') return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function(){window.location.href=h;},340);
+  });
+  /* reading progress */
+  (function(){
+    var bar=document.getElementById('readingProgress'); if(!bar) return;
+    function upd(){var h=document.documentElement.scrollHeight-window.innerHeight; bar.style.width=(h>0?Math.min(window.scrollY/h*100,100):0)+'%';}
+    window.addEventListener('scroll',upd,{passive:true}); upd();
+  })();
+
+
+/* ===== CAROUSEL ===== */
+(function() {
+  var track    = document.getElementById('carTrack');
+  var slides   = track ? Array.from(track.querySelectorAll('.carousel-slide')) : [];
+  var dots     = Array.from(document.querySelectorAll('.carousel-dot'));
+  var prevBtn  = document.getElementById('carPrev');
+  var nextBtn  = document.getElementById('carNext');
+  var pauseBtn = document.getElementById('carPauseBtn');
+  if (!track || !slides.length) return;
+
+  var current = 0, paused = false, timer = null;
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    dots[current].setAttribute('aria-selected', 'false');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    dots[current].setAttribute('aria-selected', 'true');
+    center();
+  }
+
+  function center() {
+    var wrap = track.parentElement;
+    var a    = slides[current];
+    var off  = a.offsetLeft - (wrap.offsetWidth / 2) + (a.offsetWidth / 2);
+    track.style.transform = 'translateX(' + (-off) + 'px)';
+  }
+
+  function startAuto() {
+    clearInterval(timer);
+    if (!paused) timer = setInterval(function() { goTo(current + 1); }, 4500);
+  }
+  function stopAuto() { clearInterval(timer); }
+
+  function togglePause() {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶ Resume' : '⏸ Pause';
+    pauseBtn.setAttribute('aria-label', paused ? 'Resume automatic gallery scrolling' : 'Pause automatic gallery scrolling');
+    paused ? stopAuto() : startAuto();
+  }
+
+  pauseBtn && pauseBtn.addEventListener('click', togglePause);
+  prevBtn  && prevBtn.addEventListener('click', function() { goTo(current - 1); stopAuto(); startAuto(); });
+  nextBtn  && nextBtn.addEventListener('click', function() { goTo(current + 1); stopAuto(); startAuto(); });
+
+  dots.forEach(function(d) {
+    d.addEventListener('click', function() { goTo(parseInt(this.dataset.idx)); stopAuto(); startAuto(); });
+  });
+
+  slides.forEach(function(slide, i) {
+    slide.addEventListener('click', function() {
+      if (i !== current) { goTo(i); stopAuto(); startAuto(); return; }
+      var lb    = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightboxImg');
+      var lbCap = document.getElementById('lightboxCaption');
+      if (lb && lbImg) {
+        lbImg.src = slide.dataset.src; lbImg.alt = slide.dataset.caption || '';
+        if (lbCap) lbCap.innerHTML = slide.dataset.caption || '';
+        lb.classList.add('open'); document.body.style.overflow = 'hidden';
+        document.getElementById('lightboxClose').focus();
+      }
+    });
+    slide.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); slide.click(); }
+    });
+  });
+
+  /* Touch swipe */
+  var tx = null;
+  track.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 44) { goTo(dx < 0 ? current + 1 : current - 1); stopAuto(); startAuto(); }
+  }, { passive: true });
+
+  /* Mouse drag */
+  var mx = null;
+  track.addEventListener('mousedown', function(e) { mx = e.clientX; track.style.transition = 'none'; });
+  window.addEventListener('mouseup', function(e) {
+    if (mx === null) return;
+    var dx = e.clientX - mx; mx = null; track.style.transition = '';
+    if (Math.abs(dx) > 44) { goTo(dx < 0 ? current + 1 : current - 1); stopAuto(); startAuto(); }
+    else center();
+  });
+
+  /* Pause on hover / focus */
+  track.addEventListener('mouseenter', stopAuto);
+  track.addEventListener('mouseleave', startAuto);
+  track.addEventListener('focusin',  stopAuto);
+  track.addEventListener('focusout', startAuto);
+
+  window.addEventListener('resize', center);
+  setTimeout(center, 60);
+  startAuto();
+})();
+
+/* ===== SCROLL REVEAL ===== */
+(function() {
+  var ro = new IntersectionObserver(function(e) {
+    e.forEach(function(en) { if (en.isIntersecting) { en.target.classList.add('is-visible'); ro.unobserve(en.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
+
+  var ko = new IntersectionObserver(function(e) {
+    e.forEach(function(en) { if (en.isIntersecting) { en.target.classList.add('is-visible'); ko.unobserve(en.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.knihy-foto').forEach(function(el) { ko.observe(el); });
+})();
+
+/* ===== LIGHTBOX ===== */
+(function() {
+  var lb      = document.getElementById('lightbox');
+  var lbImg   = document.getElementById('lightboxImg');
+  var lbCap   = document.getElementById('lightboxCaption');
+  var lbClose = document.getElementById('lightboxClose');
+  var lbPrev  = document.getElementById('lbPrev');
+  var lbNext  = document.getElementById('lbNext');
+  var lbInner = document.getElementById('lightboxInner');
+  if (!lb) return;
+
+  var slides = Array.from(document.querySelectorAll('.carousel-slide[data-src]'));
+  var cur = 0, last = null;
+
+  function open(idx) { last = document.activeElement; cur = idx; update(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lbClose.focus(); }
+  function close()   { lb.classList.remove('open'); document.body.style.overflow = ''; if (last) last.focus(); }
+  function update()  { var s = slides[cur]; lbImg.src = s.dataset.src; lbImg.alt = s.dataset.caption || ''; if (lbCap) lbCap.innerHTML = s.dataset.caption || ''; }
+
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', function() { cur = (cur - 1 + slides.length) % slides.length; update(); });
+  lbNext.addEventListener('click', function() { cur = (cur + 1) % slides.length; update(); });
+  lb.addEventListener('click', function(e) { if (!lbInner.contains(e.target) && !lbPrev.contains(e.target) && !lbNext.contains(e.target)) close(); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') { cur = (cur + 1) % slides.length; update(); }
+    if (e.key === 'ArrowLeft')  { cur = (cur - 1 + slides.length) % slides.length; update(); }
+  });
+
+  var tx = null;
+  lb.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function(e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 44) { dx < 0 ? lbNext.click() : lbPrev.click(); }
+  }, { passive: true });
+})();
+
+/* ===== PAGE TRANSITIONS ===== */
+(function() {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'none';
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      document.body.style.transition = 'opacity 0.38s ease';
+      document.body.style.opacity = '1';
+    });
+  });
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var h = a.getAttribute('href');
+    if (!h || h.startsWith('#') || h.startsWith('http') || h.startsWith('mailto') || a.target === '_blank') return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function() { window.location.href = h; }, 380);
+  });
+})();
+
+/* ===== READING PROGRESS ===== */
+(function() {
+  var bar = document.getElementById('readingProgress');
+  if (!bar) return;
+  function upd() { bar.style.width = Math.min(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100, 100) + '%'; }
+  window.addEventListener('scroll', upd, { passive: true });
+  upd();
+})();
+</script>
+<!-- GDPR Modal -->
+<div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
+  <div class="gdpr-box">
+    <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Close">✕</button>
+    <h2 id="gdpr-title">Privacy policy</h2>
+    <p><strong>Website operator:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
+    <p>This site is a non-commercial informational website created in my free time. No commercial obligations arise from it.</p>
+    <p><strong>Contact form:</strong> If you write to me via the contact form, I process the following data: name, email address and the content of your message. This is used solely so I can reply to you. Data is not shared with third parties and will be deleted after the communication is resolved.</p>
+    <p><strong>Your rights:</strong> You have the right to request access to your data, its correction or deletion. Simply write to the email address above.</p>
+    <p><strong>Cookies and fonts:</strong> This site does not use tracking or analytical cookies. Fonts are hosted directly on this server — no data is sent to Google or any other third party.</p>
+  </div>
+</div>
+<script>
+  document.getElementById('gdpr-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') document.getElementById('gdpr-modal').classList.remove('open');
+  });
+</script>
+</body>
+</html>
