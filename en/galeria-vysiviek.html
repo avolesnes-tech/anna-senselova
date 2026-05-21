@@ -707,6 +707,13 @@ h1.page-title {
   line-height: 1.85;
 }
 
+.panel-desc {
+  font-size: var(--text-md);
+  color: #444;
+  line-height: 1.85;
+  margin-bottom: 1.8rem;
+}
+
 /* Blockquote style pre zaujímavé citáty */
 .panel-quote {
   border-left: 3px solid var(--gold);
@@ -883,6 +890,29 @@ h1.page-title {
 /* ── scroll-margin-top pre zakotvené sekcie ── */
 section[id], div[id] { scroll-margin-top: 72px; }
 
+/* ── Desktop: wider hero, 2-column intro, separated credit ── */
+@media (min-width: 900px) {
+  .page-hero-inner {
+    max-width: 960px;
+  }
+  .page-hero-intro {
+    columns: 2;
+    column-gap: 3rem;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .page-hero-intro p:last-child {
+    margin-bottom: 0;
+  }
+  .page-hero-desc {
+    max-width: 100%;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(212,175,55,0.4);
+  }
+}
+
 </style>
 </head>
 <body class="ornaments-always">
@@ -937,20 +967,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
       <div class="panel-meta-tags" id="panelMetaTags"></div>
 
-      <div class="panel-section" id="panelOriginSection">
-        <div class="panel-section-label">Origin</div>
-        <p id="panelOrigin"></p>
-      </div>
-
-      <div class="panel-section" id="panelTechSection">
-        <div class="panel-section-label">Technique</div>
-        <p id="panelTechnique"></p>
-      </div>
-
-      <div class="panel-section" id="panelUseSection">
-        <div class="panel-section-label">Use</div>
-        <p id="panelUse"></p>
-      </div>
+      <p class="panel-desc" id="panelDesc"></p>
 
       <div class="panel-actions">
         <button class="panel-btn panel-btn-secondary" id="panelZoomBtn">
@@ -1056,9 +1073,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/biela_dierkova1.webp", "vysivky1/biela_dierkova2.webp", "vysivky1/biela_dierkova3.webp"]'
-             data-origin="Výšivka zo ženských rukávcov z okolia Trnavy. Plný steh a výrezová výšivka."
-             data-technique="Výšivka zo ženských rukávcov z okolia Trnavy. Plný steh a výrezová výšivka."
-             data-use="Information being added.">
+             data-origin="Výšivka zo ženských rukávcov z okolia Trnavy. Plný steh a výrezová výšivka.">
           <img src="../vysivky1/biela_dierkova2.webp"
                alt="Biela dierkova"
                loading="eager" fetchpriority="high" decoding="async">
@@ -1080,9 +1095,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/biele_gatre1.webp", "vysivky1/biele_gatre2.webp", "vysivky1/biele_gatre3.webp"]'
-             data-origin="Šitá čipka, obsahuje pravdepodobne križovianske gatry."
-             data-technique="Šitá čipka, obsahuje pravdepodobne križovianske gatry."
-             data-use="Information being added.">
+             data-origin="Šitá čipka, obsahuje pravdepodobne križovianske gatry.">
           <img src="../vysivky1/biele_gatre2.webp"
                alt="Šitá čipka"
                loading="eager" fetchpriority="high" decoding="async">
@@ -1104,9 +1117,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/biely_limec1.webp", "vysivky1/biely_limec2.webp", "vysivky1/biely_limec3.webp"]'
-             data-origin="Biely límec zrejme z dielne Lipa. Inšpirovaný výšivkou z okolia Trnavy. Gatry a výrezová výšivka."
-             data-technique="Biely límec zrejme z dielne Lipa. Inšpirovaný výšivkou z okolia Trnavy. Gatry a výrezová výšivka."
-             data-use="Information being added.">
+             data-origin="Biely límec zrejme z dielne Lipa. Inšpirovaný výšivkou z okolia Trnavy. Gatry a výrezová výšivka.">
           <img src="../vysivky1/biely_limec2.webp"
                alt="Biely límec"
                loading="eager" fetchpriority="high" decoding="async">
@@ -1128,9 +1139,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/biely-obrus1.webp", "vysivky1/biely_obrus1.webp"]'
-             data-origin="Biely obrus zrejme z dielne Lipa. Hrachovina, výrezová výšivka a gatry."
-             data-technique="Biely obrus zrejme z dielne Lipa. Hrachovina, výrezová výšivka a gatry."
-             data-use="Information being added.">
+             data-origin="Biely obrus zrejme z dielne Lipa. Hrachovina, výrezová výšivka a gatry.">
           <img src="../vysivky1/biely_obrus1.webp"
                alt="Biely obrus"
                loading="eager" fetchpriority="high" decoding="async">
@@ -1152,9 +1161,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/bordovy_fragment1.webp", "vysivky1/bordovy_fragment2.webp", "vysivky1/bordovy_fragment3.webp"]'
-             data-origin="Pravdepodobne práca spolku Lipa. Mohlo ísť o ozdobu výstrihu ženských šiat. Inšpirovaný ornamentikou z Podpoľania."
-             data-technique="Pravdepodobne práca spolku Lipa. Mohlo ísť o ozdobu výstrihu ženských šiat. Inšpirovaný ornamentikou z Podpoľania."
-             data-use="Information being added.">
+             data-origin="Pravdepodobne práca spolku Lipa. Mohlo ísť o ozdobu výstrihu ženských šiat. Inšpirovaný ornamentikou z Podpoľania.">
           <img src="../vysivky1/bordovy_fragment2.webp"
                alt="Bordový fragment"
                loading="lazy" decoding="async">
@@ -1176,9 +1183,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/bosaca_metraz1.webp", "vysivky1/bosaca_metraz2.webp", "vysivky1/bosaca_metraz3.webp"]'
-             data-origin="Bošáca/Moravské Lieskové. Plný steh."
-             data-technique="Bošáca/Moravské Lieskové. Plný steh."
-             data-use="Information being added.">
+             data-origin="Bošáca/Moravské Lieskové. Plný steh.">
           <img src="../vysivky1/bosaca_metraz2.webp"
                alt="Bošáca/Moravské Lieskové"
                loading="lazy" decoding="async">
@@ -1200,9 +1205,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/bosaca_set1.webp", "vysivky1/bosaca_set2.webp", "vysivky1/bosaca_set3.webp"]'
-             data-origin="Výšivka zo ženských prieramkov z oblasti Bošáca/Moravské Lieskové. Plná výšivka, kovová niť."
-             data-technique="Výšivka zo ženských prieramkov z oblasti Bošáca/Moravské Lieskové. Plná výšivka, kovová niť."
-             data-use="Information being added.">
+             data-origin="Výšivka zo ženských prieramkov z oblasti Bošáca/Moravské Lieskové. Plná výšivka, kovová niť.">
           <img src="../vysivky1/bosaca_set2.webp"
                alt="Bošáca/Moravské Lieskové"
                loading="lazy" decoding="async">
@@ -1224,9 +1227,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/bosaca_zlta1.webp", "vysivky1/bosaca_zlta2.webp", "vysivky1/bosaca_zlta3.webp"]'
-             data-origin="Výšivka zo ženských prieramkov z kroja staršej ženy alebo smútočného kroja. Plná výšivka."
-             data-technique="Výšivka zo ženských prieramkov z kroja staršej ženy alebo smútočného kroja. Plná výšivka."
-             data-use="Information being added.">
+             data-origin="Výšivka zo ženských prieramkov z kroja staršej ženy alebo smútočného kroja. Plná výšivka.">
           <img src="../vysivky1/bosaca_zlta2.webp"
                alt="Bošáca/Moravské Lieskové"
                loading="lazy" decoding="async">
@@ -1248,9 +1249,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/cicmany_metraz1.webp", "vysivky1/cicmany_metraz2.webp", "vysivky1/cicmany_metraz3.webp"]'
-             data-origin="Čičmanská výšivka. Pravdepodobne výšivka na záponku."
-             data-technique="Čičmanská výšivka. Pravdepodobne výšivka na záponku."
-             data-use="Information being added.">
+             data-origin="Čičmanská výšivka. Pravdepodobne výšivka na záponku.">
           <img src="../vysivky1/cicmany_metraz2.webp"
                alt="Čičmany"
                loading="lazy" decoding="async">
@@ -1272,9 +1271,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/cicmany_set1.webp", "vysivky1/cicmany_set2.webp", "vysivky1/cicmany_set3.webp"]'
-             data-origin="Výšivka na prieramkoch (príranky) ženských rukávcov a obojek z kroja staršej ženy alebo vdovského kroja."
-             data-technique="Výšivka na prieramkoch (príranky) ženských rukávcov a obojek z kroja staršej ženy alebo vdovského kroja."
-             data-use="Information being added.">
+             data-origin="Výšivka na prieramkoch (príranky) ženských rukávcov a obojek z kroja staršej ženy alebo vdovského kroja.">
           <img src="../vysivky1/cicmany_set2.webp"
                alt="Čičmany"
                loading="lazy" decoding="async">
@@ -1296,9 +1293,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/cicmany_stare1.webp", "vysivky1/cicmany_stare2.webp", "vysivky1/cicmany_stare3.webp"]'
-             data-origin="Krížiková výšivka z prieramkov. Oblasť Mojtín/Starý Zliechov."
-             data-technique="Krížiková výšivka z prieramkov. Oblasť Mojtín/Starý Zliechov."
-             data-use="Information being added.">
+             data-origin="Krížiková výšivka z prieramkov. Oblasť Mojtín/Starý Zliechov.">
           <img src="../vysivky1/cicmany_stare2.webp"
                alt="Čičmianske staré"
                loading="lazy" decoding="async">
@@ -1320,9 +1315,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/cifer_haras1.webp", "vysivky1/cifer_haras2.webp", "vysivky1/cifer_haras3.webp"]'
-             data-origin="Výšivka vlnou (haras) z mužských rukávcov z okolia Cífera. Plná výšivka."
-             data-technique="Výšivka vlnou (haras) z mužských rukávcov z okolia Cífera. Plná výšivka."
-             data-use="Information being added.">
+             data-origin="Výšivka vlnou (haras) z mužských rukávcov z okolia Cífera. Plná výšivka.">
           <img src="../vysivky1/cifer_haras2.webp"
                alt="Ciferský haras"
                loading="lazy" decoding="async">
@@ -1344,9 +1337,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Bobbin lace", "Cross stitch", "Full embroidery"]'
              data-photos='["vysivky1/cifer_rukav1.webp", "vysivky1/cifer_rukav2.webp", "vysivky1/cifer_rukav3.webp"]'
-             data-origin="Fragment z mužských rukávcov z oblasti Cífera (alebo možno tacle). Paličkovaná čipka, krížikový steh a plná výšivka vlnou (haras)."
-             data-technique="Fragment z mužských rukávcov z oblasti Cífera (alebo možno tacle). Paličkovaná čipka, krížikový steh a plná výšivka vlnou (haras)."
-             data-use="End of sleeves of a men's shirt.">
+             data-origin="Fragment z mužských rukávcov z oblasti Cífera (alebo možno tacle). Paličkovaná čipka, krížikový steh a plná výšivka vlnou (haras).">
           <img src="../vysivky1/cifer_rukav2.webp"
                alt="Ciferský rukáv"
                loading="lazy" decoding="async">
@@ -1368,9 +1359,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/decka_detva1.webp", "vysivky1/decka_detva2.webp", "vysivky1/decka_detva3.webp"]'
-             data-origin="Okrasná dečka z dielne spolku Lipa, inšpirovaná ornamentikou z Podpoľania. Krivá ihla."
-             data-technique="Okrasná dečka z dielne spolku Lipa, inšpirovaná ornamentikou z Podpoľania. Krivá ihla."
-             data-use="Information being added.">
+             data-origin="Okrasná dečka z dielne spolku Lipa, inšpirovaná ornamentikou z Podpoľania. Krivá ihla.">
           <img src="../vysivky1/decka_detva2.webp"
                alt="Dečka — Detva"
                loading="lazy" decoding="async">
@@ -1392,9 +1381,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/hneda_cipka1.webp", "vysivky1/hneda_cipka2.webp", "vysivky1/hneda_cipka3.webp"]'
-             data-origin="Strojová čipka z produkcie TOPAK vo Vamberku, kde mali stroje na kľuku. Točením kľuky sa poháňal mechanizmus výroby čipky."
-             data-technique="Strojová čipka z produkcie TOPAK vo Vamberku, kde mali stroje na kľuku. Točením kľuky sa poháňal mechanizmus výroby čipky."
-             data-use="Information being added.">
+             data-origin="Strojová čipka z produkcie TOPAK vo Vamberku, kde mali stroje na kľuku. Točením kľuky sa poháňal mechanizmus výroby čipky.">
           <img src="../vysivky1/hneda_cipka2.webp"
                alt="Hnedá čipka"
                loading="lazy" decoding="async">
@@ -1416,9 +1403,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Bobbin lace", "Lipa"]'
              data-photos='["vysivky1/hnedy_golier1.webp", "vysivky1/hnedy_golier2.webp", "vysivky1/hnedy_golier3.webp"]'
-             data-origin="Dekoratívny golier, pravdepodobne z dielne Lipy. Paličkovaná čipka, inšpirácia Trnavským krezlom."
-             data-technique="Dekoratívny golier, pravdepodobne z dielne Lipy. Paličkovaná čipka, inšpirácia Trnavským krezlom."
-             data-use="The collar was intended as decorative trim for dresses.">
+             data-origin="Dekoratívny golier, pravdepodobne z dielne Lipy. Paličkovaná čipka, inšpirácia Trnavským krezlom.">
           <img src="../vysivky1/hnedy_golier2.webp"
                alt="Hnedý golier"
                loading="lazy" decoding="async">
@@ -1440,9 +1425,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/hodvabne_nite1.webp", "vysivky1/hodvabne_nite2.webp", "vysivky1/hodvabne_nite3.webp"]'
-             data-origin="Information about this embroidery is being added."
-             data-technique="Information about this embroidery is being added."
-             data-use="Information being added.">
+             data-origin="Information about this embroidery is being added.">
           <img src="../vysivky1/hodvabne_nite2.webp"
                alt="Hodvábne nite"
                loading="lazy" decoding="async">
@@ -1464,9 +1447,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/horne_srnie1.webp", "vysivky1/horne_srnie2.webp", "vysivky1/horne_srnie3.webp"]'
-             data-origin="Bošáca/Moravské Lieskové/Horné Srnie — obojok a konce rukávcov. Plný steh, kovová niť a hodvábne nite."
-             data-technique="Bošáca/Moravské Lieskové/Horné Srnie — obojok a konce rukávcov. Plný steh, kovová niť a hodvábne nite."
-             data-use="Information being added.">
+             data-origin="Bošáca/Moravské Lieskové/Horné Srnie — obojok a konce rukávcov. Plný steh, kovová niť a hodvábne nite.">
           <img src="../vysivky1/horne_srnie2.webp"
                alt="Oblasť Bošáca/Moravské Lieskové/Horné Srnie"
                loading="lazy" decoding="async">
@@ -1488,9 +1469,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/hradiste1.webp", "vysivky1/hradiste2.webp"]'
-             data-origin="Výšivka z čepca — Hradište pod Vrátnom. Plný steh, výšivka s bouillon drotikom."
-             data-technique="Výšivka z čepca — Hradište pod Vrátnom. Plný steh, výšivka s bouillon drotikom."
-             data-use="Information being added.">
+             data-origin="Výšivka z čepca — Hradište pod Vrátnom. Plný steh, výšivka s bouillon drotikom.">
           <img src="../vysivky1/hradiste2.webp"
                alt="Hradište"
                loading="lazy" decoding="async">
@@ -1512,9 +1491,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/kovova_cipka1.webp", "vysivky1/kovova_cipka2.webp", "vysivky1/kovova_cipka3.webp"]'
-             data-origin="Paličkovaná čipka z oblasti Vajnor/Chorvátsky Grob. Zrejme z dielne Lipa, ponúkaná ako metráž. Kovová niť."
-             data-technique="Paličkovaná čipka z oblasti Vajnor/Chorvátsky Grob. Zrejme z dielne Lipa, ponúkaná ako metráž. Kovová niť."
-             data-use="Information being added.">
+             data-origin="Paličkovaná čipka z oblasti Vajnor/Chorvátsky Grob. Zrejme z dielne Lipa, ponúkaná ako metráž. Kovová niť.">
           <img src="../vysivky1/kovova_cipka2.webp"
                alt="Kovová čipka"
                loading="lazy" decoding="async">
@@ -1536,9 +1513,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/kovovy_fragment1.webp", "vysivky1/kovovy_fragment2.webp", "vysivky1/kovovy_fragment3.webp"]'
-             data-origin="Dekoratívny fragment vytvorený zošitím kovovej paličkovanej čipky. Zrejme práca spolku Lipa."
-             data-technique="Dekoratívny fragment vytvorený zošitím kovovej paličkovanej čipky. Zrejme práca spolku Lipa."
-             data-use="Information being added.">
+             data-origin="Dekoratívny fragment vytvorený zošitím kovovej paličkovanej čipky. Zrejme práca spolku Lipa.">
           <img src="../vysivky1/kovovy_fragment2.webp"
                alt="Kovový fragment"
                loading="lazy" decoding="async">
@@ -1560,9 +1535,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/krizik_metraz1.webp", "vysivky1/krizik_metraz2.webp", "vysivky1/krizik_metraz3.webp"]'
-             data-origin="Information about this embroidery is being added."
-             data-technique="Information about this embroidery is being added."
-             data-use="Information being added.">
+             data-origin="Information about this embroidery is being added.">
           <img src="../vysivky1/krizik_metraz2.webp"
                alt="Krížikový metrážový"
                loading="lazy" decoding="async">
@@ -1584,9 +1557,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/naprsenka_1.webp", "vysivky1/naprsenka_2.webp", "vysivky1/naprsenka_3.webp"]'
-             data-origin="Information about this embroidery is being added."
-             data-technique="Information about this embroidery is being added."
-             data-use="Information being added.">
+             data-origin="Information about this embroidery is being added.">
           <img src="../vysivky1/naprsenka_2.webp"
                alt="Náprsenka"
                loading="lazy" decoding="async">
@@ -1608,9 +1579,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/oranzova_krajka1.webp", "vysivky1/oranzova_krajka2.webp", "vysivky1/oranzova_krajka3.webp"]'
-             data-origin="Paličkovaná čipka používaná na kroje v okolí Trnavy, Chorvátskeho Grobu a Viničného. Hodvábna niť."
-             data-technique="Paličkovaná čipka používaná na kroje v okolí Trnavy, Chorvátskeho Grobu a Viničného. Hodvábna niť."
-             data-use="Information being added.">
+             data-origin="Paličkovaná čipka používaná na kroje v okolí Trnavy, Chorvátskeho Grobu a Viničného. Hodvábna niť.">
           <img src="../vysivky1/oranzova_krajka2.webp"
                alt="Oranžová krajka"
                loading="lazy" decoding="async">
@@ -1632,9 +1601,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/puchov_1.webp", "vysivky1/puchov_2.webp", "vysivky1/puchov_3.webp"]'
-             data-origin="Výšivka zo ženských rukávcov z okolia Púchovskej doliny. Vyšívaná vlnou, plný steh."
-             data-technique="Výšivka zo ženských rukávcov z okolia Púchovskej doliny. Vyšívaná vlnou, plný steh."
-             data-use="Information being added.">
+             data-origin="Výšivka zo ženských rukávcov z okolia Púchovskej doliny. Vyšívaná vlnou, plný steh.">
           <img src="../vysivky1/puchov_2.webp"
                alt="Púchov"
                loading="lazy" decoding="async">
@@ -1656,9 +1623,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/ruzovy_haras1.webp", "vysivky1/ruzovy_haras2.webp", "vysivky1/ruzovy_haras3.webp"]'
-             data-origin="Information about this embroidery is being added."
-             data-technique="Information about this embroidery is being added."
-             data-use="Information being added.">
+             data-origin="Information about this embroidery is being added.">
           <img src="../vysivky1/ruzovy_haras2.webp"
                alt="Ružový haras"
                loading="lazy" decoding="async">
@@ -1680,9 +1645,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Geometric motifs", "Diagonal stitch"]'
              data-photos='["vysivky1/soporna_1.webp", "vysivky1/soporna_2.webp", "vysivky1/soporna_3.webp"]'
-             data-origin="Výšivka zo ženských rukávcov zo Šoporne s geometrickými motívmi. Kroj staršej ženy alebo smútočný. Plný steh."
-             data-technique="Výšivka zo ženských rukávcov zo Šoporne s geometrickými motívmi. Kroj staršej ženy alebo smútočný. Plný steh."
-             data-use="Sleeves.">
+             data-origin="Výšivka zo ženských rukávcov zo Šoporne s geometrickými motívmi. Kroj staršej ženy alebo smútočný. Plný steh.">
           <img src="../vysivky1/soporna_2.webp"
                alt="Šoporňa"
                loading="lazy" decoding="async">
@@ -1704,9 +1667,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/strieborny_golier1.webp", "vysivky1/strieborny_golier2.webp"]'
-             data-origin="Dekoratívny golier zrejme z dielne Lipa. Vyrobený technikou filetového háčkovania."
-             data-technique="Dekoratívny golier zrejme z dielne Lipa. Vyrobený technikou filetového háčkovania."
-             data-use="Information being added.">
+             data-origin="Dekoratívny golier zrejme z dielne Lipa. Vyrobený technikou filetového háčkovania.">
           <img src="../vysivky1/strieborny_golier2.webp"
                alt="Strieborný golier"
                loading="lazy" decoding="async">
@@ -1728,9 +1689,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Satin stitch", "Eyelet embroidery"]'
              data-photos='["vysivky1/trencianska_tepla1.webp", "vysivky1/trencianska_tepla2.webp", "vysivky1/trencianska_tepla3.webp"]'
-             data-origin="Výšivka z prieramkov z Trenčianskej Teplej. Plný steh a výrezová výšivka so vzormi pávov."
-             data-technique="Výšivka z prieramkov z Trenčianskej Teplej. Plný steh a výrezová výšivka so vzormi pávov."
-             data-use="Sleeves.">
+             data-origin="Výšivka z prieramkov z Trenčianskej Teplej. Plný steh a výrezová výšivka so vzormi pávov.">
           <img src="../vysivky1/trencianska_tepla2.webp"
                alt="Trenčianska Teplá"
                loading="lazy" decoding="async">
@@ -1752,9 +1711,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/trencin_1.webp", "vysivky1/trencin_2.webp", "vysivky1/trencin_3.webp"]'
-             data-origin="Výšivka z prieramkov zo ženských rukávcov z okolia Trenčína, pravdepodobne Omšenie. Krížiková výšivka."
-             data-technique="Výšivka z prieramkov zo ženských rukávcov z okolia Trenčína, pravdepodobne Omšenie. Krížiková výšivka."
-             data-use="Information being added.">
+             data-origin="Výšivka z prieramkov zo ženských rukávcov z okolia Trenčína, pravdepodobne Omšenie. Krížiková výšivka.">
           <img src="../vysivky1/trencin_2.webp"
                alt="Omšenie"
                loading="lazy" decoding="async">
@@ -1776,9 +1733,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-region=""
              data-tags='["Information being added."]'
              data-photos='["vysivky1/vajnory_metraz1.webp", "vysivky1/vajnory_metraz2.webp", "vysivky1/vajnory_metraz3.webp"]'
-             data-origin="Dlhý pás výšivky zlatou niťou z okolia Viničného a Chorvátskeho Grobu. Možné sakrálne využitie. Plný a retiazkový steh."
-             data-technique="Dlhý pás výšivky zlatou niťou z okolia Viničného a Chorvátskeho Grobu. Možné sakrálne využitie. Plný a retiazkový steh."
-             data-use="Information being added.">
+             data-origin="Dlhý pás výšivky zlatou niťou z okolia Viničného a Chorvátskeho Grobu. Možné sakrálne využitie. Plný a retiazkový steh.">
           <img src="../vysivky1/vajnory_metraz2.webp"
                alt="Viničné/Chorvátsky Grob"
                loading="lazy" decoding="async">
@@ -2049,9 +2004,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
   const panelTitle = document.getElementById('panelTitle');
   const panelRegion = document.getElementById('panelRegion');
   const panelMetaTags = document.getElementById('panelMetaTags');
-  const panelOrigin = document.getElementById('panelOrigin');
-  const panelTechnique = document.getElementById('panelTechnique');
-  const panelUse = document.getElementById('panelUse');
+  const panelDesc = document.getElementById('panelDesc');
   const panelZoomBtn = document.getElementById('panelZoomBtn');
   const panelShareBtn = document.getElementById('panelShareBtn');
 
@@ -2108,9 +2061,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
     panelTitle.textContent = card.dataset.name;
     panelRegion.textContent = card.dataset.region;
     panelCounter.textContent = pos + ' / ' + total;
-    panelOrigin.textContent = card.dataset.origin;
-    panelTechnique.textContent = card.dataset.technique;
-    panelUse.textContent = card.dataset.use;
+    panelDesc.textContent = card.dataset.origin;
 
     // Meta tags
     panelMetaTags.innerHTML = '';

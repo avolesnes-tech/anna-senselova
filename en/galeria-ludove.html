@@ -161,6 +161,19 @@ body.panel-open { overflow: hidden; }
   line-height: 1.85;
   max-width: 640px;
   margin: 0 auto;
+  font-style: italic;
+}
+
+.page-hero-credit {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.85;
+  max-width: 640px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(212,175,55,0.4);
+  font-style: italic;
 }
 
 
@@ -745,6 +758,17 @@ body.page-leaving { opacity: 0 !important; transition: opacity 0.36s ease !impor
 
 section[id], div[id] { scroll-margin-top: 72px; }
 
+/* ── Desktop: wider hero, separated credit ── */
+@media (min-width: 900px) {
+  .page-hero-inner {
+    max-width: 960px;
+  }
+  .page-hero-desc,
+  .page-hero-credit {
+    max-width: 100%;
+  }
+}
+
 </style>
 </head>
 <body class="ornaments-always">
@@ -882,7 +906,8 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <p class="section-label">Collection · Costumes &amp; Garments</p>
     <h1 class="page-title">Folk Embroideries and Garments.</h1>
     <div class="gold-line"></div>
-    <p class="page-hero-desc">Folk costumes, shirts, waistcoats and vests from the estate of the Šenšel family. We are unable to precisely determine the origin or intended use of each piece, but it is likely that some are connected to the production of the Lipa cooperative. I am deeply grateful to <em>Tamara Šimončíková Heribanová</em>, <em>Stanislav Talapka</em>, <em>Zuzana Tajek Piešová</em> and <em>Michal Halabrin</em> for their generous help with identification. Given the condition and state in which the pieces were found, we have done our best to identify them as precisely as possible. If you have any additional information, I would be glad if you <a href="spojme-sa.html" style="color:var(--red);text-decoration:underline;text-underline-offset:3px;">contacted me</a> and helped us with a more precise identification.</p>
+    <p class="page-hero-desc">Folk costumes, shirts, waistcoats and vests from the estate of the Šenšel family. We are unable to precisely determine the origin or intended use of each piece, but it is likely that some are connected to the production of the Lipa cooperative.</p>
+    <p class="page-hero-credit">I am deeply grateful to <em>Tamara Šimončíková Heribanová</em>, <em>Stanislav Talapka</em>, <em>Zuzana Tajek Piešová</em> and <em>Michal Halabrin</em> for their generous help with identification. Given the condition and state in which the pieces were found, we have done our best to identify them as precisely as possible. If you have any additional information, I would be glad if you <a href="spojme-sa.html" style="color:var(--red);text-decoration:underline;text-underline-offset:3px;">contacted me</a> and helped us with a more precise identification.</p>
   </div>
 </header>
 

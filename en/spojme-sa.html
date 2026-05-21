@@ -295,17 +295,17 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <div class="form-row">
       <div class="form-group">
         <label for="contact-name">Your name</label>
-        <input id="contact-name" type="text" placeholder="First and last name" required>
+        <input id="contact-name" name="name" type="text" placeholder="First and last name" required>
       </div>
       <div class="form-group">
         <label for="contact-email">Email</label>
-        <input id="contact-email" type="email" placeholder="your@email.com" required>
+        <input id="contact-email" name="email" type="email" placeholder="your@email.com" required>
       </div>
     </div>
 
     <div class="form-group">
       <label for="contact-reason">Reason for your message</label>
-      <select id="contact-reason">
+      <select id="contact-reason" name="reason">
         <option value="">— Select —</option>
         <option>I have information about Lipa</option>
         <option>I have information about Anna Šenšelová</option>
@@ -316,7 +316,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
     <div class="form-group">
       <label for="contact-message">Your story or message</label>
-      <textarea id="contact-message" placeholder="Write to me — every detail has value..."></textarea>
+      <textarea id="contact-message" name="message" placeholder="Write to me — every detail has value..."></textarea>
     </div>
 
     <button type="submit" class="btn-submit">Send message</button>
@@ -506,9 +506,29 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
   function handleSubmit(e) {
     e.preventDefault();
-    document.getElementById('contact-form').style.display = 'none';
-    document.getElementById('confirm-msg').style.display = 'block';
-    window.scrollTo({ top: document.getElementById('confirm-msg').offsetTop - 100, behavior: 'smooth' });
+    const form = document.getElementById('contact-form');
+    const btn = form.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    fetch('https://formspree.io/f/mvzyavjn', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('confirm-msg').style.display = 'block';
+        window.scrollTo({ top: document.getElementById('confirm-msg').offsetTop - 100, behavior: 'smooth' });
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Send message';
+        alert('Something went wrong. Please try again, or email me directly at senselovaanna@gmail.com.');
+      }
+    }).catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+      alert('Something went wrong. Please try again, or email me directly at senselovaanna@gmail.com.');
+    });
   }
 </script>
 <!-- GDPR Modal -->

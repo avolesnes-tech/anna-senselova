@@ -306,17 +306,17 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <div class="form-row">
       <div class="form-group">
         <label for="contact-name">Vaše meno</label>
-        <input id="contact-name" type="text" placeholder="Meno a priezvisko" required>
+        <input id="contact-name" name="meno" type="text" placeholder="Meno a priezvisko" required>
       </div>
       <div class="form-group">
         <label for="contact-email">E-mail</label>
-        <input id="contact-email" type="email" placeholder="vas@email.sk" required>
+        <input id="contact-email" name="email" type="email" placeholder="vas@email.sk" required>
       </div>
     </div>
 
     <div class="form-group">
       <label for="contact-reason">Dôvod správy</label>
-      <select id="contact-reason">
+      <select id="contact-reason" name="dovod">
         <option value="">— Vyberte —</option>
         <option>Mám informácie o Lipe</option>
         <option>Mám informácie o Anne Šenšelovej</option>
@@ -327,7 +327,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
     <div class="form-group">
       <label for="contact-message">Váš príbeh alebo správa</label>
-      <textarea id="contact-message" placeholder="Napíšte mi — každý detail má hodnotu..."></textarea>
+      <textarea id="contact-message" name="sprava" placeholder="Napíšte mi — každý detail má hodnotu..."></textarea>
     </div>
 
     <button type="submit" class="btn-submit">Odoslať správu</button>
@@ -527,9 +527,29 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
   function handleSubmit(e) {
     e.preventDefault();
-    document.getElementById('contact-form').style.display = 'none';
-    document.getElementById('confirm-msg').style.display = 'block';
-    window.scrollTo({ top: document.getElementById('confirm-msg').offsetTop - 100, behavior: 'smooth' });
+    const form = document.getElementById('contact-form');
+    const btn = form.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Odosielam…';
+    fetch('https://formspree.io/f/mvzyavjn', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('confirm-msg').style.display = 'block';
+        window.scrollTo({ top: document.getElementById('confirm-msg').offsetTop - 100, behavior: 'smooth' });
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Odoslať správu';
+        alert('Pri odosielaní nastala chyba. Skúste to prosím znova, alebo mi napíšte priamo na senselovaanna@gmail.com.');
+      }
+    }).catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Odoslať správu';
+      alert('Pri odosielaní nastala chyba. Skúste to prosím znova, alebo mi napíšte priamo na senselovaanna@gmail.com.');
+    });
   }
 </script>
 <!-- GDPR Modal -->

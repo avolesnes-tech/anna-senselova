@@ -147,6 +147,17 @@ h1.page-title {
   line-height: 1.85;
 }
 
+.page-hero-credit {
+  font-size: 0.9rem;
+  color: #666;
+  max-width: 580px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(212,175,55,0.4);
+  font-style: italic;
+  line-height: 1.85;
+}
+
 /* Stats strip */
 .hero-stats {
   display: flex;
@@ -843,6 +854,17 @@ h1.page-title {
 /* ── scroll-margin-top pre zakotvené sekcie ── */
 section[id], div[id] { scroll-margin-top: 72px; }
 
+/* ── Desktop: wider hero, separated credit ── */
+@media (min-width: 900px) {
+  .page-hero-inner {
+    max-width: 960px;
+  }
+  .page-hero-desc,
+  .page-hero-credit {
+    max-width: 100%;
+  }
+}
+
 </style>
 </head>
 <body class="ornaments-always">
@@ -979,7 +1001,8 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <p class="section-label">Zbierka · Kroje a odev</p>
     <h1 class="page-title">Ľudové výšivky a odev.</h1>
     <div class="gold-line"></div>
-    <p class="page-hero-desc">Kroje, košele, lajblíky a vesty z pozostalosti rodiny Šenšelovcov. Pôvod ani spôsob využitia nevieme presne určiť, avšak je pravdepodobné, že niektoré kusy súvisia práve s výrobou spolku Lipa. S bližším určovaním mi nezištne pomohli <em>Tamara Šimončíková Heribanová</em>, <em>Stanislav Talapka</em>, <em>Zuzana Tajek Piešová</em> a <em>Michal Halabrin</em>. Vzhľadom na stav a zloženie, v akom sa kusy našli, snažili sme sa ich identifikovať čo najpresnejšie. Ak by ste mali akékoľvek doplňujúce informácie, budem rada, ak ma <a href="spojme-sa.html" style="color:var(--red);text-decoration:underline;text-underline-offset:3px;">kontaktujete</a> a pomôžete nám s bližším určením.</p>
+    <p class="page-hero-desc">Kroje, košele, lajblíky a vesty z pozostalosti rodiny Šenšelovcov. Pôvod ani spôsob využitia nevieme presne určiť, avšak je pravdepodobné, že niektoré kusy súvisia práve s výrobou spolku Lipa.</p>
+    <p class="page-hero-credit">S bližším určovaním mi nezištne pomohli <em>Tamara Šimončíková Heribanová</em>, <em>Stanislav Talapka</em>, <em>Zuzana Tajek Piešová</em> a <em>Michal Halabrin</em>. Vzhľadom na stav a zloženie, v akom sa kusy našli, snažili sme sa ich identifikovať čo najpresnejšie. Ak by ste mali akékoľvek doplňujúce informácie, budem rada, ak ma <a href="spojme-sa.html" style="color:var(--red);text-decoration:underline;text-underline-offset:3px;">kontaktujete</a> a pomôžete nám s bližším určením.</p>
   </div>
 </header>
 
