@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get in touch – The Embroidered Treasures of Anna Šenšelová</title>
+<meta name="description" content="Contact — The Embroidered Treasures of Anna Šenšelová. Write to me about Lipa, Anna Šenšelová, or your own family story.">
+<meta property="og:title" content="Contact — Anna Šenšelová">
+<meta property="og:description" content="Do you have information about Lipa or your own story of discovering a family legacy? Get in touch.">
+<meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="sk" href="https://avolesnes-tech.github.io/anna-senselova/spojme-sa.html">
+<link rel="alternate" hreflang="en" href="https://avolesnes-tech.github.io/anna-senselova/en/spojme-sa.html">
+<link rel="preload" href="../assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../style.css">
+<style>
+body { font-size: 19px; }
+
+/* HERO */
+#hero { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; background: var(--cream); position: relative; overflow: hidden; }
+#hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.06) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.07) 0%, transparent 60%); pointer-events: none; }
+#hero > * { position: relative; z-index: 1; }
+
+.section-label { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem); color: var(--red); line-height: 1.75; }
+.gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.2rem auto; }
+
+/* CONTENT */
+.content-wrap { max-width: 780px; margin: 0 auto; padding: 5rem 2rem 3rem; }
+
+.intro-block { text-align: center; margin-bottom: 4rem; }
+.intro-block p { font-size: 1.1rem; color: #444; line-height: 1.9; margin-bottom: 1rem; }
+.intro-block .highlight { font-style: italic; font-size: 1.2rem; color: var(--ink); border-left: 3px solid var(--red); padding-left: 1.2rem; text-align: left; margin: 2rem 0; }
+
+/* REASONS */
+.reasons { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+.reason-card { background: var(--section-alt); padding: 1.5rem; border-top: 2px solid var(--red); }
+.reason-card h3 { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+.reason-card p { font-size: 0.95rem; color: #555; line-height: 1.7; font-style: italic; }
+
+/* INSPIRATION */
+.inspiration { background: var(--red); color: var(--cream); padding: 4rem 2rem; text-align: center; margin: 0; }
+.inspiration h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.75; margin-bottom: 1rem; }
+.inspiration p { font-size: 1.05rem; max-width: 600px; margin: 0 auto 0.5rem; opacity: 0.9; font-style: italic; }
+
+/* FORM */
+.form-wrap { max-width: 780px; margin: 0 auto; padding: 5rem 2rem; }
+.form-wrap h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--red); line-height: 1.75; text-align: center; margin-bottom: 0.5rem; }
+.form-wrap .gold-line { margin: 0.8rem auto 2.5rem; }
+
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.5rem; }
+.form-group input,
+.form-group select,
+.form-group textarea { width: 100%; padding: 0.8rem 1rem; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; border: 1px solid var(--gold); background: var(--cream); color: var(--ink); outline: none; transition: border-color 0.3s; letter-spacing: 0.03em; resize: vertical; }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--red); }
+.form-group textarea { min-height: 180px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+.btn-submit { display: block; width: 100%; padding: 1rem 2rem; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid var(--red); color: var(--red); background: transparent; cursor: pointer; transition: background 0.3s, color 0.3s; margin-top: 0.5rem; }
+.btn-submit:hover { background: var(--red); color: var(--cream); }
+
+.form-note { font-size: 0.82rem; color: #767676; font-style: italic; text-align: center; margin-top: 1rem; }
+
+#confirm-msg { display: none; text-align: center; padding: 2rem; }
+#confirm-msg h3 { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--red); line-height: 1.75; margin-bottom: 0.5rem; }
+#confirm-msg p { font-size: 1rem; color: #555; font-style: italic; }
+
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } .reasons { grid-template-columns: 1fr; } }
+
+.reading-progress {
+  position: fixed; top: var(--nav-height); left: 0;
+  width: 0%; height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 9997; transition: width 0.1s linear; pointer-events: none;
+}
+
+/* ── OFFER BLOCK ── */
+.offer-block {
+  background: var(--section-alt);
+  padding: 4rem 2rem;
+  margin: 0 -2rem 3.5rem;
+}
+.offer-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+.offer-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.offer-card {
+  background: var(--cream);
+  border-top: 2px solid var(--red);
+  border: 1px solid rgba(212,175,55,0.35);
+  border-top: 2px solid var(--red);
+  padding: 1.8rem 1.5rem;
+  transition: box-shadow 0.3s;
+}
+.offer-card:hover { box-shadow: 0 4px 20px rgba(196,30,58,0.1); }
+.offer-icon {
+  font-size: 1.1rem;
+  color: var(--gold-dark);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.2em;
+}
+.offer-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.7rem;
+}
+.offer-card p {
+  font-size: 0.97rem;
+  color: #555;
+  line-height: 1.75;
+}
+.offer-note {
+  background: var(--cream);
+  border-left: 3px solid var(--gold);
+  padding: 1.2rem 1.5rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.offer-note p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.85;
+  font-style: italic;
+}
+.offer-note strong { color: var(--ink); font-style: normal; }
+@media (max-width: 720px) {
+  .offer-cards { grid-template-columns: 1fr; }
+  .offer-block { margin: 0 -1.5rem 3rem; padding: 3rem 1.5rem; }
+}
+
+</style>
+<style>
+/* ── A11Y: Skip link ── */
+.skip-link {
+  position: absolute; top: -100%; left: 1rem;
+  background: var(--red); color: #fff;
+  padding: 0.55rem 1.2rem;
+  font-family: 'Cinzel', serif; font-size: 0.78rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; z-index: 99999;
+  transition: top 0.2s ease;
+  border-bottom: 2px solid var(--gold);
+}
+.skip-link:focus { top: 0; }
+
+/* ── Page transition ── */
+body { opacity: 1; transition: opacity 0.35s ease; }
+body.page-leaving { opacity: 0; }
+
+/* ── Reveal animations ── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ── prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+section[id], div[id] { scroll-margin-top: 72px; }
+</style>
+</head>
+<body class="ornaments-always">
+<div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
+<div class="side-ornament side-ornament--right" aria-hidden="true"></div>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+
+<!-- NAV -->
+<span id="main-content" style="position:absolute;margin-top:-80px;"></span>
+<nav>
+  <a href="index.html" class="logo" aria-label="Mapa Spomienok – home">
+    <picture>
+      <source srcset="../assets/logo-nav-v2.webp" type="image/webp">
+      <img src="../assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
+    </picture>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li>
+      <a href="index.html#pribeh" id="nav-pribeh">Story ▾</a>
+      <div class="dropdown" id="dd-pribeh">
+        <span class="dropdown-label">Story</span>
+        <a href="anna-senselova.html">Anna Šenšelová</a>
+        <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
+        <a href="lipa.html">Lipa</a>
+        <a href="zivena.html">Živena</a>
+      </div>
+    </li>
+    <li>
+      <a href="index.html#galeria-vysiviek" id="nav-galeria">Gallery ▾</a>
+      <div class="dropdown" id="dd-galeria">
+        <span class="dropdown-label">Gallery</span>
+        <a href="galeria-vysiviek.html">Anna Šenšelová's Embroidery Collection</a>
+        <a href="galeria-ludove.html">Other folk embroideries and garments</a>
+        <a href="galeria-babik.html">Folk costume dolls</a>
+      </div>
+    </li>
+    <li><a href="mapa-spomienok.html" id="nav-mapa">Map of Memories</a></li>
+    <li><a href="blog.html" id="nav-blog">Blog</a></li>
+    <li><a href="spojme-sa.html" id="nav-spojme">Contact</a></li>
+    <li class="nav-lang-item"><a href="../spojme-sa.html" lang="sk" hreflang="sk" class="nav-lang-link">SK — Slovenská verzia</a></li>
+  </ul>
+  <div class="lang-switch" aria-label="Language version">
+    <a href="../spojme-sa.html" class="lang-link" lang="sk" hreflang="sk">SK</a>
+    <span class="lang-sep" aria-hidden="true">|</span>
+    <span class="lang-current" aria-current="true">EN</span>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section id="hero">
+  <p class="section-label">Story · Get in touch</p>
+  <h1>Your story<br>matters.</h1>
+  <div class="gold-line"></div>
+</section>
+
+<!-- INTRO -->
+<div class="content-wrap">
+  <div class="intro-block">
+
+    <p class="highlight">"This website was created out of love and respect for the legacy of my ancestors."</p>
+
+    <p>Two plastic bags found in my grandparents' cellar led me to a story I couldn't let fade into oblivion. Embroideries, dolls, old issues of Živena — and behind them, an entire world that almost disappeared. Anna Šenšelová, Lipa, tens of thousands of hands preserving the beauty of folk art. All of this deserves to live on.</p>
+
+  </div>
+
+  <!-- SECTION — spare time & collaboration -->
+  <div class="offer-block">
+    <div class="offer-inner">
+      <h2 style="font-family:'Pinyon Script',cursive; font-size:clamp(2.4rem,5vw,4rem); color:var(--red); line-height:1.75; text-align:center; margin-bottom:0.5rem;">Created in my spare time</h2>
+      <div class="gold-line"></div>
+
+      <p style="text-align:center; color:#444; font-size:1.05rem; line-height:1.9; max-width:620px; margin:0 auto 1.6rem;">This website was not commissioned or created out of obligation. It was born because I enjoyed it — searching, reading, piecing together a story from fragments that had been gathering dust in a plastic bag for decades. It was a joy, and I wanted to share it.</p>
+
+      <p style="text-align:center; color:#444; font-size:1.05rem; line-height:1.9; max-width:620px; margin:0 auto 0;">If you have your own story that deserves similar treatment — a family history, folk art, a place that should not be forgotten — and you'd like to preserve it digitally, feel free to get in touch. I'd be happy to talk about what you have and what might be possible. No obligations.</p>
+    </div>
+  </div>
+
+  <!-- REASONS TO CONTACT -->
+  <div style="margin-bottom:1rem;">
+    <p style="font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--red); text-align:center; margin-bottom:1.5rem;">Or write to me if you have</p>
+    <div class="reasons">
+      <div class="reason-card">
+        <h3>Information about Lipa</h3>
+        <p>Documents, photographs, memories, connections. Every detail helps piece together the mosaic of the story.</p>
+      </div>
+      <div class="reason-card">
+        <h3>Information about Anna Šenšelová</h3>
+        <p>If you've found her name in archives, old newspapers or family memoirs — I would very much like to read it.</p>
+      </div>
+      <div class="reason-card">
+        <h3>Interest in my services</h3>
+        <p>If you're interested in my services in web design or creative work, write to me — I'd be glad to connect.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FORM -->
+<div class="form-wrap">
+  <h2>Write to me.</h2>
+  <div class="gold-line"></div>
+
+  <form id="contact-form" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="contact-name">Your name</label>
+        <input id="contact-name" type="text" placeholder="First and last name" required>
+      </div>
+      <div class="form-group">
+        <label for="contact-email">Email</label>
+        <input id="contact-email" type="email" placeholder="your@email.com" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="contact-reason">Reason for your message</label>
+      <select id="contact-reason">
+        <option value="">— Select —</option>
+        <option>I have information about Lipa</option>
+        <option>I have information about Anna Šenšelová</option>
+        <option>Interest in web design or creative work</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="contact-message">Your story or message</label>
+      <textarea id="contact-message" placeholder="Write to me — every detail has value..."></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit">Send message</button>
+    <p class="form-note">I run this project on my own and in my free time — please be patient with replies, I'm not always able to respond immediately. I do not share your data with third parties.</p>
+  </form>
+
+  <div id="confirm-msg">
+    <h3>Thank you for your message.</h3>
+    <p>I'll get back to you soon — I'll be glad to read your story.</p>
+    <svg viewBox="0 0 180 30" fill="none" style="width:180px; display:block; margin:1.5rem auto; opacity:0.3;">
+      <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
+      <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+      <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+      <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+    </svg>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-col-title">Story</p>
+      <ul class="footer-links">
+        <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
+        <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
+        <li><a href="lipa.html">Lipa</a></li>
+        <li><a href="zivena.html">Živena</a></li>
+      </ul>
+    </div>
+    <div class="footer-col-center">
+      <div class="footer-name">Anna Šenšelová</div>
+      <svg viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:180px; display:block; margin:0 auto 0.8rem; opacity:0.3;">
+        <line x1="0" y1="15" x2="180" y2="15" stroke="#D4AF37" stroke-width="0.7"/>
+        <circle cx="90" cy="15" r="5" fill="none" stroke="#D4AF37" stroke-width="1"/>
+        <circle cx="60" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="120" cy="15" r="2.5" fill="#C41E3A" opacity="0.8"/>
+        <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+        <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
+      </svg>
+      <p class="footer-tagline">Created with love and respect for past generations.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Facebook">Facebook</a>
+        <span class="footer-social-sep">·</span>
+        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Instagram">Instagram</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Gallery & Map</p>
+      <ul class="footer-links">
+        <li><a href="galeria-vysiviek.html">Embroidery Collection</a></li>
+        <li><a href="galeria-ludove.html">Folk Embroideries &amp; Dress</a></li>
+        <li><a href="galeria-babik.html">Folk costume dolls</a></li>
+        <li><a href="mapa-spomienok.html">Map of Memories</a></li>
+        <li><a href="spojme-sa.html">Get in touch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2026 Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:inherit;opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">senselovaanna@gmail.com</a></p>
+  <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Privacy policy</button></p>
+  <p class="footer-disclaimer">The collection of embroideries, dolls and the estate of the Šenšel family is not my personal property — it is the heritage of the entire family. Embroideries, dolls and folk costumes are not for sale.</p>
+</footer>
+
+
+<script>
+
+  /* =============================================
+     UNIFIED NAV — hamburger + dropdown
+     ============================================= */
+  (function() {
+    var hamburger = document.getElementById('hamburger');
+    var navMenu = document.getElementById('nav-menu');
+    if (!hamburger || !navMenu) return;
+
+    function isMobile() { return window.innerWidth <= 768; }
+
+    function closeAllDropdowns() {
+      navMenu.querySelectorAll('.dropdown').forEach(function(d) {
+        d.classList.remove('open', 'dropdown-open');
+      });
+    }
+
+    function closeMenu() {
+      navMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      closeAllDropdowns();
+    }
+
+    hamburger.addEventListener('click', function() {
+      var isOpen = navMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navMenu.querySelectorAll('li > a').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var li = this.closest('li');
+        var dd = li.querySelector('.dropdown');
+        if (dd && isMobile()) {
+          e.preventDefault();
+          var isOpen = dd.classList.toggle('open');
+          navMenu.querySelectorAll('.dropdown.open').forEach(function(d) {
+            if (d !== dd) d.classList.remove('open');
+          });
+        } else if (!dd) {
+          closeMenu();
+        }
+      });
+    });
+
+    navMenu.querySelectorAll('.dropdown a').forEach(function(a) {
+      a.addEventListener('click', function() { closeMenu(); });
+    });
+
+    navMenu.querySelectorAll('li').forEach(function(li) {
+      var dd = li.querySelector('.dropdown');
+      if (!dd) return;
+      var timer;
+      function show() {
+        if (isMobile()) return;
+        clearTimeout(timer);
+        dd.classList.add('dropdown-open');
+      }
+      function scheduleHide() {
+        if (isMobile()) return;
+        timer = setTimeout(function() { dd.classList.remove('dropdown-open'); }, 140);
+      }
+      li.addEventListener('mouseenter', show);
+      li.addEventListener('mouseleave', scheduleHide);
+      dd.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      dd.addEventListener('mouseleave', scheduleHide);
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener('resize', function() {
+      if (!isMobile()) {
+        closeMenu();
+        closeAllDropdowns();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    var path = window.location.pathname.split('/').pop() || 'index.html';
+    navMenu.querySelectorAll('a[href]').forEach(function(a) {
+      var href = a.getAttribute('href').split('#')[0].split('/').pop();
+      if (href === path) { a.classList.add('active'); }
+    });
+  })();
+
+  /* =============================================
+     PAGE TRANSITION (fade out on navigate)
+     ============================================= */
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || link.target === '_blank') return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function() { window.location.href = href; }, 340);
+  });
+
+  /* =============================================
+     READING PROGRESS BAR
+     ============================================= */
+  (function() {
+    var bar = document.getElementById('readingProgress');
+    if (!bar) return;
+    function upd() {
+      var s = window.scrollY;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? Math.min(s/h*100, 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    upd();
+  })();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('confirm-msg').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('confirm-msg').offsetTop - 100, behavior: 'smooth' });
+  }
+</script>
+<!-- GDPR Modal -->
+<div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
+  <div class="gdpr-box">
+    <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Close">✕</button>
+    <h2 id="gdpr-title">Privacy policy</h2>
+    <p><strong>Website operator:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
+    <p>This is a non-commercial informational website created in my free time. No commercial obligations arise from it.</p>
+    <p><strong>Contact form:</strong> If you write to me through the contact form, I process the following data: name, email address and message text. These are used solely to allow me to respond to you. The data is not shared with third parties and will be deleted once communication is complete.</p>
+    <p><strong>Your rights:</strong> You have the right to request access to your data, its correction or deletion. Simply write to the email address above.</p>
+    <p><strong>Cookies and fonts:</strong> This website does not use tracking or analytics cookies. Fonts are hosted directly on this server, so no data is sent to Google or any third parties.</p>
+  </div>
+</div>
+<script>
+  document.getElementById('gdpr-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') document.getElementById('gdpr-modal').classList.remove('open');
+  });
+</script>
+</body>
+</html>

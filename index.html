@@ -320,6 +320,9 @@ h2 {
   overflow: hidden;
   cursor: pointer;
   outline: none;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .card-inner { position: relative; width: 100%; height: 100%; overflow: hidden; }
@@ -820,7 +823,7 @@ h2 {
       <p class="pribeh-photo-caption">Anna Šenšelová<br>správkyňa Lipy</p>
     </div>
     <div class="pribeh-text reveal reveal-delay-2">
-      <p class="pribeh-text-label">Príbeh žien, ktoré premenili výšivku na symbol národnej hrdosti</p>
+      <p class="pribeh-text-label">Príbeh spolku, ktorý sa pričinil o zachranu ľudovej výšivky</p>
       <div class="gold-line" style="margin-left:0;"></div>
       <p>Lipa nebola len obchodom s folklórom, ale odvážnym ženským podnikom — keď v roku 1910 vznikla, v hospodárstve rozhodovali takmer výhradne muži. Ženy zo spolku Živena to zmenili: prepojili poctivú prácu dedinských vyšívačiek s požiadavkami veľkých miest ako Praha či Viedeň a premenili ich talent na sebavedomú, svetovo rešpektovanú značku. Kľúčovou postavou tohto sveta bola moja prateta Anna Šenšelová — skromná žena s jasnou víziou zachovať dušu slovenskej ornamentiky pre budúce generácie.</p>
       <div class="pribeh-links">
@@ -848,105 +851,85 @@ h2 {
     <p class="gallery-intro">Tieto vyšívané fragmenty pochádzajú z pozostalosti Anny Šenšelovej. S bližším určovaním mi nezištne pomohli <em>Zuzka Tajek Piešová</em>, <em>Stanislav Talapka</em> a <em>Tamara Simončíková Heribanová</em> — som im za to nesmierne vďačná.</p>
   </div>
 
-  <!-- FIX 5: Inline štýly na gallery-grid presunuté do CSS -->
   <div class="gallery-grid">
 
-    <!-- FIX 2: lazy loading + FIX 1: reveal + FIX 4: tabindex, aria -->
-    <div class="gallery-card reveal reveal-delay-1" tabindex="0" role="button"
-         aria-label="Otvoriť detail: Biela výšivka, Hontiansky motív"
-         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/biela_vysivka_1.jpeg"
-         data-lightbox-title="Biela výšivka"
-         data-lightbox-region="Hontiansky motív"
-         data-lightbox-index="0">
+    <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-1" aria-label="Ciferský rukáv — prejsť do galérie výšiviek">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/biela_vysivka_2.jpeg" alt="Biela výšivka z dielne Anny Šenšelovej — tradičný slovenský vzor na bielom plátne" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/biela_vysivka_1.jpeg" alt="Biela výšivka — detail jemného stehu z dielne Anny Šenšelovej" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cifer_rukav1.webp" alt="Ciferský rukáv" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cifer_rukav2.webp" alt="Ciferský rukáv — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
-        <div class="overlay" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true">
+          <span class="overlay-title">Ciferský rukáv</span>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="gallery-card reveal reveal-delay-2" tabindex="0" role="button"
-         aria-label="Otvoriť detail: Bošácka výšivka, Bošácky región"
-         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka1.jpeg"
-         data-lightbox-title="Bošácka výšivka"
-         data-lightbox-region="Bošácky región"
-         data-lightbox-index="1">
+    <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-2" aria-label="Hradište — prejsť do galérie výšiviek">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka2.jpeg" alt="Bošácka výšivka — farebnými niťami vyšívaný ľudový motív z oblasti Bošáca" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/bosaca_vysivka1.jpeg" alt="Bošácka výšivka — detail vzoru s typickými geometrickými prvkami" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/hradiste1.webp" alt="Hradište" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/hradiste2.webp" alt="Hradište — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
-        <div class="overlay" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true">
+          <span class="overlay-title">Hradište</span>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="gallery-card reveal reveal-delay-3" tabindex="0" role="button"
-         aria-label="Otvoriť detail: Ciferská výšivka, Záhorie"
-         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka1.jpeg"
-         data-lightbox-title="Ciferská výšivka"
-         data-lightbox-region="Záhorie"
-         data-lightbox-index="2">
+    <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-3" aria-label="Trenčianska Teplá — prejsť do galérie výšiviek">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka2.jpeg" alt="Ciferská výšivka — ľudový vzor z oblasti Cífera zachovaný v zbierke spolku Lipa" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/cifer_vysivka1.jpeg" alt="Ciferská výšivka — detail farebných stehov a ornamentiky" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/trencianska_tepla1.webp" alt="Trenčianska Teplá" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/trencianska_tepla2.webp" alt="Trenčianska Teplá — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
-        <div class="overlay" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true">
+          <span class="overlay-title">Trenčianska Teplá</span>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="gallery-card reveal reveal-delay-1" tabindex="0" role="button"
-         aria-label="Otvoriť detail: Detva – krivá ihla, Podpoľanie"
-         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla1.jpeg"
-         data-lightbox-title="Detva – krivá ihla"
-         data-lightbox-region="Podpoľanie"
-         data-lightbox-index="3">
+    <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-1" aria-label="Hnedý golier — prejsť do galérie výšiviek">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla2.jpeg" alt="Detvianska výšivka technikou krivá ihla — unikátna ľudová výšivka z Podpoľania" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/detva_krivaihla1.jpeg" alt="Krivá ihla — detail charakteristického šikmého stehu detvianskej výšivky" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/hnedy_golier1.webp" alt="Hnedý golier" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/hnedy_golier2.webp" alt="Hnedý golier — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
-        <div class="overlay" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true">
+          <span class="overlay-title">Hnedý golier</span>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="gallery-card reveal reveal-delay-2" tabindex="0" role="button"
-         aria-label="Otvoriť detail: Hnedý golier, Gemerský motív"
-         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier1.jpeg"
-         data-lightbox-title="Hnedý golier"
-         data-lightbox-region="Gemerský motív"
-         data-lightbox-index="4">
+    <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-2" aria-label="Šoporňa — prejsť do galérie výšiviek">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier2.jpeg" alt="Vyšívaný hnedý golier — súčasť ľudového odevu zdobená ručnou výšivkou" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/hnedy_golier1.jpeg" alt="Hnedý golier — detail výšivkového vzoru na ľudovom odeve" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/soporna_1.webp" alt="Šoporňa" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/soporna_2.webp" alt="Šoporňa — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
-        <div class="overlay" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true">
+          <span class="overlay-title">Šoporňa</span>
+        </div>
       </div>
-    </div>
+    </a>
 
-    <div class="gallery-card reveal reveal-delay-3" tabindex="0" role="button"
-         aria-label="Otvoriť detail: Strieborný golier, Krajkárstvo"
-         data-lightbox-img="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier1.jpeg"
-         data-lightbox-title="Strieborný golier"
-         data-lightbox-region="Krajkárstvo"
-         data-lightbox-index="5">
+    <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-3" aria-label="Oranžová krajka — prejsť do galérie výšiviek">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier2.jpeg" alt="Vyšívaný strieborný golier — slávnostný ľudový odev zo zbierky Anny Šenšelovej" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/strieborny_golier1.jpeg" alt="Strieborný golier — detail jemnej výšivky na slávnostnom ľudovom odeve" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/oranzova_krajka1.webp" alt="Oranžová krajka" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/oranzova_krajka2.webp" alt="Oranžová krajka — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
-        <div class="overlay" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true">
+          <span class="overlay-title">Oranžová krajka</span>
+        </div>
       </div>
-    </div>
+    </a>
 
   </div>
 
@@ -983,7 +966,7 @@ h2 {
       </div>
 
       <div class="doll-card reveal reveal-delay-3"
-           data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika4a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4c.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4d.jpeg"]'>
+           data-imgs='["https://avolesnes-tech.github.io/anna-senselova/babika4a.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4b.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4d.jpeg","https://avolesnes-tech.github.io/anna-senselova/babika4e.jpeg"]'>
         <img class="doll-img-main" src="https://avolesnes-tech.github.io/anna-senselova/babika4a.jpeg" alt="Ručne šitá krojovaná bábika zo zbierky Anny Šenšelovej — zachovaný kus ľudového umenia" loading="lazy" decoding="async">
         <img class="doll-img-alt"  src="https://avolesnes-tech.github.io/anna-senselova/babika4b.jpeg" alt="Detail výšivky a šitia na krojovanej bábike — precízna ručná práca" loading="lazy" decoding="async">
       </div>
@@ -1254,95 +1237,7 @@ h2 {
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* =============================================
-     FIX 2: LIGHTBOX — klávesnica, focus trap, navigácia
-     ============================================= */
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxTitle = document.getElementById('lightbox-title');
-  const lightboxRegion = document.getElementById('lightbox-region');
-  const lightboxClose = document.getElementById('lightbox-close');
-  const lightboxPrev = document.getElementById('lightbox-prev');
-  const lightboxNext = document.getElementById('lightbox-next');
 
-  const galleryCards = Array.from(document.querySelectorAll('.gallery-card[data-lightbox-index]'));
-  let currentLightboxIndex = 0;
-  let lastFocused = null;
-
-  function openLightbox(card) {
-    lastFocused = document.activeElement;
-    currentLightboxIndex = parseInt(card.dataset.lightboxIndex);
-    updateLightbox(currentLightboxIndex);
-    lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    lightboxClose.focus();
-  }
-
-  function updateLightbox(index) {
-    const card = galleryCards[index];
-    lightboxImg.src = card.dataset.lightboxImg;
-    lightboxImg.alt = card.dataset.lightboxTitle + ' – detail';
-    lightboxTitle.textContent = card.dataset.lightboxTitle;
-    lightboxRegion.textContent = card.dataset.lightboxRegion;
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-    if (lastFocused) lastFocused.focus();
-  }
-
-  function lightboxNavPrev() {
-    currentLightboxIndex = (currentLightboxIndex - 1 + galleryCards.length) % galleryCards.length;
-    updateLightbox(currentLightboxIndex);
-  }
-
-  function lightboxNavNext() {
-    currentLightboxIndex = (currentLightboxIndex + 1) % galleryCards.length;
-    updateLightbox(currentLightboxIndex);
-  }
-
-  // Otvoriť lightbox kliknutím alebo Enterom
-  galleryCards.forEach(card => {
-    card.addEventListener('click', () => openLightbox(card));
-    card.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openLightbox(card);
-      }
-    });
-  });
-
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightboxPrev.addEventListener('click', lightboxNavPrev);
-  lightboxNext.addEventListener('click', lightboxNavNext);
-
-  // Zatvoriť kliknutím na pozadie
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) closeLightbox();
-  });
-
-  // FIX 4: Klávesnica — Escape, šípky, focus trap
-  lightbox.addEventListener('keydown', e => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lightboxNavPrev();
-    if (e.key === 'ArrowRight') lightboxNavNext();
-
-    // Focus trap — Tab ostáva vnútri lightboxu
-    if (e.key === 'Tab') {
-      const focusable = lightbox.querySelectorAll('button');
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-  });
 
   /* =============================================
      DOLL HOVER CYCLING

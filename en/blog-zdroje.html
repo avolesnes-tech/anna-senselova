@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where I searched and what I found: my sources for tracing ancestors — Blog — Anna Šenšelová</title>
+<meta name="description" content="What sources helped me uncover my family's history? From family publications through digital archives to distant relatives — a guide for anyone who wants to search.">
+<meta property="og:title" content="Where I searched and what I found: my sources for tracing ancestors">
+<meta property="og:description" content="My sources for tracing ancestors — from family publications through dikda.sk to parish registers online.">
+<meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
+<meta property="og:type" content="article">
+<link rel="alternate" hreflang="sk" href="https://avolesnes-tech.github.io/anna-senselova/blog-zdroje.html">
+<link rel="alternate" hreflang="en" href="https://avolesnes-tech.github.io/anna-senselova/en/blog-zdroje.html">
+<link rel="preload" href="../assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../style.css">
+<style>
+
+:root {
+  --max-prose: 680px;
+  --transition-base: 0.3s ease;
+}
+
+body { font-size: clamp(17px, 2.4vw, 19px); line-height: 1.8; overflow-x: hidden; }
+
+/* READING PROGRESS */
+.reading-progress {
+  position: fixed; top: var(--nav-height); left: 0; width: 0%; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  z-index: 9997; transition: width 0.1s linear; pointer-events: none;
+}
+
+/* HERO */
+.article-hero {
+  padding: calc(var(--nav-height) + 5rem) 2rem 4rem;
+  background: var(--section-alt);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.article-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(196,30,58,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 20%, rgba(212,175,55,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.article-hero-inner {
+  position: relative; z-index: 1;
+  max-width: var(--max-prose);
+  margin: 0 auto;
+}
+.blog-back {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  transition: color var(--transition-base);
+  opacity: 0.75;
+}
+.blog-back:hover { color: var(--red); opacity: 1; }
+.article-category {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.article-hero h1 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  color: var(--red);
+  line-height: 1.35;
+  margin-bottom: 1.5rem;
+}
+.article-meta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(107,80,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.article-meta-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: rgba(107,80,0,0.25);
+  display: inline-block;
+}
+
+/* ARTICLE BODY */
+.article-body {
+  max-width: var(--max-prose);
+  margin: 0 auto;
+  padding: 4rem 2rem 5rem;
+}
+
+.article-body p {
+  color: #2e2e2e;
+  margin-bottom: 1.6rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  line-height: 1.9;
+}
+
+.article-body p:first-child::first-letter {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 4.2rem;
+  color: var(--red);
+  float: left;
+  line-height: 0.75;
+  margin: 0.1em 0.08em 0 0;
+}
+
+.article-body em {
+  font-style: italic;
+  color: rgba(107,80,0,0.85);
+}
+
+.article-body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.article-body a {
+  color: var(--red);
+  text-decoration: underline;
+  text-decoration-color: rgba(196,30,58,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--transition-base);
+}
+.article-body a:hover {
+  text-decoration-color: var(--red);
+}
+
+.article-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2.5rem 0;
+  opacity: 0.35;
+}
+.article-divider::before,
+.article-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.article-divider::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.article-pull-quote {
+  border-left: 3px solid var(--red);
+  padding: 1rem 1.5rem;
+  margin: 2.5rem 0;
+  background: rgba(196,30,58,0.04);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.18rem;
+  font-style: italic;
+  color: #444;
+  line-height: 1.75;
+}
+
+/* RESOURCE LIST */
+.resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.6rem 0 2rem;
+}
+.resource-list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #2e2e2e;
+  padding: 0.75rem 0 0.75rem 1.5rem;
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+  position: relative;
+}
+.resource-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold-dark);
+  font-size: 0.85rem;
+}
+.resource-list li:last-child { border-bottom: none; }
+.resource-list li strong { color: var(--ink); }
+.resource-list li em { color: #666; font-size: 0.95em; }
+
+/* ARTICLE FOOTER NAV */
+.article-footer-nav {
+  max-width: var(--max-prose);
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(212,175,55,0.2);
+  padding-top: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.article-footer-nav a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: color var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.article-footer-nav a:hover { color: var(--red); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+section[id], div[id] { scroll-margin-top: 72px; }
+
+</style>
+</head>
+<body class="ornaments-always">
+<div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
+<div class="side-ornament side-ornament--right" aria-hidden="true"></div>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+<nav>
+  <a href="index.html" class="logo" aria-label="Mapa Spomienok – home">
+    <picture>
+      <source srcset="../assets/logo-nav-v2.webp" type="image/webp">
+      <img src="../assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
+    </picture>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li>
+      <a href="index.html#pribeh" id="nav-pribeh">Story ▾</a>
+      <div class="dropdown" id="dd-pribeh">
+        <span class="dropdown-label">Story</span>
+        <a href="anna-senselova.html">Anna Šenšelová</a>
+        <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
+        <a href="lipa.html">Lipa</a>
+        <a href="zivena.html">Živena</a>
+      </div>
+    </li>
+    <li>
+      <a href="index.html#galeria-vysiviek" id="nav-galeria">Gallery ▾</a>
+      <div class="dropdown" id="dd-galeria">
+        <span class="dropdown-label">Gallery</span>
+        <a href="galeria-vysiviek.html">Anna Šenšelová's Embroidery Collection</a>
+        <a href="galeria-ludove.html">Other folk embroideries and garments</a>
+        <a href="galeria-babik.html">Folk costume dolls</a>
+      </div>
+    </li>
+    <li><a href="mapa-spomienok.html" id="nav-mapa">Map of Memories</a></li>
+    <li><a href="blog.html" id="nav-blog">Blog</a></li>
+    <li><a href="spojme-sa.html" id="nav-spojme">Contact</a></li>
+    <li class="nav-lang-item"><a href="../blog-zdroje.html" lang="sk" hreflang="sk" class="nav-lang-link">SK — Slovenská verzia</a></li>
+  </ul>
+  <div class="lang-switch" aria-label="Language version">
+    <a href="../blog-zdroje.html" class="lang-link" lang="sk" hreflang="sk">SK</a>
+    <span class="lang-sep" aria-hidden="true">|</span>
+    <span class="lang-current" aria-current="true">EN</span>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<header class="article-hero" id="main-content">
+  <div class="article-hero-inner">
+    <a href="blog.html" class="blog-back">← Back to blog</a>
+    <span class="article-category">Blog · Family history</span>
+    <h1>Where I searched and what I found</h1>
+    <div class="article-meta">
+      <span>Anna Lockwoodová</span>
+      <span class="article-meta-dot"></span>
+      <span>May 2026</span>
+      <span class="article-meta-dot"></span>
+      <span>8 min read</span>
+    </div>
+  </div>
+</header>
+
+<!-- ARTICLE BODY -->
+<article class="article-body">
+
+  <p>When I started searching into my family's past, I very quickly realised that I was — compared to most people — in an exceptionally good position. Not because I'm anything special, but because my grandfather Ivan Šenšel came from a long line of Evangelical nationalists for whom respect for ancestors — and preserving their stories — was a natural part of family identity. Each generation carefully cultivated these stories and passed them on, and thanks to this I received, as a beginning researcher, something truly precious: documented history, not just fragments of memories. I am deeply grateful for this.</p>
+
+  <p>The first and perhaps most valuable source was <strong>my grandfather's autobiography</strong>, which he compiled and published in a small print run in 2010. In it he describes not only memories of a childhood spent at an Evangelical rectory, but also the later war years and the horrors of captivity in a German prison camp. He also maps the lives of the wider family — and it was thanks to this that I was able to learn more about my great-aunt Anna Šenšelová. I came to know her from a somewhat different angle than I expected — not just as a public figure associated with embroidery and Lipa, but also as a loving and modest <em>auntie</em> whom everyone would wish to have.</p>
+
+  <p>In addition to the autobiography, my grandfather in the 1990s also compiled a <strong>family history entitled <em>Šenšelovský rod</em></strong> (The Šenšel Lineage). This contains the family tree on both the paternal and maternal sides, historical family photographs and a copy of the original family tree of Michal Miloslav Hodža, compiled by Matica slovenská — whose final branches reach all the way to us. Picking up this publication and gradually finding my way through it felt like opening one door after another.</p>
+
+  <p>The life of my great-great-grandfather Ľudovít Šenšel is in turn thoroughly documented in the book <strong><em>Pevný buď</em></strong> (Be Steadfast) <em>(Ivan Šenšel, Tranoscius, 1998)</em>, based on his own biography. After reading these three publications my interest in learning about further ancestors deepened even more — but I had exhausted the home sources. So I began searching online.</p>
+
+  <div class="article-divider"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1 L7.5 4.5 L11 6 L7.5 7.5 L6 11 L4.5 7.5 L1 6 L4.5 4.5 Z" stroke="#D4AF37" stroke-width="0.7" fill="none"/></svg></div>
+
+  <p>About Anna Šenšelová online, I came across a recorded radio programme called <em>Robinsonka</em> on <strong>Radio_FM</strong>, prepared by Monika Kapráliková. It was she who directed me to the <strong>Digital Library and Digital Archive of the Slovak National Library</strong> — <a href="https://dikda.sk" target="_blank" rel="noopener noreferrer">dikda.sk</a>. This site opened up entirely new horizons for me. I found rare period publications here that I would normally struggle to access. Most older works are publicly available after login — so it is genuinely very easy to access information that would otherwise be gathering dust. The search is intuitive, the content rich. If a book appears as not publicly available, that doesn't have to be the end — you can simply submit a request through <strong>interlibrary loan</strong> via your local library and request the specific publication.</p>
+
+  <p>For me personally, reading <strong>period journals</strong> was also a great enrichment — in my case, Živena. Here I got a better understanding of what our ancestors were actually living through in their time: how they dealt with problems, what values they held, what they fought for and against, what pitfalls they faced in life. From serious topics, one moved easily to lighter ones — exercise instructions, laundry or housekeeping tips, recipes or fashion advice. I read it through the lens of my own family and individual contributions suddenly took on an entirely different dimension.</p>
+
+  <div class="article-pull-quote">
+    "Period journals gave me context that books cannot — the feeling that those people really existed, breathed and dealt with everyday concerns much like us."
+  </div>
+
+  <p>Another significant step in my search was <strong>reaching out to more distant relatives</strong> whom I hadn't previously known, but who I knew might still have childhood memories of the older generation. Through their stories I kept learning more and more — and my picture of the wider family kept growing. I'm not naturally an extrovert, but when I had a concrete goal in front of me, reaching out came surprisingly naturally. And I met with nothing but willingness and joy to share.</p>
+
+  <div class="article-divider"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1 L7.5 4.5 L11 6 L7.5 7.5 L6 11 L4.5 7.5 L1 6 L4.5 4.5 Z" stroke="#D4AF37" stroke-width="0.7" fill="none"/></svg></div>
+
+  <p>Online, a fairly interesting source is also <strong>church register records</strong> — baptism books, marriage records, death records — in which data from several centuries ago can be traced. In Slovakia, digitised records for many villages go back to the 17th and 18th centuries. Several sites worth checking:</p>
+
+  <ul class="resource-list">
+    <li>
+      <strong><a href="https://www.familysearch.org" target="_blank" rel="noopener noreferrer">FamilySearch.org</a></strong> — <em>free.</em> A huge database managed by The Church of Jesus Christ of Latter-day Saints, containing millions of scanned Slovak church records including Lutheran registers. A good starting point for everyone.
+    </li>
+    <li>
+      <strong><a href="https://www.matricula-online.eu" target="_blank" rel="noopener noreferrer">Matricula-online.eu</a></strong> — <em>free.</em> Digitised church registers from Central Europe including Slovak regions, originally part of the Austro-Hungarian Empire. A clean interface with direct display of original scans.
+    </li>
+    <li>
+      <strong><a href="https://www.myheritage.com" target="_blank" rel="noopener noreferrer">MyHeritage.com</a></strong> — <em>freemium</em> (basic features free, extended records paid). Popular in Europe, also allows DNA analysis for finding relatives. Particularly useful when you want to find distant relatives who don't even know about you.
+    </li>
+    <li>
+      <strong><a href="https://www.ancestry.com" target="_blank" rel="noopener noreferrer">Ancestry.com</a></strong> — <em>paid</em> (subscription). The world's largest genealogical database. Worth it when searching for ancestors who emigrated abroad — especially to the USA — when ship passenger records, immigration documents or census records are available.
+    </li>
+    <li>
+      <strong><a href="https://archivap.culture.gov.sk" target="_blank" rel="noopener noreferrer">Slovak Archive Portal</a></strong> — <em>free.</em> The Slovak state archive online. Allows searching archive collections and access to some digitised documents from state archives.
+    </li>
+  </ul>
+
+  <p>Through these records you can also find distant relatives — and if you gather the courage to reach out to them, I think in most cases they will be willing to share their knowledge with you. After all, you are connected by the most precious thing — family.</p>
+
+  <p>Since my search naturally extended to embroideries and Lipa as well, I reached out to <strong>folklore enthusiasts, museums and organisations</strong> — and from most of them I received positive and helpful responses that helped me move further. People who pursue this area with passion are generally just as enthusiastic about someone showing interest — and they love to share. All you have to do is ask.</p>
+
+  <p>So if you're at the beginning and don't know where to start — start at home. Old photographs, letters, books with dedications, notebooks. Then parents, grandparents, distant relatives. And then the internet — knowing that the more you find, the more you'll want to search. I warned you.</p>
+
+  <p>I hope this list makes your beginning at least a little easier — or shows you some source you haven't come across yet. And I also hope that through this website I'm contributing my small piece to your search. In the <a href="mapa-spomienok.html">Map of Memories</a> you can browse added stories by surname or region — and I'm genuinely curious whether some threads of stories will connect this way and whether someone will find distant relatives through the map. If that ever happens, I would be overjoyed to hear about it. It would show me that all of this had that purpose too.</p>
+
+</article>
+
+<nav class="article-footer-nav" aria-label="Article navigation">
+  <a href="blog.html">← All articles</a>
+  <a href="blog-patranie.html">Next article →</a>
+</nav>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-col-title">Story</p>
+      <ul class="footer-links">
+        <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
+        <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
+        <li><a href="lipa.html">Lipa</a></li>
+        <li><a href="zivena.html">Živena</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Gallery</p>
+      <ul class="footer-links">
+        <li><a href="galeria-vysiviek.html">Embroidery Collection</a></li>
+        <li><a href="galeria-ludove.html">Folk Embroideries &amp; Dress</a></li>
+        <li><a href="galeria-babik.html">Folk costume dolls</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Project</p>
+      <ul class="footer-links">
+        <li><a href="mapa-spomienok.html">Map of Memories</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="spojme-sa.html">Get in touch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2026 Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:inherit;opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">senselovaanna@gmail.com</a></p>
+  <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Privacy policy</button></p>
+  <p class="footer-disclaimer">The collection of embroideries, dolls and the estate of the Šenšel family is not my personal property — it is the heritage of the entire family. Embroideries, dolls and folk costumes are not for sale.</p>
+</footer>
+
+<script>
+  (function() {
+    var hamburger = document.getElementById('hamburger');
+    var navMenu = document.getElementById('nav-menu');
+    if (!hamburger || !navMenu) return;
+    function isMobile() { return window.innerWidth <= 768; }
+    function closeAllDropdowns() { navMenu.querySelectorAll('.dropdown').forEach(function(d) { d.classList.remove('open','dropdown-open'); }); }
+    function closeMenu() { navMenu.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); closeAllDropdowns(); }
+    hamburger.addEventListener('click', function() { var isOpen = navMenu.classList.toggle('open'); hamburger.classList.toggle('open', isOpen); hamburger.setAttribute('aria-expanded', String(isOpen)); });
+    navMenu.querySelectorAll('li > a').forEach(function(link) {
+      link.addEventListener('click', function(e) { var li = this.closest('li'); var dd = li.querySelector('.dropdown'); if (dd && isMobile()) { e.preventDefault(); dd.classList.toggle('open'); navMenu.querySelectorAll('.dropdown.open').forEach(function(d) { if (d !== dd) d.classList.remove('open'); }); } else if (!dd) { closeMenu(); } });
+    });
+    navMenu.querySelectorAll('.dropdown a').forEach(function(a) { a.addEventListener('click', function() { closeMenu(); }); });
+    navMenu.querySelectorAll('li').forEach(function(li) { var dd = li.querySelector('.dropdown'); if (!dd) return; var timer; li.addEventListener('mouseenter', function() { if (isMobile()) return; clearTimeout(timer); dd.classList.add('dropdown-open'); }); li.addEventListener('mouseleave', function() { if (isMobile()) return; timer = setTimeout(function() { dd.classList.remove('dropdown-open'); }, 140); }); dd.addEventListener('mouseenter', function() { clearTimeout(timer); }); dd.addEventListener('mouseleave', function() { if (isMobile()) return; timer = setTimeout(function() { dd.classList.remove('dropdown-open'); }, 140); }); });
+    document.addEventListener('click', function(e) { if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeMenu(); });
+    window.addEventListener('resize', function() { if (!isMobile()) { closeMenu(); closeAllDropdowns(); } });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+    var path = window.location.pathname.split('/').pop() || 'index.html';
+    navMenu.querySelectorAll('a[href]').forEach(function(a) { var href = a.getAttribute('href').split('#')[0].split('/').pop(); if (href === path) a.classList.add('active'); });
+  })();
+
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || link.target === '_blank') return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function() { window.location.href = href; }, 340);
+  });
+
+  (function() {
+    var bar = document.getElementById('readingProgress');
+    if (!bar) return;
+    function upd() { var h = document.documentElement.scrollHeight - window.innerHeight; bar.style.width = (h > 0 ? Math.min(window.scrollY/h*100,100) : 0) + '%'; }
+    window.addEventListener('scroll', upd, { passive: true }); upd();
+  })();
+</script>
+
+<!-- GDPR Modal -->
+<div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
+  <div class="gdpr-box">
+    <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Close">✕</button>
+    <h2 id="gdpr-title">Privacy policy</h2>
+    <p><strong>Website operator:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
+    <p>This is a non-commercial informational website created in my free time. No commercial obligations arise from it.</p>
+    <p><strong>Contact form:</strong> If you write to me through the contact form, I process the following data: name, email address and message text. These are used solely to allow me to respond to you. The data is not shared with third parties and will be deleted once communication is complete.</p>
+    <p><strong>Your rights:</strong> You have the right to request access to your data, its correction or deletion. Simply write to the email address above.</p>
+    <p><strong>Cookies and fonts:</strong> This website does not use tracking or analytics cookies. Fonts are hosted directly on this server, so no data is sent to Google or any third parties.</p>
+  </div>
+</div>
+<script>
+  document.getElementById('gdpr-modal').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') document.getElementById('gdpr-modal').classList.remove('open'); });
+</script>
+</body>
+</html>

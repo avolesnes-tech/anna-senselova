@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iné ľudové výšivky a odev — Anna Šenšelová</title>
-<meta name="description" content="Galéria ľudových výšiviek, krojov a odevu z pozostalosti Anny Šenšelovej.">
-<meta property="og:title" content="Iné ľudové výšivky a odev — Anna Šenšelová">
-<meta property="og:description" content="Galéria ľudových výšiviek, krojov a odevu z pozostalosti Anny Šenšelovej.">
+<title>Folk Embroideries and Garments — Anna Šenšelová</title>
+<meta name="description" content="Gallery of folk embroideries, costumes and garments from the estate of Anna Šenšelová.">
+<meta property="og:title" content="Folk Embroideries and Garments — Anna Šenšelová">
+<meta property="og:description" content="Gallery of folk embroideries, costumes and garments from the estate of Anna Šenšelová.">
 <meta property="og:image" content="https://avolesnes-tech.github.io/anna-senselova/hero1.jpg">
 <meta property="og:type" content="website">
+<link rel="alternate" hreflang="sk" href="https://avolesnes-tech.github.io/anna-senselova/galeria-ludove.html">
+<link rel="alternate" hreflang="en" href="https://avolesnes-tech.github.io/anna-senselova/en/galeria-ludove.html">
 
-<link rel="preload" href="assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
-<link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="style.css">
+<link rel="preload" href="../../assets/motiv-ludovy.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../style.css">
 
 <style>
 /* =============================================
@@ -67,7 +69,7 @@ body.panel-open { overflow: hidden; }
 
 
 /* =============================================
-   HERO — galéria verzia
+   HERO — gallery version
    ============================================= */
 .page-hero {
   padding: calc(var(--nav-height) + 4rem) var(--sp-4) var(--sp-8);
@@ -81,18 +83,17 @@ body.panel-open { overflow: hidden; }
   content: '';
   position: absolute;
   inset: 0;
-  background: 
+  background:
     radial-gradient(ellipse 60% 40% at 20% 80%, rgba(196,30,58,0.06) 0%, transparent 70%),
     radial-gradient(ellipse 50% 60% at 80% 20%, rgba(212,175,55,0.07) 0%, transparent 70%);
   pointer-events: none;
 }
 
-/* Dekoratívna mriežka v pozadí */
 .page-hero::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(rgba(212,175,55,0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(212,175,55,0.06) 1px, transparent 1px);
   background-size: 40px 40px;
@@ -103,22 +104,30 @@ body.panel-open { overflow: hidden; }
 .page-hero-inner {
   position: relative;
   z-index: 1;
-  max-width: 700px;
+  max-width: var(--max-content);
   margin: 0 auto;
 }
 
 .breadcrumb {
   font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gold-dark);
-  margin-bottom: var(--sp-3);
-  opacity: 0.75;
+  color: rgba(107,80,0,0.55);
+  margin-bottom: var(--sp-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
 }
-.breadcrumb a { text-decoration: none; color: inherit; transition: color var(--transition-base); }
+
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
 .breadcrumb a:hover { color: var(--red); }
-.breadcrumb span { margin: 0 0.5rem; }
 
 .section-label {
   font-family: 'Cinzel', serif;
@@ -126,152 +135,94 @@ body.panel-open { overflow: hidden; }
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--red);
-  margin-bottom: var(--sp-1);
+  margin-bottom: 0.6rem;
 }
 
-h1.page-title {
+.page-title {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-size: clamp(3rem, 7vw, 6rem);
   color: var(--red);
-  line-height: 1.5;
-  margin-bottom: var(--sp-1);
+  line-height: 1.2;
+  margin-bottom: var(--sp-3);
 }
 
+.gold-line {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto var(--sp-4);
+}
 
 .page-hero-desc {
-  font-size: var(--text-md);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
   color: #555;
-  max-width: 580px;
-  margin: 0 auto;
-  font-style: italic;
   line-height: 1.85;
+  max-width: 640px;
+  margin: 0 auto;
 }
-
-/* Stats strip */
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(212,175,55,0.3);
-}
-
-.stat-item { text-align: center; }
-.stat-number {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 2.8rem;
-  color: var(--red);
-  line-height: 1;
-  display: block;
-}
-.stat-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-dark);
-  opacity: 0.75;
-  margin-top: 0.3rem;
-  display: block;
-}
-
-@media (max-width: 640px) {
-  .hero-stats { gap: 1.5rem; }
-  .stat-number { font-size: 2.2rem; }
-}
-
-
 
 
 /* =============================================
-   GALLERY HINT BAR
+   GALLERY HINT
    ============================================= */
 .gallery-hint {
-  max-width: var(--max-wide);
-  margin: 0 auto;
-  padding: 0 var(--sp-4) var(--sp-4);
-}
-.gallery-hint-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.2rem;
-  padding: var(--sp-2) var(--sp-3);
-  border: 1px solid rgba(212,175,55,0.22);
-  background: rgba(212,175,55,0.04);
-}
-.hint-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 0.98rem;
-  color: var(--gold-dark);
-  letter-spacing: 0.03em;
   text-align: center;
-  line-height: 1.5;
-}
-.hint-ornament { opacity: 0.35; flex-shrink: 0; }
-
-@media (max-width: 640px) {
-  .gallery-hint { padding: 0 var(--sp-2) var(--sp-3); }
-  .gallery-hint-inner { gap: 0.75rem; padding: var(--sp-2); }
-  .hint-text { font-size: 0.88rem; }
+  padding: var(--sp-4) var(--sp-4) var(--sp-2);
 }
 
-/* Mobile: always show overlay so names are visible */
-@media (max-width: 768px) {
-  .emb-overlay { opacity: 1; }
-  .emb-overlay-hint { display: none; }
+.gallery-hint-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
 }
+
+.hint-text {
+  font-family: 'Cinzel', serif;
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(107,80,0,0.55);
+}
+
+.hint-ornament {
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
 
 /* =============================================
-   MAIN GALLERY
+   MASONRY GALLERY
    ============================================= */
-#main-content { padding: var(--sp-6) var(--sp-4) var(--sp-12); }
-
 .gallery-outer {
   max-width: var(--max-wide);
   margin: 0 auto;
+  padding: 0 var(--sp-4) var(--sp-12);
 }
 
-/* Masonry-style grid — 4 col desktop, 3 tablet, 2 mobile, 1 XS */
 .masonry-grid {
-  column-count: 4;
-  column-gap: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-3);
 }
-
-@media (max-width: 1100px) { .masonry-grid { column-count: 3; } }
-@media (max-width: 768px)  { .masonry-grid { column-count: 2; } }
-/* 2 columns maintained even on small phones for better gallery UX */
 
 .masonry-item {
   break-inside: avoid;
-  margin-bottom: 1.2rem;
-  position: relative;
 }
 
-/* Každý 5., 6., 7. item má iný aspect-ratio pre dynamiku */
-.masonry-item:nth-child(5n+1) .emb-card { aspect-ratio: 3/4; }
-.masonry-item:nth-child(5n+2) .emb-card { aspect-ratio: 4/5; }
-.masonry-item:nth-child(5n+3) .emb-card { aspect-ratio: 1/1; }
-.masonry-item:nth-child(5n+4) .emb-card { aspect-ratio: 4/3; }
-.masonry-item:nth-child(5n+5) .emb-card { aspect-ratio: 3/4; }
+.masonry-item.hidden { display: none; }
+
 
 /* =============================================
-   EMBROIDERY CARD
+   CARD
    ============================================= */
 .emb-card {
   position: relative;
-  overflow: hidden;
   cursor: pointer;
+  overflow: hidden;
+  background: var(--ink);
   display: block;
-  background: #ede5d8;
-  outline: none;
-}
-
-.emb-card:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
+  aspect-ratio: 3/4;
 }
 
 .emb-card img {
@@ -279,290 +230,322 @@ h1.page-title {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
-  will-change: transform;
+  transition: transform 0.6s var(--transition-slow), opacity 0.3s ease;
 }
 
 .emb-card:hover img,
-.emb-card:focus-visible img {
-  transform: scale(1.06);
-  filter: brightness(0.75);
+.emb-card:focus img {
+  transform: scale(1.04);
+  opacity: 0.85;
 }
 
-/* Hover overlay */
+.emb-card:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.emb-index {
+  position: absolute;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  font-family: 'Cinzel', serif;
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.55);
+  line-height: 1;
+  pointer-events: none;
+}
+
 .emb-overlay {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--sp-4) var(--sp-3) var(--sp-3);
+  background: linear-gradient(to top, rgba(26,10,14,0.92) 0%, transparent 100%);
+  transform: translateY(0);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.4rem 1.2rem 1rem;
-  background: linear-gradient(to top, rgba(26,10,14,0.88) 0%, rgba(26,10,14,0.3) 50%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 2;
-}
-
-.emb-card:hover .emb-overlay,
-.emb-card:focus-visible .emb-overlay {
-  opacity: 1;
+  gap: 0.25rem;
 }
 
 .emb-overlay-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.05rem;
   font-weight: 600;
-  color: #fff;
+  color: rgba(255,255,255,0.92);
   line-height: 1.3;
-  margin-bottom: 0.25rem;
 }
 
 .emb-overlay-region {
   font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--gold-dark);
+  color: var(--gold);
+  opacity: 0.85;
 }
 
 .emb-overlay-hint {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.8rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.55);
-  margin-top: 0.6rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 0.3rem;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-}
-
-/* Index badge — hidden */
-.emb-index {
-  display: none;
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.9);
-  background: rgba(196,30,58,0.8);
-  padding: 0.2rem 0.5rem;
-  z-index: 3;
+  gap: 0.3rem;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.emb-card:hover .emb-index { opacity: 1; }
 
-/* Hidden card (filtered out) */
-.masonry-item.hidden {
-  display: none;
-}
+.emb-card:hover .emb-overlay-hint,
+.emb-card:focus .emb-overlay-hint { opacity: 1; }
 
-/* Reveal animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: 0.08s; }
-.reveal-delay-2 { transition-delay: 0.16s; }
-.reveal-delay-3 { transition-delay: 0.24s; }
-.reveal-delay-4 { transition-delay: 0.32s; }
-.reveal-delay-5 { transition-delay: 0.40s; }
 
 /* =============================================
-   DETAIL PANEL — slides in from right
+   EMPTY STATE
+   ============================================= */
+.empty-state {
+  display: none;
+  text-align: center;
+  padding: var(--sp-12) var(--sp-4);
+  color: rgba(107,80,0,0.5);
+  font-family: 'Cinzel', serif;
+  font-size: var(--text-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.empty-state.visible { display: block; }
+
+
+/* =============================================
+   PHOTO LIGHTBOX
+   ============================================= */
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.photo-lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.photo-lightbox img {
+  max-width: 94vw;
+  max-height: 94vh;
+  object-fit: contain;
+  display: block;
+}
+
+.photo-lightbox-close {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.photo-lightbox-close:hover { border-color: var(--gold); color: var(--gold); }
+
+
+/* =============================================
+   PANEL BACKDROP
    ============================================= */
 .panel-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(26,10,14,0.6);
-  z-index: 9000;
+  background: rgba(26,10,14,0.55);
+  z-index: 800;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.35s ease;
   backdrop-filter: blur(2px);
 }
+
 .panel-backdrop.open {
   opacity: 1;
   pointer-events: all;
 }
 
+
+/* =============================================
+   DETAIL PANEL
+   ============================================= */
 .detail-panel {
   position: fixed;
   top: 0;
   right: 0;
   width: var(--panel-width);
-  height: 100vh;
+  height: 100dvh;
   background: var(--cream);
-  z-index: 9001;
+  z-index: 900;
   transform: translateX(100%);
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: -8px 0 40px rgba(0,0,0,0.2);
+  box-shadow: -8px 0 40px rgba(0,0,0,0.18);
 }
 
 .detail-panel.open {
   transform: translateX(0);
 }
 
-/* Panel top bar */
 .panel-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(212,175,55,0.25);
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: 1px solid rgba(212,175,55,0.2);
   flex-shrink: 0;
-  background: var(--section-alt);
+  background: var(--cream);
 }
 
 .panel-nav-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--sp-2);
 }
 
 .panel-nav-btn {
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(212,175,55,0.4);
+  border: 1px solid var(--gold);
   background: transparent;
-  color: var(--ink);
+  color: var(--gold-dark);
+  font-size: 1.3rem;
   cursor: pointer;
-  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-base);
-  font-family: 'Cormorant Garamond', serif;
+  transition: border-color 0.2s, background 0.2s;
 }
-.panel-nav-btn:hover { border-color: var(--red); color: var(--red); }
-.panel-nav-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.panel-nav-btn:hover { border-color: var(--red); background: rgba(196,30,58,0.06); }
+.panel-nav-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
 .panel-counter {
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  color: var(--gold-dark);
-  opacity: 0.7;
-  padding: 0 0.5rem;
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  color: rgba(107,80,0,0.55);
 }
 
 .panel-close {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border: 1px solid rgba(212,175,55,0.4);
   background: transparent;
-  color: var(--ink);
+  color: rgba(107,80,0,0.6);
+  font-size: 1.3rem;
   cursor: pointer;
-  font-size: 1.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-base);
-  line-height: 1;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
-.panel-close:hover { border-color: var(--red); background: var(--red); color: #fff; }
-.panel-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
-/* Panel scroll body */
+.panel-close:hover { border-color: var(--red); color: var(--red); background: rgba(196,30,58,0.06); }
+.panel-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
 .panel-body {
   flex: 1;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(196,30,58,0.45) rgba(212,175,55,0.1);
-}
-.panel-body::-webkit-scrollbar {
-  width: 5px;
-}
-.panel-body::-webkit-scrollbar-track {
-  background: rgba(212,175,55,0.08);
-}
-.panel-body::-webkit-scrollbar-thumb {
-  background: rgba(196,30,58,0.45);
-  border-radius: 2px;
-}
-.panel-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(196,30,58,0.75);
 }
 
-/* Main image area */
+/* Image section */
 .panel-image-section {
   position: relative;
-  background: #1a0a0e;
+  background: var(--ink);
 }
 
 .panel-main-img-wrap {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4/3;
   cursor: zoom-in;
+  aspect-ratio: 4/3;
 }
 
 .panel-main-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
-  transition: transform 0.5s ease, opacity 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
-.panel-main-img.switching {
-  opacity: 0;
-  transform: scale(0.97);
-}
+.panel-main-img.switching { opacity: 0.4; }
 
-/* Thumbnail strip */
+/* Thumbs */
 .panel-thumbs {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: rgba(26,10,14,0.85);
+  gap: 4px;
+  padding: 4px;
+  background: rgba(26,10,14,0.6);
   overflow-x: auto;
   scrollbar-width: none;
 }
+
 .panel-thumbs::-webkit-scrollbar { display: none; }
 
 .panel-thumb {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   flex-shrink: 0;
-  cursor: pointer;
   border: 2px solid transparent;
   overflow: hidden;
-  transition: border-color 0.25s ease, opacity 0.25s ease;
-  opacity: 0.55;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  transition: border-color 0.2s;
 }
-.panel-thumb:hover { opacity: 0.85; }
-.panel-thumb.active { border-color: var(--gold); opacity: 1; }
-.panel-thumb:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.panel-thumb.active { border-color: var(--gold); }
+.panel-thumb:focus-visible { outline: 2px solid var(--gold); }
 
 .panel-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  opacity: 0.65;
+  transition: opacity 0.2s;
 }
 
-/* Photo counter */
+.panel-thumb.active img,
+.panel-thumb:hover img { opacity: 1; }
+
+/* Dots */
 .panel-photo-nav {
   position: absolute;
-  bottom: 4.5rem;
-  right: 1rem;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 0.3rem;
-  z-index: 5;
+  gap: 6px;
+  pointer-events: none;
 }
 
 .panel-photo-dot {
@@ -570,17 +553,21 @@ h1.page-title {
   height: 6px;
   border-radius: 50%;
   background: rgba(255,255,255,0.35);
+  border: none;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
+  pointer-events: all;
+  transition: background 0.2s, transform 0.2s;
+  padding: 0;
 }
+
 .panel-photo-dot.active {
   background: var(--gold);
-  transform: scale(1.4);
+  transform: scale(1.3);
 }
 
 /* Content section */
 .panel-content {
-  padding: 2rem 2rem 3rem;
+  padding: var(--sp-4) var(--sp-4) var(--sp-8);
 }
 
 .panel-region-tag {
@@ -588,103 +575,89 @@ h1.page-title {
   align-items: center;
   gap: 0.4rem;
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold-dark);
-  border: 1px solid rgba(212,175,55,0.35);
-  padding: 0.3rem 0.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: var(--sp-2);
+  opacity: 0.8;
 }
 
 .panel-title {
   font-family: 'Pinyon Script', cursive;
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   color: var(--red);
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  margin-bottom: var(--sp-1);
 }
 
 .panel-gold-line {
   width: 80px;
   height: 1px;
   background: linear-gradient(90deg, var(--gold), transparent);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--sp-3);
 }
 
-/* Info tags */
 .panel-meta-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.8rem;
+  gap: 0.4rem;
+  margin-bottom: var(--sp-3);
 }
 
 .meta-tag {
   font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.3rem 0.75rem;
+  padding: 0.3rem 0.7rem;
   background: var(--section-alt);
-  color: var(--ink);
-  opacity: 0.75;
+  border: 1px solid rgba(212,175,55,0.3);
+  color: rgba(107,80,0,0.7);
 }
 
 .meta-tag.tag-technique {
-  background: rgba(196,30,58,0.08);
+  background: rgba(196,30,58,0.06);
+  border-color: rgba(196,30,58,0.2);
   color: var(--red);
-  opacity: 1;
-  border-left: 2px solid var(--red);
 }
 
 /* Description sections */
 .panel-section {
-  margin-bottom: 1.8rem;
+  margin-bottom: var(--sp-3);
 }
 
 .panel-section-label {
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 0.5rem;
+  color: var(--gold-dark);
+  margin-bottom: 0.4rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  opacity: 0.7;
 }
+
 .panel-section-label::after {
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, rgba(196,30,58,0.2), transparent);
+  background: rgba(212,175,55,0.2);
 }
 
 .panel-section p {
-  font-size: var(--text-md);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.02rem;
   color: #444;
-  line-height: 1.85;
+  line-height: 1.8;
 }
 
-/* Blockquote style pre zaujímavé citáty */
-.panel-quote {
-  border-left: 3px solid var(--gold);
-  padding: 0.8rem 1.2rem;
-  margin: 1.5rem 0;
-  background: rgba(212,175,55,0.05);
-  font-style: italic;
-  color: #555;
-  font-size: var(--text-base);
-}
-
-/* Panel footer actions */
 .panel-actions {
   display: flex;
-  gap: 0.8rem;
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(212,175,55,0.2);
+  gap: 0.6rem;
+  margin-top: var(--sp-4);
   flex-wrap: wrap;
 }
 
@@ -692,155 +665,83 @@ h1.page-title {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
+  padding: 0.55rem 1rem;
   font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
+  font-size: var(--text-xs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all var(--transition-base);
-  text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
-.panel-btn-primary {
-  background: var(--red);
-  color: #fff;
-  border: 1px solid var(--red);
-}
-.panel-btn-primary:hover { background: #a01830; }
+
 .panel-btn-secondary {
+  border: 1px solid rgba(212,175,55,0.5);
   background: transparent;
-  color: var(--ink);
-  border: 1px solid rgba(212,175,55,0.4);
-}
-.panel-btn-secondary:hover { border-color: var(--gold); color: var(--gold-dark); }
-
-/* =============================================
-   MOBILE: panel comes from BOTTOM
-   ============================================= */
-@media (max-width: 640px) {
-  :root { --panel-width: 100vw; }
-
-  .detail-panel {
-    top: auto;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 92vh;
-    transform: translateY(100%);
-    border-radius: 16px 16px 0 0;
-  }
-  .detail-panel.open {
-    transform: translateY(0);
-  }
-
-  /* Pull indicator */
-  .panel-topbar::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36px;
-    height: 4px;
-    background: rgba(212,175,55,0.4);
-    border-radius: 2px;
-  }
-  .panel-topbar { position: relative; padding-top: 1.4rem; }
-  .panel-content { padding: 1.5rem 1.2rem 4rem; }
-  .panel-main-img-wrap { aspect-ratio: 1/1; }
+  color: rgba(107,80,0,0.7);
 }
 
-/* =============================================
-   EMPTY STATE
-   ============================================= */
-.empty-state {
-  text-align: center;
-  padding: 5rem 2rem;
-  display: none;
-  grid-column: 1 / -1;
+.panel-btn-secondary:hover {
+  border-color: var(--gold);
+  background: rgba(212,175,55,0.08);
+  color: var(--gold-dark);
 }
-.empty-state.visible { display: block; }
-.empty-state p {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: #888;
-  font-size: var(--text-md);
-}
+
+.panel-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
 
 /* =============================================
-   LIGHTBOX (fullscreen zoom na jednotlivú fotku)
+   REVEAL ANIMATIONS
    ============================================= */
-.photo-lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(8,3,4,0.97);
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.reveal {
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  transform: translateY(20px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
 }
-.photo-lightbox.open { opacity: 1; pointer-events: all; }
-.photo-lightbox img {
-  max-width: 95vw;
-  max-height: 92vh;
-  object-fit: contain;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-.photo-lightbox-close {
-  position: absolute;
-  top: 1.5rem; right: 1.5rem;
-  background: none;
-  border: 1px solid rgba(255,255,255,0.3);
-  color: #fff;
-  width: 44px; height: 44px;
-  font-size: 1.4rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--transition-base);
+
+.reveal-delay-1 { transition-delay: 0.05s; }
+.reveal-delay-2 { transition-delay: 0.12s; }
+.reveal-delay-3 { transition-delay: 0.19s; }
+.reveal-delay-4 { transition-delay: 0.26s; }
+.reveal-delay-5 { transition-delay: 0.33s; }
+
+.animate-hero {
+  animation: heroFadeUp 0.8s ease both;
 }
-.photo-lightbox-close:hover { border-color: var(--gold); background: rgba(212,175,55,0.15); }
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 
 /* =============================================
-   ANIMÁCIE
+   PAGE TRANSITION
    ============================================= */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+body { opacity: 0; }
+body.page-leaving { opacity: 0 !important; transition: opacity 0.36s ease !important; }
 
-.animate-hero > * {
-  opacity: 0;
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 600px) {
+  .masonry-grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); }
+  .gallery-outer { padding: 0 var(--sp-2) var(--sp-8); }
+  .panel-content { padding: var(--sp-3) var(--sp-3) var(--sp-8); }
 }
-.animate-hero > *:nth-child(1) { animation: fadeUp 0.9s 0.1s forwards ease; }
-.animate-hero > *:nth-child(2) { animation: fadeUp 0.9s 0.25s forwards ease; }
-.animate-hero > *:nth-child(3) { animation: fadeUp 0.9s 0.35s forwards ease; }
-.animate-hero > *:nth-child(4) { animation: fadeUp 0.9s 0.45s forwards ease; }
-.animate-hero > *:nth-child(5) { animation: fadeUp 0.9s 0.6s forwards ease; }
-.animate-hero > *:nth-child(6) { animation: fadeUp 0.9s 0.75s forwards ease; }
 
-/* Swipe hint on mobile */
-@media (max-width: 640px) {
-  .panel-topbar .swipe-hint {
-    position: absolute;
-    top: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36px;
-    height: 4px;
-    background: rgba(212,175,55,0.45);
-    border-radius: 2px;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-@media print {
-  nav, .detail-panel, .panel-backdrop, footer { display: none !important; }
-  .masonry-grid { column-count: 3; }
-}
-
-/* ── scroll-margin-top pre zakotvené sekcie ── */
 section[id], div[id] { scroll-margin-top: 72px; }
 
 </style>
@@ -849,13 +750,13 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <div class="side-ornament side-ornament--left"  aria-hidden="true"></div>
 <div class="side-ornament side-ornament--right" aria-hidden="true"></div>
 
-<a href="#main" class="skip-link">Preskočiť na obsah</a>
+<a href="#main" class="skip-link">Skip to content</a>
 <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
 
 <!-- PHOTO LIGHTBOX (zoom) -->
-<div class="photo-lightbox" id="photoLightbox" role="dialog" aria-modal="true" aria-label="Zväčšená fotografia">
+<div class="photo-lightbox" id="photoLightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo">
   <img id="photoLightboxImg" src="" alt="">
-  <button class="photo-lightbox-close" id="photoLightboxClose" aria-label="Zatvoriť">×</button>
+  <button class="photo-lightbox-close" id="photoLightboxClose" aria-label="Close">×</button>
 </div>
 
 <!-- PANEL BACKDROP -->
@@ -866,26 +767,26 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
   <div class="panel-topbar">
     <div class="panel-nav-group">
-      <button class="panel-nav-btn" id="panelPrev" aria-label="Predchádzajúca výšivka">‹</button>
-      <span class="panel-counter" id="panelCounter">1 / 16</span>
-      <button class="panel-nav-btn" id="panelNext" aria-label="Nasledujúca výšivka">›</button>
+      <button class="panel-nav-btn" id="panelPrev" aria-label="Previous garment">‹</button>
+      <span class="panel-counter" id="panelCounter">1 / 7</span>
+      <button class="panel-nav-btn" id="panelNext" aria-label="Next garment">›</button>
     </div>
-    <button class="panel-close" id="panelClose" aria-label="Zatvoriť panel">×</button>
+    <button class="panel-close" id="panelClose" aria-label="Close panel">×</button>
   </div>
 
   <div class="panel-body" id="panelBody">
-    <!-- Hlavná fotka -->
+    <!-- Main photo -->
     <div class="panel-image-section">
-      <div class="panel-main-img-wrap" id="panelImgWrap" title="Kliknite pre zväčšenie">
+      <div class="panel-main-img-wrap" id="panelImgWrap" title="Click to enlarge">
         <img class="panel-main-img" id="panelMainImg" src="" alt="">
       </div>
       <!-- Dots -->
       <div class="panel-photo-nav" id="panelDots" aria-hidden="true"></div>
       <!-- Thumbs strip -->
-      <div class="panel-thumbs" id="panelThumbs" role="group" aria-label="Fotografie výšivky"></div>
+      <div class="panel-thumbs" id="panelThumbs" role="group" aria-label="Garment photos"></div>
     </div>
 
-    <!-- Textový obsah -->
+    <!-- Text content -->
     <div class="panel-content">
       <div class="panel-region-tag" id="panelRegionTag">
         <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><circle cx="4.5" cy="4.5" r="4" stroke="currentColor" stroke-width="0.8"/><circle cx="4.5" cy="4.5" r="1.5" fill="currentColor"/></svg>
@@ -898,28 +799,28 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <div class="panel-meta-tags" id="panelMetaTags"></div>
 
       <div class="panel-section" id="panelOriginSection">
-        <div class="panel-section-label">Pôvod</div>
+        <div class="panel-section-label">Origin</div>
         <p id="panelOrigin"></p>
       </div>
 
       <div class="panel-section" id="panelTechSection">
-        <div class="panel-section-label">Technika</div>
+        <div class="panel-section-label">Technique</div>
         <p id="panelTechnique"></p>
       </div>
 
       <div class="panel-section" id="panelUseSection">
-        <div class="panel-section-label">Použitie</div>
+        <div class="panel-section-label">Use</div>
         <p id="panelUse"></p>
       </div>
 
       <div class="panel-actions">
         <button class="panel-btn panel-btn-secondary" id="panelZoomBtn">
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1.2"/><line x1="8" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="1.2"/><line x1="5" y1="3" x2="5" y2="7" stroke="currentColor" stroke-width="1"/><line x1="3" y1="5" x2="7" y2="5" stroke="currentColor" stroke-width="1"/></svg>
-          Zväčšiť fotku
+          Enlarge photo
         </button>
         <button class="panel-btn panel-btn-secondary" id="panelShareBtn">
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="10.5" cy="2.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><circle cx="10.5" cy="10.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><circle cx="2.5" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><line x1="4.3" y1="5.6" x2="8.7" y2="3.4" stroke="currentColor" stroke-width="1"/><line x1="4.3" y1="7.4" x2="8.7" y2="9.6" stroke="currentColor" stroke-width="1"/></svg>
-          Zdieľať
+          Share
         </button>
       </div>
     </div>
@@ -928,20 +829,20 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="logo" aria-label="Mapa Spomienok – domov">
+  <a href="index.html" class="logo" aria-label="Mapa Spomienok – home">
     <picture>
-      <source srcset="assets/logo-nav-v2.webp" type="image/webp">
-      <img src="assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
+      <source srcset="../assets/logo-nav-v2.webp" type="image/webp">
+      <img src="../assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
     </picture>
   </a>
-  <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
   <ul id="nav-menu">
     <li>
-      <a href="index.html#pribeh" id="nav-pribeh">Príbeh ▾</a>
+      <a href="index.html#pribeh" id="nav-pribeh">Story ▾</a>
       <div class="dropdown" id="dd-pribeh">
-        <span class="dropdown-label">Príbeh</span>
+        <span class="dropdown-label">Story</span>
         <a href="anna-senselova.html">Anna Šenšelová</a>
         <a href="anna-lockwoodova.html">Anna Lockwoodová</a>
         <a href="lipa.html">Lipa</a>
@@ -949,37 +850,38 @@ section[id], div[id] { scroll-margin-top: 72px; }
       </div>
     </li>
     <li>
-      <a href="index.html#galeria-vysiviek" id="nav-galeria">Galéria ▾</a>
+      <a href="index.html#galeria-vysiviek" id="nav-galeria">Gallery ▾</a>
       <div class="dropdown" id="dd-galeria">
-        <span class="dropdown-label">Galéria</span>
-        <a href="galeria-vysiviek.html">Vzorkovník výšiviek Anny Šenšelovej</a>
-        <a href="galeria-ludove.html">Iné ľudové výšivky a odev</a>
-        <a href="galeria-babik.html">Krojované bábiky</a>
+        <span class="dropdown-label">Gallery</span>
+        <a href="galeria-vysiviek.html">Anna Šenšelová's Embroidery Collection</a>
+        <a href="galeria-ludove.html">Other folk embroideries and garments</a>
+        <a href="galeria-babik.html">Folk costume dolls</a>
       </div>
     </li>
-    <li><a href="mapa-spomienok.html" id="nav-mapa">Mapa spomienok</a></li>
+    <li><a href="mapa-spomienok.html" id="nav-mapa">Map of Memories</a></li>
     <li><a href="blog.html" id="nav-blog">Blog</a></li>
-    <li><a href="spojme-sa.html" id="nav-spojme">Kontakt</a></li>
-    <li class="nav-lang-item"><a href="en/galeria-ludove.html" lang="en" hreflang="en" class="nav-lang-link">EN — English version</a></li>
+    <li><a href="spojme-sa.html" id="nav-spojme">Contact</a></li>
+    <li class="nav-lang-item"><a href="../galeria-ludove.html" lang="sk" hreflang="sk" class="nav-lang-link">SK — Slovenská verzia</a></li>
   </ul>
-  <div class="lang-switch" aria-label="Jazyková verzia">
-    <span class="lang-current" aria-current="true">SK</span>
+  <div class="lang-switch" aria-label="Language version">
+    <a href="../galeria-ludove.html" class="lang-link" lang="sk" hreflang="sk">SK</a>
     <span class="lang-sep" aria-hidden="true">|</span>
-    <a href="en/galeria-ludove.html" class="lang-link" lang="en" hreflang="en">EN</a>
+    <span class="lang-current" aria-current="true">EN</span>
   </div>
 </nav>
+
 <!-- PAGE HERO -->
 <header class="page-hero" id="main">
   <div class="page-hero-inner animate-hero">
     <p class="breadcrumb">
-      <a href="index.html">Domov</a>
+      <a href="index.html">Home</a>
       <span>·</span>
-      Galéria
+      Gallery
     </p>
-    <p class="section-label">Zbierka · Kroje a odev</p>
-    <h1 class="page-title">Ľudové výšivky a odev.</h1>
+    <p class="section-label">Collection · Costumes &amp; Garments</p>
+    <h1 class="page-title">Folk Embroideries and Garments.</h1>
     <div class="gold-line"></div>
-    <p class="page-hero-desc">Kroje, košele, lajblíky a vesty z pozostalosti rodiny Šenšelovcov. Pôvod ani spôsob využitia nevieme presne určiť, avšak je pravdepodobné, že niektoré kusy súvisia práve s výrobou spolku Lipa. S bližším určovaním mi nezištne pomohli <em>Tamara Šimončíková Heribanová</em>, <em>Stanislav Talapka</em>, <em>Zuzana Tajek Piešová</em> a <em>Michal Halabrin</em>. Vzhľadom na stav a zloženie, v akom sa kusy našli, snažili sme sa ich identifikovať čo najpresnejšie. Ak by ste mali akékoľvek doplňujúce informácie, budem rada, ak ma <a href="spojme-sa.html" style="color:var(--red);text-decoration:underline;text-underline-offset:3px;">kontaktujete</a> a pomôžete nám s bližším určením.</p>
+    <p class="page-hero-desc">Folk costumes, shirts, waistcoats and vests from the estate of the Šenšel family. We are unable to precisely determine the origin or intended use of each piece, but it is likely that some are connected to the production of the Lipa cooperative. I am deeply grateful to <em>Tamara Šimončíková Heribanová</em>, <em>Stanislav Talapka</em>, <em>Zuzana Tajek Piešová</em> and <em>Michal Halabrin</em> for their generous help with identification. Given the condition and state in which the pieces were found, we have done our best to identify them as precisely as possible. If you have any additional information, I would be glad if you <a href="spojme-sa.html" style="color:var(--red);text-decoration:underline;text-underline-offset:3px;">contacted me</a> and helped us with a more precise identification.</p>
   </div>
 </header>
 
@@ -992,7 +894,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <svg class="hint-ornament" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <path d="M9 1 L11 7 L17 9 L11 11 L9 17 L7 11 L1 9 L7 7 Z" stroke="#D4AF37" stroke-width="0.8" fill="none"/>
       </svg>
-      <p class="hint-text">Kliknite na výšivku — zobrazí sa detail s fotografiami a popisom</p>
+      <p class="hint-text">Click on a garment — a detail with photos and description will appear</p>
       <svg class="hint-ornament" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
         <path d="M9 1 L11 7 L17 9 L11 11 L9 17 L7 11 L1 9 L7 7 Z" stroke="#D4AF37" stroke-width="0.8" fill="none"/>
       </svg>
@@ -1006,23 +908,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <!-- 1 -->
       <div class="masonry-item reveal reveal-delay-1" data-region="Cífer">
         <div class="emb-card" tabindex="0" role="button"
-             aria-label="Otvoriť detail: Detská chlapčenská košeľa"
+             aria-label="Open detail: Boy's folk shirt"
              data-index="0"
-             data-name="Detská chlapčenská košeľa"
+             data-name="Boy's folk shirt"
              data-region="Cífer"
-             data-tags='["Výšivka cez kartón","Paličkovaná čipka","Sviatočný kroj"]'
+             data-tags='["Cardboard embroidery","Bobbin lace","Festive folk costume"]'
              data-photos='["iny%20odev/Kosela_Cifer_1.jpeg", "iny%20odev/Kosela_Cifer_2.jpeg", "iny%20odev/Kosela_Cifer_3.jpeg"]'
-             data-origin="Okolie Trnavy, Cífer."
-             data-technique="Výšivka cez kartón na golieri, výšivka harasom na rukávoch a paličkovaná čipka na konci rukávov."
-             data-use="Sviatočný kroj.">
+             data-origin="Trnava area, Cífer."
+             data-technique="Cardboard embroidery on the collar, heras embroidery on the sleeves and bobbin lace at the end of the sleeves."
+             data-use="Festive folk costume.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/iny%20odev/Kosela_Cifer_1.jpeg"
-               alt="Detská chlapčenská košeľa"
+               alt="Boy's folk shirt"
                loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">01</span>
           <div class="emb-overlay" aria-hidden="true">
-            <span class="emb-overlay-name">Detská chlapčenská košeľa</span>
+            <span class="emb-overlay-name">Boy's folk shirt</span>
             <span class="emb-overlay-region">Cífer</span>
-            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Kliknúť pre detail</span>
+            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Click for detail</span>
           </div>
         </div>
       </div>
@@ -1030,23 +932,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <!-- 2 -->
       <div class="masonry-item reveal reveal-delay-2" data-region="">
         <div class="emb-card" tabindex="0" role="button"
-             aria-label="Otvoriť detail: Modro-červená košeľa"
+             aria-label="Open detail: Blue-and-red shirt"
              data-index="1"
-             data-name="Modro-červená košeľa"
+             data-name="Blue-and-red shirt"
              data-region=""
-             data-tags='["Doplňujú sa informácie o tomto kuse odevu."]'
+             data-tags='["Information about this garment is being added."]'
              data-photos='["iny%20odev/Kosela_modra_cervena1.jpeg", "iny%20odev/Kosela_modra_cervena2.jpeg", "iny%20odev/Kosela_modra_cervena3.jpeg"]'
-             data-origin="Doplňujú sa informácie o tomto kuse odevu."
-             data-technique="Doplňujú sa informácie o tomto kuse odevu."
-             data-use="Doplňujú sa informácie o tomto kuse odevu.">
+             data-origin="Information about this garment is being added."
+             data-technique="Information about this garment is being added."
+             data-use="Information about this garment is being added.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/iny%20odev/Kosela_modra_cervena1.jpeg"
-               alt="Modro-červená košeľa"
+               alt="Blue-and-red shirt"
                loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">02</span>
           <div class="emb-overlay" aria-hidden="true">
-            <span class="emb-overlay-name">Modro-červená košeľa</span>
+            <span class="emb-overlay-name">Blue-and-red shirt</span>
             <span class="emb-overlay-region"></span>
-            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Kliknúť pre detail</span>
+            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Click for detail</span>
           </div>
         </div>
       </div>
@@ -1054,23 +956,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <!-- 3 -->
       <div class="masonry-item reveal reveal-delay-3" data-region="">
         <div class="emb-card" tabindex="0" role="button"
-             aria-label="Otvoriť detail: Modrý lajblík"
+             aria-label="Open detail: Blue folk waistcoat"
              data-index="2"
-             data-name="Modrý lajblík"
+             data-name="Blue folk waistcoat"
              data-region=""
-             data-tags='["Doplňujú sa informácie o tomto kuse odevu."]'
+             data-tags='["Information about this garment is being added."]'
              data-photos='["iny%20odev/Lajblik_modry_1.jpeg", "iny%20odev/Lajblik_modry2.jpeg", "iny%20odev/Lajblik_modry3.jpeg", "iny%20odev/Lajblik_modry4.jpeg"]'
-             data-origin="Doplňujú sa informácie o tomto kuse odevu."
-             data-technique="Doplňujú sa informácie o tomto kuse odevu."
-             data-use="Doplňujú sa informácie o tomto kuse odevu.">
+             data-origin="Information about this garment is being added."
+             data-technique="Information about this garment is being added."
+             data-use="Information about this garment is being added.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/iny%20odev/Lajblik_modry_1.jpeg"
-               alt="Modrý lajblík"
+               alt="Blue folk waistcoat"
                loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">03</span>
           <div class="emb-overlay" aria-hidden="true">
-            <span class="emb-overlay-name">Modrý lajblík</span>
+            <span class="emb-overlay-name">Blue folk waistcoat</span>
             <span class="emb-overlay-region"></span>
-            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Kliknúť pre detail</span>
+            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Click for detail</span>
           </div>
         </div>
       </div>
@@ -1078,23 +980,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <!-- 4 -->
       <div class="masonry-item reveal reveal-delay-4" data-region="">
         <div class="emb-card" tabindex="0" role="button"
-             aria-label="Otvoriť detail: Väčšia modro-červená košeľa"
+             aria-label="Open detail: Larger blue-and-red shirt"
              data-index="3"
-             data-name="Väčšia modro-červená košeľa"
+             data-name="Larger blue-and-red shirt"
              data-region=""
-             data-tags='["Doplňujú sa informácie o tomto kuse odevu."]'
+             data-tags='["Information about this garment is being added."]'
              data-photos='["iny%20odev/Vacsia_kosela_modracervena1.jpeg", "iny%20odev/Vacsia_kosela_modracervena2.jpeg", "iny%20odev/Vacsia_kosela_modracervena3.jpeg", "iny%20odev/Vacsia_kosela_modracervena4.jpeg"]'
-             data-origin="Doplňujú sa informácie o tomto kuse odevu."
-             data-technique="Doplňujú sa informácie o tomto kuse odevu."
-             data-use="Doplňujú sa informácie o tomto kuse odevu.">
+             data-origin="Information about this garment is being added."
+             data-technique="Information about this garment is being added."
+             data-use="Information about this garment is being added.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/iny%20odev/Vacsia_kosela_modracervena1.jpeg"
-               alt="Väčšia modro-červená košeľa"
+               alt="Larger blue-and-red shirt"
                loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">04</span>
           <div class="emb-overlay" aria-hidden="true">
-            <span class="emb-overlay-name">Väčšia modro-červená košeľa</span>
+            <span class="emb-overlay-name">Larger blue-and-red shirt</span>
             <span class="emb-overlay-region"></span>
-            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Kliknúť pre detail</span>
+            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Click for detail</span>
           </div>
         </div>
       </div>
@@ -1102,23 +1004,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <!-- 5 -->
       <div class="masonry-item reveal reveal-delay-5" data-region="">
         <div class="emb-card" tabindex="0" role="button"
-             aria-label="Otvoriť detail: Vyšívaná vesta"
+             aria-label="Open detail: Embroidered vest"
              data-index="4"
-             data-name="Vyšívaná vesta"
+             data-name="Embroidered vest"
              data-region=""
-             data-tags='["Doplňujú sa informácie o tomto kuse odevu."]'
+             data-tags='["Information about this garment is being added."]'
              data-photos='["iny%20odev/Vysivana_vesta1.jpeg", "iny%20odev/Vysivana_vesta2.jpeg", "iny%20odev/Vysivana_vesta3.jpeg"]'
-             data-origin="Doplňujú sa informácie o tomto kuse odevu."
-             data-technique="Doplňujú sa informácie o tomto kuse odevu."
-             data-use="Doplňujú sa informácie o tomto kuse odevu.">
+             data-origin="Information about this garment is being added."
+             data-technique="Information about this garment is being added."
+             data-use="Information about this garment is being added.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/iny%20odev/Vysivana_vesta1.jpeg"
-               alt="Vyšívaná vesta"
+               alt="Embroidered vest"
                loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">05</span>
           <div class="emb-overlay" aria-hidden="true">
-            <span class="emb-overlay-name">Vyšívaná vesta</span>
+            <span class="emb-overlay-name">Embroidered vest</span>
             <span class="emb-overlay-region"></span>
-            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Kliknúť pre detail</span>
+            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Click for detail</span>
           </div>
         </div>
       </div>
@@ -1126,23 +1028,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <!-- 6 -->
       <div class="masonry-item reveal reveal-delay-1" data-region="">
         <div class="emb-card" tabindex="0" role="button"
-             aria-label="Otvoriť detail: Bielo-modrá košeľa"
+             aria-label="Open detail: White-and-blue shirt"
              data-index="5"
-             data-name="Bielo-modrá košeľa"
+             data-name="White-and-blue shirt"
              data-region=""
-             data-tags='["Doplňujú sa informácie o tomto kuse odevu."]'
+             data-tags='["Information about this garment is being added."]'
              data-photos='["iny%20odev/bielomodra_kosela1.jpeg", "iny%20odev/bielomodra_kosela2.jpeg", "iny%20odev/bielomodra_kosela3.jpeg"]'
-             data-origin="Doplňujú sa informácie o tomto kuse odevu."
-             data-technique="Doplňujú sa informácie o tomto kuse odevu."
-             data-use="Doplňujú sa informácie o tomto kuse odevu.">
+             data-origin="Information about this garment is being added."
+             data-technique="Information about this garment is being added."
+             data-use="Information about this garment is being added.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/iny%20odev/bielomodra_kosela1.jpeg"
-               alt="Bielo-modrá košeľa"
+               alt="White-and-blue shirt"
                loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">06</span>
           <div class="emb-overlay" aria-hidden="true">
-            <span class="emb-overlay-name">Bielo-modrá košeľa</span>
+            <span class="emb-overlay-name">White-and-blue shirt</span>
             <span class="emb-overlay-region"></span>
-            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Kliknúť pre detail</span>
+            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Click for detail</span>
           </div>
         </div>
       </div>
@@ -1150,23 +1052,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <!-- 7 -->
       <div class="masonry-item reveal reveal-delay-2" data-region="">
         <div class="emb-card" tabindex="0" role="button"
-             aria-label="Otvoriť detail: Tmavomodrý lajblík"
+             aria-label="Open detail: Dark blue folk waistcoat"
              data-index="6"
-             data-name="Tmavomodrý lajblík"
+             data-name="Dark blue folk waistcoat"
              data-region=""
-             data-tags='["Doplňujú sa informácie o tomto kuse odevu."]'
+             data-tags='["Information about this garment is being added."]'
              data-photos='["iny%20odev/lajblik_tmavomodry1.jpeg", "iny%20odev/lajblik_tmavomodry2.jpeg", "iny%20odev/lajblik_tmavomodry3.jpeg", "iny%20odev/lajblik_tmavomodry4.jpeg"]'
-             data-origin="Doplňujú sa informácie o tomto kuse odevu."
-             data-technique="Doplňujú sa informácie o tomto kuse odevu."
-             data-use="Doplňujú sa informácie o tomto kuse odevu.">
+             data-origin="Information about this garment is being added."
+             data-technique="Information about this garment is being added."
+             data-use="Information about this garment is being added.">
           <img src="https://avolesnes-tech.github.io/anna-senselova/iny%20odev/lajblik_tmavomodry1.jpeg"
-               alt="Tmavomodrý lajblík"
+               alt="Dark blue folk waistcoat"
                loading="eager" fetchpriority="high" decoding="async">
           <span class="emb-index" aria-hidden="true">07</span>
           <div class="emb-overlay" aria-hidden="true">
-            <span class="emb-overlay-name">Tmavomodrý lajblík</span>
+            <span class="emb-overlay-name">Dark blue folk waistcoat</span>
             <span class="emb-overlay-region"></span>
-            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Kliknúť pre detail</span>
+            <span class="emb-overlay-hint"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="3.5" y1="5.5" x2="7.5" y2="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/><line x1="5.5" y1="3.5" x2="5.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/></svg>Click for detail</span>
           </div>
         </div>
       </div>
@@ -1176,7 +1078,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
     </div><!-- /masonry-grid -->
 
     <div class="empty-state" id="emptyState">
-      <p>Žiadne výšivky sa nezhodujú s vybraným filtrom.</p>
+      <p>No garments match the selected filter.</p>
     </div>
 
   </div><!-- /gallery-outer -->
@@ -1186,7 +1088,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <footer>
   <div class="footer-top">
     <div>
-      <p class="footer-col-title">Príbeh</p>
+      <p class="footer-col-title">Story</p>
       <ul class="footer-links">
         <li><a href="anna-senselova.html">Anna Šenšelová</a></li>
         <li><a href="anna-lockwoodova.html">Anna Lockwoodová</a></li>
@@ -1204,28 +1106,28 @@ section[id], div[id] { scroll-margin-top: 72px; }
         <circle cx="30" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
         <circle cx="150" cy="15" r="2" fill="#D4AF37" opacity="0.6"/>
       </svg>
-      <p class="footer-tagline">Vytvorené s láskou a úctou k predošlým generáciám.</p>
+      <p class="footer-tagline">Created with love and respect for past generations.</p>
       <div class="footer-social">
-        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Facebooku">Facebook</a>
+        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Facebook">Facebook</a>
         <span class="footer-social-sep">·</span>
-        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Mapa spomienok na Instagrame">Instagram</a>
+        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Instagram">Instagram</a>
       </div>
     </div>
     <div>
-      <p class="footer-col-title">Galéria & Mapa</p>
+      <p class="footer-col-title">Gallery &amp; Map</p>
       <ul class="footer-links">
-        <li><a href="galeria-vysiviek.html">Vzorkovník výšiviek</a></li>
-        <li><a href="galeria-ludove.html">Ľudové výšivky a odev</a></li>
-        <li><a href="galeria-babik.html">Krojované bábiky</a></li>
-        <li><a href="mapa-spomienok.html">Mapa spomienok</a></li>
-        <li><a href="spojme-sa.html">Spojme sa</a></li>
+        <li><a href="galeria-vysiviek.html">Embroidery Collection</a></li>
+        <li><a href="galeria-ludove.html">Folk Embroideries &amp; Dress</a></li>
+        <li><a href="galeria-babik.html">Folk costume dolls</a></li>
+        <li><a href="mapa-spomienok.html">Map of Memories</a></li>
+        <li><a href="spojme-sa.html">Get in touch</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-divider"></div>
   <p class="footer-copy">© 2026 Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:inherit;opacity:0.7;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">senselovaanna@gmail.com</a></p>
-  <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Ochrana osobných údajov</button></p>
-  <p class="footer-disclaimer">Zbierka výšiviek, bábik a pozostalosti po rodine Šenšelovcov nie je mojím osobným vlastníctvom — je dedičstvom celej rodiny. Výšivky, bábiky ani kroje nie sú na predaj.</p>
+  <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Privacy policy</button></p>
+  <p class="footer-disclaimer">The collection of embroideries, dolls and the estate of the Šenšel family is not my personal property — it is the heritage of the entire family. Embroideries, dolls and folk costumes are not for sale.</p>
 </footer>
 
 <script>
@@ -1253,14 +1155,12 @@ section[id], div[id] { scroll-margin-top: 72px; }
       closeAllDropdowns();
     }
 
-    // Hamburger toggle
     hamburger.addEventListener('click', function() {
       var isOpen = navMenu.classList.toggle('open');
       hamburger.classList.toggle('open', isOpen);
       hamburger.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // Mobile: tap top-level link that has dropdown → toggle dropdown
     navMenu.querySelectorAll('li > a').forEach(function(link) {
       link.addEventListener('click', function(e) {
         var li = this.closest('li');
@@ -1268,23 +1168,19 @@ section[id], div[id] { scroll-margin-top: 72px; }
         if (dd && isMobile()) {
           e.preventDefault();
           var isOpen = dd.classList.toggle('open');
-          // Close other open dropdowns
           navMenu.querySelectorAll('.dropdown.open').forEach(function(d) {
             if (d !== dd) d.classList.remove('open');
           });
         } else if (!dd) {
-          // Plain link — close the menu after short delay so page transition works
           closeMenu();
         }
       });
     });
 
-    // Mobile: clicking a dropdown link closes the menu
     navMenu.querySelectorAll('.dropdown a').forEach(function(a) {
       a.addEventListener('click', function() { closeMenu(); });
     });
 
-    // Desktop: hover with delay so mouse can travel to dropdown
     navMenu.querySelectorAll('li').forEach(function(li) {
       var dd = li.querySelector('.dropdown');
       if (!dd) return;
@@ -1304,14 +1200,12 @@ section[id], div[id] { scroll-margin-top: 72px; }
       dd.addEventListener('mouseleave', scheduleHide);
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', function(e) {
       if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
         closeMenu();
       }
     });
 
-    // Close mobile menu on resize to desktop
     window.addEventListener('resize', function() {
       if (!isMobile()) {
         closeMenu();
@@ -1319,12 +1213,10 @@ section[id], div[id] { scroll-margin-top: 72px; }
       }
     });
 
-    // Close on Escape
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeMenu();
     });
 
-    // Highlight active page
     var path = window.location.pathname.split('/').pop() || 'index.html';
     navMenu.querySelectorAll('a[href]').forEach(function(a) {
       var href = a.getAttribute('href').split('#')[0].split('/').pop();
@@ -1511,11 +1403,11 @@ section[id], div[id] { scroll-margin-top: 72px; }
       // Thumb
       const btn = document.createElement('button');
       btn.className = 'panel-thumb' + (i === 0 ? ' active' : '');
-      btn.setAttribute('aria-label', 'Fotografia ' + (i + 1));
+      btn.setAttribute('aria-label', 'Photo ' + (i + 1));
       btn.setAttribute('tabindex', '0');
       const img = document.createElement('img');
       img.src = BASE + photo;
-      img.alt = card.dataset.name + ' — fotografia ' + (i + 1);
+      img.alt = card.dataset.name + ' — photo ' + (i + 1);
       img.loading = 'lazy';
       btn.appendChild(img);
       btn.addEventListener('click', () => switchPhoto(photos, i));
@@ -1525,7 +1417,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
       // Dot
       const dot = document.createElement('button');
       dot.className = 'panel-photo-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Fotografia ' + (i + 1));
+      dot.setAttribute('aria-label', 'Photo ' + (i + 1));
       dot.addEventListener('click', () => switchPhoto(photos, i));
       panelDots.appendChild(dot);
     });
@@ -1545,7 +1437,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
   function switchPhoto(photos, idx) {
     currentPhotoIdx = idx;
     setMainPhoto(photos, idx);
-    // Update thumbs
     document.querySelectorAll('.panel-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
     document.querySelectorAll('.panel-photo-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
   }
@@ -1612,9 +1503,9 @@ section[id], div[id] { scroll-margin-top: 72px; }
       navigator.share({ title: panelTitle.textContent, url: window.location.href });
     } else {
       navigator.clipboard.writeText(window.location.href).then(() => {
-        panelShareBtn.textContent = 'Skopírované ✓';
+        panelShareBtn.textContent = 'Copied ✓';
         setTimeout(() => {
-          panelShareBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="10.5" cy="2.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><circle cx="10.5" cy="10.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><circle cx="2.5" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><line x1="4.3" y1="5.6" x2="8.7" y2="3.4" stroke="currentColor" stroke-width="1"/><line x1="4.3" y1="7.4" x2="8.7" y2="9.6" stroke="currentColor" stroke-width="1"/></svg> Zdieľať';
+          panelShareBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="10.5" cy="2.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><circle cx="10.5" cy="10.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><circle cx="2.5" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><line x1="4.3" y1="5.6" x2="8.7" y2="3.4" stroke="currentColor" stroke-width="1"/><line x1="4.3" y1="7.4" x2="8.7" y2="9.6" stroke="currentColor" stroke-width="1"/></svg> Share';
         }, 2000);
       });
     }
@@ -1647,13 +1538,13 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <!-- GDPR Modal -->
 <div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
   <div class="gdpr-box">
-    <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Zavrieť">✕</button>
-    <h2 id="gdpr-title">Ochrana osobných údajov</h2>
-    <p><strong>Prevádzkovateľ webu:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
-    <p>Táto stránka je nekomerčný informačný web vytvorený vo voľnom čase. Nevznikajú z nej žiadne obchodné záväzky.</p>
-    <p><strong>Kontaktný formulár:</strong> Ak mi napíšete prostredníctvom kontaktného formulára, spracúvam tieto údaje: meno, e-mailová adresa a text správy. Slúžia výlučne na to, aby som vám mohla odpovedať. Údaje nie sú zdieľané s tretími stranami a po vybavení komunikácie ich vymažem.</p>
-    <p><strong>Vaše práva:</strong> Máte právo požiadať o prístup k svojim údajom, ich opravu alebo vymazanie. Stačí napísať na vyššie uvedený e-mail.</p>
-    <p><strong>Cookies a fonty:</strong> Web nepoužíva sledovacie ani analytické cookies. Písma (fonty) sú hostované priamo na tomto serveri — žiadne dáta sa neposielajú do Google ani iným tretím stranám.</p>
+    <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Close">✕</button>
+    <h2 id="gdpr-title">Privacy policy</h2>
+    <p><strong>Website operator:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
+    <p>This is a non-commercial informational website created in my free time. No commercial obligations arise from it.</p>
+    <p><strong>Contact form:</strong> If you write to me through the contact form, I process the following data: name, email address and message text. These are used solely to allow me to respond to you. The data is not shared with third parties and will be deleted once communication is complete.</p>
+    <p><strong>Your rights:</strong> You have the right to request access to your data, its correction or deletion. Simply write to the email address above.</p>
+    <p><strong>Cookies and fonts:</strong> This website does not use tracking or analytics cookies. Fonts are hosted directly on this server, so no data is sent to Google or any third parties.</p>
   </div>
 </div>
 <script>
