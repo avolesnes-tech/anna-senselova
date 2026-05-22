@@ -48,7 +48,7 @@
   --panel-width: min(680px, 100vw);
 }
 
-body { font-size: 19px; }
+body { font-size: 20px; }
 
 body.panel-open { overflow: hidden; }
 
@@ -157,7 +157,7 @@ body.panel-open { overflow: hidden; }
 .page-hero-desc {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.05rem;
-  color: #555;
+  color: #333;
   line-height: 1.85;
   max-width: 640px;
   margin: 0 auto;
@@ -167,7 +167,7 @@ body.panel-open { overflow: hidden; }
 .page-hero-credit {
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem;
-  color: #666;
+  color: #3A3A3A;
   line-height: 1.85;
   max-width: 640px;
   margin: 2rem auto 0;
@@ -664,7 +664,7 @@ body.panel-open { overflow: hidden; }
 .panel-section p {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.02rem;
-  color: #444;
+  color: #252525;
   line-height: 1.8;
 }
 
@@ -1567,12 +1567,14 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
   <div class="gdpr-box">
     <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Close">✕</button>
-    <h2 id="gdpr-title">Privacy policy</h2>
+    <h2 id="gdpr-title">Privacy Policy</h2>
     <p><strong>Website operator:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
     <p>This is a non-commercial informational website created in my free time. No commercial obligations arise from it.</p>
-    <p><strong>Contact form:</strong> If you write to me through the contact form, I process the following data: name, email address and message text. These are used solely to allow me to respond to you. The data is not shared with third parties and will be deleted once communication is complete.</p>
+    <p><strong>Contact form:</strong> If you write to me via the contact form, I process the following data: your name, email address and message text. These are used solely to reply to you. Messages are processed by Formspree, Inc. (USA) as a technical processor. Data is not used for any other purpose and will be deleted after our correspondence is concluded.</p>
+    <p><strong>Newsletter:</strong> If you subscribe to the newsletter, I store your email address solely to send you updates about this website. You may unsubscribe at any time by writing to senselovaanna@gmail.com. Email addresses are processed via Formspree, Inc. (USA).</p>
+    <p><strong>Map of Memories:</strong> If you submit an ancestral story, I process the following data: the ancestor's first and last name, the story text, your first and last name, and optionally your email address and a photograph. This data is stored in the Supabase (USA) database and displayed publicly on the map. If you gave consent, the story and photograph may be shared on Facebook and Instagram. You may withdraw this consent at any time by writing to senselovaanna@gmail.com.</p>
     <p><strong>Your rights:</strong> You have the right to request access to your data, its correction or deletion. Simply write to the email address above.</p>
-    <p><strong>Cookies and fonts:</strong> This website does not use tracking or analytics cookies. Fonts are hosted directly on this server, so no data is sent to Google or any third parties.</p>
+    <p><strong>Cookies:</strong> This website does not use tracking or analytics cookies — a cookie consent banner is therefore not required. Forms are processed by Formspree and stories are stored by Supabase; both providers may use technical cookies necessary for the operation of their services. Fonts are hosted directly on this server.</p>
   </div>
 </div>
 <script>

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="style.css">
 <style>
-body { font-size: 19px; }
+body { font-size: 20px; }
 
 #hero { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 2rem 2rem; background: var(--cream); position: relative; overflow: hidden; }
 #hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.06) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(212,175,55,0.07) 0%, transparent 60%); pointer-events: none; }
@@ -39,7 +39,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
 .fakty-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
 .fakt-card { background: var(--cream); border-top: 2px solid var(--red); padding: 1.2rem 1.4rem; }
 .fakt-card h4 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
-.fakt-card p { font-size: 0.95rem; color: #555; line-height: 1.7; margin: 0; }
+.fakt-card p { font-size: 0.95rem; color: #333; line-height: 1.7; margin: 0; }
 
 /* ─── INTERAKTÍVNA ČASOVÁ OS ─────────────────────────── */
 .timeline-section { padding: 5rem 2rem 6rem; position: relative; }
@@ -51,7 +51,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 1rem;
-  color: #888;
+  color: #5A5A5A;
   margin-bottom: 4rem;
 }
 
@@ -176,7 +176,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
   margin-bottom: 0.2rem;
 }
 .card-gold .zt-tag { color: var(--gold-dark); }
-.card-dark .zt-tag { color: #555; }
+.card-dark .zt-tag { color: #333; }
 
 .zt-year {
   font-family: 'Pinyon Script', cursive;
@@ -198,7 +198,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
 .zt-text {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.02rem;
-  color: #444;
+  color: #252525;
   line-height: 1.82;
   margin: 0;
 }
@@ -338,7 +338,7 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
   font-family: 'Cinzel', serif;
   font-size: 0.55rem;
   letter-spacing: 0.1em;
-  color: #888;
+  color: #5A5A5A;
   display: block;
   margin-top: 0.3rem;
   font-style: italic;
@@ -402,7 +402,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
 }
 .galeria-header p {
   font-size: 0.97rem;
-  color: #555;
+  color: #333;
   font-style: italic;
   max-width: 520px;
   margin: 0 auto;
@@ -1211,9 +1211,11 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <h2 id="gdpr-title">Ochrana osobných údajov</h2>
     <p><strong>Prevádzkovateľ webu:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
     <p>Táto stránka je nekomerčný informačný web vytvorený vo voľnom čase. Nevznikajú z nej žiadne obchodné záväzky.</p>
-    <p><strong>Kontaktný formulár:</strong> Ak mi napíšete prostredníctvom kontaktného formulára, spracúvam tieto údaje: meno, e-mailová adresa a text správy. Slúžia výlučne na to, aby som vám mohla odpovedať. Údaje nie sú zdieľané s tretími stranami a po vybavení komunikácie ich vymažem.</p>
+    <p><strong>Kontaktný formulár:</strong> Ak mi napíšete prostredníctvom kontaktného formulára, spracúvam tieto údaje: meno, e-mailová adresa a text správy. Slúžia výlučne na to, aby som vám mohla odpovedať. Správu technicky spracúva Formspree, Inc. (USA) ako sprostredkovateľ. Údaje nie sú využívané na iné účely a po vybavení komunikácie ich vymažem.</p>
+    <p><strong>Newsletter:</strong> Ak sa prihlásite na odber newslettera, uchovávam vašu e-mailovú adresu výlučne na zasielanie noviniek o obsahu tejto stránky. Odber môžete kedykoľvek zrušiť e-mailom na senselovaanna@gmail.com. Adresy sú spracúvané cez Formspree, Inc. (USA).</p>
+    <p><strong>Mapa spomienok:</strong> Ak odošlete príbeh predka, spracúvam tieto údaje: meno a priezvisko predka, text príbehu, vaše meno, priezvisko a prípadne e-mail a fotografiu. Tieto údaje sú uložené v databáze Supabase (USA) a zobrazené verejne na mape. Ak ste udelili súhlas, príbeh a fotografia môžu byť zdieľané na Facebooku a Instagrame. Tento súhlas môžete kedykoľvek odvolať na senselovaanna@gmail.com.</p>
     <p><strong>Vaše práva:</strong> Máte právo požiadať o prístup k svojim údajom, ich opravu alebo vymazanie. Stačí napísať na vyššie uvedený e-mail.</p>
-    <p><strong>Cookies a fonty:</strong> Web nepoužíva sledovacie ani analytické cookies. Písma (fonty) sú hostované priamo na tomto serveri — žiadne dáta sa neposielajú do Google ani iným tretím stranám.</p>
+    <p><strong>Cookies:</strong> Web nepoužíva sledovacie ani analytické cookies — lišta súhlasu s cookies preto nie je potrebná. Formuláre spracúva Formspree a príbehy ukladá Supabase; obaja poskytovatelia môžu používať technické cookies nevyhnutné na fungovanie svojich služieb. Písma sú hostované priamo na tomto serveri.</p>
   </div>
 </div>
 <script>

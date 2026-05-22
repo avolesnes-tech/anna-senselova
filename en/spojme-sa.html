@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="../fonts.css">
 <link rel="stylesheet" href="../style.css">
 <style>
-body { font-size: 19px; }
+body { font-size: 20px; }
 
 /* HERO */
 #hero { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; background: var(--cream); position: relative; overflow: hidden; }
@@ -31,14 +31,14 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem);
 .content-wrap { max-width: 780px; margin: 0 auto; padding: 5rem 2rem 3rem; }
 
 .intro-block { text-align: center; margin-bottom: 4rem; }
-.intro-block p { font-size: 1.1rem; color: #444; line-height: 1.9; margin-bottom: 1rem; }
+.intro-block p { font-size: 1.1rem; color: #252525; line-height: 1.9; margin-bottom: 1rem; }
 .intro-block .highlight { font-style: italic; font-size: 1.2rem; color: var(--ink); border-left: 3px solid var(--red); padding-left: 1.2rem; text-align: left; margin: 2rem 0; }
 
 /* REASONS */
 .reasons { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
 .reason-card { background: var(--section-alt); padding: 1.5rem; border-top: 2px solid var(--red); }
 .reason-card h3 { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
-.reason-card p { font-size: 0.95rem; color: #555; line-height: 1.7; font-style: italic; }
+.reason-card p { font-size: 0.95rem; color: #333; line-height: 1.7; font-style: italic; }
 
 /* INSPIRATION */
 .inspiration { background: var(--red); color: var(--cream); padding: 4rem 2rem; text-align: center; margin: 0; }
@@ -65,11 +65,11 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem);
 .btn-submit { display: block; width: 100%; padding: 1rem 2rem; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid var(--red); color: var(--red); background: transparent; cursor: pointer; transition: background 0.3s, color 0.3s; margin-top: 0.5rem; }
 .btn-submit:hover { background: var(--red); color: var(--cream); }
 
-.form-note { font-size: 0.82rem; color: #767676; font-style: italic; text-align: center; margin-top: 1rem; }
+.form-note { font-size: 0.82rem; color: #555; font-style: italic; text-align: center; margin-top: 1rem; }
 
 #confirm-msg { display: none; text-align: center; padding: 2rem; }
 #confirm-msg h3 { font-family: 'Pinyon Script', cursive; font-size: 2.5rem; color: var(--red); line-height: 1.75; margin-bottom: 0.5rem; }
-#confirm-msg p { font-size: 1rem; color: #555; font-style: italic; }
+#confirm-msg p { font-size: 1rem; color: #333; font-style: italic; }
 
 @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } .reasons { grid-template-columns: 1fr; } }
 
@@ -121,7 +121,7 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem);
 }
 .offer-card p {
   font-size: 0.97rem;
-  color: #555;
+  color: #333;
   line-height: 1.75;
 }
 .offer-note {
@@ -133,7 +133,7 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem);
 }
 .offer-note p {
   font-size: 1rem;
-  color: #444;
+  color: #252525;
   line-height: 1.85;
   font-style: italic;
 }
@@ -259,9 +259,9 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <h2 style="font-family:'Pinyon Script',cursive; font-size:clamp(2.4rem,5vw,4rem); color:var(--red); line-height:1.75; text-align:center; margin-bottom:0.5rem;">Created in my spare time</h2>
       <div class="gold-line"></div>
 
-      <p style="text-align:center; color:#444; font-size:1.05rem; line-height:1.9; max-width:620px; margin:0 auto 1.6rem;">This website was not commissioned or created out of obligation. It was born because I enjoyed it — searching, reading, piecing together a story from fragments that had been gathering dust in a plastic bag for decades. It was a joy, and I wanted to share it.</p>
+      <p style="text-align:center; color:#252525; font-size:1.05rem; line-height:1.9; max-width:620px; margin:0 auto 1.6rem;">This website was not commissioned or created out of obligation. It was born because I enjoyed it — searching, reading, piecing together a story from fragments that had been gathering dust in a plastic bag for decades. It was a joy, and I wanted to share it.</p>
 
-      <p style="text-align:center; color:#444; font-size:1.05rem; line-height:1.9; max-width:620px; margin:0 auto 0;">If you have your own story that deserves similar treatment — a family history, folk art, a place that should not be forgotten — and you'd like to preserve it digitally, feel free to get in touch. I'd be happy to talk about what you have and what might be possible. No obligations.</p>
+      <p style="text-align:center; color:#252525; font-size:1.05rem; line-height:1.9; max-width:620px; margin:0 auto 0;">If you have your own story that deserves similar treatment — a family history, folk art, a place that should not be forgotten — and you'd like to preserve it digitally, feel free to get in touch. I'd be happy to talk about what you have and what might be possible. No obligations.</p>
     </div>
   </div>
 
@@ -537,12 +537,14 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
   <div class="gdpr-box">
     <button class="gdpr-close" onclick="document.getElementById('gdpr-modal').classList.remove('open')" aria-label="Close">✕</button>
-    <h2 id="gdpr-title">Privacy policy</h2>
+    <h2 id="gdpr-title">Privacy Policy</h2>
     <p><strong>Website operator:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
     <p>This is a non-commercial informational website created in my free time. No commercial obligations arise from it.</p>
-    <p><strong>Contact form:</strong> If you write to me through the contact form, I process the following data: name, email address and message text. These are used solely to allow me to respond to you. The data is not shared with third parties and will be deleted once communication is complete.</p>
+    <p><strong>Contact form:</strong> If you write to me via the contact form, I process the following data: your name, email address and message text. These are used solely to reply to you. Messages are processed by Formspree, Inc. (USA) as a technical processor. Data is not used for any other purpose and will be deleted after our correspondence is concluded.</p>
+    <p><strong>Newsletter:</strong> If you subscribe to the newsletter, I store your email address solely to send you updates about this website. You may unsubscribe at any time by writing to senselovaanna@gmail.com. Email addresses are processed via Formspree, Inc. (USA).</p>
+    <p><strong>Map of Memories:</strong> If you submit an ancestral story, I process the following data: the ancestor's first and last name, the story text, your first and last name, and optionally your email address and a photograph. This data is stored in the Supabase (USA) database and displayed publicly on the map. If you gave consent, the story and photograph may be shared on Facebook and Instagram. You may withdraw this consent at any time by writing to senselovaanna@gmail.com.</p>
     <p><strong>Your rights:</strong> You have the right to request access to your data, its correction or deletion. Simply write to the email address above.</p>
-    <p><strong>Cookies and fonts:</strong> This website does not use tracking or analytics cookies. Fonts are hosted directly on this server, so no data is sent to Google or any third parties.</p>
+    <p><strong>Cookies:</strong> This website does not use tracking or analytics cookies — a cookie consent banner is therefore not required. Forms are processed by Formspree and stories are stored by Supabase; both providers may use technical cookies necessary for the operation of their services. Fonts are hosted directly on this server.</p>
   </div>
 </div>
 <script>

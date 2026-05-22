@@ -95,7 +95,7 @@ section { padding: 5.5rem 2rem; }
 h2.script { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 5rem); color: var(--red); line-height: 1.4; margin-bottom: 0.5rem; text-align: center; }
 h2.cinzel { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 600; letter-spacing: 0.1em; color: var(--red); text-transform: uppercase; margin-bottom: 0.5rem; }
 p.lead { font-size: 1.18rem; line-height: 1.9; color: #333; margin-bottom: 1.4rem; }
-p.body { font-size: 1.08rem; line-height: 1.88; color: #444; margin-bottom: 1.2rem; }
+p.body { font-size: 1.08rem; line-height: 1.88; color: #252525; margin-bottom: 1.2rem; }
 p.body:last-child { margin-bottom: 0; }
 
 /* INTRO — editorial 2-col */
@@ -144,7 +144,7 @@ p.body:last-child { margin-bottom: 0; }
 /* Pravý stĺpec — text */
 .intro-text h2.script { text-align: left; }
 .intro-text .gold-line { margin-left: 0; }
-.intro-text blockquote { border-left: 3px solid var(--gold); padding: 0.8rem 1.4rem; margin: 1.8rem 0; font-style: italic; font-size: 1.05rem; color: #555; background: rgba(212,175,55,0.05); }
+.intro-text blockquote { border-left: 3px solid var(--gold); padding: 0.8rem 1.4rem; margin: 1.8rem 0; font-style: italic; font-size: 1.05rem; color: #333; background: rgba(212,175,55,0.05); }
 .intro-text blockquote cite { display: block; margin-top: 0.55rem; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); font-style: normal; }
 
 /* Animácie */
@@ -178,7 +178,7 @@ p.body:last-child { margin-bottom: 0; }
 .sort-card::before { content: attr(data-num); position: absolute; top: 0.7rem; right: 0.9rem; z-index: 10; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.75); }
 .sort-card--placeholder::before { color: var(--gold-dark); }
 .sort-card h3 { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.7rem; }
-.sort-card p { font-size: 0.93rem; color: #555; line-height: 1.75; }
+.sort-card p { font-size: 0.93rem; color: #333; line-height: 1.75; }
 
 /* Photo card */
 .sort-photo-wrap { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #ede5d8; }
@@ -260,7 +260,7 @@ p.body:last-child { margin-bottom: 0; }
 @media (prefers-reduced-motion: reduce) { .tl-dot.red::after { animation: none; } }
 .tl-content { padding-top: 0.5rem; }
 .tl-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; color: var(--red); margin-bottom: 0.3rem; }
-.tl-content p { font-size: 0.97rem; color: #444; line-height: 1.8; }
+.tl-content p { font-size: 0.97rem; color: #252525; line-height: 1.8; }
 
 /* VYSTAVY */
 #vystavy { background: var(--cream); }
@@ -270,7 +270,7 @@ p.body:last-child { margin-bottom: 0; }
 .vystava-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .vystava-card .rok { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 600; color: var(--gold-dark); display: block; margin-bottom: 0.4rem; letter-spacing: 0.06em; }
 .vystava-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 0.6rem; letter-spacing: 0.04em; }
-.vystava-card p { font-size: 0.93rem; color: #555; line-height: 1.75; }
+.vystava-card p { font-size: 0.93rem; color: #333; line-height: 1.75; }
 
 /* FINANCIE — TABUĽKA */
 #financie { background: var(--section-alt); }
@@ -280,11 +280,11 @@ thead tr { background: var(--red); }
 thead th { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; padding: 0.9rem 1rem; text-align: center; font-weight: 600; }
 tbody tr { border-bottom: 1px solid rgba(212,175,55,0.25); transition: background 0.2s; }
 tbody tr:hover { background: rgba(212,175,55,0.06); }
-tbody td { padding: 0.7rem 1rem; text-align: center; color: #444; font-size: 0.93rem; }
+tbody td { padding: 0.7rem 1rem; text-align: center; color: #252525; font-size: 0.93rem; }
 tbody td:first-child { font-family: 'Cinzel', serif; font-weight: 600; color: var(--red); font-size: 0.88rem; }
 tfoot tr { background: rgba(196,30,58,0.05); border-top: 2px solid var(--gold); }
-tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: #767676; text-align: center; }
-.table-note { font-size: 0.82rem; font-style: italic; color: #767676; margin-top: 1rem; text-align: center; }
+tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: #555; text-align: center; }
+.table-note { font-size: 0.82rem; font-style: italic; color: #555; margin-top: 1rem; text-align: center; }
 
 /* BRATISLAVA */
 #bratislava { background: var(--cream); }
@@ -396,7 +396,7 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
 .zeny-body {
   font-size: 1rem;
   line-height: 1.85;
-  color: #444;
+  color: #252525;
   margin-bottom: 1.1rem;
 }
 
@@ -439,7 +439,7 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
   gap: 0.9rem;
   align-items: baseline;
   font-size: 0.97rem;
-  color: #444;
+  color: #252525;
   line-height: 1.75;
 }
 
@@ -460,7 +460,7 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
 .zeny-note-text {
   font-size: 1rem;
   line-height: 1.85;
-  color: #555;
+  color: #333;
   font-style: italic;
 }
 
@@ -502,7 +502,7 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
 
 .galeria-header p {
   font-size: 0.97rem;
-  color: #555;
+  color: #333;
   font-style: italic;
   max-width: 520px;
   margin: 0 auto;
@@ -1708,9 +1708,11 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <h2 id="gdpr-title">Ochrana osobných údajov</h2>
     <p><strong>Prevádzkovateľ webu:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
     <p>Táto stránka je nekomerčný informačný web vytvorený vo voľnom čase. Nevznikajú z nej žiadne obchodné záväzky.</p>
-    <p><strong>Kontaktný formulár:</strong> Ak mi napíšete prostredníctvom kontaktného formulára, spracúvam tieto údaje: meno, e-mailová adresa a text správy. Slúžia výlučne na to, aby som vám mohla odpovedať. Údaje nie sú zdieľané s tretími stranami a po vybavení komunikácie ich vymažem.</p>
+    <p><strong>Kontaktný formulár:</strong> Ak mi napíšete prostredníctvom kontaktného formulára, spracúvam tieto údaje: meno, e-mailová adresa a text správy. Slúžia výlučne na to, aby som vám mohla odpovedať. Správu technicky spracúva Formspree, Inc. (USA) ako sprostredkovateľ. Údaje nie sú využívané na iné účely a po vybavení komunikácie ich vymažem.</p>
+    <p><strong>Newsletter:</strong> Ak sa prihlásite na odber newslettera, uchovávam vašu e-mailovú adresu výlučne na zasielanie noviniek o obsahu tejto stránky. Odber môžete kedykoľvek zrušiť e-mailom na senselovaanna@gmail.com. Adresy sú spracúvané cez Formspree, Inc. (USA).</p>
+    <p><strong>Mapa spomienok:</strong> Ak odošlete príbeh predka, spracúvam tieto údaje: meno a priezvisko predka, text príbehu, vaše meno, priezvisko a prípadne e-mail a fotografiu. Tieto údaje sú uložené v databáze Supabase (USA) a zobrazené verejne na mape. Ak ste udelili súhlas, príbeh a fotografia môžu byť zdieľané na Facebooku a Instagrame. Tento súhlas môžete kedykoľvek odvolať na senselovaanna@gmail.com.</p>
     <p><strong>Vaše práva:</strong> Máte právo požiadať o prístup k svojim údajom, ich opravu alebo vymazanie. Stačí napísať na vyššie uvedený e-mail.</p>
-    <p><strong>Cookies a fonty:</strong> Web nepoužíva sledovacie ani analytické cookies. Písma (fonty) sú hostované priamo na tomto serveri — žiadne dáta sa neposielajú do Google ani iným tretím stranám.</p>
+    <p><strong>Cookies:</strong> Web nepoužíva sledovacie ani analytické cookies — lišta súhlasu s cookies preto nie je potrebná. Formuláre spracúva Formspree a príbehy ukladá Supabase; obaja poskytovatelia môžu používať technické cookies nevyhnutné na fungovanie svojich služieb. Písma sú hostované priamo na tomto serveri.</p>
   </div>
 </div>
 <script>

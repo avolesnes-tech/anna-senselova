@@ -21,7 +21,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--cream); color: var(--ink);
   font-family: 'Cormorant Garamond', serif;
-  font-size: 19px; line-height: 1.7;
+  font-size: 20px; line-height: 1.7;
   overflow-x: hidden;
   opacity: 1; transition: opacity 0.35s ease;
 }
@@ -177,7 +177,7 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
 .lang-current { color: var(--red); font-weight: 700; }
 .lang-sep { color: rgba(0,0,0,0.25); font-weight: 300; }
 .lang-link {
-  color: #888; text-decoration: none;
+  color: #5A5A5A; text-decoration: none;
   transition: color 0.25s ease;
 }
 .lang-link:hover { color: var(--red); }
@@ -269,7 +269,7 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
 }
 .gdpr-box p {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem; color: #444; line-height: 1.85;
+  font-size: 1rem; color: #252525; line-height: 1.85;
   margin-bottom: 1rem;
 }
 .gdpr-box strong { color: var(--ink); }
@@ -349,7 +349,7 @@ footer {
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--red); margin-bottom: 1.5rem;
 }
-.gdpr-box p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; color: #444; }
+.gdpr-box p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; color: #252525; }
 .gdpr-box p:last-child { margin-bottom: 0; }
 
 .gdpr-close {
@@ -530,7 +530,7 @@ body.ornaments-always .side-ornament { opacity: 0.13; }
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1rem, 2vw, 1.12rem);
   font-style: italic;
-  color: #555;
+  color: #333;
   line-height: 1.85;
   margin: 1.5rem 0 2.2rem;
 }
@@ -541,7 +541,7 @@ body.ornaments-always .side-ornament { opacity: 0.13; }
 .blog-preview-perex {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.02rem; font-style: italic;
-  color: #666; line-height: 1.85; margin-bottom: 2.5rem;
+  color: #3A3A3A; line-height: 1.85; margin-bottom: 2.5rem;
 }
 .blog-preview-grid {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -571,7 +571,7 @@ body.ornaments-always .side-ornament { opacity: 0.13; }
 }
 .blog-preview-excerpt {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.95rem; color: #555; line-height: 1.75; margin-bottom: 0;
+  font-size: 0.95rem; color: #333; line-height: 1.75; margin-bottom: 0;
 }
 .blog-preview-read {
   display: inline-flex; align-items: center; gap: 0.3rem;

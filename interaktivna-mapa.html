@@ -67,13 +67,13 @@
 </script>
 
 <style>
-body { font-size: 19px; }
+body { font-size: 20px; }
 
 .page-header { padding: 7rem 2rem 3rem; text-align: center; background: var(--section-alt); border-bottom: 1px solid rgba(212,175,55,0.3); }
 .section-label { color: var(--red); margin-bottom: 0.5rem; }
 h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem); color: var(--red); line-height: 1.75; }
 .gold-line { width: 120px; margin: 1rem auto; }
-.page-header p { font-size: 1rem; color: #555; max-width: 620px; margin: 0 auto; font-style: italic; }
+.page-header p { font-size: 1rem; color: #333; max-width: 620px; margin: 0 auto; font-style: italic; }
 
 /* INFO SEKCIA */
 .map-info-section {
@@ -99,7 +99,7 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem
 }
 .map-info-block p {
   font-size: 0.97rem;
-  color: #444;
+  color: #252525;
   line-height: 1.85;
 }
 .photo-guidelines {
@@ -110,7 +110,7 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem
 }
 .photo-guidelines p {
   font-size: 0.92rem;
-  color: #444;
+  color: #252525;
   line-height: 1.85;
   margin-bottom: 0.5rem;
 }
@@ -146,18 +146,18 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem
 .pin-tooltip.visible { opacity: 1; }
 .pin-tooltip img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; margin-bottom: 0.6rem; }
 .tip-name { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
-.tip-region { font-size: 0.8rem; color: #767676; font-style: italic; margin-top: 0.1rem; }
-.tip-desc { font-size: 0.88rem; color: #444; margin-top: 0.4rem; line-height: 1.5; }
+.tip-region { font-size: 0.8rem; color: #555; font-style: italic; margin-top: 0.1rem; }
+.tip-desc { font-size: 0.88rem; color: #252525; margin-top: 0.4rem; line-height: 1.5; }
 
 .sidebar { border-left: 1px solid rgba(212,175,55,0.3); background: #fff; display: flex; flex-direction: column; }
 .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.2); }
 .sidebar-header h3 { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); }
-.sidebar-header p { font-size: 0.88rem; color: #777; margin-top: 0.3rem; font-style: italic; }
+.sidebar-header p { font-size: 0.88rem; color: #555; margin-top: 0.3rem; font-style: italic; }
 
 .add-pin-form { padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.2); background: var(--section-alt); }
 .add-pin-form h4 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); margin-bottom: 1rem; }
 .form-field { margin-bottom: 0.8rem; }
-.form-field label { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: #767676; margin-bottom: 0.3rem; font-family: 'Cinzel', serif; }
+.form-field label { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: #555; margin-bottom: 0.3rem; font-family: 'Cinzel', serif; }
 .form-field input, .form-field textarea { width: 100%; padding: 0.5rem 0.7rem; font-family: 'Cormorant Garamond', serif; font-size: 16px; border: 1px solid rgba(212,175,55,0.4); background: #fff; color: var(--ink); outline: none; transition: border-color 0.2s; }
 .form-field input:focus, .form-field textarea:focus { border-color: var(--gold); }
 .form-field textarea { resize: vertical; min-height: 70px; }
@@ -166,7 +166,7 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem
 .upload-area:hover { background: rgba(212,175,55,0.05); }
 .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 .upload-area .upload-icon { font-size: 1.5rem; opacity: 0.4; }
-.upload-area p { font-size: 0.78rem; color: #767676; margin-top: 0.3rem; font-style: italic; }
+.upload-area p { font-size: 0.78rem; color: #555; margin-top: 0.3rem; font-style: italic; }
 .upload-area .preview-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: none; }
 
 .btn-add-pin { width: 100%; padding: 0.75rem; font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; color: var(--red); border: 1px solid var(--red); cursor: pointer; transition: background 0.3s, color 0.3s; margin-top: 0.5rem; }
@@ -177,7 +177,7 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
 .pins-list { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
-.pins-list h4 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #767676; margin-bottom: 0.8rem; }
+.pins-list h4 { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #555; margin-bottom: 0.8rem; }
 .pin-item { display: flex; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px solid rgba(212,175,55,0.15); cursor: pointer; transition: background 0.2s; }
 .pin-item:hover { background: rgba(212,175,55,0.05); }
 .pin-item img { width: 52px; height: 52px; object-fit: cover; flex-shrink: 0; }
@@ -185,7 +185,7 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 6vw, 4.5rem
 .pin-info { flex: 1; min-width: 0; }
 .pin-name { font-size: 0.9rem; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pin-region { font-size: 0.78rem; color: var(--red); font-style: italic; }
-.pin-desc-short { font-size: 0.8rem; color: #767676; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pin-desc-short { font-size: 0.8rem; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .no-pins { text-align: center; padding: 2rem 1rem; color: #bbb; font-style: italic; font-size: 0.9rem; }
 .delete-pin-btn { flex-shrink: 0; background: none; border: 1px solid rgba(196,30,58,0.2); color: var(--red); width: 36px; height: 36px; min-width: 44px; min-height: 44px; cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; align-self: center; transition: background 0.2s; border-radius: 50%; }
 .delete-pin-btn:hover { background: var(--red); color: #fff; }
@@ -194,7 +194,7 @@ body.placing-pin, body.placing-pin * { cursor: crosshair !important; }
 .placing-banner { display: none; position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: var(--red); color: #fff; padding: 0.6rem 1.6rem; font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.12em; z-index: 300; box-shadow: 0 4px 18px rgba(196,30,58,0.35); white-space: nowrap; }
 body.placing-pin .placing-banner { display: block; }
 
-.stats-bar { display: flex; gap: 2rem; justify-content: center; padding: 1rem; background: #fff; border-top: 1px solid rgba(212,175,55,0.2); font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #767676; }
+.stats-bar { display: flex; gap: 2rem; justify-content: center; padding: 1rem; background: #fff; border-top: 1px solid rgba(212,175,55,0.2); font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #555; }
 .stats-bar span strong { color: var(--red); }
 
 /* ═══════════════════════════════════
@@ -205,7 +205,7 @@ body.placing-pin .placing-banner { display: block; }
 .region-gallery-header { text-align: center; margin-bottom: 2.5rem; }
 .region-gallery-header h2 { font-family: 'Pinyon Script', cursive; font-size: clamp(2rem, 4vw, 3.2rem); color: var(--red); line-height: 1.75; }
 .region-gallery-header .region-count { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark); margin-top: 0.3rem; }
-.region-close-btn { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #767676; background: none; border: 1px solid rgba(0,0,0,0.12); padding: 0.65rem 1rem; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+.region-close-btn { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #555; background: none; border: 1px solid rgba(0,0,0,0.12); padding: 0.65rem 1rem; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
 .region-close-btn:hover { color: var(--red); border-color: var(--red); }
 .region-photos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
 
@@ -216,8 +216,8 @@ body.placing-pin .placing-banner { display: block; }
 .card-no-photo { font-size: 3rem; opacity: 0.2; }
 .region-photo-card .card-body { padding: 1rem 1.2rem; }
 .card-pin-name { font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
-.card-pin-region { font-size: 0.82rem; color: #767676; font-style: italic; margin-top: 0.1rem; }
-.card-pin-desc { font-size: 0.9rem; color: #444; margin-top: 0.5rem; line-height: 1.6; }
+.card-pin-region { font-size: 0.82rem; color: #555; font-style: italic; margin-top: 0.1rem; }
+.card-pin-desc { font-size: 0.9rem; color: #252525; margin-top: 0.5rem; line-height: 1.6; }
 .card-pin-delete { background: none; border: none; font-size: 0.75rem; color: #ccc; cursor: pointer; padding: 0.3rem 0 0; display: block; transition: color 0.2s; }
 .card-pin-delete:hover { color: var(--red); }
 
@@ -226,7 +226,7 @@ body.placing-pin .placing-banner { display: block; }
 .comment-item { padding: 0.45rem 0; border-bottom: 1px solid rgba(212,175,55,0.1); position: relative; }
 .comment-item:last-of-type { border-bottom: none; }
 .comment-author { font-family: 'Cinzel', serif; font-size: 0.67rem; letter-spacing: 0.08em; color: var(--gold-dark); }
-.comment-text { font-size: 0.88rem; color: #444; line-height: 1.55; margin-top: 0.1rem; padding-right: 1.5rem; }
+.comment-text { font-size: 0.88rem; color: #252525; line-height: 1.55; margin-top: 0.1rem; padding-right: 1.5rem; }
 .comment-delete { position: absolute; right: 0; top: 0.45rem; background: none; border: none; font-size: 0.65rem; color: #ddd; cursor: pointer; transition: color 0.2s; }
 .comment-delete:hover { color: var(--red); }
 .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; padding: 0.2rem 0 0.4rem; }
@@ -977,9 +977,11 @@ async function deletePin(pinId) {
     <h2 id="gdpr-title">Ochrana osobných údajov</h2>
     <p><strong>Prevádzkovateľ webu:</strong> Anna Lockwoodová · <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
     <p>Táto stránka je nekomerčný informačný web vytvorený vo voľnom čase. Nevznikajú z nej žiadne obchodné záväzky.</p>
-    <p><strong>Kontaktný formulár:</strong> Ak mi napíšete prostredníctvom kontaktného formulára, spracúvam tieto údaje: meno, e-mailová adresa a text správy. Slúžia výlučne na to, aby som vám mohla odpovedať. Údaje nie sú zdieľané s tretími stranami a po vybavení komunikácie ich vymažem.</p>
+    <p><strong>Kontaktný formulár:</strong> Ak mi napíšete prostredníctvom kontaktného formulára, spracúvam tieto údaje: meno, e-mailová adresa a text správy. Slúžia výlučne na to, aby som vám mohla odpovedať. Správu technicky spracúva Formspree, Inc. (USA) ako sprostredkovateľ. Údaje nie sú využívané na iné účely a po vybavení komunikácie ich vymažem.</p>
+    <p><strong>Newsletter:</strong> Ak sa prihlásite na odber newslettera, uchovávam vašu e-mailovú adresu výlučne na zasielanie noviniek o obsahu tejto stránky. Odber môžete kedykoľvek zrušiť e-mailom na senselovaanna@gmail.com. Adresy sú spracúvané cez Formspree, Inc. (USA).</p>
+    <p><strong>Mapa spomienok:</strong> Ak odošlete príbeh predka, spracúvam tieto údaje: meno a priezvisko predka, text príbehu, vaše meno, priezvisko a prípadne e-mail a fotografiu. Tieto údaje sú uložené v databáze Supabase (USA) a zobrazené verejne na mape. Ak ste udelili súhlas, príbeh a fotografia môžu byť zdieľané na Facebooku a Instagrame. Tento súhlas môžete kedykoľvek odvolať na senselovaanna@gmail.com.</p>
     <p><strong>Vaše práva:</strong> Máte právo požiadať o prístup k svojim údajom, ich opravu alebo vymazanie. Stačí napísať na vyššie uvedený e-mail.</p>
-    <p><strong>Cookies a fonty:</strong> Web nepoužíva sledovacie ani analytické cookies. Písma (fonty) sú hostované priamo na tomto serveri — žiadne dáta sa neposielajú do Google ani iným tretím stranám.</p>
+    <p><strong>Cookies:</strong> Web nepoužíva sledovacie ani analytické cookies — lišta súhlasu s cookies preto nie je potrebná. Formuláre spracúva Formspree a príbehy ukladá Supabase; obaja poskytovatelia môžu používať technické cookies nevyhnutné na fungovanie svojich služieb. Písma sú hostované priamo na tomto serveri.</p>
   </div>
 </div>
 <script>
