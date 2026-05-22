@@ -1493,6 +1493,14 @@
           </label>
         </div>
 
+        <!-- Súhlas s kontaktovaním prostredníctvom mapy -->
+        <div class="form-field-check">
+          <input type="checkbox" id="fKontaktSuhlas" name="allow_contact">
+          <label for="fKontaktSuhlas">
+            Súhlasím s tým, že ma ostatní návštevníci môžu kontaktovať prostredníctvom zabezpečeného formulára, ak nájdu môj príbeh a chcú sa podeliť o spoločné rodinné korene. <strong>Môj e-mail zostane skrytý</strong> — nebude nikdy verejne zobrazený. Tento súhlas je dobrovoľný a môžem ho kedykoľvek odvolať na <a href="mailto:senselovaanna@gmail.com" style="color:var(--gold-dark);">senselovaanna@gmail.com</a>.
+          </label>
+        </div>
+
         <button type="submit" class="btn-submit" id="btnSubmit">Odovzdať príbeh do archívu</button>
         <p class="form-submit-note">Príspevok sa zobrazí na mape po schválení administrátorom. Ak si uviedol/a e-mail, budeme ťa o tom informovať.</p>
         <p id="formError" style="color:var(--red);font-style:italic;font-size:0.9rem;margin-top:0.8rem;display:none;text-align:center;"></p>
@@ -1609,26 +1617,32 @@
     <p><strong>3. Newsletter</strong><br>
     Pri prihlásení na odber newslettera zbierame výlučne vašu e-mailovú adresu. Právny základ: súhlas podľa čl. 6 ods. 1 písm. a) GDPR. E-mail je odoslaný prostredníctvom <strong>Formspree</strong> (Formspree Inc., USA) a je použitý len na zasielanie newslettera. Súhlas môžete kedykoľvek odvolať — stačí napísať na <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a>.</p>
 
-    <p><strong>4. Mapa spomienok</strong><br>
+    <p><strong>4. Mapa spomienok — príbehy</strong><br>
     Formulár zbiera dva typy údajov:<br>
     — <em>Údaje o predkovi</em> (meno, priezvisko, obec, kraj, obdobie, text príbehu, fotografia) — účel: zverejnenie na tejto stránke po manuálnom schválení; právny základ: súhlas podľa čl. 6 ods. 1 písm. a) GDPR.<br>
     — <em>Vaše kontaktné údaje</em> (meno, priezvisko, e-mail odosielateľa) — účel: komunikácia ohľadom príspevku; tieto údaje <em>nie sú verejne zobrazené</em>; právny základ: súhlas podľa čl. 6 ods. 1 písm. a) GDPR.<br>
-    Súhlas so zdieľaním príbehu na sociálnych sieťach (Facebook/Instagram) udeľujete osobitným zaškrtávacím políčkom; tento súhlas môžete kedykoľvek odvolať. Schválené príbehy sú uchovávané po dobu existencie webstránky, resp. do odvolania súhlasu. Neschválené príspevky a kontaktné údaje odosielateľa sú vymazané najneskôr do 12 mesiacov od doručenia.</p>
+    Súhlas so zdieľaním príbehu na sociálnych sieťach (Facebook/Instagram) a súhlas s prijímaním správ od iných návštevníkov udeľujete osobitnými zaškrtávacími políčkami; oba súhlasy sú dobrovoľné a môžete ich kedykoľvek odvolať. Schválené príbehy sú uchovávané po dobu existencie webstránky, resp. do odvolania súhlasu. Neschválené príspevky a kontaktné údaje odosielateľa sú vymazané najneskôr do 12 mesiacov od doručenia.</p>
 
-    <p><strong>5. Príjemcovia a prenosy do tretích krajín</strong><br>
+    <p><strong>5. Kontaktovanie autora príbehu</strong><br>
+    Ak sa rozhodnete kontaktovať autora príbehu prostredníctvom kontaktného formulára pri príbehu, spracúvame tieto údaje:<br>
+    — <em>Vaše údaje ako odosielateľa</em>: meno, e-mail, text správy — účel: doručenie správy autorovi príbehu; právny základ: súhlas podľa čl. 6 ods. 1 písm. a) GDPR.<br>
+    — <em>E-mail autora príbehu</em>: použitý výlučne na doručenie vašej správy; <strong>nie je nikdy verejne zobrazený</strong> ani sprístupnený odosielateľovi; právny základ: oprávnený záujem autora (čl. 6 ods. 1 písm. f) GDPR) v kombinácii s jeho predchádzajúcim súhlasom s prijímaním správ.<br>
+    Správy sú uchovávané v databáze Supabase po dobu nevyhnutnú na vybavenie komunikácie, najdlhšie však 24 mesiacov. Autor príbehu môže kedykoľvek odvolať súhlas s prijímaním správ na <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a>.</p>
+
+    <p><strong>6. Príjemcovia a prenosy do tretích krajín</strong><br>
     — <strong>Formspree</strong> (Formspree Inc., USA) — doručovanie správ z kontaktného formulára a zbieranie e-mailov newslettera. Prenos je zabezpečený štandardnými zmluvnými doložkami.<br>
     — <strong>Supabase</strong> (USA) — databáza a úložisko fotografií pre Mapu spomienok. Prenos je zabezpečený Štandardnými zmluvnými doložkami (SCC) v súlade s čl. 46 ods. 2 písm. c) GDPR.<br>
     — <strong>GitHub Pages</strong> (GitHub Inc., USA) — hosting webstránky. GitHub spracúva prevádzkové záznamy (IP, čas prístupu); prenos je krytý rozhodnutím Komisie o primeranosti v rámci EU–US Data Privacy Framework (2023).</p>
 
-    <p><strong>6. Vaše práva</strong><br>
+    <p><strong>7. Vaše práva</strong><br>
     Máte právo: na <em>prístup</em> k údajom (čl. 15), <em>opravu</em> (čl. 16), <em>vymazanie</em> (čl. 17), <em>obmedzenie spracúvania</em> (čl. 18), <em>prenosnosť</em> (čl. 20) a <em>odvolanie súhlasu</em> kedykoľvek bez udania dôvodu (čl. 7 ods. 3) — odvolanie nemá vplyv na zákonnosť spracúvania pred jeho odvolaním.<br>
     Žiadosti zasielajte na: <a href="mailto:senselovaanna@gmail.com" style="color:var(--red);">senselovaanna@gmail.com</a></p>
 
-    <p><strong>7. Dozorný orgán</strong><br>
+    <p><strong>8. Dozorný orgán</strong><br>
     Máte právo podať sťažnosť na Úrad na ochranu osobných údajov SR,<br>
     Hraničná 12, 820 07 Bratislava 27 · <a href="https://dataprotection.gov.sk" target="_blank" rel="noopener" style="color:var(--red);">dataprotection.gov.sk</a></p>
 
-    <p><strong>8. Cookies a lokálne úložisko</strong><br>
+    <p><strong>9. Cookies a lokálne úložisko</strong><br>
     Web nepoužíva sledovacie ani analytické cookies. Formspree a Supabase môžu ukladať technické cookies nevyhnutné na fungovanie služby — nevyžadujú váš súhlas podľa § 55 ods. 5 zákona č. 452/2021 Z.z. Fonty sú hostované priamo na tomto serveri. Súhlas so spracúvaním cookies preto nie je potrebný.</p>
   </div>
 </div>
@@ -2158,7 +2172,8 @@
     const kraj        = document.getElementById('fKraj').value;
     const obdobie     = document.getElementById('fObdobie').value;
     const pribeh      = document.getElementById('fPribeh').value.trim();
-    const socialSuhlas = document.getElementById('fSocialSuhlas').checked;
+    const socialSuhlas   = document.getElementById('fSocialSuhlas').checked;
+    const allowContact   = document.getElementById('fKontaktSuhlas').checked;
 
     // Druhý predok (nepovinný)
     const meno2       = document.getElementById('fMenoPredka2').value.trim();
@@ -2201,7 +2216,7 @@
 
     const sharedFields = { obec, kraj, obdobie, pribeh, foto_url: fotoUrl,
       zdielal_meno, zdielal_priezvisko, zdielal_email,
-      social_suhlas: socialSuhlas, status: 'pending' };
+      social_suhlas: socialSuhlas, allow_contact: allowContact, status: 'pending' };
 
     // Insert — prvý predok
     const deleteToken = crypto.randomUUID();
