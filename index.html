@@ -1030,6 +1030,67 @@ h2 {
   </div>
 </section>
 
+<!-- NEWSLETTER -->
+<section id="newsletter" class="newsletter-section">
+  <div class="newsletter-inner reveal">
+    <span class="newsletter-label">Newsletter</span>
+    <h2 class="newsletter-title">Ostante v spojení.</h2>
+    <div class="newsletter-divider"></div>
+    <p class="newsletter-text">
+      Moje pátranie ešte zďaleka nie je ukončené. Verím, že mi bude postupne odhaľovať čoraz viac informácií o výšivkách zo zbierky, o činnosti spolku Lipa a ďalších organizáciách, ktoré pomáhali zachovávať slovenské ľudové tradície.
+    </p>
+    <p class="newsletter-text">
+      Verím tiež, že práve prostredníctvom tejto stránky — a vašich vlastných príbehov o predkoch — objavíme úžasné a obohacujúce súvislosti, s ktorými sa s vami rada podelím. Ak vás tieto témy zaujímajú, prihláste sa na odber môjho newslettera.
+    </p>
+
+    <form class="newsletter-form" id="newsletterForm">
+      <div class="newsletter-input-wrap">
+        <input type="email" name="email" class="newsletter-input" placeholder="Váš e-mail" required autocomplete="email">
+        <input type="hidden" name="type" value="newsletter">
+        <input type="hidden" name="_subject" value="Nový odberateľ newslettera — Mapa spomienok">
+        <button type="submit" class="newsletter-btn" id="newsletterBtn">Prihlásiť sa</button>
+      </div>
+      <p class="newsletter-note">Žiadny spam. Odhlásenie kedykoľvek.</p>
+    </form>
+
+    <div class="newsletter-confirm" id="newsletterConfirm" style="display:none;">
+      <p>Ďakujem za váš záujem — ozvem sa, keď bude prvý newsletter pripravený. 🌿</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var form = document.getElementById('newsletterForm');
+  var btn = document.getElementById('newsletterBtn');
+  var confirm = document.getElementById('newsletterConfirm');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Odosielam…';
+    fetch('https://formspree.io/f/mvzyavjn', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        confirm.style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Prihlásiť sa';
+        alert('Nastala chyba. Skúste to prosím znova.');
+      }
+    }).catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Prihlásiť sa';
+      alert('Nastala chyba. Skúste to prosím znova.');
+    });
+  });
+})();
+</script>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-simple">

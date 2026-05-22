@@ -1033,6 +1033,67 @@ h2 {
   </div>
 </section>
 
+<!-- NEWSLETTER -->
+<section id="newsletter" class="newsletter-section">
+  <div class="newsletter-inner reveal">
+    <span class="newsletter-label">Newsletter</span>
+    <h2 class="newsletter-title">Stay connected.</h2>
+    <div class="newsletter-divider"></div>
+    <p class="newsletter-text">
+      My research is far from over. I believe it will gradually reveal more and more about the embroideries in my collection, about the work of the Lipa society and other organisations that helped preserve Slovak folk traditions.
+    </p>
+    <p class="newsletter-text">
+      I also believe that through this website — and your own stories about your ancestors — we will discover wonderful and enriching connections that I will be happy to share with you. If these topics interest you, sign up for my newsletter.
+    </p>
+
+    <form class="newsletter-form" id="newsletterForm">
+      <div class="newsletter-input-wrap">
+        <input type="email" name="email" class="newsletter-input" placeholder="Your e-mail" required autocomplete="email">
+        <input type="hidden" name="type" value="newsletter">
+        <input type="hidden" name="_subject" value="New newsletter subscriber — Mapa spomienok">
+        <button type="submit" class="newsletter-btn" id="newsletterBtn">Subscribe</button>
+      </div>
+      <p class="newsletter-note">No spam. Unsubscribe any time.</p>
+    </form>
+
+    <div class="newsletter-confirm" id="newsletterConfirm" style="display:none;">
+      <p>Thank you for your interest — I'll be in touch when the first newsletter is ready. 🌿</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var form = document.getElementById('newsletterForm');
+  var btn = document.getElementById('newsletterBtn');
+  var confirm = document.getElementById('newsletterConfirm');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    fetch('https://formspree.io/f/mvzyavjn', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        confirm.style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Subscribe';
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+      alert('Something went wrong. Please try again.');
+    });
+  });
+})();
+</script>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-simple">
