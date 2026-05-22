@@ -155,13 +155,116 @@ h1.page-title {
 }
 .page-hero-intro p:last-child { margin-bottom: 0; }
 
-.page-hero-desc {
-  font-size: var(--text-md);
-  color: #333;
-  max-width: 580px;
-  margin: 1.6rem auto 0;
+/* === HERO META: poďakovanie + CTA strip === */
+.hero-meta {
+  max-width: 640px;
+  margin: 2.4rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(212,175,55,0.22);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* — Poďakovanie — */
+.hero-thanks {
+  background: rgba(212,175,55,0.055);
+  padding: 1.4rem 1.8rem;
+  position: relative;
+}
+.hero-thanks::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+}
+.hero-thanks-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+.hero-thanks-label::before,
+.hero-thanks-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(212,175,55,0.25);
+}
+.hero-thanks-names {
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  line-height: 1.85;
+  font-size: 0.98rem;
+  color: #3a3a3a;
+  line-height: 1.75;
+  text-align: center;
+}
+.hero-thanks-names em {
+  font-style: normal;
+  color: var(--ink);
+  font-weight: 600;
+}
+.hero-thanks-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  color: #666;
+  text-align: center;
+  margin-top: 0.55rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* separator */
+.hero-meta-divider {
+  height: 1px;
+  background: rgba(212,175,55,0.2);
+}
+
+/* — CTA — */
+.hero-contribute {
+  background: rgba(196,30,58,0.03);
+  padding: 1.2rem 1.8rem 1.2rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border-left: 3px solid rgba(196,30,58,0.28);
+}
+.hero-contribute-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 0.2rem;
+  opacity: 0.55;
+  color: var(--red);
+}
+.hero-contribute-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.98rem;
+  color: #3a3a3a;
+  line-height: 1.75;
+  font-style: italic;
+}
+.hero-contribute-text a {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-style: normal;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+.hero-contribute-text a:hover { opacity: 0.75; }
+
+@media (max-width: 640px) {
+  .hero-thanks { padding: 1.2rem 1.2rem; }
+  .hero-contribute { padding: 1rem 1rem 1rem 1rem; gap: 0.75rem; }
 }
 
 /* Stats strip */
@@ -985,9 +1088,11 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="logo" aria-label="Anna Šenšelová – domov">
-    <span class="logo-name">Anna Šenšelová</span>
-    <span class="logo-sub">Vyšívané príbehy</span>
+  <a href="index.html" class="logo" aria-label="Mapa Spomienok – domov">
+    <picture>
+      <source srcset="assets/logo-nav-v2.webp" type="image/webp">
+      <img src="assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
+    </picture>
   </a>
   <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -1038,7 +1143,27 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <p>Tieto výšivky nie sú dielom jednej ženy, sú dielom celého nášho národa. Možno niektoré z nich vyšívala aj vaša stará mama a ani o tom neviete. Pozerám sa na každý jeden precízny steh s rovnakým obdivom, s akým som sa kedysi v galériách chcela dostať čo najbližšie k slávnym obrazom a predstavovať si, ako asi maliari pracovali. Chcem sa k nim priblížiť čo najbližšie a predstavujem si ruky, ktoré po večeroch pri sviečkach vyšívali hodiny a hodiny. A predstavujem si aj ženy, mužov a deti, ktoré ich nosili ako súčasť svojej každodennej identity.</p>
       <p>Vďaka tomu, čo som sa dozvedela o svojich predkoch a o rodine, z ktorej pochádzala aj Anna Šenšelová, premýšľam aj nad ich príbehom. Odkiaľ sa vzali, kto sa na ne pozeral a obdivoval ich, kto sa o nich rozprával. Boli schované v nejakej krabici alebo slúžili ako vzor a inšpirácia pre šaty z dielne Lipy? Obdivovala ich len Anna Šenšelová alebo na ne padli zraky ďalších dôležitých osobností martinského života? To sa už zrejme nikdy nedozvieme, ale samotné zamyslanie nad tým ma nadchýna. Som vďačná, že sa o ne môžem podeliť aj s vami a dopriať im nový život.</p>
     </div>
-    <p class="page-hero-desc">Vyšívané fragmenty pochádzajú z pozostalosti Anny Šenšelovej. S bližším určovaním mi nezištne pomohli <em>Tamara Šimončíková Heribanová</em>, <em>Stanislav Talapka</em>, <em>Zuzana Tajek Piešová</em> a <em>Michal Halabrín</em> — som im za to nesmierne vďačná. Vzhľadom na stav a zloženie, v akom sa výšivky našli, snažili sme sa ich identifikovať čo najpresnejšie. Ak by ste mali akékoľvek doplňujúce informácie, budem rada, ak ma <a href="spojme-sa.html" style="color:var(--red);text-decoration:underline;text-underline-offset:3px;">kontaktujete</a> a pomôžete nám s bližším určením.</p>
+    <div class="hero-meta">
+      <!-- Poďakovanie -->
+      <div class="hero-thanks">
+        <p class="hero-thanks-label">Poďakovanie</p>
+        <p class="hero-thanks-names">
+          S identifikáciou výšiviek mi nezištne pomohli<br>
+          <em>Tamara Šimončíková Heribanová</em> · <em>Stanislav Talapka</em> · <em>Zuzana Tajek Piešová</em> · <em>Michal Halabrín</em>
+        </p>
+        <p class="hero-thanks-note">Výšivky pochádzajú z pozostalosti Anny Šenšelovej. Identifikovali sme ich čo najpresnejšie, no niektoré detaily zostávajú otvorené.</p>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <!-- CTA -->
+      <div class="hero-contribute">
+        <svg class="hero-contribute-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <circle cx="10" cy="10" r="8.5"/>
+          <line x1="10" y1="6.5" x2="10" y2="10.5"/>
+          <circle cx="10" cy="13" r="0.8" fill="currentColor" stroke="none"/>
+        </svg>
+        <p class="hero-contribute-text">Poznáte niektorú z výšiviek alebo máte doplňujúce informácie? Budem rada, ak ma <a href="spojme-sa.html">kontaktujete</a> — každý detail pomáha pri určovaní pôvodu.</p>
+      </div>
+    </div>
   </div>
 </header>
 
