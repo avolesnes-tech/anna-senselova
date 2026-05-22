@@ -609,6 +609,17 @@ h2 {
 }
 
 /* =============================================
+   MAPA TEASER ORIGIN
+   ============================================= */
+.mapa-teaser-origin {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-style: italic;
+  color: var(--gold-dark);
+  margin-bottom: 0.5rem;
+}
+
+/* =============================================
    ANIMÁCIE
    ============================================= */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -742,11 +753,9 @@ h2 {
 </div>
 
 <nav>
-  <a href="index.html" class="logo" aria-label="Map of Memories – home">
-    <picture>
-      <source srcset="../assets/logo-nav-v2.webp" type="image/webp">
-      <img src="../assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
-    </picture>
+  <a href="index.html" class="logo" aria-label="Anna Šenšelová – home">
+    <span class="logo-name">Anna Šenšelová</span>
+    <span class="logo-sub">Embroidered Stories</span>
   </a>
   <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -802,11 +811,11 @@ h2 {
 
   <h1 class="hero-title">Embroidered stories<br>from an old cellar.</h1>
   <div class="hero-divider"></div>
-  <p class="hero-subtitle">A website dedicated to Slovak embroidery, the Lipa Cooperative and the stories of our ancestors</p>
-  <p class="hero-sub2">In my grandparents' cellar I discovered the embroideries of my great-aunt Anna Šenšelová — and with them, a whole forgotten world of the Lipa Cooperative, which saved Slovak embroidery. I realised how many such stories are quietly waiting in cellars, attics and old photographs. That is why the Map of Memories was created — a place where we can preserve them together.</p>
+  <p class="hero-subtitle">A personal research project on preserving Slovak folk embroidery and family memory</p>
+  <p class="hero-sub2">In my grandparents' cellar I discovered the embroideries of my great-aunt Anna Šenšelová — and with them, a forgotten world. Here you will find her story, an embroidery archive, and a place to share your own ancestor's story.</p>
   <div class="hero-ctas">
-    <a href="mapa-spomienok.html" class="btn btn--solid">Map of Memories</a>
-    <a href="anna-lockwoodova.html" class="btn btn-gold">How it all began</a>
+    <a href="galeria-vysiviek.html" class="btn btn--solid">Explore the embroideries</a>
+    <a href="mapa-spomienok.html" class="btn btn-gold">Add an ancestor's story</a>
   </div>
 </section>
 
@@ -824,12 +833,12 @@ h2 {
     <div class="pribeh-photo-wrap reveal reveal-delay-1">
       <!-- FIX 2: lazy loading -->
       <img src="https://avolesnes-tech.github.io/anna-senselova/anna_fotka1.jpg" alt="Anna Šenšelová" class="pribeh-photo" loading="lazy" decoding="async">
-      <p class="pribeh-photo-caption">Anna Šenšelová<br>director of Lipa</p>
+      <p class="pribeh-photo-caption">Anna Šenšelová<br>shop manager, secretary &amp; administrator of Lipa</p>
     </div>
     <div class="pribeh-text reveal reveal-delay-2">
       <p class="pribeh-text-label">The story of the cooperative that helped save Slovak folk embroidery</p>
       <div class="gold-line" style="margin-left:0;"></div>
-      <p>Lipa was not merely a folk craft shop, but a bold women's enterprise — when it was founded in 1910, economic life was almost exclusively dominated by men. Women from the Živena association changed that: they connected the honest work of village embroiderers with the demands of major cities such as Prague and Vienna, turning their talent into a confident, internationally respected brand. The central figure of this world was my great-aunt Anna Šenšelová — a modest woman with a clear vision of preserving the soul of Slovak ornamentation for future generations.</p>
+      <p>Lipa was not merely a folk craft shop, but a bold women's enterprise — when it was founded in 1910, economic life was almost exclusively dominated by men. Women from the Živena association changed that: they collected old traditional patterns directly from the regions and transferred them onto goods for modern households — children's garments, cushions, tablecloths, embroidered collars, national shirts, leather vests, and flags. Folk embroidery travelled from the villages into the cities, while at the same time providing a dignified income for women who had mastered the traditional arts of embroidery and lace-making. The central figure of this world was my great-aunt Anna Šenšelová — a modest woman with a clear vision of preserving the soul of Slovak ornamentation for future generations.</p>
       <div class="pribeh-links">
         <a href="lipa.html" class="btn-gallery-link">The full story of Lipa <span class="btn-arrow">→</span></a>
         <a href="anna-senselova.html" class="btn-gallery-link">Who was Anna Šenšelová <span class="btn-arrow">→</span></a>
@@ -860,8 +869,8 @@ h2 {
     <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-1" aria-label="Bošáca/Moravské Lieskové — go to embroidery gallery">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/bosaca_set1.webp" alt="Bošáca/Moravské Lieskové" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/bosaca_set2.webp" alt="Bošáca/Moravské Lieskové — detail" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/bosaca_set2.webp" alt="Bošáca/Moravské Lieskové" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/bosaca_set3.webp" alt="Bošáca/Moravské Lieskové — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
         <div class="overlay" aria-hidden="true">
@@ -873,8 +882,8 @@ h2 {
     <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-2" aria-label="Čičmany — go to embroidery gallery">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cicmany_metraz1.webp" alt="Čičmany" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cicmany_metraz2.webp" alt="Čičmany — detail" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cicmany_metraz2.webp" alt="Čičmany" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cicmany_metraz3.webp" alt="Čičmany — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
         <div class="overlay" aria-hidden="true">
@@ -886,8 +895,8 @@ h2 {
     <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-3" aria-label="Šoporňa — go to embroidery gallery">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/soporna_1.webp" alt="Šoporňa" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/soporna_2.webp" alt="Šoporňa — detail" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/soporna_2.webp" alt="Šoporňa" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/soporna_3.webp" alt="Šoporňa — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
         <div class="overlay" aria-hidden="true">
@@ -899,8 +908,8 @@ h2 {
     <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-1" aria-label="Omšenie — go to embroidery gallery">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/trencin_1.webp" alt="Omšenie" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/trencin_2.webp" alt="Omšenie — detail" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/trencin_2.webp" alt="Omšenie" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/trencin_3.webp" alt="Omšenie — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
         <div class="overlay" aria-hidden="true">
@@ -912,8 +921,8 @@ h2 {
     <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-2" aria-label="Ciferský haras — go to embroidery gallery">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cifer_haras1.webp" alt="Ciferský haras" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cifer_haras2.webp" alt="Ciferský haras — detail" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cifer_haras2.webp" alt="Ciferský haras" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/cifer_haras3.webp" alt="Ciferský haras — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
         <div class="overlay" aria-hidden="true">
@@ -925,8 +934,8 @@ h2 {
     <a href="galeria-vysiviek.html" class="gallery-card reveal reveal-delay-3" aria-label="Viničné/Chorvátsky Grob — go to embroidery gallery">
       <div class="card-inner">
         <div class="card-strip">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/vajnory_metraz1.webp" alt="Viničné/Chorvátsky Grob" loading="lazy" decoding="async">
-          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/vajnory_metraz2.webp" alt="Viničné/Chorvátsky Grob — detail" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/vajnory_metraz2.webp" alt="Viničné/Chorvátsky Grob" loading="lazy" decoding="async">
+          <img class="card-img" src="https://avolesnes-tech.github.io/anna-senselova/vysivky1/vajnory_metraz3.webp" alt="Viničné/Chorvátsky Grob — detail" loading="lazy" decoding="async">
         </div>
         <div class="shimmer" aria-hidden="true"></div>
         <div class="overlay" aria-hidden="true">
@@ -1000,6 +1009,7 @@ h2 {
     <p class="section-label">Your story belongs on the map</p>
     <h2 class="mapa-teaser-title">Map of Memories</h2>
     <div class="gold-line"></div>
+    <p class="mapa-teaser-origin">It was the discovery of my great-aunt Anna Šenšelová's embroideries that led me to ask: how many such stories are still waiting to be found? That is how the Map of Memories came to be.</p>
     <p class="mapa-teaser-text">An interactive map of Slovakia where each pin represents a real ancestor's story. Share a memory of your grandfather, great-grandmother or distant relative — and help preserve the living memory of Slovakia for future generations. Stories can be searched by surname or region.</p>
     <a href="mapa-spomienok.html" class="btn-cta-red">Add an ancestor's story <span class="btn-arrow">→</span></a>
   </div>

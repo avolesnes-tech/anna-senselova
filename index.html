@@ -609,6 +609,17 @@ h2 {
 }
 
 /* =============================================
+   MAPA TEASER ORIGIN
+   ============================================= */
+.mapa-teaser-origin {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-style: italic;
+  color: var(--gold-dark);
+  margin-bottom: 0.5rem;
+}
+
+/* =============================================
    ANIMÁCIE
    ============================================= */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -742,11 +753,9 @@ h2 {
 </div>
 
 <nav>
-  <a href="mapa-spomienok.html" class="logo" aria-label="Mapa Spomienok">
-    <picture>
-      <source srcset="assets/logo-nav-v2.webp" type="image/webp">
-      <img src="assets/logo-nav-v2.png" alt="Mapa Spomienok" width="216" height="44" loading="eager" decoding="async">
-    </picture>
+  <a href="index.html" class="logo" aria-label="Anna Šenšelová – domov">
+    <span class="logo-name">Anna Šenšelová</span>
+    <span class="logo-sub">Vyšívané príbehy</span>
   </a>
   <button class="hamburger" id="hamburger" aria-label="Otvoriť menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -802,11 +811,11 @@ h2 {
 
   <h1 class="hero-title">Vyšívané príbehy<br>zo starej pivnice.</h1>
   <div class="hero-divider"></div>
-  <p class="hero-subtitle">Stránka venovaná slovenskému výšivkárstvu, spolku Lipa a príbehom našich predkov</p>
-  <p class="hero-sub2">V pivnici u mojich starých rodičov som objavila výšivky pratety Anny Šenšelovej — a s nimi celý zabudnutý svet spolku Lipa, ktorý zachránil slovenské výšivkárstvo. Uvedomila som si, koľko takýchto príbehov ticho čaká v pivniciach, na pôjdoch a v starých fotografiách. Preto vznikla Mapa spomienok — miesto, kde ich môžeme zachovať spolu.</p>
+  <p class="hero-subtitle">Osobný výskumný projekt o záchrane slovenského ľudového výšivkárstva a rodinnej pamäti</p>
+  <p class="hero-sub2">V pivnici u starých rodičov som objavila výšivky pratety Anny Šenšelovej — a s nimi zabudnutý svet spolku Lipa. Tu nájdete jej príbeh, vzorkovník výšiviek a miesto, kde môžete zdieľať príbeh vlastného predka.</p>
   <div class="hero-ctas">
-    <a href="mapa-spomienok.html" class="btn btn--solid">Mapa spomienok</a>
-    <a href="anna-lockwoodova.html" class="btn btn-gold">Ako to celé začalo</a>
+    <a href="galeria-vysiviek.html" class="btn btn--solid">Preskúmať výšivky</a>
+    <a href="mapa-spomienok.html" class="btn btn-gold">Pridať príbeh predka</a>
   </div>
 </section>
 
@@ -824,12 +833,12 @@ h2 {
     <div class="pribeh-photo-wrap reveal reveal-delay-1">
       <!-- FIX 2: lazy loading -->
       <img src="https://avolesnes-tech.github.io/anna-senselova/anna_fotka1.jpg" alt="Anna Šenšelová" class="pribeh-photo" loading="lazy" decoding="async">
-      <p class="pribeh-photo-caption">Anna Šenšelová<br>správkyňa Lipy</p>
+      <p class="pribeh-photo-caption">Anna Šenšelová<br>vedúca, tajomníčka a správkyňa Lipy</p>
     </div>
     <div class="pribeh-text reveal reveal-delay-2">
       <p class="pribeh-text-label">Príbeh spolku, ktorý sa pričinil o zachranu ľudovej výšivky</p>
       <div class="gold-line" style="margin-left:0;"></div>
-      <p>Lipa nebola len obchodom s folklórom, ale odvážnym ženským podnikom — keď v roku 1910 vznikla, v hospodárstve rozhodovali takmer výhradne muži. Ženy zo spolku Živena to zmenili: prepojili poctivú prácu dedinských vyšívačiek s požiadavkami veľkých miest ako Praha či Viedeň a premenili ich talent na sebavedomú, svetovo rešpektovanú značku. Kľúčovou postavou tohto sveta bola moja prateta Anna Šenšelová — skromná žena s jasnou víziou zachovať dušu slovenskej ornamentiky pre budúce generácie.</p>
+      <p>Lipa nebola len obchodom s folklórom, ale odvážnym ženským podnikom — keď v roku 1910 vznikla, v hospodárstve rozhodovali takmer výhradne muži. Ženy zo spolku Živena to zmenili: zbierali staré tradičné vzory priamo z regiónov a prenášali ich na výrobky pre moderné domácnosti — oblečky, vankúše, obrusy, goliere, národné košele, kožuchy aj zástavy. Ľudové výšivkárstvo tak z dedín vstúpilo do miest, a zároveň sa stalo zdrojom dôstojného príjmu pre ženy, ktoré ovládali tradičné techniky vyšívania a čipkárstva. Kľúčovou postavou tohto sveta bola moja prateta Anna Šenšelová — skromná žena s jasnou víziou zachovať dušu slovenskej ornamentiky pre budúce generácie.</p>
       <div class="pribeh-links">
         <a href="lipa.html" class="btn-gallery-link">Celý príbeh Lipy <span class="btn-arrow">→</span></a>
         <a href="anna-senselova.html" class="btn-gallery-link">Kto bola Anna Šenšelová <span class="btn-arrow">→</span></a>
@@ -1000,6 +1009,7 @@ h2 {
     <p class="section-label">Váš príbeh patrí na mapu</p>
     <h2 class="mapa-teaser-title">Mapa spomienok</h2>
     <div class="gold-line"></div>
+    <p class="mapa-teaser-origin">Práve objav výšiviek pratety Anny Šenšelovej ma priviedol k otázke: koľko takýchto príbehov ešte čaká na objavenie? Tak vznikla Mapa spomienok.</p>
     <p class="mapa-teaser-text">Interaktívna mapa Slovenska, kde každý bod predstavuje skutočný príbeh predka. Zdieľajte spomienku na svojho starého otca, prastarej matky alebo vzdialeného príbuzného — a pomôžte zachovať živú pamäť Slovenska pre budúce generácie. Príbehy je možné vyhľadávať podľa priezviska alebo regiónu.</p>
     <a href="mapa-spomienok.html" class="btn-cta-red">Pridať príbeh predka <span class="btn-arrow">→</span></a>
   </div>

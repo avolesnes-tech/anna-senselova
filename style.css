@@ -85,15 +85,31 @@ nav:not([class]) {
 }
 nav .logo {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   text-decoration: none;
   flex-shrink: 0;
   line-height: 1;
+  gap: 0.15rem;
 }
-nav .logo img {
-  height: 40px;
-  width: auto;
-  display: block;
+nav .logo img { display: none; }
+.logo-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1;
+}
+.logo-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: var(--gold-dark);
+  line-height: 1;
 }
 nav > div, nav > a:not(.logo), .nav-back, .nav-breadcrumb, .nav-prev, .nav-next {
   display: none;
@@ -204,11 +220,11 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
   nav { padding: 0 1.4rem; }
   nav ul { gap: 1rem; }
   nav ul li > a { font-size: 0.78rem; letter-spacing: 0.08em; }
-  nav .logo img { height: 36px; }
+  .logo-name { font-size: 0.95rem; }
 }
 @media (max-width: 768px) {
   nav { padding: 0 1.2rem; }
-  nav .logo img { height: 32px; }
+  .logo-name { font-size: 0.88rem; }
   .hamburger { display: flex; }
   nav ul {
     display: none; flex-direction: column; gap: 0;
