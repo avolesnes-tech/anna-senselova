@@ -347,6 +347,8 @@ section[id], div[id] { scroll-margin-top: 72px; }
     document.body.classList.add('page-leaving');
     setTimeout(function() { window.location.href = href; }, 340);
   });
+  window.addEventListener('pageshow', function(e) { if (e.persisted) { document.body.classList.remove('page-leaving'); } });
+
 
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObs.unobserve(e.target); } });

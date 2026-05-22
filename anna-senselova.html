@@ -1621,6 +1621,8 @@ function lightboxKey(e) {
     document.body.classList.add('page-leaving');
     setTimeout(() => { window.location.href = href; }, 360);
   });
+  window.addEventListener('pageshow', function(e) { if (e.persisted) { document.body.classList.remove('page-leaving'); } });
+
 })();
 
 // ── READING PROGRESS ──────────────────────────────────────

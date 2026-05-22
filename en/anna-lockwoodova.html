@@ -1271,6 +1271,8 @@ section[id], div[id] { scroll-margin-top: 72px; }
     document.body.classList.add('page-leaving');
     setTimeout(function() { window.location.href = h; }, 380);
   });
+  window.addEventListener('pageshow', function(e) { if (e.persisted) { document.body.classList.remove('page-leaving'); } });
+
 })();
 
 /* ===== READING PROGRESS ===== */

@@ -410,6 +410,8 @@ section[id], div[id] { scroll-margin-top: 72px; }
     document.body.classList.add('page-leaving');
     setTimeout(function() { window.location.href = href; }, 340);
   });
+  window.addEventListener('pageshow', function(e) { if (e.persisted) { document.body.classList.remove('page-leaving'); } });
+
 
   (function() {
     var bar = document.getElementById('readingProgress');
