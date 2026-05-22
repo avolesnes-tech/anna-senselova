@@ -1867,6 +1867,7 @@
 
   const { createClient } = supabase;
   const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+  window._mapaSb = sb;
 
   /* ─── CONSTANTS ──────────────────────────────── */
   const PAGE_SIZE = 12;
@@ -2710,7 +2711,7 @@
     submitBtn.textContent = 'Odosielam…';
     errorEl.hidden = true;
 
-    var { error } = await sb.from('contact_messages').insert({
+    var { error } = await window._mapaSb.from('contact_messages').insert({
       story_id:         currentStoryId,
       story_title:      currentStoryTitle,
       sender_name:      name,
