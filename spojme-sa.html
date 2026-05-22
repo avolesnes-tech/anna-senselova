@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" hreflang="sk" href="https://avolesnes-tech.github.io/anna-senselova/spojme-sa.html">
+<link rel="alternate" hreflang="en" href="https://avolesnes-tech.github.io/anna-senselova/en/spojme-sa.html">
+<link rel="alternate" hreflang="x-default" href="https://avolesnes-tech.github.io/anna-senselova/spojme-sa.html">
 <title>Spojme sa – Vyšívané poklady Anny Šenšelovej</title>
 <meta name="description" content="Kontakt — Vyšívané poklady Anny Šenšelovej. Napíšte mi o Lipe, Anne Šenšelovej, alebo o vlastnom rodinnom príbehu.">
 <meta property="og:title" content="Kontakt — Anna Šenšelová">
@@ -71,15 +74,6 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem);
 
 
 @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } .reasons { grid-template-columns: 1fr; } }
-
-.reading-progress {
-  position: fixed; top: var(--nav-height); left: 0;
-  width: 0%; height: 2px;
-  background: linear-gradient(90deg, var(--red), var(--gold));
-  z-index: 9997; transition: width 0.1s linear; pointer-events: none;
-}
-
-
 
 /* ── OFFER BLOCK ── */
 .offer-block {
@@ -161,10 +155,10 @@ h1 { font-family: 'Pinyon Script', cursive; font-size: clamp(3.5rem, 8vw, 7rem);
 
 /* ── Reading progress bar ── */
 .reading-progress {
-  position: fixed; top: 0; left: 0;
+  position: fixed; top: var(--nav-height); left: 0;
   width: 0%; height: 2px;
   background: linear-gradient(90deg, var(--red), var(--gold));
-  z-index: 99998; pointer-events: none;
+  z-index: 9997; pointer-events: none;
   transition: width 0.1s linear;
 }
 

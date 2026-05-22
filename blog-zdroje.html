@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" hreflang="sk" href="https://avolesnes-tech.github.io/anna-senselova/blog-zdroje.html">
+<link rel="alternate" hreflang="en" href="https://avolesnes-tech.github.io/anna-senselova/en/blog-zdroje.html">
+<link rel="alternate" hreflang="x-default" href="https://avolesnes-tech.github.io/anna-senselova/blog-zdroje.html">
 <title>Kde som hľadala a čo som našla: moje zdroje pri pátraní po predkoch — Blog — Anna Šenšelová</title>
 <meta name="description" content="Aké zdroje mi pomohli odhaliť históriu mojej rodiny? Od rodinných publikácií cez digitálne archívy až po vzdialených príbuzných — návod pre každého, kto chce pátrať.">
 <meta property="og:title" content="Kde som hľadala a čo som našla: moje zdroje pri pátraní po predkoch">
@@ -113,6 +116,10 @@ body { font-size: clamp(17px, 2.4vw, 19px); line-height: 1.8; overflow-x: hidden
   line-height: 1.9;
 }
 
+@keyframes dropcapIn {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: scale(1); }
+}
 .article-body p:first-child::first-letter {
   font-family: 'Pinyon Script', cursive;
   font-size: 4.2rem;
@@ -120,6 +127,10 @@ body { font-size: clamp(17px, 2.4vw, 19px); line-height: 1.8; overflow-x: hidden
   float: left;
   line-height: 0.75;
   margin: 0.1em 0.08em 0 0;
+  animation: dropcapIn 0.9s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .article-body p:first-child::first-letter { animation: none; }
 }
 
 .article-body em {

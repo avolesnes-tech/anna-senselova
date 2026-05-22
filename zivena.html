@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" hreflang="sk" href="https://avolesnes-tech.github.io/anna-senselova/zivena.html">
+<link rel="alternate" hreflang="en" href="https://avolesnes-tech.github.io/anna-senselova/en/zivena.html">
+<link rel="alternate" hreflang="x-default" href="https://avolesnes-tech.github.io/anna-senselova/zivena.html">
 <title>Živena – Vyšívané poklady Anny Šenšelovej</title>
 <meta name="description" content="Živena — najstarší ženský spolok na Slovensku (1869). Príbeh spolku, ktorý zachránil slovenské ľudové umenie a dal ženám ekonomickú slobodu.">
 <meta property="og:title" content="Živena — spolok slovenských žien">
@@ -79,6 +82,14 @@ p { font-size: 1.1rem; color: #333; line-height: 1.9; margin-bottom: 1.2rem; }
     transparent 100%
   );
   pointer-events: none;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 2.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.zt-spine.is-drawn {
+  clip-path: inset(0 0 0% 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .zt-spine { clip-path: none !important; transition: none !important; }
 }
 
 /* Each timeline item — 3-col grid */
@@ -1096,8 +1107,23 @@ section[id], div[id] { scroll-margin-top: 72px; }
     var items = document.querySelectorAll('.zt-item');
     if (!items.length || !('IntersectionObserver' in window)) {
       items.forEach(function(el) { el.classList.add('is-visible'); });
+      var spine = document.querySelector('.zt-spine');
+      if (spine) spine.classList.add('is-drawn');
       return;
     }
+
+    // Spine draw-in: trigger once when timeline section enters viewport
+    var spine = document.querySelector('.zt-spine');
+    if (spine) {
+      var spineObs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+          spine.classList.add('is-drawn');
+          spineObs.disconnect();
+        }
+      }, { threshold: 0.05 });
+      spineObs.observe(document.querySelector('.zt-timeline') || spine.parentElement);
+    }
+
     var obs = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {

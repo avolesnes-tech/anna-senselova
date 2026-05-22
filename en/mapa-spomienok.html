@@ -1103,7 +1103,7 @@
   transform: translateY(18px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ─────────────────────────────── */
 @media (max-width: 768px) {
@@ -1801,6 +1801,13 @@
     slice.forEach((story, i) => {
       const card = createCard(story, offset + i);
       grid.appendChild(card);
+      const delay = Math.min(i, 7) * 70;
+      setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.55s cubic-bezier(0.22,1,0.36,1)';
+        setTimeout(() => { card.style.cssText = ''; }, 620);
+      }, delay);
     });
     offset += slice.length;
     more.hidden = offset >= stories.length;
@@ -1808,7 +1815,9 @@
 
   function createCard(story, idx) {
     const div = document.createElement('div');
-    div.className = 'pribeh-karta reveal';
+    div.className = 'pribeh-karta';
+    div.style.opacity = '0';
+    div.style.transform = 'scale(0.97) translateY(12px)';
     div.setAttribute('role', 'listitem');
     div.setAttribute('tabindex', '0');
     div.setAttribute('aria-label', story.ancestor_meno + ' ' + story.ancestor_surname);
@@ -2292,12 +2301,12 @@
     const io = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('is-visible');
           io.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => io.observe(el));
   }
 
   /* ─── NAV ────────────────────────────────────── */
