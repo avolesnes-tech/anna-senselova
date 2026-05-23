@@ -145,7 +145,7 @@ h1.page-title {
    HERO PROSE & ACKNOWLEDGMENT
    ============================================= */
 .page-hero-inner {
-  max-width: 660px;
+  max-width: 700px;
 }
 
 .hero-prose {
@@ -280,6 +280,10 @@ h1.page-title {
   transition: opacity 0.2s;
 }
 .hero-cta a:hover { opacity: 0.75; }
+
+@media (min-width: 900px) {
+  .page-hero-inner { max-width: 920px; }
+}
 
 @media (max-width: 640px) {
   .hero-prose p { font-size: 1rem; }
