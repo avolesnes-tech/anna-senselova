@@ -286,9 +286,38 @@ h1.page-title {
 }
 
 @media (max-width: 640px) {
-  .hero-prose p { font-size: 1rem; }
   .hero-ack-names { font-size: 1rem; gap: 0 0.6rem; }
   .hero-folk-divider { margin: 2rem auto; }
+}
+
+/* =============================================
+   ZÁVEREČNÁ REFLEXIA — pod galériou
+   ============================================= */
+.gallery-closing {
+  background: var(--section-alt);
+  padding: var(--sp-10) var(--sp-4) var(--sp-10);
+}
+.gallery-closing-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.gallery-closing-inner p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  color: #3a3a3a;
+  line-height: 1.95;
+  margin-bottom: 1.3rem;
+  text-align: left;
+}
+.gallery-closing-inner p:last-child { margin-bottom: 0; }
+
+@media (min-width: 900px) {
+  .gallery-closing-inner { max-width: 860px; }
+}
+@media (max-width: 640px) {
+  .gallery-closing { padding: var(--sp-8) var(--sp-3); }
+  .gallery-closing-inner p { font-size: 1rem; }
 }
 
 /* =============================================
@@ -1106,10 +1135,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <p class="section-label">Zbierka · Výšivky</p>
     <h1 class="page-title">Vzorkovník výšiviek.</h1>
     <div class="gold-line"></div>
-    <div class="hero-prose">
-      <p>Tieto výšivky nie sú dielom jednej ženy, sú dielom celého nášho národa. Možno niektoré z nich vyšívala aj vaša stará mama a ani o tom neviete. Pozerám sa na každý jeden precízny steh s rovnakým obdivom, s akým som sa kedysi v galériách chcela dostať čo najbližšie k slávnym obrazom a predstavovať si, ako asi maliari pracovali. Chcem sa k nim priblížiť čo najbližšie a predstavujem si ruky, ktoré po večeroch pri sviečkach vyšívali hodiny a hodiny. A predstavujem si aj ženy, mužov a deti, ktoré ich nosili ako súčasť svojej každodennej identity.</p>
-      <p>Vďaka tomu, čo som sa dozvedela o svojich predkoch a o rodine, z ktorej pochádzala aj Anna Šenšelová, premýšľam aj nad ich príbehom. Odkiaľ sa vzali, kto sa na ne pozeral a obdivoval ich, kto sa o nich rozprával. Boli schované v nejakej krabici alebo slúžili ako vzor a inšpirácia pre šaty z dielne Lipy? Obdivovala ich len Anna Šenšelová alebo na ne padli zraky ďalších dôležitých osobností martinského života? To sa už zrejme nikdy nedozvieme, ale samotné zamyslanie nad tým ma nadchýna. Som vďačná, že sa o ne môžem podeliť aj s vami a dopriať im nový život.</p>
-    </div>
 
     <div class="hero-folk-divider" aria-hidden="true">
       <span class="fdiv-line"></span>
@@ -1850,6 +1875,19 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
   </div><!-- /gallery-outer -->
 </main>
+
+<!-- ZÁVEREČNÁ REFLEXIA -->
+<section class="gallery-closing">
+  <div class="gallery-closing-inner">
+    <div class="hero-folk-divider" aria-hidden="true" style="margin: 0 auto 2.8rem;">
+      <span class="fdiv-line"></span>
+      <img src="assets/motiv-ludovy.svg" alt="" width="52" height="52">
+      <span class="fdiv-line-r"></span>
+    </div>
+    <p>Tieto výšivky nie sú dielom jednej ženy, sú dielom celého nášho národa. Možno niektoré z nich vyšívala aj vaša stará mama a ani o tom neviete. Pozerám sa na každý jeden precízny steh s rovnakým obdivom, s akým som sa kedysi v galériách chcela dostať čo najbližšie k slávnym obrazom a predstavovať si, ako asi maliari pracovali. Chcem sa k nim priblížiť čo najbližšie a predstavujem si ruky, ktoré po večeroch pri sviečkach vyšívali hodiny a hodiny. A predstavujem si aj ženy, mužov a deti, ktoré ich nosili ako súčasť svojej každodennej identity.</p>
+    <p>Vďaka tomu, čo som sa dozvedela o svojich predkoch a o rodine, z ktorej pochádzala aj Anna Šenšelová, premýšľam aj nad ich príbehom. Odkiaľ sa vzali, kto sa na ne pozeral a obdivoval ich, kto sa o nich rozprával. Boli schované v nejakej krabici alebo slúžili ako vzor a inšpirácia pre šaty z dielne Lipy? Obdivovala ich len Anna Šenšelová alebo na ne padli zraky ďalších dôležitých osobností martinského života? To sa už zrejme nikdy nedozvieme, ale samotné zamyslanie nad tým ma nadchýna. Som vďačná, že sa o ne môžem podeliť aj s vami a dopriať im nový život.</p>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
