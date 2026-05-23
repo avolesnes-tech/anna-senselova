@@ -1352,8 +1352,8 @@
       <div id="pinsContainer" aria-hidden="true"></div>
     </div>
     <div class="mapa-legenda" aria-hidden="true">
-      <span class="legenda-item"><span class="legenda-dot legenda-dot--gold"></span> príbeh</span>
-      <span class="legenda-item"><span class="legenda-dot legenda-dot--red"></span> nový príbeh</span>
+      <span class="legenda-item"><span class="legenda-dot legenda-dot--gold"></span> story</span>
+      <span class="legenda-item"><span class="legenda-dot legenda-dot--red"></span> new story</span>
     </div>
   </div>
 </section>
@@ -1363,16 +1363,16 @@
 ════════════════════════════════════════════ -->
 <section class="pribeny-sekcia" aria-label="Galéria príbehov">
   <div class="pribeny-header reveal">
-    <p class="section-label">Zbierka spomienok</p>
+    <p class="section-label">Collection of memories</p>
     <h2>Stories from the map</h2>
     <div class="gold-line"></div>
   </div>
   <div class="pribeny-grid" id="pribenyGrid" role="list"></div>
   <div id="gridEmpty" class="pribeny-empty" hidden>
-    <p>Zatiaľ žiadne príbehy. Buď prvý, kto sa podelí.</p>
+    <p>No stories yet. Be the first to share one.</p>
   </div>
   <div class="pribeny-footer">
-    <button id="nacitajDalsie" class="btn-ghost btn-load-more" hidden>Load more príbehy</button>
+    <button id="nacitajDalsie" class="btn-ghost btn-load-more" hidden>Load more stories</button>
   </div>
 </section>
 
@@ -1381,57 +1381,57 @@
 ════════════════════════════════════════════ -->
 <section class="form-sekcia" id="pridaj-pribeh" aria-label="Formulár pre pridanie príbehu">
   <div class="form-obal">
-    <p class="section-label">Zachovaj spomienku</p>
-    <h2 class="form-title">Tvoj ancestor si zaslúži byť zapamätaný</h2>
+    <p class="section-label">Preserve a memory</p>
+    <h2 class="form-title">Your ancestor deserves to be remembered</h2>
     <div class="gold-line" style="margin:1rem auto 0;"></div>
 
     <div class="form-panel">
       <form id="pribehForm" novalidate>
 
         <!-- PRVÝ PREDOK -->
-        <p class="ancestor-section-label" id="ancestor1Label">Prvý ancestor</p>
+        <p class="ancestor-section-label" id="ancestor1Label">First ancestor</p>
         <div class="form-row">
           <div class="form-field">
-            <label for="fMenoPredka">Meno predka <span class="req">*</span></label>
-            <input type="text" id="fMenoPredka" name="ancestor_meno" placeholder="napr. Mária" required autocomplete="off">
+            <label for="fMenoPredka">Ancestor's first name <span class="req">*</span></label>
+            <input type="text" id="fMenoPredka" name="ancestor_meno" placeholder="e.g. Mária" required autocomplete="off">
           </div>
           <div class="form-field">
-            <label for="fPriezviskoPreda">Priezvisko predka <span class="req">*</span></label>
-            <input type="text" id="fPriezviskoPredka" name="ancestor_surname" placeholder="napr. Kopecká" required autocomplete="off">
+            <label for="fPriezviskoPreda">Ancestor's surname <span class="req">*</span></label>
+            <input type="text" id="fPriezviskoPredka" name="ancestor_surname" placeholder="e.g. Kopecká" required autocomplete="off">
           </div>
         </div>
 
         <!-- TOGGLE: druhý ancestor -->
         <button type="button" class="btn-add-ancestor" id="btnAddPredok2">
-          + Pridať druhého predka (manžel / manželka, pár)
+          + Add a second ancestor (husband / wife, couple)
         </button>
 
         <!-- DRUHÝ PREDOK (skrytý) -->
         <div class="ancestor2-block" id="ancestor2Block">
           <div class="ancestor2-header">
-            <span class="ancestor2-label">Druhý ancestor</span>
-            <button type="button" class="btn-remove-ancestor2" id="btnRemovePredok2">× Odobrať</button>
+            <span class="ancestor2-label">Second ancestor</span>
+            <button type="button" class="btn-remove-ancestor2" id="btnRemovePredok2">× Remove</button>
           </div>
           <div class="form-row">
             <div class="form-field">
-              <label for="fMenoPredka2">Meno</label>
+              <label for="fMenoPredka2">First name</label>
               <input type="text" id="fMenoPredka2" name="ancestor2_meno" placeholder="napr. Ján" autocomplete="off">
             </div>
             <div class="form-field">
-              <label for="fPriezviskoPredka2">Priezvisko</label>
+              <label for="fPriezviskoPredka2">Surname</label>
               <input type="text" id="fPriezviskoPredka2" name="ancestor2_surname" placeholder="napr. Kopecký" autocomplete="off">
             </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label for="fObec">Obec / mesto <span class="req">*</span></label>
+            <label for="fObec">Village / town <span class="req">*</span></label>
             <input type="text" id="fObec" name="obec" placeholder="napr. Horné Srnie" required autocomplete="off">
           </div>
           <div class="form-field">
-            <label for="fKraj">Kraj <span class="req">*</span></label>
+            <label for="fKraj">Region <span class="req">*</span></label>
             <select id="fKraj" name="kraj" required>
-              <option value="">— vyber kraj —</option>
+              <option value="">— select region —</option>
               <option>Bratislavský kraj</option>
               <option>Trnavský kraj</option>
               <option>Trenčiansky kraj</option>
@@ -1445,69 +1445,69 @@
           </div>
         </div>
         <div class="form-field">
-          <label for="fObdobie">Obdobie <span class="req">*</span></label>
+          <label for="fObdobie">Period <span class="req">*</span></label>
           <select id="fObdobie" name="obdobie" required>
-            <option value="">— vyber obdobie —</option>
+            <option value="">— select period —</option>
             <option value="pred_1900">Before 1900</option>
-            <option value="1900_1918">1900 – 1918 (Uhorsko)</option>
-            <option value="medzivojnove">Medzivojnové (1918 – 1939)</option>
-            <option value="vojnove">Vojnové roky (1939 – 1945)</option>
-            <option value="povojnove">Povojnové (1945 – 1968)</option>
+            <option value="1900_1918">1900 – 1918 (Kingdom of Hungary)</option>
+            <option value="medzivojnove">Interwar period (1918 – 1939)</option>
+            <option value="vojnove">War years (1939 – 1945)</option>
+            <option value="povojnove">Post-war (1945 – 1968)</option>
           </select>
         </div>
         <div class="form-field">
-          <label for="fPribeh">Príbeh <span class="req">*</span></label>
-          <textarea id="fPribeh" name="pribeh" rows="6" placeholder="Napíš to tak, ako by si to rozprával priateľovi…" required></textarea>
-          <span class="hint">Nie je potrebná dokonalá slovenčina — dôležitý je príbeh. Aspoň 3 vety.</span>
+          <label for="fPribeh">Story <span class="req">*</span></label>
+          <textarea id="fPribeh" name="pribeh" rows="6" placeholder="Write it the way you'd tell it to a friend…" required></textarea>
+          <span class="hint">No need for perfect spelling — the story is what matters. At least 3 sentences.</span>
         </div>
         <div class="form-field">
-          <label>Fotografia <span style="font-style:italic;text-transform:none;font-size:0.85em">(nepovinné)</span></label>
+          <label>Photograph <span style="font-style:italic;text-transform:none;font-size:0.85em">(optional)</span></label>
           <div class="drop-zone" id="dropZone">
-            <input type="file" id="fFoto" name="foto" accept="image/*" aria-label="Nahrať fotografiu predka">
+            <input type="file" id="fFoto" name="foto" accept="image/*" aria-label="Upload a photograph of the ancestor">
             <span class="drop-zone-icon">📷</span>
-            <span class="drop-zone-text">Pretiahnuť fotografiu alebo kliknúť pre výber</span>
-            <div class="drop-zone-preview"><img id="dropPreview" src="" alt="Náhľad"></div>
+            <span class="drop-zone-text">Drag a photograph here or click to browse</span>
+            <div class="drop-zone-preview"><img id="dropPreview" src="" alt="Preview"></div>
           </div>
-          <span class="hint">Stará fotografia dodá príbehu tvár. Ak ju nemáš, nevadí. Max 5 MB.</span>
+          <span class="hint">An old photograph gives a face to the story. If you don't have one, that's fine. Max 5 MB.</span>
         </div>
         <hr class="form-divider">
-        <span class="form-optional-label">Voliteľné — tvoje údaje (pre prípadné uvedenie autora)</span>
+        <span class="form-optional-label">Optional — your details (in case you wish to be credited)</span>
         <div class="form-row">
           <div class="form-field">
-            <label for="fZdielalMeno">Tvoje meno</label>
+            <label for="fZdielalMeno">Your first name</label>
             <input type="text" id="fZdielalMeno" name="zdielal_meno" placeholder="napr. Jana" autocomplete="given-name">
           </div>
           <div class="form-field">
-            <label for="fZdielalPriezvisko">Tvoje surname</label>
+            <label for="fZdielalPriezvisko">Your surname</label>
             <input type="text" id="fZdielalPriezvisko" name="zdielal_surname" placeholder="napr. Kopecká" autocomplete="family-name">
           </div>
         </div>
         <div class="form-field">
-          <label for="fEmail">E-mail <span style="font-style:italic;text-transform:none;font-size:0.85em">(nepovinné — budeme ťa informovať o schválení)</span></label>
+          <label for="fEmail">E-mail <span style="font-style:italic;text-transform:none;font-size:0.85em">(optional — we will let you know when your story is approved)</span></label>
           <input type="email" id="fEmail" name="zdielal_email" placeholder="napr. jana@email.sk" autocomplete="email">
         </div>
         <!-- GDPR — súhlas so zdieľaním na sociálnych sieťach -->
         <div class="form-field-check">
           <input type="checkbox" id="fSocialSuhlas" name="social_suhlas">
           <label for="fSocialSuhlas">
-            Súhlasím s tým, že môj príbeh (a prípadne priložená fotografia) môže byť zdieľaný/á na sociálnych sieťach Mapy spomienok (Facebook, Instagram). Tento súhlas je dobrovoľný a môžem ho kedykoľvek odvolať na <a href="mailto:senselovaanna@gmail.com" style="color:var(--gold-dark);">senselovaanna@gmail.com</a>.
+            I consent to my story (and any attached photograph) being shared on the Map of Memories social media accounts (Facebook, Instagram). This consent is voluntary and may be withdrawn at any time by writing to <a href="mailto:senselovaanna@gmail.com" style="color:var(--gold-dark);">senselovaanna@gmail.com</a>.
           </label>
         </div>
 
-        <button type="submit" class="btn-submit" id="btnSubmit">Odovzdať príbeh do archívu</button>
-        <p class="form-submit-note">Príspevok sa zobrazí na mape po schválení administrátorom. Ak si uviedol/a e-mail, budeme ťa o tom informovať.</p>
+        <button type="submit" class="btn-submit" id="btnSubmit">Submit your story to the archive</button>
+        <p class="form-submit-note">Your story will appear on the map once approved by an administrator. If you provided an email address, we will let you know.</p>
         <p id="formError" style="color:var(--red);font-style:italic;font-size:0.9rem;margin-top:0.8rem;display:none;text-align:center;"></p>
       </form>
 
       <div class="form-success" id="formSuccess">
         <span class="form-success-icon">✦</span>
-        <h3>Ďakujeme</h3>
-        <p>Tvoj príbeh sme prijali a čoskoro sa objaví na mape.<br>Pomáhaš zachovať kúsok Slovenska pre budúce generácie.</p>
+        <h3>Thank you</h3>
+        <p>We have received your story and it will appear on the map shortly.<br>You are helping to preserve a piece of Slovakia for future generations.</p>
         <div class="share-success-btns" id="shareSuccessBtns"></div>
         <div class="delete-link-box" id="deleteLinkBox" style="display:none">
-          <strong>Odkaz na vymazanie príbehu</strong>
-          Ak by si niekedy chcel/a príbeh odstrániť, použi tento odkaz.
-          Ulož si ho — zobrazuje sa len raz.<br>
+          <strong>Link to remove your story</strong>
+          If you ever wish to have your story removed, use this link.
+          Save it — it is shown only once.<br>
           <a id="deleteLinkAnchor" href="#"></a>
         </div>
       </div>
@@ -1519,8 +1519,8 @@
 <div class="story-panel" id="storyPanel" role="dialog" aria-modal="true" aria-labelledby="panelName" hidden>
   <div class="panel-topbar">
     <div class="panel-nav-group">
-      <button class="panel-nav-btn" id="panelPrev" aria-label="Predchádzajúci príbeh">‹</button>
-      <button class="panel-nav-btn" id="panelNext" aria-label="Nasledujúci príbeh">›</button>
+      <button class="panel-nav-btn" id="panelPrev" aria-label="Previous story">‹</button>
+      <button class="panel-nav-btn" id="panelNext" aria-label="Next story">›</button>
     </div>
     <button class="panel-close" id="panelClose" aria-label="Close">✕</button>
   </div>
@@ -1533,10 +1533,10 @@
     <div class="panel-tagy" id="panelTagy"></div>
     <p class="panel-zdielal" id="panelZdielal"></p>
     <hr class="panel-divider">
-    <span class="panel-share-label">Zdieľaj tento príbeh</span>
+    <span class="panel-share-label">Share this story</span>
     <div class="share-btns" id="panelShareBtns"></div>
     <a href="galeria-vysiviek.html" class="panel-gallery-link" id="panelGalleryLink">
-      Výšivky z tohto regionu →
+      Embroideries from this region →
     </a>
   </div>
 </div>
@@ -1571,13 +1571,13 @@
       </svg>
       <p class="footer-tagline">Created with love and respect for past generations.</p>
       <div class="footer-social">
-        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories na Facebooku">Facebook</a>
+        <a href="https://www.facebook.com/profile.php?id=61589073868829" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Facebook">Facebook</a>
         <span class="footer-social-sep">·</span>
-        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories na Instagrame">Instagram</a>
+        <a href="https://www.instagram.com/mapa_spomienok?utm_source=qr&igsh=MWNubXJqazdpeGR6ZA==" target="_blank" rel="noopener noreferrer" aria-label="Map of Memories on Instagram">Instagram</a>
       </div>
     </div>
     <div>
-      <p class="footer-col-title">Galéria &amp; Mapa</p>
+      <p class="footer-col-title">Gallery &amp; Map</p>
       <ul class="footer-links">
         <li><a href="galeria-vysiviek.html">Embroidery Sample Book</a></li>
         <li><a href="galeria-ludove.html">Folk Embroideries and Dress</a></li>
@@ -1678,14 +1678,14 @@
   };
 
   const OBDOBIE_LABELS = {
-    pred_1900:    'Pred rokom 1900',
+    pred_1900:    'Before 1900',
     '1900_1918':  '1900 – 1918',
-    medzivojnove: 'Medzivojnové',
-    vojnove:      'Vojnové roky',
-    povojnove:    'Povojnové',
-    normalizacia: 'Normalizácia',
-    po_1989:      'Po roku 1989',
-    nezname:      'Neznáme obdobie'
+    medzivojnove: 'Interwar years',
+    vojnove:      'Wartime years',
+    povojnove:    'Post-war years',
+    normalizacia: 'Normalisation era',
+    po_1989:      'After 1989',
+    nezname:      'Unknown period'
   };
 
   /* ─── STATE ──────────────────────────────────── */
@@ -1846,7 +1846,7 @@
               '<rect x="0.5" y="0.5" width="9" height="9" rx="0.5" stroke="currentColor" stroke-width="0.8"/>' +
               '<line x1="2.5" y1="5" x2="7.5" y2="5" stroke="currentColor" stroke-width="0.8"/>' +
               '<line x1="5" y1="2.5" x2="5" y2="7.5" stroke="currentColor" stroke-width="0.8"/>' +
-            '</svg> Čítať príbeh' +
+            '</svg> Read story' +
           '</span>' +
         '</div>' +
       '</div>' +
@@ -1921,7 +1921,7 @@
         '<div class="passepartout">' +
           '<div class="passepartout-placeholder">' +
             placeholderSvg(80) +
-            '<span class="passepartout-placeholder-text">bez fotografie</span>' +
+            '<span class="passepartout-placeholder-text">no photograph</span>' +
           '</div>' +
           '<span class="passepartout-caption">' + esc(caption) + '</span>' +
         '</div>';
@@ -1948,7 +1948,7 @@
     // Zdieľal
     const zdielal = document.getElementById('panelZdielal');
     const autor = [story.zdielal_meno, story.zdielal_surname].filter(Boolean).join(' ');
-    zdielal.textContent = autor ? 'Zdieľal/a: ' + autor : '';
+    zdielal.textContent = autor ? 'Shared by: ' + autor : '';
     zdielal.style.display = autor ? '' : 'none';
 
     // Nav buttons
@@ -1962,8 +1962,8 @@
   function buildShareBtns(story, container) {
     const url   = storyUrl(story.id);
     const text  = (story.ancestor_meno || '') + ' ' + (story.ancestor_surname || '') +
-      ' z ' + (story.obec || '') + ' — príbeh, ktorý nesmie zaniknúť. ' +
-      'Pridaj aj ty spomienku na svojich predkov 👉 ';
+      ' from ' + (story.obec || '') + ' — a story that must not be forgotten. ' +
+      'Share your own ancestor\'s story too 👉 ';
     container.innerHTML = '';
 
     const btns = [
@@ -1980,14 +1980,14 @@
         action: () => window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank', 'width=600,height=300')
       },
       {
-        cls: 'btn-share--copy', label: '🔗 Skopírovať', id: 'copyBtn',
+        cls: 'btn-share--copy', label: '🔗 Copy link', id: 'copyBtn',
         action: function(btn) {
           if (navigator.share) {
             navigator.share({ title: 'Map of Memories', text: text, url: url }).catch(() => {});
           } else {
             navigator.clipboard.writeText(url).then(() => {
-              btn.textContent = '✓ Skopírované';
-              setTimeout(() => { btn.textContent = '🔗 Skopírovať'; }, 2000);
+              btn.textContent = '✓ Copied';
+              setTimeout(() => { btn.textContent = '🔗 Copy link'; }, 2000);
             });
           }
         }
@@ -2038,8 +2038,8 @@
     const q = document.getElementById('searchPriezvisko').value.trim();
     if (q) {
       result.textContent = filteredStories.length
-        ? filteredStories.length + ' príbeh' + (filteredStories.length === 1 ? '' : filteredStories.length < 5 ? 'y' : 'ov') + ' s surnamem „' + q + '"'
-        : '0 príbehov s surnamem „' + q + '"';
+        ? filteredStories.length + ' stor' + (filteredStories.length === 1 ? 'y' : 'ies') + ' with surname "' + q + '"'
+        : '0 stories with surname "' + q + '"';
     } else {
       result.textContent = '';
     }
@@ -2104,7 +2104,7 @@
   function handleFileSelect(file) {
     if (!file || !file.type.startsWith('image/')) return;
     if (file.size > 5 * 1024 * 1024) {
-      showFormError('Fotografia je príliš veľká. Maximum je 5 MB.');
+      showFormError('The photograph is too large. Maximum size is 5 MB.');
       return;
     }
     const reader = new FileReader();
@@ -2147,7 +2147,7 @@
     e.preventDefault();
     const btn = document.getElementById('btnSubmit');
     btn.disabled = true;
-    btn.textContent = 'Ukladám…';
+    btn.textContent = 'Saving…';
     hideFormError();
 
     const meno        = document.getElementById('fMenoPredka').value.trim();
@@ -2165,13 +2165,13 @@
     const masPredok2  = meno2 || surname2;
 
     if (!meno || !surname || !obec || !kraj || !obdobie || !pribeh) {
-      showFormError('Vyplň prosím všetky povinné polia (označené hviezdičkou).');
-      btn.disabled = false; btn.textContent = 'Odovzdať príbeh do archívu';
+      showFormError('Please fill in all required fields (marked with an asterisk).');
+      btn.disabled = false; btn.textContent = 'Submit your story to the archive';
       return;
     }
     if (pribeh.split(/\s+/).length < 8) {
-      showFormError('Príbeh je príliš krátky. Napíš prosím aspoň pár viet.');
-      btn.disabled = false; btn.textContent = 'Odovzdať príbeh do archívu';
+      showFormError('Your story is too short. Please write at least a few sentences.');
+      btn.disabled = false; btn.textContent = 'Submit your story to the archive';
       return;
     }
 
@@ -2210,8 +2210,8 @@
     });
 
     if (error) {
-      showFormError('Nastala chyba pri odosielaní. Skús to prosím znova alebo napíš na senselovaanna@gmail.com.');
-      btn.disabled = false; btn.textContent = 'Odovzdať príbeh do archívu';
+      showFormError('Something went wrong while sending. Please try again or write to senselovaanna@gmail.com.');
+      btn.disabled = false; btn.textContent = 'Submit your story to the archive';
       return;
     }
 
@@ -2236,7 +2236,7 @@
     successEl.style.display = 'block';
     const pageUrl  = window.location.href.split('?')[0].split('#')[0];
     const shareUrl = pageUrl + '#pridaj-pribeh';
-    const text = menoFull + ' z ' + obec + ' — príbeh, ktorý nesmie zaniknúť. Pridaj aj ty spomienku na svojich predkov 👉 ';
+    const text = menoFull + ' from ' + obec + ' — a story that must not be forgotten. Share your own family memories too 👉 ';
     const btns = document.getElementById('shareSuccessBtns');
     btns.innerHTML =
       '<a class="btn-share-success btn-share-success--fb" href="https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) + '" target="_blank" rel="noopener">Zdieľať na Facebooku</a>' +
@@ -2261,7 +2261,7 @@
 
     // Zobraz potvrdzovacie okno
     const confirmed = window.confirm(
-      'Naozaj chcete vymazať tento príbeh z mapy?\n\nTáto akcia je nevratná.'
+      'Are you sure you want to remove this story from the map?\n\nThis action cannot be undone.'
     );
     if (!confirmed) {
       // Odstráň parameter z URL bez reload
@@ -2278,13 +2278,13 @@
     .then(r => r.json())
     .then(data => {
       if (data.deleted) {
-        alert('Príbeh bol úspešne vymazaný. Ďakujeme za oznámenie.');
+        alert('The story has been successfully removed. Thank you for letting us know.');
       } else {
-        alert('Príbeh sa nepodarilo nájsť alebo bol už vymazaný.');
+        alert('The story could not be found or has already been removed.');
       }
       history.replaceState(null, '', window.location.pathname);
     })
-    .catch(() => alert('Nastala chyba. Prosím, napíšte na senselovaanna@gmail.com.'));
+    .catch(() => alert('Something went wrong. Please write to senselovaanna@gmail.com.'));
   })();
 
   function showFormError(msg) {
