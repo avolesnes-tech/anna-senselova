@@ -1361,7 +1361,7 @@
 <!-- ═══════════════════════════════════════════
      4. PRÍBEHY GRID
 ════════════════════════════════════════════ -->
-<section class="pribeny-sekcia" aria-label="Galéria príbehov">
+<section class="pribeny-sekcia" aria-label="Story gallery">
   <div class="pribeny-header reveal">
     <p class="section-label">Collection of memories</p>
     <h2>Stories from the map</h2>
@@ -1379,7 +1379,7 @@
 <!-- ═══════════════════════════════════════════
      5. FORMULÁR
 ════════════════════════════════════════════ -->
-<section class="form-sekcia" id="pridaj-pribeh" aria-label="Formulár pre pridanie príbehu">
+<section class="form-sekcia" id="pridaj-pribeh" aria-label="Add a story form">
   <div class="form-obal">
     <p class="section-label">Preserve a memory</p>
     <h2 class="form-title">Your ancestor deserves to be remembered</h2>
@@ -1415,18 +1415,18 @@
           <div class="form-row">
             <div class="form-field">
               <label for="fMenoPredka2">First name</label>
-              <input type="text" id="fMenoPredka2" name="ancestor2_meno" placeholder="napr. Ján" autocomplete="off">
+              <input type="text" id="fMenoPredka2" name="ancestor2_meno" placeholder="e.g. Ján" autocomplete="off">
             </div>
             <div class="form-field">
               <label for="fPriezviskoPredka2">Surname</label>
-              <input type="text" id="fPriezviskoPredka2" name="ancestor2_surname" placeholder="napr. Kopecký" autocomplete="off">
+              <input type="text" id="fPriezviskoPredka2" name="ancestor2_surname" placeholder="e.g. Kopecký" autocomplete="off">
             </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
             <label for="fObec">Village / town <span class="req">*</span></label>
-            <input type="text" id="fObec" name="obec" placeholder="napr. Horné Srnie" required autocomplete="off">
+            <input type="text" id="fObec" name="obec" placeholder="e.g. Horné Srnie" required autocomplete="off">
           </div>
           <div class="form-field">
             <label for="fKraj">Region <span class="req">*</span></label>
@@ -1440,7 +1440,7 @@
               <option>Banskobystrický kraj</option>
               <option>Prešovský kraj</option>
               <option>Košický kraj</option>
-              <option>Zahraničie</option>
+              <option value="Zahraničie">Abroad</option>
             </select>
           </div>
         </div>
@@ -1475,16 +1475,16 @@
         <div class="form-row">
           <div class="form-field">
             <label for="fZdielalMeno">Your first name</label>
-            <input type="text" id="fZdielalMeno" name="zdielal_meno" placeholder="napr. Jana" autocomplete="given-name">
+            <input type="text" id="fZdielalMeno" name="zdielal_meno" placeholder="e.g. Jana" autocomplete="given-name">
           </div>
           <div class="form-field">
             <label for="fZdielalPriezvisko">Your surname</label>
-            <input type="text" id="fZdielalPriezvisko" name="zdielal_surname" placeholder="napr. Kopecká" autocomplete="family-name">
+            <input type="text" id="fZdielalPriezvisko" name="zdielal_surname" placeholder="e.g. Kopecká" autocomplete="family-name">
           </div>
         </div>
         <div class="form-field">
           <label for="fEmail">E-mail <span style="font-style:italic;text-transform:none;font-size:0.85em">(optional — we will let you know when your story is approved)</span></label>
-          <input type="email" id="fEmail" name="zdielal_email" placeholder="napr. jana@email.sk" autocomplete="email">
+          <input type="email" id="fEmail" name="zdielal_email" placeholder="e.g. jana@email.sk" autocomplete="email">
         </div>
         <!-- GDPR — súhlas so zdieľaním na sociálnych sieťach -->
         <div class="form-field-check">
@@ -2239,8 +2239,8 @@
     const text = menoFull + ' from ' + obec + ' — a story that must not be forgotten. Share your own family memories too 👉 ';
     const btns = document.getElementById('shareSuccessBtns');
     btns.innerHTML =
-      '<a class="btn-share-success btn-share-success--fb" href="https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) + '" target="_blank" rel="noopener">Zdieľať na Facebooku</a>' +
-      '<a class="btn-share-success btn-share-success--wa" href="https://wa.me/?text=' + encodeURIComponent(text + shareUrl) + '" target="_blank" rel="noopener">Zdieľať cez WhatsApp</a>';
+      '<a class="btn-share-success btn-share-success--fb" href="https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) + '" target="_blank" rel="noopener">Share on Facebook</a>' +
+      '<a class="btn-share-success btn-share-success--wa" href="https://wa.me/?text=' + encodeURIComponent(text + shareUrl) + '" target="_blank" rel="noopener">Share via WhatsApp</a>';
 
     // Zobraz delete link
     if (deleteToken) {
