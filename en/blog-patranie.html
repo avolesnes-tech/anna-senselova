@@ -174,10 +174,33 @@ body { font-size: clamp(17px, 2.4vw, 19px); line-height: 1.8; overflow-x: hidden
   line-height: 1.75;
 }
 
-/* ARTICLE FIGURE */
+/* ARTICLE FIGURE — shutter reveal */
 .article-figure {
   margin: 2.8rem 0;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Shutter overlay — sweeps left→right then right→off */
+.article-figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(108deg, var(--red) 0%, #c4955a 55%, #d4af37 100%);
+  transform: translateX(-102%);
+  z-index: 3;
+  pointer-events: none;
+}
+.article-figure.shutter-in::after {
+  transform: translateX(0);
+  transition: transform 0.52s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.article-figure.shutter-out::after {
+  transform: translateX(102%);
+  transition: transform 0.52s cubic-bezier(0.77, 0, 0.175, 1) 0.08s;
+}
+
+/* Image: starts slightly zoomed, settles on reveal */
 .article-figure img {
   width: 100%;
   height: auto;
@@ -185,7 +208,23 @@ body { font-size: clamp(17px, 2.4vw, 19px); line-height: 1.8; overflow-x: hidden
   object-fit: contain;
   display: block;
   border-top: 3px solid var(--red);
+  transform: scale(1.04);
+  transition: transform 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
+.article-figure.shutter-out img {
+  transform: scale(1.0);
+}
+
+/* Hover: very slow, gentle Ken Burns — almost breathing */
+@media (hover: hover) {
+  .article-figure:hover img {
+    transform: scale(1.025) translateY(-3px);
+    transition: transform 7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+/* Figcaption: drifts up after reveal */
 .article-figure figcaption {
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.88rem;
@@ -194,6 +233,20 @@ body { font-size: clamp(17px, 2.4vw, 19px); line-height: 1.8; overflow-x: hidden
   margin-top: 0.6rem;
   padding-left: 0.2rem;
   font-style: italic;
+  opacity: 0;
+  transform: translateY(7px);
+  transition: opacity 0.55s ease 0.85s, transform 0.55s ease 0.85s;
+}
+.article-figure.shutter-out figcaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .article-figure::after { display: none; }
+  .article-figure img { transform: none !important; transition: none !important; }
+  .article-figure figcaption { opacity: 1; transform: none; transition: none; }
 }
 
 /* ARTICLE FOOTER NAV */
@@ -448,6 +501,34 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <script>
   document.getElementById('gdpr-modal').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') document.getElementById('gdpr-modal').classList.remove('open'); });
+</script>
+<script>
+  /* Figure shutter reveal — fires once per figure as it enters the viewport */
+  (function () {
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
+
+    var figures = document.querySelectorAll('.article-figure');
+    if (!figures.length) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var fig = entry.target;
+        io.unobserve(fig);
+
+        /* Phase 1 — shutter sweeps in (red-gold overlay covers image) */
+        fig.classList.add('shutter-in');
+
+        /* Phase 2 — shutter sweeps out (image revealed underneath) */
+        setTimeout(function () {
+          fig.classList.add('shutter-out');
+        }, 560);
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
+
+    figures.forEach(function (fig) { io.observe(fig); });
+  }());
 </script>
 </body>
 </html>
