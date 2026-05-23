@@ -310,13 +310,33 @@ h1.page-title {
    ============================================= */
 .gallery-closing {
   background: var(--section-alt);
-  padding: var(--sp-10) var(--sp-4) var(--sp-10);
+  padding: var(--sp-10) var(--sp-4) var(--sp-12);
 }
 .gallery-closing-inner {
   max-width: 700px;
   margin: 0 auto;
-  text-align: center;
 }
+
+.closing-pullquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--red);
+  line-height: 1.55;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+}
+
+.closing-rule {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 2rem auto 2rem;
+}
+
 .gallery-closing-inner p {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.08rem;
@@ -327,12 +347,24 @@ h1.page-title {
 }
 .gallery-closing-inner p:last-child { margin-bottom: 0; }
 
+.closing-final {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  font-style: italic;
+  color: #555;
+  text-align: center !important;
+  margin-top: 2rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(212,175,55,0.22);
+}
+
 @media (min-width: 900px) {
   .gallery-closing-inner { max-width: 860px; }
 }
 @media (max-width: 640px) {
-  .gallery-closing { padding: var(--sp-8) var(--sp-3); }
+  .gallery-closing { padding: var(--sp-8) var(--sp-3) var(--sp-10); }
   .gallery-closing-inner p { font-size: 1rem; }
+  .closing-pullquote { font-size: 1.35rem; }
 }
 
 /* =============================================
@@ -996,13 +1028,11 @@ h1.page-title {
   opacity: 0;
 }
 .animate-hero > *:nth-child(1) { animation: fadeUp 0.9s 0.10s forwards ease; }
-.animate-hero > *:nth-child(2) { animation: fadeUp 0.9s 0.20s forwards ease; }
-.animate-hero > *:nth-child(3) { animation: fadeUp 0.9s 0.30s forwards ease; }
-.animate-hero > *:nth-child(4) { animation: fadeUp 0.9s 0.40s forwards ease; }
-.animate-hero > *:nth-child(5) { animation: fadeUp 0.9s 0.50s forwards ease; }
-.animate-hero > *:nth-child(6) { animation: fadeUp 0.9s 0.62s forwards ease; }
-.animate-hero > *:nth-child(7) { animation: fadeUp 0.9s 0.74s forwards ease; }
-.animate-hero > *:nth-child(8) { animation: fadeUp 0.9s 0.86s forwards ease; }
+.animate-hero > *:nth-child(2) { animation: fadeUp 0.9s 0.22s forwards ease; }
+.animate-hero > *:nth-child(3) { animation: fadeUp 0.9s 0.34s forwards ease; }
+.animate-hero > *:nth-child(4) { animation: fadeUp 0.9s 0.44s forwards ease; }
+.animate-hero > *:nth-child(5) { animation: fadeUp 0.9s 0.54s forwards ease; }
+.animate-hero > *:nth-child(6) { animation: fadeUp 0.9s 0.66s forwards ease; }
 
 /* Swipe hint on mobile */
 @media (max-width: 640px) {
@@ -1150,12 +1180,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
     <p class="section-label">Zbierka · Výšivky</p>
     <h1 class="page-title">Vzorkovník výšiviek.</h1>
     <div class="gold-line"></div>
-
-    <div class="hero-folk-divider" aria-hidden="true">
-      <span class="fdiv-line"></span>
-      <img src="assets/motiv-ludovy.svg" alt="" width="52" height="52">
-      <span class="fdiv-line-r"></span>
-    </div>
 
     <div class="hero-ack">
       <p class="hero-ack-label">Poďakovanie</p>
@@ -1894,13 +1918,13 @@ section[id], div[id] { scroll-margin-top: 72px; }
 <!-- ZÁVEREČNÁ REFLEXIA -->
 <section class="gallery-closing">
   <div class="gallery-closing-inner">
-    <div class="hero-folk-divider" aria-hidden="true" style="margin: 0 auto 2.8rem;">
-      <span class="fdiv-line"></span>
-      <img src="assets/motiv-ludovy.svg" alt="" width="52" height="52">
-      <span class="fdiv-line-r"></span>
-    </div>
-    <p>Tieto výšivky nie sú dielom jednej ženy, sú dielom celého nášho národa. Možno niektoré z nich vyšívala aj vaša stará mama a ani o tom neviete. Pozerám sa na každý jeden precízny steh s rovnakým obdivom, s akým som sa kedysi v galériách chcela dostať čo najbližšie k slávnym obrazom a predstavovať si, ako asi maliari pracovali. Chcem sa k nim priblížiť čo najbližšie a predstavujem si ruky, ktoré po večeroch pri sviečkach vyšívali hodiny a hodiny. A predstavujem si aj ženy, mužov a deti, ktoré ich nosili ako súčasť svojej každodennej identity.</p>
-    <p>Vďaka tomu, čo som sa dozvedela o svojich predkoch a o rodine, z ktorej pochádzala aj Anna Šenšelová, premýšľam aj nad ich príbehom. Odkiaľ sa vzali, kto sa na ne pozeral a obdivoval ich, kto sa o nich rozprával. Boli schované v nejakej krabici alebo slúžili ako vzor a inšpirácia pre šaty z dielne Lipy? Obdivovala ich len Anna Šenšelová alebo na ne padli zraky ďalších dôležitých osobností martinského života? To sa už zrejme nikdy nedozvieme, ale samotné zamyslanie nad tým ma nadchýna. Som vďačná, že sa o ne môžem podeliť aj s vami a dopriať im nový život.</p>
+    <blockquote class="closing-pullquote">
+      Tieto výšivky nie sú dielom jednej ženy,<br>sú dielom celého nášho národa.
+    </blockquote>
+    <div class="closing-rule"></div>
+    <p>Možno niektoré z nich vyšívala aj vaša stará mama a ani o tom neviete. Pozerám sa na každý jeden precízny steh s rovnakým obdivom, s akým som sa kedysi v galériách chcela dostať čo najbližšie k slávnym obrazom a predstavovať si, ako asi maliari pracovali. Chcem sa k nim priblížiť čo najbližšie a predstavujem si ruky, ktoré po večeroch pri sviečkach vyšívali hodiny a hodiny. A predstavujem si aj ženy, mužov a deti, ktoré ich nosili ako súčasť svojej každodennej identity.</p>
+    <p>Vďaka tomu, čo som sa dozvedela o svojich predkoch a o rodine, z ktorej pochádzala aj Anna Šenšelová, premýšľam aj nad ich príbehom. Odkiaľ sa vzali, kto sa na ne pozeral a obdivoval ich, kto sa o nich rozprával. Boli schované v nejakej krabici alebo slúžili ako vzor a inšpirácia pre šaty z dielne Lipy? Obdivovala ich len Anna Šenšelová alebo na ne padli zraky ďalších dôležitých osobností martinského života? To sa už zrejme nikdy nedozvieme, ale samotné zamyslanie nad tým ma nadchýna.</p>
+    <p class="closing-final">Som vďačná, že sa o ne môžem podeliť aj s vami a dopriať im nový život.</p>
   </div>
 </section>
 
