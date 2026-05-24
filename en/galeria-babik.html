@@ -921,18 +921,8 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <div class="panel-meta-tags" id="panelMetaTags"></div>
 
       <div class="panel-section" id="panelOriginSection">
-        <div class="panel-section-label">Region</div>
-        <p id="panelOrigin"></p>
-      </div>
-
-      <div class="panel-section" id="panelTechSection">
-        <div class="panel-section-label">Folk Costume</div>
-        <p id="panelTechnique"></p>
-      </div>
-
-      <div class="panel-section" id="panelUseSection">
         <div class="panel-section-label">Description</div>
-        <p id="panelUse"></p>
+        <p id="panelOrigin"></p>
       </div>
 
       <div class="panel-actions">
@@ -1042,8 +1032,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-tags='[]'
              data-photos='["babika2a.webp","babika2b.webp","babika2c.webp","babika2d.webp","babika2e.webp"]'
              data-origin=""
-             data-technique=""
-             data-use="">
           <picture>
             <source srcset="../babika2a.webp" type="image/webp">
             <img src="../babika2a.jpeg" alt="Folk Costume Doll, Piešťany" loading="eager" fetchpriority="high" decoding="async">
@@ -1067,8 +1055,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-tags='[]'
              data-photos='["babika3a.webp","babika3b.webp","babika3c.webp","babika3d.webp","babika3e.webp"]'
              data-origin=""
-             data-technique=""
-             data-use="">
           <picture>
             <source srcset="../babika3a.webp" type="image/webp">
             <img src="../babika3a.jpeg" alt="Folk Costume Doll, Čičmany" loading="eager" fetchpriority="high" decoding="async">
@@ -1092,8 +1078,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-tags='[]'
              data-photos='["babika4a.webp","babika4b.webp","babika4c.webp","babika4d.webp","babika4e.webp"]'
              data-origin=""
-             data-technique=""
-             data-use="">
           <picture>
             <source srcset="../babika4a.webp" type="image/webp">
             <img src="../babika4a.jpeg" alt="Folk Costume Doll, Podpoľanie" loading="lazy" decoding="async">
@@ -1117,8 +1101,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-tags='[]'
              data-photos='["babika5a.webp","babika5b.webp","babika5c.webp","babika5d.webp","babika5e.webp"]'
              data-origin=""
-             data-technique=""
-             data-use="">
           <picture>
             <source srcset="../babika5a.webp" type="image/webp">
             <img src="../babika5a.jpeg" alt="Folk Costume Doll, Moravské Lieskové" loading="lazy" decoding="async">
@@ -1142,8 +1124,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
              data-tags='[]'
              data-photos='["babika1a.webp","babika1b.webp","babika1c.webp"]'
              data-origin=""
-             data-technique=""
-             data-use="">
           <picture>
             <source srcset="../babika1a.webp" type="image/webp">
             <img src="../babika1a.jpeg" alt="Folk Costume Doll, Námestovo, Orava" loading="lazy" decoding="async">
@@ -1416,8 +1396,6 @@ section[id], div[id] { scroll-margin-top: 72px; }
   const panelRegion = document.getElementById('panelRegion');
   const panelMetaTags = document.getElementById('panelMetaTags');
   const panelOrigin = document.getElementById('panelOrigin');
-  const panelTechnique = document.getElementById('panelTechnique');
-  const panelUse = document.getElementById('panelUse');
   const panelZoomBtn = document.getElementById('panelZoomBtn');
   const panelShareBtn = document.getElementById('panelShareBtn');
 
@@ -1474,9 +1452,8 @@ section[id], div[id] { scroll-margin-top: 72px; }
     panelTitle.textContent = card.dataset.name;
     panelRegion.textContent = card.dataset.region;
     panelCounter.textContent = pos + ' / ' + total;
-    panelOrigin.textContent = card.dataset.origin;
-    panelTechnique.textContent = card.dataset.technique;
-    panelUse.textContent = card.dataset.use;
+    panelOrigin.textContent = card.dataset.origin || '';
+    panelOriginSection.style.display = card.dataset.origin ? '' : 'none';
 
     // Meta tags
     panelMetaTags.innerHTML = '';

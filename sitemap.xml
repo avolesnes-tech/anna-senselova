@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- SK – hlavná stránka -->
+  <url>
+    <loc>https://mapaspomienok.sk/</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- SK – Anna Šenšelová -->
+  <url>
+    <loc>https://mapaspomienok.sk/anna-senselova.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/anna-senselova.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/anna-senselova.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SK – Lipa -->
+  <url>
+    <loc>https://mapaspomienok.sk/lipa.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/lipa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/lipa.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SK – Živena -->
+  <url>
+    <loc>https://mapaspomienok.sk/zivena.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/zivena.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/zivena.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SK – Galéria výšiviek -->
+  <url>
+    <loc>https://mapaspomienok.sk/galeria-vysiviek.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/galeria-vysiviek.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/galeria-vysiviek.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- SK – Krojované bábiky -->
+  <url>
+    <loc>https://mapaspomienok.sk/galeria-babik.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/galeria-babik.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/galeria-babik.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- SK – Iné ľudové výšivky -->
+  <url>
+    <loc>https://mapaspomienok.sk/galeria-ludove.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/galeria-ludove.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/galeria-ludove.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- SK – Mapa spomienok -->
+  <url>
+    <loc>https://mapaspomienok.sk/mapa-spomienok.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/mapa-spomienok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/mapa-spomienok.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- SK – Anna Lockwoodová -->
+  <url>
+    <loc>https://mapaspomienok.sk/anna-lockwoodova.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/anna-lockwoodova.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/anna-lockwoodova.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- SK – Blog (prehľad) -->
+  <url>
+    <loc>https://mapaspomienok.sk/blog.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/blog.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- SK – Blog: Pátranie -->
+  <url>
+    <loc>https://mapaspomienok.sk/blog-patranie.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/blog-patranie.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/blog-patranie.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- SK – Blog: Zdroje -->
+  <url>
+    <loc>https://mapaspomienok.sk/blog-zdroje.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/blog-zdroje.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/blog-zdroje.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- SK – Spojme sa -->
+  <url>
+    <loc>https://mapaspomienok.sk/spojme-sa.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/spojme-sa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/spojme-sa.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- EN – hlavná stránka -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- EN – Anna Šenšelová -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/anna-senselova.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/anna-senselova.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/anna-senselova.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- EN – Lipa -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/lipa.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/lipa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/lipa.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- EN – Živena -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/zivena.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/zivena.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/zivena.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- EN – Embroidery gallery -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/galeria-vysiviek.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/galeria-vysiviek.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/galeria-vysiviek.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- EN – Folk dolls -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/galeria-babik.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/galeria-babik.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/galeria-babik.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- EN – Folk embroideries -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/galeria-ludove.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/galeria-ludove.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/galeria-ludove.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- EN – Memory map -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/mapa-spomienok.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/mapa-spomienok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/mapa-spomienok.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- EN – Anna Lockwoodová -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/anna-lockwoodova.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/anna-lockwoodova.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/anna-lockwoodova.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- EN – Blog -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/blog.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/blog.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- EN – Blog: Research -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/blog-patranie.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/blog-patranie.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/blog-patranie.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- EN – Blog: Sources -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/blog-zdroje.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/blog-zdroje.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/blog-zdroje.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- EN – Contact -->
+  <url>
+    <loc>https://mapaspomienok.sk/en/spojme-sa.html</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/spojme-sa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/spojme-sa.html"/>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
