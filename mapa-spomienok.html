@@ -742,13 +742,20 @@
   text-transform: uppercase;
   color: var(--gold-dark);
 }
-.drop-zone-preview {
+.drop-zone-previews {
   display: none;
-  max-width: 120px;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
   margin: 0.8rem auto 0;
 }
-.drop-zone-preview img { width: 100%; display: block; }
-.drop-zone.has-file .drop-zone-preview { display: block; }
+.drop-zone.has-file .drop-zone-previews { display: flex; }
+.drop-preview-thumb {
+  width: 80px; height: 80px;
+  object-fit: cover;
+  border: 1px solid rgba(212,175,55,0.4);
+  display: block;
+}
 .form-divider {
   margin: 1.5rem 0 1.2rem;
   border: none;
@@ -1033,6 +1040,18 @@
   display: block;
   width: 100%; max-width: 360px;
   filter: sepia(0.28) contrast(1.05) brightness(0.96) saturate(0.88);
+}
+.passepartout--multi {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 38px;
+}
+.passepartout--multi img {
+  flex: 1 1 120px;
+  max-width: 200px;
+  height: 160px;
+  object-fit: cover;
 }
 .passepartout-caption {
   position: absolute;
@@ -1678,10 +1697,10 @@
         <div class="form-field">
           <label>Fotografia <span style="font-style:italic;text-transform:none;font-size:0.85em">(nepovinné)</span></label>
           <div class="drop-zone" id="dropZone">
-            <input type="file" id="fFoto" name="foto" accept="image/*" aria-label="Nahrať fotografiu predka">
+            <input type="file" id="fFoto" name="foto" accept="image/*" multiple aria-label="Nahrať fotografie predka">
             <span class="drop-zone-icon">📷</span>
-            <span class="drop-zone-text">Pretiahnuť fotografiu alebo kliknúť pre výber</span>
-            <div class="drop-zone-preview"><img id="dropPreview" src="" alt="Náhľad"></div>
+            <span class="drop-zone-text">Pretiahnuť fotografie alebo kliknúť pre výber (max. 3)</span>
+            <div class="drop-zone-previews" id="dropPreviews"></div>
           </div>
           <span class="hint">Stará fotografia dodá príbehu tvár. Ak ju nemáš, nevadí. Max 5 MB.</span>
         </div>
@@ -2010,7 +2029,7 @@
     try {
       const { data, error } = await sb
         .from('stories')
-        .select('id, predok_meno, predok_priezvisko, obec, kraj, lat, lng, obdobie, pribeh, foto_url, zdielal_meno, zdielal_priezvisko, status, created_at, social_suhlas, allow_contact')
+        .select('id, predok_meno, predok_priezvisko, obec, kraj, lat, lng, obdobie, pribeh, foto_url, foto_url_2, foto_url_3, zdielal_meno, zdielal_priezvisko, status, created_at, social_suhlas, allow_contact')
         .eq('status', 'approved')
         .order('created_at', { ascending: false });
       if (error) throw error;
@@ -2194,10 +2213,21 @@
     const fotoWrap = document.getElementById('panelFotoWrap');
     const caption  = (story.predok_meno || '') + ' ' + (story.predok_priezvisko || '') +
       (story.obec ? ' · ' + story.obec : '');
-    if (story.foto_url) {
+    const photoUrls = [story.foto_url, story.foto_url_2, story.foto_url_3].filter(Boolean);
+    if (photoUrls.length > 1) {
+      // Multi-photo layout
+      const imgs = photoUrls.map(u =>
+        '<img src="' + esc(u) + '" alt="' + esc(story.predok_meno) + '" loading="lazy">'
+      ).join('');
+      fotoWrap.innerHTML =
+        '<div class="passepartout passepartout--multi">' +
+          imgs +
+          '<span class="passepartout-caption">' + esc(caption) + '</span>' +
+        '</div>';
+    } else if (photoUrls.length === 1) {
       fotoWrap.innerHTML =
         '<div class="passepartout">' +
-          '<img src="' + esc(story.foto_url) + '" alt="' + esc(story.predok_meno) + '" loading="lazy">' +
+          '<img src="' + esc(photoUrls[0]) + '" alt="' + esc(story.predok_meno) + '" loading="lazy">' +
           '<span class="passepartout-caption">' + esc(caption) + '</span>' +
         '</div>';
     } else {
@@ -2384,30 +2414,47 @@
 
   /* ─── FORM ───────────────────────────────────── */
   const dropZone   = document.getElementById('dropZone');
-  const fileInput  = document.getElementById('fFoto');
-  const dropPreview = document.getElementById('dropPreview');
+  const fileInput   = document.getElementById('fFoto');
+  const dropPreviews = document.getElementById('dropPreviews');
+  let selectedFiles = [];
 
-  fileInput.addEventListener('change', () => handleFileSelect(fileInput.files[0]));
+  fileInput.addEventListener('change', () => handleFilesSelect(fileInput.files));
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
   dropZone.addEventListener('drop', e => {
     e.preventDefault();
     dropZone.classList.remove('dragover');
-    handleFileSelect(e.dataTransfer.files[0]);
+    handleFilesSelect(e.dataTransfer.files);
   });
 
-  function handleFileSelect(file) {
-    if (!file || !file.type.startsWith('image/')) return;
-    if (file.size > 5 * 1024 * 1024) {
-      showFormError('Fotografia je príliš veľká. Maximum je 5 MB.');
-      return;
+  function handleFilesSelect(files) {
+    if (!files || files.length === 0) return;
+    const valid = [];
+    for (let i = 0; i < files.length; i++) {
+      const f = files[i];
+      if (!f.type.startsWith('image/')) continue;
+      if (f.size > 5 * 1024 * 1024) {
+        showFormError('Jedna z fotografií je príliš veľká. Maximum je 5 MB na fotografiu.');
+        return;
+      }
+      valid.push(f);
+      if (valid.length === 3) break;
     }
-    const reader = new FileReader();
-    reader.onload = e => {
-      dropPreview.src = e.target.result;
-      dropZone.classList.add('has-file');
-    };
-    reader.readAsDataURL(file);
+    if (valid.length === 0) return;
+    selectedFiles = valid;
+    dropPreviews.innerHTML = '';
+    valid.forEach(f => {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const img = document.createElement('img');
+        img.className = 'drop-preview-thumb';
+        img.src = ev.target.result;
+        img.alt = f.name;
+        dropPreviews.appendChild(img);
+      };
+      reader.readAsDataURL(f);
+    });
+    dropZone.classList.add('has-file');
   }
 
   /* ── Toggle: druhý predok ── */
@@ -2471,21 +2518,21 @@
       return;
     }
 
-    // Upload foto (raz, zdieľa sa pre oboch predkov)
-    let fotoUrl = null;
-    const file = fileInput.files[0];
-    if (file) {
+    // Upload foto (max 3, zdieľajú sa pre oboch predkov)
+    const fotoUrls = [];
+    for (let fi = 0; fi < Math.min(selectedFiles.length, 3); fi++) {
+      const file = selectedFiles[fi];
       try {
         const ext  = file.name.split('.').pop();
-        const path = Date.now() + '_' + Math.random().toString(36).slice(2) + '.' + ext;
+        const path = Date.now() + '_' + Math.random().toString(36).slice(2) + '_' + fi + '.' + ext;
         const { data: upData, error: upErr } = await sb.storage
           .from('story-photos')
           .upload(path, file, { cacheControl: '31536000', upsert: false });
         if (upErr) throw upErr;
         const { data: urlData } = sb.storage.from('story-photos').getPublicUrl(upData.path);
-        fotoUrl = urlData.publicUrl;
+        fotoUrls.push(urlData.publicUrl);
       } catch (err) {
-        console.warn('Upload error:', err.message);
+        console.warn('Upload error (foto ' + (fi + 1) + '):', err.message);
       }
     }
 
@@ -2494,7 +2541,10 @@
     const zdielal_priezvisko  = document.getElementById('fZdielalPriezvisko').value.trim() || null;
     const zdielal_email       = document.getElementById('fEmail').value.trim() || null;
 
-    const sharedFields = { obec, kraj, obdobie, pribeh, foto_url: fotoUrl,
+    const sharedFields = { obec, kraj, obdobie, pribeh,
+      foto_url:   fotoUrls[0] || null,
+      foto_url_2: fotoUrls[1] || null,
+      foto_url_3: fotoUrls[2] || null,
       zdielal_meno, zdielal_priezvisko, zdielal_email,
       social_suhlas: socialSuhlas, allow_contact: allowContact, status: 'pending' };
 
