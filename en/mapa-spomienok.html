@@ -1394,11 +1394,13 @@
     <div class="filter-obdobie">
       <select id="filterObdobie" aria-label="Filter by period">
         <option value="">All periods</option>
-        <option value="pred_1900">Before 1900</option>
-        <option value="1900_1918">1900 – 1918</option>
-        <option value="medzivojnove">Interwar period (1918–1939)</option>
-        <option value="vojnove">War years (1939–1945)</option>
-        <option value="povojnove">Post-war (1945–1968)</option>
+        <option value="pred_1880">Before 1880</option>
+        <option value="1880_1900">1880 – 1900</option>
+        <option value="1900_1920">1900 – 1920</option>
+        <option value="1920_1940">1920 – 1940</option>
+        <option value="1940_1960">1940 – 1960</option>
+        <option value="1960_plus">1960 and later</option>
+        <option value="neviem">Unknown</option>
       </select>
     </div>
     <span class="filter-result" id="filterResult" aria-live="polite"></span>
@@ -1521,14 +1523,16 @@
           </div>
         </div>
         <div class="form-field">
-          <label for="fObdobie">Period <span class="req">*</span></label>
+          <label for="fObdobie">Approximate birth period of ancestor <span class="req">*</span></label>
           <select id="fObdobie" name="obdobie" required>
-            <option value="">Select period</option>
-            <option value="pred_1900">Before 1900</option>
-            <option value="1900_1918">1900 – 1918 (Kingdom of Hungary)</option>
-            <option value="medzivojnove">Interwar period (1918 – 1939)</option>
-            <option value="vojnove">War years (1939 – 1945)</option>
-            <option value="povojnove">Post-war (1945 – 1968)</option>
+            <option value="">— select period —</option>
+            <option value="pred_1880">Before 1880</option>
+            <option value="1880_1900">1880 – 1900</option>
+            <option value="1900_1920">1900 – 1920</option>
+            <option value="1920_1940">1920 – 1940</option>
+            <option value="1940_1960">1940 – 1960</option>
+            <option value="1960_plus">1960 and later</option>
+            <option value="neviem">I'm not sure</option>
           </select>
         </div>
         <div class="form-field">
@@ -1754,6 +1758,14 @@
   };
 
   const OBDOBIE_LABELS = {
+    pred_1880:   'Born before 1880',
+    '1880_1900': '1880 – 1900',
+    '1900_1920': '1900 – 1920',
+    '1920_1940': '1920 – 1940',
+    '1940_1960': '1940 – 1960',
+    '1960_plus': '1960 and later',
+    neviem:      'Period unknown',
+    /* legacy values — backward compatibility */
     pred_1900:    'Before 1900',
     '1900_1918':  '1900 – 1918',
     medzivojnove: 'Interwar years',

@@ -1562,11 +1562,13 @@
     <div class="filter-obdobie">
       <select id="filterObdobie" aria-label="Filtrovať podľa obdobia">
         <option value="">Všetky obdobia</option>
-        <option value="pred_1900">Pred rokom 1900</option>
-        <option value="1900_1918">1900 – 1918</option>
-        <option value="medzivojnove">Medzivojnové (1918–1939)</option>
-        <option value="vojnove">Vojnové roky (1939–1945)</option>
-        <option value="povojnove">Povojnové (1945–1968)</option>
+        <option value="pred_1880">Pred rokom 1880</option>
+        <option value="1880_1900">1880 – 1900</option>
+        <option value="1900_1920">1900 – 1920</option>
+        <option value="1920_1940">1920 – 1940</option>
+        <option value="1940_1960">1940 – 1960</option>
+        <option value="1960_plus">1960 a neskôr</option>
+        <option value="neviem">Neviem presne</option>
       </select>
     </div>
     <span class="filter-result" id="filterResult" aria-live="polite"></span>
@@ -1689,14 +1691,16 @@
           </div>
         </div>
         <div class="form-field">
-          <label for="fObdobie">Obdobie <span class="req">*</span></label>
+          <label for="fObdobie">Približné obdobie narodenia predka <span class="req">*</span></label>
           <select id="fObdobie" name="obdobie" required>
             <option value="">— vyber obdobie —</option>
-            <option value="pred_1900">Pred rokom 1900</option>
-            <option value="1900_1918">1900 – 1918 (Uhorsko)</option>
-            <option value="medzivojnove">Medzivojnové (1918 – 1939)</option>
-            <option value="vojnove">Vojnové roky (1939 – 1945)</option>
-            <option value="povojnove">Povojnové (1945 – 1968)</option>
+            <option value="pred_1880">Pred rokom 1880</option>
+            <option value="1880_1900">1880 – 1900</option>
+            <option value="1900_1920">1900 – 1920</option>
+            <option value="1920_1940">1920 – 1940</option>
+            <option value="1940_1960">1940 – 1960</option>
+            <option value="1960_plus">1960 a neskôr</option>
+            <option value="neviem">Neviem presne</option>
           </select>
         </div>
         <div class="form-field">
@@ -1989,6 +1993,14 @@
   };
 
   const OBDOBIE_LABELS = {
+    pred_1880:  'Narodený pred 1880',
+    '1880_1900': '1880 – 1900',
+    '1900_1920': '1900 – 1920',
+    '1920_1940': '1920 – 1940',
+    '1940_1960': '1940 – 1960',
+    '1960_plus': '1960 a neskôr',
+    neviem:      'Obdobie neznáme',
+    /* staré hodnoty — spätná kompatibilita */
     pred_1900:    'Pred rokom 1900',
     '1900_1918':  '1900 – 1918',
     medzivojnove: 'Medzivojnové',
