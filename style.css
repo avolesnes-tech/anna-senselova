@@ -303,8 +303,8 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
 }
 .welcome-overlay.open { display: flex; }
 .welcome-box {
-  background: var(--cream); max-width: 500px; width: 100%;
-  padding: 3.5rem 2.5rem 2.5rem; position: relative;
+  background: var(--cream); max-width: 560px; width: 100%;
+  padding: 3.5rem 3rem 2.5rem; position: relative;
   border-top: 3px solid var(--gold);
   box-shadow: 0 20px 60px rgba(0,0,0,0.45);
   text-align: center;
