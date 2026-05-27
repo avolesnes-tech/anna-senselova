@@ -1365,6 +1365,49 @@ h2 {
     creamSections.forEach(s => observer.observe(s));
   })();
 </script>
+<!-- Onboarding Welcome Modal -->
+<div class="welcome-overlay" id="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+  <div class="welcome-box">
+    <button class="welcome-close" id="welcome-close-btn" aria-label="Zavrieť">✕</button>
+    <p class="welcome-eyebrow">Vitajte</p>
+    <h2 id="welcome-title">Čo tu nájdete?</h2>
+    <div class="welcome-divider"></div>
+    <p>Objavujte skutočné príbehy slovenských predkov na interaktívnej mape — alebo pridajte vlastnú rodinnú spomienku.</p>
+    <div class="welcome-actions">
+      <a href="#pribeh" class="welcome-btn welcome-btn--red" id="welcome-btn-a">Objavovať históriu</a>
+      <a href="mapa-spomienok.html" class="welcome-btn welcome-btn--gold" id="welcome-btn-b">Pridať spomienku</a>
+    </div>
+  </div>
+</div>
+<script>
+  (function() {
+    if (!localStorage.getItem('mapa_onboarding_seen')) {
+      setTimeout(function() {
+        var modal = document.getElementById('welcome-modal');
+        if (modal) modal.classList.add('open');
+      }, 900);
+    }
+    function closeWelcome() {
+      var modal = document.getElementById('welcome-modal');
+      if (modal) modal.classList.remove('open');
+      localStorage.setItem('mapa_onboarding_seen', '1');
+    }
+    var closeBtn = document.getElementById('welcome-close-btn');
+    if (closeBtn) closeBtn.addEventListener('click', closeWelcome);
+    var overlay = document.getElementById('welcome-modal');
+    if (overlay) overlay.addEventListener('click', function(e) { if (e.target === this) closeWelcome(); });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        var modal = document.getElementById('welcome-modal');
+        if (modal && modal.classList.contains('open')) closeWelcome();
+      }
+    });
+    ['welcome-btn-a', 'welcome-btn-b'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('click', function() { localStorage.setItem('mapa_onboarding_seen', '1'); });
+    });
+  })();
+</script>
 <!-- GDPR Modal -->
 <div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
   <div class="gdpr-box">
