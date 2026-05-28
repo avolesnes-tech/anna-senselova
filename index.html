@@ -1341,6 +1341,10 @@ h2 {
     card.addEventListener('mouseleave', function() {
       clearInterval(interval);
     });
+
+    card.addEventListener('click', function() {
+      window.location.href = 'galeria-babik.html';
+    });
   });
 
   /* ── Bočné ornamenty — zobrazia sa len nad krémovými sekciami ── */
@@ -1404,7 +1408,7 @@ h2 {
     });
     ['welcome-btn-a', 'welcome-btn-b'].forEach(function(id) {
       var el = document.getElementById(id);
-      if (el) el.addEventListener('click', function() { localStorage.setItem('mapa_onboarding_seen', '1'); });
+      if (el) el.addEventListener('click', closeWelcome);
     });
   })();
 </script>

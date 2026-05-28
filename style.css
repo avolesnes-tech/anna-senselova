@@ -269,7 +269,7 @@ nav ul li > a:focus-visible { outline: 2px solid #D4AF37; outline-offset: 3px; }
 }
 .gdpr-box p {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem; color: #252525; line-height: 1.85;
+  font-size: 1rem; color: #111111; line-height: 1.85;
   margin-bottom: 1rem;
 }
 .gdpr-box strong { color: var(--ink); }
@@ -419,7 +419,7 @@ footer {
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--red); margin-bottom: 1.5rem;
 }
-.gdpr-box p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; color: #252525; }
+.gdpr-box p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; color: #111111; }
 .gdpr-box p:last-child { margin-bottom: 0; }
 
 .gdpr-close {
@@ -837,4 +837,14 @@ body.ornaments-always .side-ornament { opacity: 0.13; }
   .newsletter-input-wrap { flex-direction: column; box-shadow: none; }
   .newsletter-input { border-right: 1px solid rgba(160,124,16,0.3); border-bottom: none; }
   .newsletter-btn { width: 100%; }
+}
+
+/* ── MOBILE READABILITY — tmavší a hrubší text na mobile ── */
+@media (max-width: 768px) {
+  body { color: #0f0f0f; }
+  p, li, blockquote, .pribeh-text p, .pribeh-text li {
+    color: #0f0f0f;
+    font-weight: 500;
+  }
+  .gdpr-box p, .welcome-box p { color: #0f0f0f; font-weight: 500; }
 }
