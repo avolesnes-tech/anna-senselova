@@ -1192,6 +1192,93 @@
   .hero-ctas { flex-direction: column; align-items: center; }
   .btn-primary, .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
 }
+
+/* ── TRANSLATION PREVIEW MODAL ── */
+.translate-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,10,14,0.85); z-index: 99997;
+  align-items: flex-start; justify-content: center;
+  padding: 2rem 1rem; overflow-y: auto;
+}
+.translate-overlay.open { display: flex; }
+.translate-box {
+  background: var(--cream); max-width: 760px; width: 100%;
+  padding: 3rem 2.5rem 2.5rem; position: relative;
+  border-top: 3px solid var(--gold);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  margin: auto;
+}
+.translate-box h3 {
+  font-family: 'Cinzel', serif; font-size: 0.82rem;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 0.5rem; text-align: center;
+}
+.translate-box-sub {
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+  color: #555; text-align: center; margin-bottom: 2rem; font-style: italic;
+}
+.translate-cols {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  margin-bottom: 1.8rem;
+}
+.translate-col-label {
+  font-family: 'Cinzel', serif; font-size: 0.68rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.5rem;
+}
+.translate-col-text {
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+  color: #111; line-height: 1.85;
+  background: rgba(0,0,0,0.03);
+  padding: 1rem 1.2rem;
+  border-left: 2px solid rgba(212,175,55,0.4);
+  max-height: 260px; overflow-y: auto;
+  white-space: pre-wrap;
+}
+.translate-consent {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; color: #111; line-height: 1.7;
+}
+.translate-consent input[type="checkbox"] { margin-top: 0.3rem; flex-shrink: 0; accent-color: var(--red); }
+.translate-actions {
+  display: flex; gap: 1rem; justify-content: flex-end; flex-wrap: wrap;
+}
+.translate-btn-back {
+  font-family: 'Cormorant Garamond', serif; font-size: 0.88rem;
+  font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  background: none; border: 1.5px solid #aaa; color: #777;
+  padding: 0.65rem 1.4rem; cursor: pointer; transition: border-color 0.2s, color 0.2s;
+}
+.translate-btn-back:hover { border-color: #666; color: #333; }
+.translate-btn-confirm {
+  font-family: 'Cormorant Garamond', serif; font-size: 0.88rem;
+  font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  background: none; border: 1.5px solid var(--red); color: var(--red);
+  padding: 0.65rem 1.4rem; cursor: pointer; transition: background 0.2s;
+}
+.translate-btn-confirm:hover { background: rgba(196,30,58,0.07); }
+.translate-btn-confirm:disabled { opacity: 0.45; cursor: not-allowed; }
+.translate-loading {
+  text-align: center; padding: 2rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+  color: #777; font-style: italic;
+}
+.ai-badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 0.82rem;
+  letter-spacing: 0.05em; color: var(--gold-dark);
+  border: 1px solid rgba(160,124,16,0.35);
+  padding: 0.2rem 0.6rem; margin-top: 0.6rem;
+  cursor: default; user-select: none;
+}
+@media (max-width: 600px) {
+  .translate-cols { grid-template-columns: 1fr; }
+  .translate-box { padding: 2.5rem 1.5rem 2rem; }
+  .translate-actions { flex-direction: column; }
+  .translate-btn-back, .translate-btn-confirm { text-align: center; }
+}
 </style>
 <link rel="alternate" hreflang="sk" href="https://mapaspomienok.sk/mapa-spomienok.html">
 <link rel="alternate" hreflang="en" href="https://mapaspomienok.sk/en/mapa-spomienok.html">
@@ -1610,6 +1697,7 @@
     <h2 class="panel-name" id="panelName"></h2>
     <div class="gold-line" style="margin:1rem 0;width:100px;"></div>
     <p class="panel-text" id="panelText"></p>
+    <span class="ai-badge" id="panelAiBadge" style="display:none" title="This story has an automatic AI translation into Slovak">🤖 AI translated to SK</span>
     <div class="panel-tagy" id="panelTagy"></div>
     <p class="panel-zdielal" id="panelZdielal"></p>
     <hr class="panel-divider">
@@ -1672,6 +1760,25 @@
   <p style="margin-top:0.5rem;"><button class="footer-gdpr-link" onclick="document.getElementById('gdpr-modal').classList.add('open')">Privacy policy</button></p>
   <p class="footer-disclaimer">The collection of embroideries, dolls, and personal effects of the Šenšel family is not my personal property. It is the heritage of the whole family. The embroideries, dolls, and folk costumes are not for sale.</p>
 </footer>
+
+<!-- TRANSLATION PREVIEW MODAL -->
+<div class="translate-overlay" id="translateModal" role="dialog" aria-modal="true" aria-labelledby="translate-title">
+  <div class="translate-box">
+    <h3 id="translate-title">Story translation / Preklad príbehu</h3>
+    <p class="translate-box-sub">Please review the AI translation before publishing</p>
+    <div id="translateContent">
+      <div class="translate-loading">Translating... / Prekladám…</div>
+    </div>
+    <div class="translate-consent" id="translateConsentWrap" style="display:none">
+      <input type="checkbox" id="translateConsent">
+      <label for="translateConsent">I agree to the publication of this story translated into Slovak / Súhlasím so zverejnením tohto príbehu preloženého do slovenčiny.</label>
+    </div>
+    <div class="translate-actions">
+      <button class="translate-btn-back" id="translateBack">← Edit</button>
+      <button class="translate-btn-confirm" id="translateConfirm" disabled>Publish story →</button>
+    </div>
+  </div>
+</div>
 
 <!-- GDPR MODAL -->
 <div class="gdpr-overlay" id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="gdpr-title">
@@ -1816,7 +1923,7 @@
     try {
       const { data, error } = await sb
         .from('stories')
-        .select('*')
+        .select('id, ancestor_meno, ancestor_surname, obec, kraj, lat, lng, obdobie, pribeh, pribeh_en, original_lang, ai_translated, foto_url, zdielal_meno, zdielal_surname, status, created_at, social_suhlas')
         .eq('status', 'approved')
         .order('created_at', { ascending: false });
       if (error) throw error;
@@ -2021,7 +2128,13 @@
       [story.obec, story.kraj, oblasti].filter(Boolean).join(' · ');
     document.getElementById('panelName').textContent =
       (story.ancestor_meno || '') + ' ' + (story.ancestor_surname || '');
-    document.getElementById('panelText').textContent = story.pribeh || '';
+    document.getElementById('panelText').textContent = story.pribeh_en || story.pribeh || '';
+
+    // AI badge
+    const aiEl = document.getElementById('panelAiBadge');
+    if (aiEl) {
+      aiEl.style.display = story.ai_translated && story.pribeh ? 'inline-flex' : 'none';
+    }
 
     // Tags
     const tagContainer = document.getElementById('panelTagy');
@@ -2228,18 +2341,20 @@
     btnRemove.addEventListener('click', closePredok2);
   })();
 
-  /* ── Odoslanie formulára ── */
-  // POZNÁMKA pre správcu DB: tabuľka `stories` musí mať stĺpec:
-  //   social_suhlas  boolean  default false
+  /* ── Odoslanie formulára — 2-step flow with translation ── */
+  const SUPABASE_FUNCTIONS_URL = 'https://edloyrsptfwqdvgnzuhh.supabase.co/functions/v1';
+  let pendingFormData = null; // stored form data between steps
+
+  // --- STEP 1: Submit → validate → translate → modal ---
   document.getElementById('pribehForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('btnSubmit');
     btn.disabled = true;
-    btn.textContent = 'Saving…';
+    btn.textContent = 'Preparing…';
     hideFormError();
 
     const meno        = document.getElementById('fMenoPredka').value.trim();
-    const surname  = document.getElementById('fPriezviskoPredka').value.trim();
+    const surname     = document.getElementById('fPriezviskoPredka').value.trim();
     const menoFull    = (meno + ' ' + surname).trim();
     const obec        = document.getElementById('fObec').value.trim();
     const kraj        = document.getElementById('fKraj').value;
@@ -2247,10 +2362,10 @@
     const pribeh      = document.getElementById('fPribeh').value.trim();
     const socialSuhlas = document.getElementById('fSocialSuhlas').checked;
 
-    // Druhý ancestor (nepovinný)
+    // Second ancestor (optional)
     const meno2       = document.getElementById('fMenoPredka2').value.trim();
-    const surname2 = document.getElementById('fPriezviskoPredka2').value.trim();
-    const masPredok2  = meno2 || surname2;
+    const surname2    = document.getElementById('fPriezviskoPredka2').value.trim();
+    const masPredok2  = !!(meno2 || surname2);
 
     if (!meno || !surname || !obec || !kraj || !obdobie || !pribeh) {
       showFormError('Please fill in all required fields (marked with an asterisk).');
@@ -2263,7 +2378,81 @@
       return;
     }
 
-    // Upload foto (raz, zdieľa sa pre oboch predkov)
+    // Save form data for step 2
+    pendingFormData = { meno, surname, menoFull, obec, kraj, obdobie, pribeh,
+      socialSuhlas, meno2, surname2, masPredok2,
+      zdielal_meno:    document.getElementById('fZdielalMeno').value.trim() || null,
+      zdielal_surname: document.getElementById('fZdielalPriezvisko').value.trim() || null,
+      zdielal_email:   document.getElementById('fEmail').value.trim() || null,
+    };
+
+    // Show modal with loading state
+    const modal = document.getElementById('translateModal');
+    document.getElementById('translateContent').innerHTML = '<div class="translate-loading">Translating... / Prekladám…</div>';
+    document.getElementById('translateConsentWrap').style.display = 'none';
+    document.getElementById('translateConsent').checked = false;
+    document.getElementById('translateConfirm').disabled = true;
+    modal.classList.add('open');
+
+    btn.disabled = false; btn.textContent = 'Submit your story to the archive';
+
+    // Call Edge Function
+    try {
+      const res = await fetch(SUPABASE_FUNCTIONS_URL + '/translate-story', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: pribeh, source_lang: 'EN', target_lang: 'SK' })
+      });
+      const json = await res.json();
+      const translatedSk = json.translated || '';
+      pendingFormData.translatedSk = translatedSk;
+
+      document.getElementById('translateContent').innerHTML =
+        '<div class="translate-cols">' +
+          '<div>' +
+            '<div class="translate-col-label">Your original (EN)</div>' +
+            '<div class="translate-col-text">' + esc(pribeh) + '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="translate-col-label">AI translation (SK)</div>' +
+            '<div class="translate-col-text">' + esc(translatedSk) + '</div>' +
+          '</div>' +
+        '</div>';
+      document.getElementById('translateConsentWrap').style.display = 'flex';
+    } catch (err) {
+      // Translation failed — allow continuing without translation
+      pendingFormData.translatedSk = null;
+      document.getElementById('translateContent').innerHTML =
+        '<p style="font-family:\'Cormorant Garamond\',serif;color:#666;font-style:italic;text-align:center;padding:1rem 0;">Translation is currently unavailable. The story will be saved in English only.</p>';
+      document.getElementById('translateConsentWrap').style.display = 'none';
+      document.getElementById('translateConfirm').disabled = false;
+    }
+  });
+
+  // --- Consent checkbox unlocks confirm button ---
+  document.getElementById('translateConsent').addEventListener('change', function() {
+    document.getElementById('translateConfirm').disabled = !this.checked;
+  });
+
+  // --- Back button ---
+  document.getElementById('translateBack').addEventListener('click', function() {
+    document.getElementById('translateModal').classList.remove('open');
+    pendingFormData = null;
+  });
+
+  // --- STEP 2: Confirm → upload → insert → success ---
+  document.getElementById('translateConfirm').addEventListener('click', async function() {
+    if (!pendingFormData) return;
+    const btn = this;
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+    document.getElementById('translateBack').disabled = true;
+
+    const { meno, surname, menoFull, obec, kraj, obdobie, pribeh,
+      socialSuhlas, meno2, surname2, masPredok2,
+      zdielal_meno, zdielal_surname, zdielal_email, translatedSk } = pendingFormData;
+
+    // Upload foto
     let fotoUrl = null;
     const file = fileInput.files[0];
     if (file) {
@@ -2281,16 +2470,15 @@
       }
     }
 
-    // Spoločné polia pre oba záznamy
-    const zdielal_meno       = document.getElementById('fZdielalMeno').value.trim() || null;
-    const zdielal_surname  = document.getElementById('fZdielalPriezvisko').value.trim() || null;
-    const zdielal_email       = document.getElementById('fEmail').value.trim() || null;
-
-    const sharedFields = { obec, kraj, obdobie, pribeh, foto_url: fotoUrl,
+    const sharedFields = { obec, kraj, obdobie,
+      pribeh: translatedSk || null,
+      pribeh_en: pribeh,
+      original_lang: 'en',
+      ai_translated: !!translatedSk,
+      foto_url: fotoUrl,
       zdielal_meno, zdielal_surname, zdielal_email,
       social_suhlas: socialSuhlas, status: 'pending' };
 
-    // Insert — prvý ancestor
     const deleteToken = crypto.randomUUID();
     const { error } = await sb.from('stories').insert({
       ancestor_meno: meno, ancestor_surname: surname,
@@ -2298,12 +2486,13 @@
     });
 
     if (error) {
+      document.getElementById('translateModal').classList.remove('open');
       showFormError('Something went wrong while sending. Please try again or write to senselovaanna@gmail.com.');
-      btn.disabled = false; btn.textContent = 'Submit your story to the archive';
+      btn.disabled = false; btn.textContent = 'Publish story →';
+      document.getElementById('translateBack').disabled = false;
       return;
     }
 
-    // Insert — druhý ancestor (ak bol vyplnený)
     if (masPredok2) {
       const deleteToken2 = crypto.randomUUID();
       await sb.from('stories').insert({
@@ -2311,11 +2500,22 @@
         ancestor_surname: surname2 || surname,
         delete_token: deleteToken2, ...sharedFields
       });
-      // Chybu druhého insertu neriešime blokujúco — primárny záznam bol úspešný
     }
 
-    // Success
+    document.getElementById('translateModal').classList.remove('open');
+    pendingFormData = null;
     showSuccess(menoFull, obec, deleteToken);
+  });
+
+  // Escape key closes translate modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const m = document.getElementById('translateModal');
+      if (m && m.classList.contains('open')) {
+        m.classList.remove('open');
+        pendingFormData = null;
+      }
+    }
   });
 
   function showSuccess(menoFull, obec, deleteToken) {
