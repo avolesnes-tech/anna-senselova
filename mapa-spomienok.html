@@ -1059,19 +1059,36 @@
 .passepartout img {
   display: block;
   width: 100%; max-width: 360px;
+  height: auto;
+  object-fit: contain;
   filter: sepia(0.28) contrast(1.05) brightness(0.96) saturate(0.88);
 }
-.passepartout--multi {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding-bottom: 38px;
+.foto-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 0.8rem;
 }
-.passepartout--multi img {
-  flex: 1 1 120px;
-  max-width: 200px;
-  height: 160px;
-  object-fit: cover;
+.foto-nav-btn {
+  background: none;
+  border: 1px solid rgba(92,72,50,0.35);
+  color: #5C4832;
+  font-size: 1rem;
+  padding: 0.25rem 0.8rem;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s;
+  line-height: 1.4;
+}
+.foto-nav-btn:hover { background: rgba(92,72,50,0.1); }
+.foto-nav-counter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: #8B7355;
+  letter-spacing: 0.1em;
+  min-width: 2.5rem;
+  text-align: center;
 }
 .passepartout-caption {
   position: absolute;
@@ -2358,37 +2375,50 @@
   }
 
   function renderPanel(story, idx) {
-    // Photo / passepartout
+    // Photo / passepartout — carousel (jedna fotka, šípky)
     const fotoWrap = document.getElementById('panelFotoWrap');
     const caption  = (story.predok_meno || '') + ' ' + (story.predok_priezvisko || '') +
       (story.obec ? ' · ' + story.obec : '');
     const photoUrls = [story.foto_url, story.foto_url_2, story.foto_url_3].filter(Boolean);
-    if (photoUrls.length > 1) {
-      // Multi-photo layout
-      const imgs = photoUrls.map(u =>
-        '<img src="' + esc(u) + '" alt="' + esc(story.predok_meno) + '" loading="lazy">'
-      ).join('');
-      fotoWrap.innerHTML =
-        '<div class="passepartout passepartout--multi">' +
-          imgs +
-          '<span class="passepartout-caption">' + esc(caption) + '</span>' +
-        '</div>';
-    } else if (photoUrls.length === 1) {
+
+    let fotoIdx = 0;
+
+    function renderFoto() {
+      if (photoUrls.length === 0) {
+        fotoWrap.innerHTML =
+          '<div class="passepartout">' +
+            '<div class="passepartout-placeholder">' +
+              placeholderSvg(80) +
+              '<span class="passepartout-placeholder-text">bez fotografie</span>' +
+            '</div>' +
+            '<span class="passepartout-caption">' + esc(caption) + '</span>' +
+          '</div>';
+        return;
+      }
+      const navHtml = photoUrls.length > 1
+        ? '<div class="foto-carousel-nav">' +
+            '<button class="foto-nav-btn" id="fotoPrev">&#8592;</button>' +
+            '<span class="foto-nav-counter">' + (fotoIdx + 1) + ' / ' + photoUrls.length + '</span>' +
+            '<button class="foto-nav-btn" id="fotoNext">&#8594;</button>' +
+          '</div>'
+        : '';
       fotoWrap.innerHTML =
         '<div class="passepartout">' +
-          '<img src="' + esc(photoUrls[0]) + '" alt="' + esc(story.predok_meno) + '" loading="lazy">' +
+          '<img src="' + esc(photoUrls[fotoIdx]) + '" alt="' + esc(story.predok_meno) + '" loading="lazy">' +
           '<span class="passepartout-caption">' + esc(caption) + '</span>' +
-        '</div>';
-    } else {
-      fotoWrap.innerHTML =
-        '<div class="passepartout">' +
-          '<div class="passepartout-placeholder">' +
-            placeholderSvg(80) +
-            '<span class="passepartout-placeholder-text">bez fotografie</span>' +
-          '</div>' +
-          '<span class="passepartout-caption">' + esc(caption) + '</span>' +
-        '</div>';
+        '</div>' + navHtml;
+      if (photoUrls.length > 1) {
+        document.getElementById('fotoPrev').addEventListener('click', function() {
+          fotoIdx = (fotoIdx - 1 + photoUrls.length) % photoUrls.length;
+          renderFoto();
+        });
+        document.getElementById('fotoNext').addEventListener('click', function() {
+          fotoIdx = (fotoIdx + 1) % photoUrls.length;
+          renderFoto();
+        });
+      }
     }
+    renderFoto();
 
     // Text fields
     const oblasti = formatObdobie(story.obdobie);
