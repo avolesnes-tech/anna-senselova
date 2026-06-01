@@ -556,11 +556,12 @@
 .karta-foto-wrap {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/4;
 }
 .karta-foto-wrap img {
   width: 100%; height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
   filter: sepia(0.18) contrast(1.04);
   transition: filter 0.4s, transform 0.4s;
@@ -1106,8 +1107,8 @@
 }
 /* No-photo placeholder */
 .passepartout-placeholder {
-  width: 300px; max-width: 100%;
-  aspect-ratio: 4/3;
+  width: 240px; max-width: 100%;
+  aspect-ratio: 3/4;
   background: #E2D9C8;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
