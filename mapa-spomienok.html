@@ -2789,13 +2789,17 @@
       return;
     }
 
-    // Ak sú dvaja predkovia, spojiť mená do jedného záznamu
-    const kombinovaneMeno = masPredok2 && meno2
-      ? meno + ' a ' + meno2
-      : meno;
-    const kombinovanePriezvisko = masPredok2 && priezvisko2
-      ? priezvisko + ' a ' + priezvisko2
-      : priezvisko;
+    // Ak sú dvaja predkovia, spojiť celé mená do jedného záznamu
+    let kombinovaneMeno, kombinovanePriezvisko;
+    if (masPredok2 && meno2) {
+      const plneMeno1 = (meno + ' ' + priezvisko).trim();
+      const plneMeno2 = (meno2 + ' ' + (priezvisko2 || '')).trim();
+      kombinovaneMeno = plneMeno1 + ' a ' + plneMeno2;
+      kombinovanePriezvisko = '';
+    } else {
+      kombinovaneMeno = meno;
+      kombinovanePriezvisko = priezvisko;
+    }
 
     const deleteToken = crypto.randomUUID();
     const { error } = await sb.from('stories').insert({
