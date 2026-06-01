@@ -311,13 +311,38 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
 .quote-block cite { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); font-style: normal; }
 .slovenskost-body { max-width: 780px; margin: 3rem auto 0; }
 
-/* ODKAZ */
-#odkaz { background: var(--red); color: var(--cream); text-align: center; padding: 5.5rem 2rem; }
-#odkaz .section-label { color: rgba(249,247,242,0.6); }
-#odkaz h2.script { color: #fff; }
-#odkaz .gold-line { opacity: 0.5; }
-#odkaz p { font-size: 1.05rem; max-width: 720px; margin: 0 auto 1.2rem; line-height: 1.9; color: rgba(249,247,242,0.88); }
-#odkaz p:last-child { margin-bottom: 0; }
+/* ODKAZ — dark editorial */
+#odkaz {
+  background: #111;
+  color: var(--cream);
+  text-align: left;
+  padding: 6rem 2rem;
+}
+#odkaz .odkaz-inner {
+  max-width: 740px;
+  margin: 0 auto;
+}
+#odkaz .section-label { color: rgba(212,175,55,0.65); }
+#odkaz .gold-line { opacity: 0.35; margin-left: 0; }
+#odkaz p {
+  font-size: 1.05rem;
+  line-height: 1.95;
+  color: rgba(249,247,242,0.84);
+  margin: 0 0 1.5rem;
+  max-width: none;
+}
+#odkaz .odkaz-closing {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.12rem, 2vw, 1.3rem);
+  color: var(--gold);
+  line-height: 1.85;
+  border-left: 2px solid rgba(212,175,55,0.55);
+  padding-left: 1.4rem;
+  margin-top: 2.8rem;
+  margin-bottom: 0;
+}
+#odkaz .slovakiana-block { margin-top: 3.5rem; border-top: 1px solid rgba(212,175,55,0.18); padding-top: 2.5rem; }
 
 
 /* PARALLAX TEXT — vypnutý, ponecháme len pre prípad */
@@ -791,8 +816,8 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
 .section-cta-wide { max-width: 680px; margin: 0 auto 0.5rem; }
 .section-cta-history { max-width: 680px; margin: 0 auto; }
 .historia-intro { margin-bottom: 3.5rem; }
-.odkaz-h2 { color: #fff; }
-.odkaz-gold-line { opacity: 0.4; }
+.odkaz-h2 { color: var(--gold) !important; }
+.odkaz-gold-line { opacity: 0.35; }
 .source-note { font-size: 0.82rem; color: #999; font-style: italic; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(212,175,55,0.2); }
 .footer-small { margin-top: 0.3rem; font-size: 0.72rem; }
 
@@ -1348,13 +1373,14 @@ section[id], div[id] { scroll-margin-top: 72px; }
 
 <!-- SORTIMENT -->
 <section id="odkaz">
+  <div class="odkaz-inner">
   <span class="section-label">Dedičstvo</span>
   <h2 class="script odkaz-h2">Odkaz Lipy.</h2>
   <div class="gold-line odkaz-gold-line"></div>
   <p>Lipa fungovala štyridsať rokov, cez dve vojny, hospodársku krízu, inflačné výkyvy a politické zvraty. Nikdy nemala ľahký život. A predsa prežila, kým zákon nerozhodol za ňu. Zákon č. 243/1949 o účastinných spoločnostiach zaviazal všetky takéto subjekty požiadať o štátne povolenie; tým, ktorým sa povolenie neudelilo, úrad zrušenie nariadil z dôvodu „verejného záujmu". Lipa nezanikla pre hospodársky neúspech; zanikla politickým rozhodnutím nastupujúceho komunistického režimu.</p>
-  <p>Za jej existenciou stojí niečo jednoduchého a zároveň vzácneho: ženy, ktoré sa rozhodli, že slovenské výšivky si zaslúžia viac než podomový obchod za babku. Že sa dá predávať s hrdosťou, pod vlastným menom, za férovú cenu.</p>
-  <p>Výšivačky z Hontu, Zvolena, Nitry, Bratislavskej župy dostávali pravidelnú mzdu. Pre mnohé dedinské ženy, ktoré ovládali tradičné techniky vyšívania a čipkárstva, to bol zásadný obrat: zručnosť, ktorou sa doteraz zaoberali len pre rodinu alebo za symbolickú odplatu podomovým kupcom, sa stala zdrojom dôstojného a pravidelného príjmu. Šenšelová cestovala mesiac čo mesiac po dedinách, dbala na to, aby vzory zostali pôvodné, a zároveň zabezpečovala, že výšivačky dostanú za svoju prácu spravodlivú cenu. Živena prežila, lebo Lipa ju kúpila, keď to bolo treba. Arciknieža v Rakúsku vyjadril úctu. Módne časopisy vo Viedni recenzovali.</p>
-  <p>To všetko dohromady je Lipa. Nie múzeum, ale firma. Nie folklór, ale živá kultúra. A príbeh, ktorý sa v slovenských dejinách ešte stále nedočkal toho uznania, aké si zaslúži.</p>
+  <p>Za jej existenciou stojí niečo jednoduchého a zároveň vzácneho: ženy, ktoré sa rozhodli, že slovenské výšivky si nezaslúžia ostať skryté vo vreciach v humnách, alebo byť spálené s práchodom moderných trendov. Lipa chcela dokázať, že sa dajú predávať moderne, s hrdosťou, pod vlastným menom, za férovú cenu práce stoviek šikovných rúk slovenských žien.</p>
+  <p>Výšivačky z Hontu, Zvolena, Nitry, Bratislavskej župy dostávali pravidelnú mzdu. Pre mnohé dedinské ženy, ktoré ovládali tradičné techniky vyšívania a čipkárstva, to bol zásadný obrat. Zručnosť, ktorou sa doteraz zaoberali len pre rodinu alebo za symbolickú odplatu podomovým kupcom, sa stala zdrojom dôstojného a pravidelného príjmu. Živena prežila, lebo Lipa ju kúpila, keď to bolo treba. Aj tu sa ukazuje extrémna solidarita žien, Živeniarok, ktoré si boli vždy navzájom obrovskou oporou, aj keď okolitý svet niekedy ich názory a počiny zaznával.</p>
+  <p class="odkaz-closing">To všetko je Lipa. Nechcela byť múzeum, ale firma. Nie folklór, ale živá kultúra. A príbeh, ktorý sa v slovenských dejinách ešte stále nedočkal toho uznania, aké si zaslúži.</p>
 
   <div class="slovakiana-block reveal">
     <p class="slovakiana-intro">Na nasledujúcich odkazoch si môžete pozrieť vyšívané výrobky Lipy, na ktorých je krásne vidieť využitie tradičných ľudových vzorov a ich prenesenie do moderných elegantných kusov odevu pre ženy či deti.</p>
@@ -1364,6 +1390,7 @@ section[id], div[id] { scroll-margin-top: 72px; }
       <li><a href="https://slovakiana.sk/kulturne-objekty/cair-ko1jadh?url=%7B%22filter%22%3A%22%7B%5C%22searchText%5C%22%3A%5C%22Druh%C3%A1%20budova%20Matice%20slovenskej%5C%22%2C%5C%22searchByKeywords%5C%22%3Atrue%2C%5C%22categoryKeys%5C%22%3A%5B%5D%2C%5C%22tagKeys%5C%22%3A%5B%5D%2C%5C%22onlyWithImage%5C%22%3Atrue%2C%5C%22onlyDownloadable%5C%22%3Afalse%2C%5C%22originDateFrom%5C%22%3Anull%2C%5C%22originDateTo%5C%22%3Anull%2C%5C%22onlyUnBlackened%5C%22%3Afalse%2C%5C%22culturalObjectFilter%5C%22%3Anull%2C%5C%22sortAttribute%5C%22%3Anull%2C%5C%22sortDirection%5C%22%3Anull%2C%5C%22sort%5C%22%3Anull%7D%22%2C%22page%22%3A%225%22%2C%22search%22%3A%22lipa%22%2C%22lm%22%3A%220%22%2C%22sort%22%3A%22rank%22%2C%22sortDirection%22%3A%221%22%2C%22searchByKeywords%22%3A%22true%22%2C%22index%22%3A173%2C%22total%22%3A439%7D&amp;fromPage=ko&amp;content=CAIR_DIV_PANORAMA_1&amp;contentDo=urn:nbn:sk:cair-do4g9h5" target="_blank" rel="noopener">Výšivkový vzorník Lipy: ukážka 3 ↗</a></li>
       <li><a href="https://slovakiana.sk/kulturne-objekty/cair-ko1magm?url=%7B%22filter%22%3A%22%7B%5C%22searchText%5C%22%3A%5C%22Druh%C3%A1%20budova%20Matice%20slovenskej%5C%22%2C%5C%22searchByKeywords%5C%22%3Atrue%2C%5C%22categoryKeys%5C%22%3A%5B%5D%2C%5C%22tagKeys%5C%22%3A%5B%5C%224013%5C%22%5D%2C%5C%22onlyWithImage%5C%22%3Atrue%2C%5C%22onlyDownloadable%5C%22%3Afalse%2C%5C%22originDateFrom%5C%22%3Anull%2C%5C%22originDateTo%5C%22%3Anull%2C%5C%22onlyUnBlackened%5C%22%3Afalse%2C%5C%22culturalObjectFilter%5C%22%3Anull%2C%5C%22sortAttribute%5C%22%3Anull%2C%5C%22sortDirection%5C%22%3Anull%2C%5C%22sort%5C%22%3Anull%7D%22%2C%22page%22%3A%221%22%2C%22search%22%3A%22lipa%22%2C%22lm%22%3A%220%22%2C%22sort%22%3A%22rank%22%2C%22sortDirection%22%3A%221%22%2C%22searchByKeywords%22%3A%22true%22%2C%22index%22%3A0%2C%22total%22%3A18%7D&amp;fromPage=ko&amp;content=CAIR_DIV_PANORAMA_1&amp;contentDo=urn:nbn:sk:cair-do4g9h5" target="_blank" rel="noopener">Výšivkový vzorník Lipy: ukážka 4 ↗</a></li>
     </ul>
+  </div>
   </div>
 </section>
 
