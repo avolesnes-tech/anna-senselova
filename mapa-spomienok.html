@@ -1787,18 +1787,24 @@
             </select>
           </div>
         </div>
-        <div class="form-field">
-          <label for="fObdobie">Približné obdobie narodenia predka <span class="req">*</span></label>
-          <select id="fObdobie" name="obdobie" required>
-            <option value="">— vyber obdobie —</option>
-            <option value="pred_1880">Pred rokom 1880</option>
-            <option value="1880_1900">1880 – 1900</option>
-            <option value="1900_1920">1900 – 1920</option>
-            <option value="1920_1940">1920 – 1940</option>
-            <option value="1940_1960">1940 – 1960</option>
-            <option value="1960_plus">1960 a neskôr</option>
-            <option value="neviem">Neviem presne</option>
-          </select>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fObdobie">Približné obdobie narodenia <span class="req">*</span></label>
+            <select id="fObdobie" name="obdobie" required>
+              <option value="">— vyber obdobie —</option>
+              <option value="pred_1880">Pred rokom 1880</option>
+              <option value="1880_1900">1880 – 1900</option>
+              <option value="1900_1920">1900 – 1920</option>
+              <option value="1920_1940">1920 – 1940</option>
+              <option value="1940_1960">1940 – 1960</option>
+              <option value="1960_plus">1960 a neskôr</option>
+              <option value="neviem">Neviem presne</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="fRokNarodenia">Presný rok narodenia <span style="font-style:italic;text-transform:none;font-size:0.85em">(nepovinné)</span></label>
+            <input type="number" id="fRokNarodenia" name="rok_narodenia" min="1700" max="2010" placeholder="napr. 1895">
+          </div>
         </div>
         <div class="form-field">
           <label for="fPribeh">Príbeh <span class="req">*</span></label>
@@ -2168,7 +2174,7 @@
     try {
       const { data, error } = await sb
         .from('stories')
-        .select('id, predok_meno, predok_priezvisko, obec, kraj, lat, lng, obdobie, pribeh, pribeh_en, original_lang, ai_translated, foto_url, foto_url_2, foto_url_3, zdielal_meno, zdielal_priezvisko, status, created_at, social_suhlas, allow_contact')
+        .select('id, predok_meno, predok_priezvisko, obec, kraj, lat, lng, obdobie, rok_narodenia, pribeh, pribeh_en, original_lang, ai_translated, foto_url, foto_url_2, foto_url_3, zdielal_meno, zdielal_priezvisko, status, created_at, social_suhlas, allow_contact')
         .eq('status', 'approved')
         .order('created_at', { ascending: false });
       if (error) throw error;
@@ -2382,8 +2388,9 @@
 
     // Text fields
     const oblasti = formatObdobie(story.obdobie);
+    const rokLabel = story.rok_narodenia ? '* ' + story.rok_narodenia : null;
     document.getElementById('panelRegion').textContent =
-      [story.obec, story.kraj, oblasti].filter(Boolean).join(' · ');
+      [story.obec, story.kraj, rokLabel || oblasti].filter(Boolean).join(' · ');
     document.getElementById('panelName').textContent =
       (story.predok_meno || '') + ' ' + (story.predok_priezvisko || '');
     document.getElementById('panelText').textContent = story.pribeh || '';
@@ -2651,6 +2658,7 @@
     const obec        = document.getElementById('fObec').value.trim();
     const kraj        = document.getElementById('fKraj').value;
     const obdobie     = document.getElementById('fObdobie').value;
+    const rokNarodenia = parseInt(document.getElementById('fRokNarodenia').value) || null;
     const pribeh      = document.getElementById('fPribeh').value.trim();
     const socialSuhlas   = document.getElementById('fSocialSuhlas').checked;
     const allowContact   = document.getElementById('fKontaktSuhlas').checked;
@@ -2670,7 +2678,7 @@
     }
 
     // Ulož dáta formulára pre druhý krok
-    pendingFormData = { meno, priezvisko, menoFull, obec, kraj, obdobie, pribeh,
+    pendingFormData = { meno, priezvisko, menoFull, obec, kraj, obdobie, rokNarodenia, pribeh,
       socialSuhlas, allowContact, meno2, priezvisko2, masPredok2,
       zdielal_meno:      document.getElementById('fZdielalMeno').value.trim() || null,
       zdielal_priezvisko: document.getElementById('fZdielalPriezvisko').value.trim() || null,
@@ -2739,7 +2747,7 @@
     btn.textContent = 'Ukladám…';
     document.getElementById('translateBack').disabled = true;
 
-    const { meno, priezvisko, menoFull, obec, kraj, obdobie, pribeh,
+    const { meno, priezvisko, menoFull, obec, kraj, obdobie, rokNarodenia, pribeh,
       socialSuhlas, allowContact, meno2, priezvisko2, masPredok2,
       zdielal_meno, zdielal_priezvisko, zdielal_email, translatedEn } = pendingFormData;
 
@@ -2784,7 +2792,7 @@
       predok_meno: kombinovaneMeno,
       predok_priezvisko: kombinovanePriezvisko,
       delete_token: deleteToken,
-      obec, kraj, obdobie, pribeh,
+      obec, kraj, obdobie, rok_narodenia: rokNarodenia, pribeh,
       pribeh_en: translatedEn || null,
       original_lang: 'sk',
       ai_translated: !!translatedEn,
