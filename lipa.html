@@ -311,10 +311,10 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
 .quote-block cite { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); font-style: normal; }
 .slovenskost-body { max-width: 780px; margin: 3rem auto 0; }
 
-/* ODKAZ — dark editorial */
+/* ODKAZ — cream editorial */
 #odkaz {
-  background: #111;
-  color: var(--cream);
+  background: var(--cream);
+  color: var(--ink);
   text-align: left;
   padding: 6rem 2rem;
 }
@@ -322,27 +322,26 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
   max-width: 740px;
   margin: 0 auto;
 }
-#odkaz .section-label { color: rgba(212,175,55,0.65); }
-#odkaz .gold-line { opacity: 0.35; margin-left: 0; }
+#odkaz .section-label { color: var(--gold-dark); }
+#odkaz .gold-line { margin-left: 0; }
 #odkaz p {
   font-size: 1.05rem;
   line-height: 1.95;
-  color: rgba(249,247,242,0.84);
+  color: #222;
   margin: 0 0 1.5rem;
   max-width: none;
 }
 #odkaz .odkaz-closing {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(1.12rem, 2vw, 1.3rem);
-  color: var(--gold);
-  line-height: 1.85;
-  border-left: 2px solid rgba(212,175,55,0.55);
-  padding-left: 1.4rem;
-  margin-top: 2.8rem;
-  margin-bottom: 0;
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  color: var(--red);
+  line-height: 1.6;
+  text-align: center;
+  margin: 3.5rem 0 0;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(212,175,55,0.35);
 }
-#odkaz .slovakiana-block { margin-top: 3.5rem; border-top: 1px solid rgba(212,175,55,0.18); padding-top: 2.5rem; }
+#odkaz .slovakiana-block { margin-top: 3.5rem; border-top: 1px solid rgba(212,175,55,0.25); padding-top: 2.5rem; }
 
 
 /* PARALLAX TEXT — vypnutý, ponecháme len pre prípad */
@@ -816,7 +815,7 @@ tfoot td { padding: 0.7rem 1rem; font-size: 0.82rem; font-style: italic; color: 
 .section-cta-wide { max-width: 680px; margin: 0 auto 0.5rem; }
 .section-cta-history { max-width: 680px; margin: 0 auto; }
 .historia-intro { margin-bottom: 3.5rem; }
-.odkaz-h2 { color: var(--gold) !important; }
+.odkaz-h2 { color: var(--red) !important; }
 .odkaz-gold-line { opacity: 0.35; }
 .source-note { font-size: 0.82rem; color: #999; font-style: italic; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(212,175,55,0.2); }
 .footer-small { margin-top: 0.3rem; font-size: 0.72rem; }
