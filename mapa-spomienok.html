@@ -2745,6 +2745,7 @@
 
     // Upload foto
     const fotoUrls = [];
+    let fotoUploadFailed = false;
     for (let fi = 0; fi < Math.min(selectedFiles.length, 3); fi++) {
       const file = selectedFiles[fi];
       try {
@@ -2758,10 +2759,32 @@
         fotoUrls.push(urlData.publicUrl);
       } catch (err) {
         console.warn('Upload error (foto ' + (fi + 1) + '):', err.message);
+        fotoUploadFailed = true;
       }
     }
 
-    const sharedFields = { obec, kraj, obdobie, pribeh,
+    if (fotoUploadFailed && fotoUrls.length === 0) {
+      document.getElementById('translateModal').classList.remove('open');
+      showFormError('Fotografie sa nepodarilo nahrať. Skontroluj pripojenie a skús znova, alebo odošli príbeh bez fotografie.');
+      btn.disabled = false; btn.textContent = 'Zverejniť príbeh →';
+      document.getElementById('translateBack').disabled = false;
+      return;
+    }
+
+    // Ak sú dvaja predkovia, spojiť mená do jedného záznamu
+    const kombinovaneMeno = masPredok2 && meno2
+      ? meno + ' a ' + meno2
+      : meno;
+    const kombinovanePriezvisko = masPredok2 && priezvisko2
+      ? priezvisko + ' a ' + priezvisko2
+      : priezvisko;
+
+    const deleteToken = crypto.randomUUID();
+    const { error } = await sb.from('stories').insert({
+      predok_meno: kombinovaneMeno,
+      predok_priezvisko: kombinovanePriezvisko,
+      delete_token: deleteToken,
+      obec, kraj, obdobie, pribeh,
       pribeh_en: translatedEn || null,
       original_lang: 'sk',
       ai_translated: !!translatedEn,
@@ -2769,12 +2792,7 @@
       foto_url_2: fotoUrls[1] || null,
       foto_url_3: fotoUrls[2] || null,
       zdielal_meno, zdielal_priezvisko, zdielal_email,
-      social_suhlas: socialSuhlas, allow_contact: allowContact, status: 'pending' };
-
-    const deleteToken = crypto.randomUUID();
-    const { error } = await sb.from('stories').insert({
-      predok_meno: meno, predok_priezvisko: priezvisko,
-      delete_token: deleteToken, ...sharedFields
+      social_suhlas: socialSuhlas, allow_contact: allowContact, status: 'pending'
     });
 
     if (error) {
@@ -2783,15 +2801,6 @@
       btn.disabled = false; btn.textContent = 'Zverejniť príbeh →';
       document.getElementById('translateBack').disabled = false;
       return;
-    }
-
-    if (masPredok2) {
-      const deleteToken2 = crypto.randomUUID();
-      await sb.from('stories').insert({
-        predok_meno: meno2 || meno,
-        predok_priezvisko: priezvisko2 || priezvisko,
-        delete_token: deleteToken2, ...sharedFields
-      });
     }
 
     document.getElementById('translateModal').classList.remove('open');
