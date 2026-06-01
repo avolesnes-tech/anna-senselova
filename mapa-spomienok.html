@@ -1765,6 +1765,10 @@
               <input type="text" id="fPriezviskoPredka2" name="predok2_priezvisko" placeholder="napr. Kopecký" autocomplete="off">
             </div>
           </div>
+          <div class="form-field" style="max-width:220px;">
+            <label for="fRokNarodenia2">Presný rok narodenia <span style="font-style:italic;text-transform:none;font-size:0.85em">(nepovinné)</span></label>
+            <input type="number" id="fRokNarodenia2" name="rok_narodenia_2" min="1700" max="2010" placeholder="napr. 1898">
+          </div>
         </div>
         <div class="form-row">
           <div class="form-field">
@@ -2174,7 +2178,7 @@
     try {
       const { data, error } = await sb
         .from('stories')
-        .select('id, predok_meno, predok_priezvisko, obec, kraj, lat, lng, obdobie, rok_narodenia, pribeh, pribeh_en, original_lang, ai_translated, foto_url, foto_url_2, foto_url_3, zdielal_meno, zdielal_priezvisko, status, created_at, social_suhlas, allow_contact')
+        .select('id, predok_meno, predok_priezvisko, obec, kraj, lat, lng, obdobie, rok_narodenia, rok_narodenia_2, pribeh, pribeh_en, original_lang, ai_translated, foto_url, foto_url_2, foto_url_3, zdielal_meno, zdielal_priezvisko, status, created_at, social_suhlas, allow_contact')
         .eq('status', 'approved')
         .order('created_at', { ascending: false });
       if (error) throw error;
@@ -2388,7 +2392,12 @@
 
     // Text fields
     const oblasti = formatObdobie(story.obdobie);
-    const rokLabel = story.rok_narodenia ? '* ' + story.rok_narodenia : null;
+    let rokLabel = null;
+    if (story.rok_narodenia && story.rok_narodenia_2) {
+      rokLabel = '* ' + story.rok_narodenia + ' / ' + story.rok_narodenia_2;
+    } else if (story.rok_narodenia) {
+      rokLabel = '* ' + story.rok_narodenia;
+    }
     document.getElementById('panelRegion').textContent =
       [story.obec, story.kraj, rokLabel || oblasti].filter(Boolean).join(' · ');
     document.getElementById('panelName').textContent =
@@ -2662,9 +2671,10 @@
     const pribeh      = document.getElementById('fPribeh').value.trim();
     const socialSuhlas   = document.getElementById('fSocialSuhlas').checked;
     const allowContact   = document.getElementById('fKontaktSuhlas').checked;
-    const meno2       = document.getElementById('fMenoPredka2').value.trim();
-    const priezvisko2 = document.getElementById('fPriezviskoPredka2').value.trim();
-    const masPredok2  = !!(meno2 || priezvisko2);
+    const meno2        = document.getElementById('fMenoPredka2').value.trim();
+    const priezvisko2  = document.getElementById('fPriezviskoPredka2').value.trim();
+    const rokNarodenia2 = parseInt(document.getElementById('fRokNarodenia2').value) || null;
+    const masPredok2   = !!(meno2 || priezvisko2);
 
     if (!meno || !priezvisko || !obec || !kraj || !obdobie || !pribeh) {
       showFormError('Vyplň prosím všetky povinné polia (označené hviezdičkou).');
@@ -2679,7 +2689,7 @@
 
     // Ulož dáta formulára pre druhý krok
     pendingFormData = { meno, priezvisko, menoFull, obec, kraj, obdobie, rokNarodenia, pribeh,
-      socialSuhlas, allowContact, meno2, priezvisko2, masPredok2,
+      socialSuhlas, allowContact, meno2, priezvisko2, rokNarodenia2, masPredok2,
       zdielal_meno:      document.getElementById('fZdielalMeno').value.trim() || null,
       zdielal_priezvisko: document.getElementById('fZdielalPriezvisko').value.trim() || null,
       zdielal_email:     document.getElementById('fEmail').value.trim() || null,
@@ -2748,7 +2758,7 @@
     document.getElementById('translateBack').disabled = true;
 
     const { meno, priezvisko, menoFull, obec, kraj, obdobie, rokNarodenia, pribeh,
-      socialSuhlas, allowContact, meno2, priezvisko2, masPredok2,
+      socialSuhlas, allowContact, meno2, priezvisko2, rokNarodenia2, masPredok2,
       zdielal_meno, zdielal_priezvisko, zdielal_email, translatedEn } = pendingFormData;
 
     // Upload foto
@@ -2792,7 +2802,7 @@
       predok_meno: kombinovaneMeno,
       predok_priezvisko: kombinovanePriezvisko,
       delete_token: deleteToken,
-      obec, kraj, obdobie, rok_narodenia: rokNarodenia, pribeh,
+      obec, kraj, obdobie, rok_narodenia: rokNarodenia, rok_narodenia_2: rokNarodenia2 || null, pribeh,
       pribeh_en: translatedEn || null,
       original_lang: 'sk',
       ai_translated: !!translatedEn,
