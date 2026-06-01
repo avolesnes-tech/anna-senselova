@@ -839,9 +839,9 @@ body.ornaments-always .side-ornament { opacity: 0.13; }
   .newsletter-btn { width: 100%; }
 }
 
-/* ── MOBILE READABILITY — tmavší a hrubší text na mobile ── */
+/* ── MOBILE READABILITY — tmavší, hrubší a väčší text na mobile ── */
 @media (max-width: 768px) {
-  body { color: #0f0f0f; }
+  body { color: #0f0f0f; font-size: 22px !important; }
   p, li, blockquote, .pribeh-text p, .pribeh-text li {
     color: #0f0f0f;
     font-weight: 500;
