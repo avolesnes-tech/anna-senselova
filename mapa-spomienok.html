@@ -750,7 +750,7 @@
   background: rgba(212,175,55,0.05);
 }
 .drop-zone input[type=file] {
-  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; padding: 0; border: none;
+  display: none;
 }
 .drop-zone-icon { font-size: 1.8rem; opacity: 0.5; display: block; margin-bottom: 0.4rem; }
 .drop-zone-text {
@@ -2564,6 +2564,7 @@
   let selectedFiles = [];
 
   fileInput.addEventListener('change', () => handleFilesSelect(fileInput.files));
+  dropZone.addEventListener('click', () => fileInput.click());
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
   dropZone.addEventListener('drop', e => {
