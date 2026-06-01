@@ -699,6 +699,8 @@
 }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .form-field { margin-bottom: 1.1rem; }
+.form-field--year { flex: 0 0 130px !important; min-width: 110px; }
+.form-field--optional { font-style: italic; text-transform: none; font-size: 0.82em; opacity: 0.7; }
 .form-field label {
   display: block;
   font-family: 'Cinzel', serif;
@@ -1735,12 +1737,16 @@
         <p class="predok-section-label" id="predok1Label">Prvý predok</p>
         <div class="form-row">
           <div class="form-field">
-            <label for="fMenoPredka">Meno predka <span class="req">*</span></label>
+            <label for="fMenoPredka">Meno <span class="req">*</span></label>
             <input type="text" id="fMenoPredka" name="predok_meno" placeholder="napr. Mária" required autocomplete="off">
           </div>
           <div class="form-field">
-            <label for="fPriezviskoPreda">Priezvisko predka <span class="req">*</span></label>
+            <label for="fPriezviskoPreda">Priezvisko <span class="req">*</span></label>
             <input type="text" id="fPriezviskoPredka" name="predok_priezvisko" placeholder="napr. Kopecká" required autocomplete="off">
+          </div>
+          <div class="form-field form-field--year">
+            <label for="fRokNarodenia">Rok nar. <span class="form-field--optional">(nepovinné)</span></label>
+            <input type="number" id="fRokNarodenia" name="rok_narodenia" min="1700" max="2010" placeholder="napr. 1895">
           </div>
         </div>
 
@@ -1764,10 +1770,10 @@
               <label for="fPriezviskoPredka2">Priezvisko</label>
               <input type="text" id="fPriezviskoPredka2" name="predok2_priezvisko" placeholder="napr. Kopecký" autocomplete="off">
             </div>
-          </div>
-          <div class="form-field" style="max-width:220px;">
-            <label for="fRokNarodenia2">Presný rok narodenia <span style="font-style:italic;text-transform:none;font-size:0.85em">(nepovinné)</span></label>
-            <input type="number" id="fRokNarodenia2" name="rok_narodenia_2" min="1700" max="2010" placeholder="napr. 1898">
+            <div class="form-field form-field--year">
+              <label for="fRokNarodenia2">Rok nar. <span class="form-field--optional">(nepovinné)</span></label>
+              <input type="number" id="fRokNarodenia2" name="rok_narodenia_2" min="1700" max="2010" placeholder="napr. 1898">
+            </div>
           </div>
         </div>
         <div class="form-row">
@@ -1791,24 +1797,18 @@
             </select>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="fObdobie">Približné obdobie narodenia <span class="req">*</span></label>
-            <select id="fObdobie" name="obdobie" required>
-              <option value="">— vyber obdobie —</option>
-              <option value="pred_1880">Pred rokom 1880</option>
-              <option value="1880_1900">1880 – 1900</option>
-              <option value="1900_1920">1900 – 1920</option>
-              <option value="1920_1940">1920 – 1940</option>
-              <option value="1940_1960">1940 – 1960</option>
-              <option value="1960_plus">1960 a neskôr</option>
-              <option value="neviem">Neviem presne</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label for="fRokNarodenia">Presný rok narodenia <span style="font-style:italic;text-transform:none;font-size:0.85em">(nepovinné)</span></label>
-            <input type="number" id="fRokNarodenia" name="rok_narodenia" min="1700" max="2010" placeholder="napr. 1895">
-          </div>
+        <div class="form-field">
+          <label for="fObdobie">Približné obdobie narodenia <span class="req">*</span></label>
+          <select id="fObdobie" name="obdobie" required>
+            <option value="">— vyber obdobie —</option>
+            <option value="pred_1880">Pred rokom 1880</option>
+            <option value="1880_1900">1880 – 1900</option>
+            <option value="1900_1920">1900 – 1920</option>
+            <option value="1920_1940">1920 – 1940</option>
+            <option value="1940_1960">1940 – 1960</option>
+            <option value="1960_plus">1960 a neskôr</option>
+            <option value="neviem">Neviem presne</option>
+          </select>
         </div>
         <div class="form-field">
           <label for="fPribeh">Príbeh <span class="req">*</span></label>
