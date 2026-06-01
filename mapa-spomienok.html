@@ -2587,9 +2587,9 @@
       if (valid.length === 3) break;
     }
     if (valid.length === 0) return;
-    selectedFiles = valid;
+    selectedFiles = selectedFiles.concat(valid).slice(0, 3);
     dropPreviews.innerHTML = '';
-    valid.forEach(f => {
+    selectedFiles.forEach(f => {
       const reader = new FileReader();
       reader.onload = ev => {
         const img = document.createElement('img');
@@ -2601,6 +2601,11 @@
       reader.readAsDataURL(f);
     });
     dropZone.classList.add('has-file');
+    if (selectedFiles.length >= 3) {
+      dropZone.querySelector('.drop-zone-text').textContent = 'Nahraté 3 fotografie (maximum)';
+    } else {
+      dropZone.querySelector('.drop-zone-text').textContent = 'Pretiahnuť fotografie alebo kliknúť pre výber (' + selectedFiles.length + '/3)';
+    }
   }
 
   /* ── Toggle: druhý predok ── */
