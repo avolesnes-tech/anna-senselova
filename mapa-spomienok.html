@@ -134,7 +134,7 @@
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #999;
+  color: #555;
 }
 .stat-dot { color: rgba(212,175,55,0.5); font-size: 1.4rem; }
 .hero-scroll-hint {
@@ -366,7 +366,7 @@
   content: '⌕';
   position: absolute; left: 0.8rem; top: 50%;
   transform: translateY(-50%);
-  color: #bbb;
+  color: #666;
   font-size: 1.1rem; pointer-events: none;
 }
 .filter-bar input,
@@ -382,7 +382,7 @@
   width: 100%;
 }
 .filter-bar select { padding-left: 0.9rem; }
-.filter-bar input::placeholder { color: #bbb; }
+.filter-bar input::placeholder { color: #666; }
 .filter-bar input:focus,
 .filter-bar select:focus { border-color: var(--gold); }
 .filter-bar select option { background: #fff; color: var(--ink); }
@@ -506,7 +506,7 @@
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #aaa;
+  color: #555;
 }
 .legenda-dot {
   width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
@@ -732,7 +732,7 @@
 .form-field textarea { resize: vertical; min-height: 120px; line-height: 1.65; }
 .form-field .hint {
   font-size: 0.82rem;
-  color: #999;
+  color: #555;
   font-style: italic;
   margin-top: 0.35rem;
   display: block;
@@ -1164,7 +1164,7 @@
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 0.88rem;
-  color: #999;
+  color: #555;
 }
 .panel-divider {
   border: none; border-top: 1px solid rgba(212,175,55,0.2);
@@ -1449,7 +1449,7 @@
 .translate-btn-back {
   font-family: 'Cormorant Garamond', serif; font-size: 0.88rem;
   font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-  background: none; border: 1.5px solid #aaa; color: #777;
+  background: none; border: 1.5px solid #aaa; color: #444;
   padding: 0.65rem 1.4rem; cursor: pointer; transition: border-color 0.2s, color 0.2s;
 }
 .translate-btn-back:hover { border-color: #666; color: #333; }
@@ -1464,7 +1464,7 @@
 .translate-loading {
   text-align: center; padding: 2rem;
   font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
-  color: #777; font-style: italic;
+  color: #444; font-style: italic;
 }
 .ai-badge {
   display: inline-flex; align-items: center; gap: 0.35rem;
@@ -2785,7 +2785,7 @@
       // Preklad zlyhal — umožni pokračovať bez prekladu
       pendingFormData.translatedEn = null;
       document.getElementById('translateContent').innerHTML =
-        '<p style="font-family:\'Cormorant Garamond\',serif;color:#666;font-style:italic;text-align:center;padding:1rem 0;">Preklad momentálne nie je dostupný. Príbeh bude uložený len v slovenčine.</p>';
+        '<p style="font-family:\'Cormorant Garamond\',serif;color:#444;font-style:italic;text-align:center;padding:1rem 0;">Preklad momentálne nie je dostupný. Príbeh bude uložený len v slovenčine.</p>';
       document.getElementById('translateConsentWrap').style.display = 'none';
       document.getElementById('translateConfirm').disabled = false;
     }
