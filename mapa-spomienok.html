@@ -2163,6 +2163,28 @@
   let activeIdx = -1;
   let uploadedFotoUrl = null;
 
+  /* ─── GEOCODING (Nominatim / OpenStreetMap) ─────── */
+  async function geocodeObec(obec) {
+    try {
+      const q = encodeURIComponent(obec + ', Slovakia');
+      const url = 'https://nominatim.openstreetmap.org/search?q=' + q +
+        '&format=json&limit=1&countrycodes=sk&addressdetails=0';
+      const res = await fetch(url, {
+        headers: { 'Accept': 'application/json', 'Accept-Language': 'sk' }
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (!data || data.length === 0) return null;
+      const lat = parseFloat(data[0].lat);
+      const lng = parseFloat(data[0].lon);
+      if (isNaN(lat) || isNaN(lng)) return null;
+      return { lat, lng };
+    } catch (e) {
+      console.warn('Geocoding failed:', e.message);
+      return null;
+    }
+  }
+
   /* ─── UTILS ──────────────────────────────────── */
   function esc(s) {
     return String(s || '').replace(/[&<>"']/g, c =>
@@ -2832,12 +2854,17 @@
       kombinovanePriezvisko = priezvisko;
     }
 
+    // Geocode obec for precise pin placement
+    const coords = await geocodeObec(obec);
+
     const deleteToken = crypto.randomUUID();
     const { error } = await sb.from('stories').insert({
       predok_meno: kombinovaneMeno,
       predok_priezvisko: kombinovanePriezvisko,
       delete_token: deleteToken,
       obec, kraj, obdobie, rok_narodenia: rokNarodenia, rok_narodenia_2: rokNarodenia2 || null, pribeh,
+      lat: coords ? coords.lat : null,
+      lng: coords ? coords.lng : null,
       pribeh_en: translatedEn || null,
       original_lang: 'sk',
       ai_translated: !!translatedEn,
