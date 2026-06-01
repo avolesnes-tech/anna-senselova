@@ -21,7 +21,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--cream); color: var(--ink);
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; line-height: 1.7;
+  font-size: 22px; line-height: 1.7;
   overflow-x: hidden;
   opacity: 1; transition: opacity 0.35s ease;
 }
@@ -841,7 +841,7 @@ body.ornaments-always .side-ornament { opacity: 0.13; }
 
 /* ── MOBILE READABILITY — tmavší, hrubší a väčší text na mobile ── */
 @media (max-width: 768px) {
-  body { color: #0f0f0f; font-size: 22px !important; }
+  body { color: #0f0f0f; }
   p, li, blockquote, .pribeh-text p, .pribeh-text li {
     color: #0f0f0f;
     font-weight: 500;
