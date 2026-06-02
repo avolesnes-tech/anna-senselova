@@ -513,6 +513,52 @@ h1 {
 .knihy-list li:last-child { border-bottom: none; }
 .knihy-text { padding: 0.5rem 0; }
 
+/* ── STRETNUTIE FOTO ── */
+.stretnutie-wrap {
+  background: var(--cream);
+  padding: 5rem 2rem 5.5rem;
+  text-align: center;
+}
+.stretnutie-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.stretnutie-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.63rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  display: block;
+  margin-bottom: 1.5rem;
+}
+.stretnutie-foto {
+  display: inline-block;
+  background: #fff;
+  padding: 1rem 1rem 2.6rem;
+  box-shadow: 0 8px 36px rgba(0,0,0,0.11), 0 1px 4px rgba(0,0,0,0.06);
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: 2px;
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+}
+.stretnutie-foto img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: sepia(0.06) contrast(1.02) brightness(0.99);
+}
+.stretnutie-foto figcaption {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-top: 1rem;
+  line-height: 1.75;
+}
+
 @media (max-width: 720px) {
   .knihy-block {
     grid-template-columns: 1fr; gap: 1.8rem;
@@ -788,6 +834,20 @@ section[id], div[id] { scroll-margin-top: 72px; }
         <figcaption>Vlastný životopis · Pevný buď · Šenšelovský rod</figcaption>
       </figure>
     </div>
+  </div>
+</div>
+
+<!-- STRETNUTIE FOTO -->
+<div class="stretnutie-wrap">
+  <div class="stretnutie-inner">
+    <span class="stretnutie-label reveal">Stretnutie, ktoré nečakalo</span>
+    <figure class="stretnutie-foto reveal">
+      <picture>
+        <source srcset="anna_lockwoodova_juras.webp" type="image/webp">
+        <img src="anna_lockwoodova_juras.jpg" alt="Anna Lockwoodová a Ján Jurás – prvé stretnutie s dvojstupňovým ujom" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>Anna Lockwoodová &amp; Ján Jurás · dvojstupňový ujo · Anniný krstný syn</figcaption>
+    </figure>
   </div>
 </div>
 
