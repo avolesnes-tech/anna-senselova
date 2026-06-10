@@ -1333,7 +1333,7 @@ gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wa
              data-region=""
              data-tags='[]'
              data-photos='["vysivky1/cifer_haras1.webp", "vysivky1/cifer_haras2.webp", "vysivky1/cifer_haras3.webp"]'
-             data-origin="Výšivka vlnou (haras) z mužských rukávcov z okolia Cífera. Plná výšivka.">
+             data-origin="Výšivka hrubou vlnenou niťou (<em>haras</em> alebo <em>kamrhól</em>) z mužských rukávcov z okolia Cífera. Plná výšivka.">
           <img src="../vysivky1/cifer_haras2.webp"
                alt="Ciferský haras"
                loading="lazy" decoding="async">
@@ -1355,7 +1355,7 @@ gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wa
              data-region=""
              data-tags='["Bobbin lace", "Cross stitch", "Full embroidery"]'
              data-photos='["vysivky1/cifer_rukav1.webp", "vysivky1/cifer_rukav2.webp", "vysivky1/cifer_rukav3.webp"]'
-             data-origin="Fragment z mužských rukávcov z oblasti Cífera (alebo možno tacle). Paličkovaná čipka, krížikový steh a plná výšivka vlnou (haras).">
+             data-origin="Fragment z mužských rukávcov z oblasti Cífera (alebo možno tacle). Paličkovaná čipka, krížikový steh a plná výšivka hrubou vlnenou niťou (<em>haras</em> alebo <em>kamrhól</em>).">
           <img src="../vysivky1/cifer_rukav2.webp"
                alt="Ciferský rukáv"
                loading="lazy" decoding="async">
@@ -2081,7 +2081,7 @@ gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wa
     panelTitle.textContent = card.dataset.name;
     panelRegion.textContent = card.dataset.region;
     panelCounter.textContent = pos + ' / ' + total;
-    panelDesc.textContent = card.dataset.origin;
+    panelDesc.innerHTML = card.dataset.origin || '';
 
     // Meta tags
     panelMetaTags.innerHTML = '';
